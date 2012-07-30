@@ -107,3 +107,10 @@ bel_currentPosition from within the GamePlaying capability. PDT stopped
 working and I had to start again.
 
 - Step 6:
+Modify plan ConsoleBeliefPrinting to print out the agent's believed current position.
+
+Added connection from bel_currentPosition to InfoReporting in Player's
+GamePlaying capability.
+
+Set bel_currentPosition's modifier to #imports in the InfoReporting diagram.
+Added link from bel_currentPosition to ConsoleBeliefPrinting.
