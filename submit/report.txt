@@ -1,0 +1,43 @@
+********************************************************************************
+*                   Agent-Oriented Programming and Design 2012                 *
+*                            Report - Assignment 1                             *
+*                        Rhys van der Waerden (s3134601)                       *
+********************************************************************************
+
+Exercise 1: Warming Up!
+-----------------------
+
+- Step 1:
+Already completed during warmup.
+
+- Step 2:
+Opened design.pd.
+
+- Step 3:
+Exported Player diagram as png. (See player-design.png).
+
+- Step 4:
+Added descriptionfor HandlePercept plan.
+
+- Step 5:
+Generated JACK code.
+
+- Step 6:
+Verified that sources were present and up to date.
+
+- Step 7:
+Added to Main.java (line 57):
+
+	System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
+
+Removed from Makefile (line 17):
+
+	-DJAVACARGS="-target 1.5"
+
+To enabled error free compilation and exectuion under Java 1.7.
+As advised I will change to JDK 1.6.
+
+- Summary:
+I have learned basic navigation of a PDT project, and how to generate JACK code
+and then compile that to Java code. I have also learned how to export diagrams
+as PNG files for documentation.
