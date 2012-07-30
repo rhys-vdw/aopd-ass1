@@ -54,6 +54,8 @@ public class Main {
     
     
     public static void main (String args[]) {
+    	System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
+    	
     	aos.jack.Kernel.init( args );	// Initialize the JACK kernel
 
     	// Get the optional properties
