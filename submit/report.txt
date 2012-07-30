@@ -114,3 +114,40 @@ GamePlaying capability.
 
 Set bel_currentPosition's modifier to #imports in the InfoReporting diagram.
 Added link from bel_currentPosition to ConsoleBeliefPrinting.
+
+Added these lines to the end of body in ConsoleBeliefPrinting.plan (line 85):
+
+        logical int $posX, $posY;
+        bel_currentPosition_dat.get($posX, $posY);
+        consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
+            " believes it is currently at location (" + $posX + "," + $posY +
+            ")");
+
+The output can be seen when the program runs (output edited for readability):
+
+[[player6@%portal]] A request-action event for step-id 19-20 states that
+                    player6@%portal is currently at location (5, 5) with 0
+                    pieces of gold
+[[player6@%portal]] Current ID step: 20
+[[player6@%portal]] Number of cells believed empty of obstacles: 32
+[[player6@%portal]] Number of believed obstructed cells: 2
+[[player6@%portal]] Agent player6@%portal believes it is currently at location
+                    (5,5)                           <------- THIS THE NEW OUTPUT
+[[player6@%portal]] I will move randomly to this dir: down
+[[player6@%portal]] I sent CLIMA action *down* for execution with id 20
+
+<Action
+    :type  "down"
+    :param  "player6@%portal"
+    :id  "20"
+>
+
+(full output available in trace2-4.txt)
+
+- Summary:
+In this exercise I have learned how to:
+ - display debug output to console.
+ - create a new beliefset.
+ - add and retrieve data from a beliefset.
+ - interpret and extend the relationship between beliefs and plans in PDT.
+ - use version control to prevent losing my progress :)
