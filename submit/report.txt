@@ -75,4 +75,14 @@ against supplies integer values (check). The 'logical' arguments on get are
 output variables.
 
 - Step 5:
+a: Added link from GamePlaying to bel_currentPosition in Player page in Detailed
+Design. This is because current position is updated by the game.
+
+Then within this GamePlaying capability, linked from HandlePercept to
+bel_currentPosition.
+
+b: Generate JACK code. Observed new #modifies statement in HandlePercept.plan
+(line 39).
+
+        #modifies data CurrentPosition bel_currentPosition_dat;
 
