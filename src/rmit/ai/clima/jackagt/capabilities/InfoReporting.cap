@@ -30,6 +30,11 @@ Description: Tasks to report on information believed
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
 	*/
+	#imports data LastActionSentBel bel_lastActionSent_dat();
+
+	/*	You may need to change the statement declaration of data/beliefset to:
+	#agent | #global | #private | #import | #export
+	*/
 	#imports data CurrentStatus bel_currentStatus_dat();
 
 	/*	You may need to change the statement declaration of data/beliefset to:
@@ -42,30 +47,25 @@ Description: Tasks to report on information believed
 	*/
 	#imports data CellEmpty bel_cellEmpty_dat();
 
-	/*	You may need to change the statement declaration of data/beliefset to:
-	#agent | #global | #private | #import | #export
-	*/
-	#imports data LastActionSentBel bel_lastActionSent_dat();
-
 
 	//Events handled, posted and sent are declared here.
+	#handles external event ECellChange ;
+
 	#handles external event EShowBeliefs ;
 
 	#sends event MEInformCellStatus meinformcellstatus_s;
 
-	#sends event EGUIDebugMessage eguidebugmessage_s;
-
 	#sends event MEInformAgentStatus meinformagentstatus_s;
 
-	#handles external event ECellChange ;
+	#sends event EGUIDebugMessage eguidebugmessage_s;
 
 
 	//Plans directly used are declared here.
+	#uses plan ReportCellChangeToGUI ;
+
 	#uses plan ConsoleBeliefPrinting ;
 
 	#uses plan BeliefReporting ;
-
-	#uses plan ReportCellChangeToGUI ;
 
 
 	// Inner capabilities are declared here.

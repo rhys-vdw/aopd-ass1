@@ -14,7 +14,7 @@ compile:
 	@echo "====================================================="
 	@echo "Compiling JACK CLIMA application..."
 	@echo "====================================================="
-	java -cp $(LIBS) aos.main.JackBuild src -x -r -d $(JACKOUT)  -DJAVACARGS="-target 1.5"
+	java -cp $(LIBS) aos.main.JackBuild src -x -r -d $(JACKOUT)  #-DJAVACARGS="-target 1.5"
 	@echo "Done compiling..."
 
 zip:
