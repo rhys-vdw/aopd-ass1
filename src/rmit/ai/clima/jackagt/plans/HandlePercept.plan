@@ -122,6 +122,9 @@ Description: This plan assimilates each percept information received from the ga
 
 		// Update beliefset with the current request action id from the incoming percept
 		bel_currentRequestActionId_dat.add(id,step);
+		
+		// Update beliefset with the current position of the agent
+		bel_currentPosition_dat.add(posX, posY);
 
         // Finally, post an event to act next on the game server
        // This is the old way, now EACT is generated automatically as an automatic event when the id of the simulation is updated

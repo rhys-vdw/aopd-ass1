@@ -58,23 +58,31 @@ Completing step would simply add redundant output for event. I have not included
 the program output as it would be indistinguishable from 'trace1-7.txt'.
 
 - Step 2:
-Created new beliefset for Player.
-'CurrentPosition' is #private with fields int posX, int posY.
+Created new beliefset 'CurrentPosition' for Player.
+Fields: int posX, int posY.
+Neither fields are keys, as only one position can be "current" for an agent.
+The beliefset is #private because each Player has its own unique current
+position in the game.
+
 
 - Step 3:
 Generated code successfully.
 
 - Step 4:
-Added two queries to CurrentPosition.bel (line 26, just after PDT Design Block":
+Added two queries to CurrentPosition.bel (line 26, just after PDT Design Block):
 
-    #index query get(logical int posX, logical int posY);
-    #index query check(int posX, int posY);
+    #linear query get(logical int posX, logical int posY);
+    #linear query check(int posX, int posY);
 
 These queries allow the current position to be retrieved (get) or checked
 against supplies integer values (check). The 'logical' arguments on get are
 output variables.
 
+As the operation is on a set of exactly one tuple, the queries are linear for
+efficiency.
+
 - Step 5:
+
 a: Added link from GamePlaying to bel_currentPosition in Player page in Detailed
 Design. This is because current position is updated by the game.
 
@@ -86,3 +94,16 @@ b: Generate JACK code. Observed new #modifies statement in HandlePercept.plan
 
         #modifies data CurrentPosition bel_currentPosition_dat;
 
+c. Added code to HandlePercept.plan to update current position beliefset
+(line 126):
+
+    // Update beliefset with the current position of the agent
+    bel_currentPosition_dat.add(posX, posY);
+
+PROBLEMS:
+The first time I attempted this step I added the link from GamePlaying to
+bel_currentPosition and then removed it before continuin. This did not remove
+bel_currentPosition from within the GamePlaying capability. PDT stopped
+working and I had to start again.
+
+- Step 6:

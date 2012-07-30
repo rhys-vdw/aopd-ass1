@@ -23,6 +23,6 @@ public beliefset CurrentPosition extends ClosedWorld /*or OpenWorld*/
 	#value field int posY;
 
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
-	#index query get(logical int posX, logical int posY);
-	#index query check(int posX, int posY);
+	#linear query get(logical int posX, logical int posY);
+	#linear query check(int posX, int posY);
 }
