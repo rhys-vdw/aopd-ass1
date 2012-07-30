@@ -20,9 +20,9 @@ Plan Name: HandlePercept
 Description: This plan assimilates each percept information received from the game server.
 */
 	//Events handled by the plan are declared here.
-	#sends event MEInformAgentStatus meinformagentstatus_s;
-
 	#sends event EGUIDebugMessage eguidebugmessage_s;
+
+	#sends event MEInformAgentStatus meinformagentstatus_s;
 
 	#sends event EUpdateBel eupdatebel_s;
 
