@@ -18,9 +18,18 @@ import aos.jack.jak.logic.Variable;
 import aos.jack.jak.cursor.BeliefState;
 import aos.jack.jak.cursor.Cursor;
 
+/* this is closed world because the agent can check reliably against all possible tuples.
+ *  ie. it believes it is at (n, m), therefore it believes it is not at any other tuple.
+ */
+
 public class CurrentPosition extends aos.jack.jak.beliefset.ClosedWorld {
     static public rmit.ai.clima.jackagt.data.CurrentPosition__Tuple __hole = new rmit.ai.clima.jackagt.data.CurrentPosition__Tuple(true);
     public rmit.ai.clima.jackagt.data.CurrentPosition__Tuple[][] __tables;
+    public java.lang.String getDocumentation()
+    {
+        return "/* this is closed world because the agent can check reliably against all possible tuples.\n *  ie. it believes it is at (n, m), therefore it believes it is not at any other tuple.\n */\n";
+    }
+    
     public boolean attach(aos.jack.jak.event.EventRecipient __h)
     {
         java.lang.Object __o = __h;

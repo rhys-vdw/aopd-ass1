@@ -16,6 +16,7 @@ import aos.jack.jak.core.Generator;
 import aos.jack.jak.cursor.Cursor;
 import aos.jack.jak.logic.Signature;
 import rmit.ai.clima.jackagt.events.EUpdateBel;
+import rmit.ai.clima.jackagt.data.GoldAt;
 import rmit.ai.clima.jackagt.data.CellEmpty;
 import rmit.ai.clima.comms.Cell;
 import rmit.ai.clima.gui.grid.GridPoint;
@@ -25,35 +26,38 @@ import aos.jack.jak.core.Jak;
 
 public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
     public rmit.ai.clima.jackagt.events.EUpdateBel eupdatebel_h;
+    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
     public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
             "rmit/ai/clima/jackagt/plans/UpdateCellsAround.plan",
             "body",
-            "41",
-            "42",
             "43",
             "44",
-            "52",
-            "52",
-            "55",
-            "56",
+            "45",
+            "46",
+            "54",
+            "54",
+            "57",
             "58",
             "60",
-            "60",
-            "63",
-            "66",
-            "67",
-            "70",
-            "37",
-            "60",
-            "52",
-            "37"};
+            "62",
+            "62",
+            "65",
+            "68",
+            "69",
+            "72",
+            "39",
+            "62",
+            "54",
+            "39"};
     private final static java.lang.String[] __planVariableNames = {
             "eupdatebel_h",
+            "bel_goldAt_dat",
             "bel_cellEmpty_dat"};
     private final static java.lang.String[] __planVariableTypes = {
             "rmit.ai.clima.jackagt.events.EUpdateBel",
+            "GoldAt",
             "rmit.ai.clima.jackagt.data.CellEmpty"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
@@ -105,6 +109,7 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
         __planTask = __t;
         __logic = __t.logic;
         eupdatebel_h = __env.eupdatebel_h;
+        bel_goldAt_dat = __env.bel_goldAt_dat;
         bel_cellEmpty_dat = __env.bel_cellEmpty_dat;
     }
     
@@ -113,6 +118,11 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
         eupdatebel_h = (rmit.ai.clima.jackagt.events.EUpdateBel) __a.findEvent("rmit.ai.clima.jackagt.events.EUpdateBel");
         if (eupdatebel_h == null) {
             warning("Failed to find EUpdateBel eupdatebel_h");
+            return false;
+        }
+        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) lookupNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt",aos.jack.jak.agent.Agent.WRITEABLE);
+        if (bel_goldAt_dat == null) {
+            warning("Failed to find GoldAt bel_goldAt_dat");
             return false;
         }
         bel_cellEmpty_dat = (rmit.ai.clima.jackagt.data.CellEmpty) lookupNamedObject("bel_cellEmpty_dat","rmit.ai.clima.jackagt.data.CellEmpty",aos.jack.jak.agent.Agent.WRITEABLE);
@@ -221,6 +231,10 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
             }
             case 1: 
             {
+                return aos.util.ToObject.box(bel_goldAt_dat);
+            }
+            case 2: 
+            {
                 return aos.util.ToObject.box(bel_cellEmpty_dat);
             }
             default: 
@@ -284,7 +298,7 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                             aos.jack.jak.core.Jak.error("UpdateCellsAround.body: Illegal state");
                             return FAILED_STATE;
                         }
-                        //* (41)         int step = eupdatebel_h.step;
+                        //* (43)         int step = eupdatebel_h.step;
                         case 10: 
                         {
                             __breakLevel = 0;
@@ -292,35 +306,35 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                             __state = 11;
                             break;
                         }
-                        //* (42)         int posX = eupdatebel_h.currentPos.x;
+                        //* (44)         int posX = eupdatebel_h.currentPos.x;
                         case 11: 
                         {
                             __local__21_1 = eupdatebel_h.currentPos.x;
                             __state = 12;
                             break;
                         }
-                        //* (43)         int posY = eupdatebel_h.currentPos.y;
+                        //* (45)         int posY = eupdatebel_h.currentPos.y;
                         case 12: 
                         {
                             __local__21_2 = eupdatebel_h.currentPos.y;
                             __state = 13;
                             break;
                         }
-                        //* (44)         Cell[] cells = eupdatebel_h.cells;	// the array of adjacent cells
+                        //* (46)         Cell[] cells = eupdatebel_h.cells;	// the array of adjacent cells
                         case 13: 
                         {
                             __local__21_3 = eupdatebel_h.cells;
                             __state = 14;
                             break;
                         }
-                        //* (52)         for(int i=0; i < cells.length; i++) {	// interate on each cell
+                        //* (54)         for(int i=0; i < cells.length; i++) {	// interate on each cell
                         case 14: 
                         {
                             __local__21_6 = 0;
                             __state = 15;
                             break;
                         }
-                        //* (52)         for(int i=0; i < cells.length; i++) {	// interate on each cell
+                        //* (54)         for(int i=0; i < cells.length; i++) {	// interate on each cell
                         case 15: 
                         {
                             if (__local__21_6 < __local__21_3.length) 
@@ -329,7 +343,7 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                                 __state = 28;
                             break;
                         }
-                        //* (55)             locDir = cells[i].id;	// first, get its direction (e.g., n, nw, s, se, etc.)
+                        //* (57)             locDir = cells[i].id;	// first, get its direction (e.g., n, nw, s, se, etc.)
                         case 16: 
                         {
                             __breakLevel = 4;
@@ -340,28 +354,28 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                             __local__21_4 = __local__21_3[__local__21_6].id;
                             break;
                         }
-                        //* (56)             GridPoint loc = GridPoint.getFromDir(posX, posY, locDir);
+                        //* (58)             GridPoint loc = GridPoint.getFromDir(posX, posY, locDir);
                         case 17: 
                         {
                             __local__21_7 = rmit.ai.clima.gui.grid.GridPoint.getFromDir(__local__21_1,__local__21_2,__local__21_4);
                             __state = 18;
                             break;
                         }
-                        //* (58)            setToNoGold = true;	// Initially, assume the cell does not contain goal	            
+                        //* (60)            setToNoGold = true;	// Initially, assume the cell does not contain goal	            
                         case 18: 
                         {
                             __state = 19;
                             __local__21_5 = true;
                             break;
                         }
-                        //* (60)            for(int j = 0; j < cells[i].marks.length; j++) {
+                        //* (62)            for(int j = 0; j < cells[i].marks.length; j++) {
                         case 19: 
                         {
                             __local__21_8 = 0;
                             __state = 20;
                             break;
                         }
-                        //* (60)            for(int j = 0; j < cells[i].marks.length; j++) {
+                        //* (62)            for(int j = 0; j < cells[i].marks.length; j++) {
                         case 20: 
                         {
                             if (__local__21_8 < __local__21_3[__local__21_6].marks.length) 
@@ -370,7 +384,7 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                                 __state = 27;
                             break;
                         }
-                        //* (63)                if( !(cells[i].marks[j].type.equalsIgnoreCase("unknown")) ) {
+                        //* (65)                if( !(cells[i].marks[j].type.equalsIgnoreCase("unknown")) ) {
                         case 21: 
                         {
                             __breakLevel = 8;
@@ -380,7 +394,7 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                                 __state = 25;
                             break;
                         }
-                        //* (66)                     if( cells[i].marks[j].type.equalsIgnoreCase("obstacle") ) {
+                        //* (68)                     if( cells[i].marks[j].type.equalsIgnoreCase("obstacle") ) {
                         case 22: 
                         {
                             __breakLevel = 10;
@@ -390,7 +404,7 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                                 __state = 24;
                             break;
                         }
-                        //* (67)                         bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.FALSE);
+                        //* (69)                         bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.FALSE);
                         case 23: 
                         {
                             __breakLevel = 12;
@@ -398,7 +412,7 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                             bel_cellEmpty_dat.add(__local__21_7.x,__local__21_7.y,aos.jack.jak.cursor.Cursor.FALSE);
                             break;
                         }
-                        //* (70)                         bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.TRUE);
+                        //* (72)                         bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.TRUE);
                         case 24: 
                         {
                             __breakLevel = 12;
@@ -408,28 +422,28 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                             bel_cellEmpty_dat.add(__local__21_7.x,__local__21_7.y,aos.jack.jak.cursor.Cursor.TRUE);
                             break;
                         }
-                        //* (37)     #reasoning method
+                        //* (39)     #reasoning method
                         case 25: 
                         {
                             __breakLevel = 10;
                             __state = 26;
                             break;
                         }
-                        //* (60)            for(int j = 0; j < cells[i].marks.length; j++) {
+                        //* (62)            for(int j = 0; j < cells[i].marks.length; j++) {
                         case 26: 
                         {
                             __state = 20;
                             __local__21_8++ ;
                             break;
                         }
-                        //* (52)         for(int i=0; i < cells.length; i++) {	// interate on each cell
+                        //* (54)         for(int i=0; i < cells.length; i++) {	// interate on each cell
                         case 27: 
                         {
                             __state = 15;
                             __local__21_6++ ;
                             break;
                         }
-                        //* (37)     #reasoning method
+                        //* (39)     #reasoning method
                         case 28: 
                         {
                             if (__pending == null) 

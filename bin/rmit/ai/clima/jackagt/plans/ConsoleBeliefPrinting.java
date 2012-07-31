@@ -16,10 +16,10 @@ import aos.jack.jak.cursor.Cursor;
 import aos.jack.jak.logic.Signature;
 import rmit.ai.clima.jackagt.events.EShowBeliefs;
 import rmit.ai.clima.jackagt.data.CurrentPosition;
-import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
-import rmit.ai.clima.jackagt.data.CurrentStatus;
 import rmit.ai.clima.iface.LastActionSentBel;
 import rmit.ai.clima.jackagt.data.CellEmpty;
+import rmit.ai.clima.jackagt.data.CurrentStatus;
+import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
 import rmit.ai.clima.interfaces.DebugInterface;
 import java.lang.Object;
 import aos.jack.jak.fsm.FSM;
@@ -38,10 +38,10 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             "nw"};
     public rmit.ai.clima.jackagt.events.EShowBeliefs eshowbeliefs_h;
     public rmit.ai.clima.jackagt.data.CurrentPosition bel_currentPosition_dat;
-    public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
-    public rmit.ai.clima.jackagt.data.CurrentStatus bel_currentStatus_dat;
     public rmit.ai.clima.iface.LastActionSentBel bel_lastActionSent_dat;
     public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
+    public rmit.ai.clima.jackagt.data.CurrentStatus bel_currentStatus_dat;
+    public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
     public rmit.ai.clima.interfaces.DebugInterface consoleIface;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
@@ -69,19 +69,19 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             "dir",
             "eshowbeliefs_h",
             "bel_currentPosition_dat",
-            "bel_currentRequestActionId_dat",
-            "bel_currentStatus_dat",
             "bel_lastActionSent_dat",
             "bel_cellEmpty_dat",
+            "bel_currentStatus_dat",
+            "bel_currentRequestActionId_dat",
             "consoleIface"};
     private final static java.lang.String[] __planVariableTypes = {
             "String[]",
             "EShowBeliefs",
             "rmit.ai.clima.jackagt.data.CurrentPosition",
-            "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
-            "CurrentStatus",
             "LastActionSentBel",
             "rmit.ai.clima.jackagt.data.CellEmpty",
+            "CurrentStatus",
+            "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
             "rmit.ai.clima.interfaces.DebugInterface"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
@@ -132,10 +132,10 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
         __logic = __t.logic;
         eshowbeliefs_h = __env.eshowbeliefs_h;
         bel_currentPosition_dat = __env.bel_currentPosition_dat;
-        bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
-        bel_currentStatus_dat = __env.bel_currentStatus_dat;
         bel_lastActionSent_dat = __env.bel_lastActionSent_dat;
         bel_cellEmpty_dat = __env.bel_cellEmpty_dat;
+        bel_currentStatus_dat = __env.bel_currentStatus_dat;
+        bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
         consoleIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
     }
     
@@ -151,16 +151,6 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             warning("Failed to find CurrentPosition bel_currentPosition_dat");
             return false;
         }
-        bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) lookupNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId",0);
-        if (bel_currentRequestActionId_dat == null) {
-            warning("Failed to find CurrentRequestActionId bel_currentRequestActionId_dat");
-            return false;
-        }
-        bel_currentStatus_dat = (rmit.ai.clima.jackagt.data.CurrentStatus) lookupNamedObject("bel_currentStatus_dat","rmit.ai.clima.jackagt.data.CurrentStatus",0);
-        if (bel_currentStatus_dat == null) {
-            warning("Failed to find CurrentStatus bel_currentStatus_dat");
-            return false;
-        }
         bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) lookupNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel",0);
         if (bel_lastActionSent_dat == null) {
             warning("Failed to find LastActionSentBel bel_lastActionSent_dat");
@@ -169,6 +159,16 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
         bel_cellEmpty_dat = (rmit.ai.clima.jackagt.data.CellEmpty) lookupNamedObject("bel_cellEmpty_dat","rmit.ai.clima.jackagt.data.CellEmpty",0);
         if (bel_cellEmpty_dat == null) {
             warning("Failed to find CellEmpty bel_cellEmpty_dat");
+            return false;
+        }
+        bel_currentStatus_dat = (rmit.ai.clima.jackagt.data.CurrentStatus) lookupNamedObject("bel_currentStatus_dat","rmit.ai.clima.jackagt.data.CurrentStatus",0);
+        if (bel_currentStatus_dat == null) {
+            warning("Failed to find CurrentStatus bel_currentStatus_dat");
+            return false;
+        }
+        bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) lookupNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId",0);
+        if (bel_currentRequestActionId_dat == null) {
+            warning("Failed to find CurrentRequestActionId bel_currentRequestActionId_dat");
             return false;
         }
         return true;
@@ -280,19 +280,19 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             }
             case 3: 
             {
-                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
+                return aos.util.ToObject.box(bel_lastActionSent_dat);
             }
             case 4: 
             {
-                return aos.util.ToObject.box(bel_currentStatus_dat);
+                return aos.util.ToObject.box(bel_cellEmpty_dat);
             }
             case 5: 
             {
-                return aos.util.ToObject.box(bel_lastActionSent_dat);
+                return aos.util.ToObject.box(bel_currentStatus_dat);
             }
             case 6: 
             {
-                return aos.util.ToObject.box(bel_cellEmpty_dat);
+                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
             }
             case 7: 
             {
@@ -507,11 +507,11 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                                 throw planfailed;
                             break;
                         }
-                        //* (87) 	    consoleIface.showConsoleDebug("!!!!!!! Agent " + getAgent().getName() + " believes it is currently at location ("
+                        //* (87) 	    consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " believes it is currently at location ("
                         case 26: 
                         {
                             __state = 27;
-                            consoleIface.showConsoleDebug("!!!!!!! Agent " + getAgent().getName() + " believes it is currently at location (" + __local__3_7 + "," + __local__3_8 + ")");
+                            consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " believes it is currently at location (" + __local__3_7 + "," + __local__3_8 + ")");
                             break;
                         }
                         //* (56)     #reasoning method

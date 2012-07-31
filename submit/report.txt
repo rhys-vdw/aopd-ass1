@@ -190,4 +190,10 @@ must be stored for every unique cell)
 - Changed belief GoldAt's superclass to OpenWorld (agents will not know the
 status of every cell in the game)
 
-a.
+a. Added to GoldAt.bel after PDT Design Block (line 26):
+
+    #indexed query checkIfGold(int xCoord, int yCoord);
+
+Parameters are not logical because we are checking against two keys.
+
+b. 
