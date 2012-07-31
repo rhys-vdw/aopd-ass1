@@ -24,4 +24,5 @@ public beliefset GoldAt extends OpenWorld
 	// These describe the data attributes of each belief.
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
     #indexed query checkIfGold(int xCoord, int yCoord);
+    #indexed query getLocWithGold(logical int xCoord, logical int yCoord);
 }
