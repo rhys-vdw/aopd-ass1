@@ -1,7 +1,10 @@
 package rmit.ai.clima.jackagt.data;
 import rmit.ai.clima.jackagt.events.*;
 
-public beliefset CurrentPosition extends ClosedWorld /*or OpenWorld*/
+/* this is closed world because the agent can check reliably against all possible tuples.
+ *  ie. it believes it is at (n, m), therefore it believes it is not at any other tuple.
+ */
+public beliefset CurrentPosition extends ClosedWorld
 {
 /******** Start PDT Design Block *** DO NOT EDIT IT *********/
 /*

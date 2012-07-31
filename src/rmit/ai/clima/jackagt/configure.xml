@@ -43,7 +43,9 @@
 <Entity CodeFileURI="file:/home/ssardina/workspace/RACT-JACKAGT-GOLD-NPDT/src/rmit/ai/clima/jackagt/events/PerceiveClimaServer.event" ID="29697" name="PerceiveClimaServer" package="rmit.ai.clima.iface.PerceiveClimaServer"/>
 <Entity DataType="Map" ID="28929" name="bel_map"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/EShowBeliefs.event" ID="40961" name="EShowBeliefs"/>
+<Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/data/GoldAt.bel" ID="296705" name="GoldAt"/>
 <Entity DataFields="int xCoord, int yCoord, int id" DataType="GoldAt" ID="27393" name="bel_goldAt"/>
+<Entity DataFields="int xCoord, int yCoord" DataType="GoldAt" ID="295937" name="bel_goldAt"/>
 <Entity ID="2561" name="sim-start XML"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/GUIReportMessage.plan" ID="63489" name="GUIReportMessage"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/GUIClose.plan" ID="62721" name="GUIClose"/>

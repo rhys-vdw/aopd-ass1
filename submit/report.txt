@@ -168,3 +168,26 @@ like the agents to benefit from each other's perception.
 More specifically, an agent will send an EUpdateBelief to each of its team
 mates so that they may know positions of gold, barriers, opponents etc.
 When they receive it they will use their "UpdateCellsAround" plan.
+
+- Step 2:
+Created data object "bel_goldAt" in Detailed Design -> Player. Modifer is
+"#private" because each agent has its own record of perception (for now).
+
+Added data type:
+name: GoldAt
+fields: int xCoord, int yCoord (both fields are keys, because a different value
+must be stored for every unique cell)
+
+- Added connection FROM GamePlaying TO bel_goldAt.
+
+- Within GamePlaying:
+  - Added connection FROM UpdateCellsAround TO bel_goldAt.
+  - Set modifier of bel_goldAt to #imports.
+  - Added connection FROM bel_goldAt TO InfoReporting (for debugging changes).
+
+- Generated Jack successfully!
+
+- Changed belief GoldAt's superclass to OpenWorld (agents will not know the
+status of every cell in the game)
+
+a.

@@ -24,13 +24,13 @@ Description: Reports believed information in the console
 	// Declarations of any beliefset/data that the plan accesses.
 	#reads data CurrentPosition bel_currentPosition_dat;
 
-	#reads data CurrentRequestActionId bel_currentRequestActionId_dat;
-
-	#reads data CurrentStatus bel_currentStatus_dat;
-
 	#reads data LastActionSentBel bel_lastActionSent_dat;
 
 	#reads data CellEmpty bel_cellEmpty_dat;
+
+	#reads data CurrentStatus bel_currentStatus_dat;
+
+	#reads data CurrentRequestActionId bel_currentRequestActionId_dat;
 
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
 
@@ -82,12 +82,9 @@ Description: Reports believed information in the console
 	    // ************* BELOW HERE YOU MAY WANT TO REPORT MORE STUFF IN THE CONSOLE ....
 	    
 	    
-	    
-	    
-	    
-	    
-	    
-	    
-
+	    logical int $posX, $posY;
+	    bel_currentPosition_dat.get($posX, $posY);
+	    consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " believes it is currently at location ("
+	    		+ $posX + "," + $posY + ")");
     }
 }
