@@ -151,3 +151,20 @@ In this exercise I have learned how to:
  - add and retrieve data from a beliefset.
  - interpret and extend the relationship between beliefs and plans in PDT.
  - use version control to prevent losing my progress :)
+
+Exercise 3: Keeping track of gold pieces
+----------------------------------------
+
+- Step 1:
+CellEmpty is updated by plan UpdateCellsAround. This plan takes an event
+'EUpdateBelief' containing a grid coordinate and a list of contents from
+its surrounding cells.
+
+At the moment HandlePercept is the only source of EUpdateBelief events, so the
+belief updates could be performed within HandlePercept without any change in
+behaviour. However, it makes sense to decouple these because later we would
+like the agents to benefit from each other's perception.
+
+More specifically, an agent will send an EUpdateBelief to each of its team
+mates so that they may know positions of gold, barriers, opponents etc.
+When they receive it they will use their "UpdateCellsAround" plan.
