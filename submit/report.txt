@@ -271,11 +271,41 @@ StartSimulation.plan:
                                                     -JACK Agent Manual
 
 
-FinishSimulation.plan:
+FinishSimulation.plan (line 62):
 - Remove all tuples at the end of simulation, this data has now expired.
 
     bel_goldAt_dat.getLocWithGold($x,$y).removeAll(); 
 
-OpenWorldCursor.removeAll() will remove all tuples from the beliefset that
-match the Cursor returned by getLocWithGold(). ie, all the tuples in the
-beliefset.
+  OpenWorldCursor.removeAll() will remove all tuples from the beliefset that
+  match the Cursor returned by getLocWithGold(). ie, all the tuples in the
+  beliefset.
+
+UpdateCellsAround.play (line 60):
+- Update the GoldAt beliefset for each cell:
+
+    // Iterate on all the marks/labels for cells[i]
+    for(int j = 0; j < cells[i].marks.length; j++) {
+      String cellType = cells[i].marks[j].type;
+
+      // if mark is "unknown" then do not process the cell at all
+      if(cellType.equalsIgnoreCase("unknown") == false) {
+
+        if(cellType.equalsIgnoreCase("obstacle")) {
+
+          // This cell contains an obstacle
+          bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.FALSE);
+        } else {
+
+          // The is considered empty if there is no obstacle
+          bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.TRUE);
+
+          // Is there gold in this cell?
+          BeliefState hasGold = cellType.equalsIgnoreCase("gold") ?
+            Cursor.TRUE : Cursor.FALSE;
+          bel_goldAt_dat.add(loc.x, loc.y, hasGold);
+        }
+      }
+    }
+
+  The new line adds a new belief for each cell that is confirmed to either have
+  gold or not. ie. any cell that is not unknown or an obstacle.

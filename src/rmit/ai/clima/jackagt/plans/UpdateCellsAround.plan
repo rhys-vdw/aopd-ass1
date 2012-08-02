@@ -57,29 +57,30 @@ Description: Update the beliefs about the cells around a location
             locDir = cells[i].id;	// first, get its direction (e.g., n, nw, s, se, etc.)
             GridPoint loc = GridPoint.getFromDir(posX, posY, locDir);
             
-           setToNoGold = true;	// Initially, assume the cell does not contain goal	            
            // Iterate on all the marks/labels for cells[i] (which is location loc)
            for(int j = 0; j < cells[i].marks.length; j++) {
+        	   String cellType = cells[i].marks[j].type;
     
                // if mark is "unknown" then do not process the cell at all
-               if( !(cells[i].marks[j].type.equalsIgnoreCase("unknown")) ) {
+               if(cellType.equalsIgnoreCase("unknown") == false) {
     
-                    // First, update beliefset bel_cellEmpty
-                    if( cells[i].marks[j].type.equalsIgnoreCase("obstacle") ) {
+                    if(cellType.equalsIgnoreCase("obstacle")) {
+                    	
+                    	// This cell contains an obstacle
                         bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.FALSE);
-                    }
-                    else {	// The cell must be empty if there is no obstacle
+                    } else {
+                    	
+                    	// The cell is considered empty if there is no obstacle
                         bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.TRUE);
+                        
+                        // Is there gold in this cell?
+                        BeliefState hasGold = cellType.equalsIgnoreCase("gold") ?
+                        		Cursor.TRUE : Cursor.FALSE;
+                        bel_goldAt_dat.add(loc.x, loc.y, hasGold);
                     }
-
-                } else {
-               		 // sensor returned "unknown" for this cell (noise in sensor)
-               	} // end if
+                }
             } // end for j 
-
-            
          } // end for i 
-          
 	} // end of @body
 
 
