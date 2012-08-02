@@ -255,3 +255,27 @@ FinishSimulation.plan:
 
 Code generation success!
 
+- Code changes:
+
+StartSimulation.plan:
+- No changes required, an empty OpenWorld beliefset is constructed with its
+  default constructor.
+  Since there are no known gold locations before a percept is received, an
+  empty beliefset is appropriate.
+
+  I initially tried initialising all tuples to "Cursor.UKNOWN",
+  which failed because:
+
+    "Attempts to add tuples with an unknown belief state into a beliefset with
+     Open World semantics will cause a BeliefSetException to be thrown."
+                                                    -JACK Agent Manual
+
+
+FinishSimulation.plan:
+- Remove all tuples at the end of simulation, this data has now expired.
+
+    bel_goldAt_dat.getLocWithGold($x,$y).removeAll(); 
+
+OpenWorldCursor.removeAll() will remove all tuples from the beliefset that
+match the Cursor returned by getLocWithGold(). ie, all the tuples in the
+beliefset.

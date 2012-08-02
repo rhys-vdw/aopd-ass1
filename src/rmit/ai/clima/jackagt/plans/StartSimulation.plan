@@ -78,7 +78,7 @@ Description: Initialize a simulation
         // Iterate on all grid positions 
         for(int x=0;x<simStart.gsizex; x++) {
             for(int y=0; y<simStart.gsizey;y++) {
-                // Do something here with each cell (x,y)
+            	//TODO: not sure what to do here yet
             }
         }
         

@@ -407,7 +407,7 @@ public class GoldAt extends aos.jack.jak.beliefset.OpenWorld {
             switch (__index) {
                 case 0: 
                 {
-                    return (x == __local_2.as_int());
+                    return ((x == __local_2.as_int()));
                 }
             }
             aos.jack.jak.core.Jak.error("illegal test Construction");

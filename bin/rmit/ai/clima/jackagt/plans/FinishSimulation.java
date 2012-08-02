@@ -14,12 +14,13 @@ import aos.jack.jak.event.Event;
 import aos.jack.jak.task.Task;
 import aos.jack.jak.core.Generator;
 import aos.jack.jak.logic.Signature;
-import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
 import rmit.ai.clima.jackagt.events.MESimEnd;
+import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
 import rmit.ai.clima.iface.PerceiveClimaServer;
 import rmit.ai.clima.jackagt.data.CellEmpty;
-import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
+import rmit.ai.clima.jackagt.data.GoldAt;
 import rmit.ai.clima.jackagt.data.SimulationProp;
+import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
 import rmit.ai.clima.interfaces.DebugInterface;
 import java.lang.Object;
 import aos.jack.jak.cursor.Cursor;
@@ -28,41 +29,45 @@ import rmit.ai.clima.comms.SimEnd;
 import aos.jack.jak.core.Jak;
 
 public class FinishSimulation extends aos.jack.jak.plan.Plan {
-    public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
     public rmit.ai.clima.jackagt.events.MESimEnd mesimend_s;
+    public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
     public rmit.ai.clima.iface.PerceiveClimaServer perceiveclimaserver_h;
     public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
-    public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
+    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
     public rmit.ai.clima.jackagt.data.SimulationProp bel_simulationProp_dat;
+    public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
     public rmit.ai.clima.interfaces.DebugInterface debugIface;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
             "rmit/ai/clima/jackagt/plans/FinishSimulation.plan",
             "body",
-            "54",
-            "58",
-            "59",
+            "56",
             "60",
             "61",
-            "66",
-            "67",
-            "71",
-            "51"};
+            "62",
+            "63",
+            "64",
+            "69",
+            "70",
+            "74",
+            "53"};
     private final static java.lang.String[] __planVariableNames = {
-            "eguidebugmessage_s",
             "mesimend_s",
+            "eguidebugmessage_s",
             "perceiveclimaserver_h",
             "bel_cellEmpty_dat",
-            "bel_currentRequestActionId_dat",
+            "bel_goldAt_dat",
             "bel_simulationProp_dat",
+            "bel_currentRequestActionId_dat",
             "debugIface"};
     private final static java.lang.String[] __planVariableTypes = {
-            "EGUIDebugMessage",
             "MESimEnd",
+            "EGUIDebugMessage",
             "PerceiveClimaServer",
             "rmit.ai.clima.jackagt.data.CellEmpty",
-            "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
+            "rmit.ai.clima.jackagt.data.GoldAt",
             "rmit.ai.clima.jackagt.data.SimulationProp",
+            "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
             "rmit.ai.clima.interfaces.DebugInterface"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
@@ -111,25 +116,26 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
         __ns = __env.__ns;
         __planTask = __t;
         __logic = __t.logic;
-        eguidebugmessage_s = __env.eguidebugmessage_s;
         mesimend_s = __env.mesimend_s;
+        eguidebugmessage_s = __env.eguidebugmessage_s;
         perceiveclimaserver_h = __env.perceiveclimaserver_h;
         bel_cellEmpty_dat = __env.bel_cellEmpty_dat;
-        bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
+        bel_goldAt_dat = __env.bel_goldAt_dat;
         bel_simulationProp_dat = __env.bel_simulationProp_dat;
+        bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
         debugIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
     }
     
     public boolean init_sentinel(aos.jack.jak.agent.NameSpace __a)
     {
-        eguidebugmessage_s = (rmit.ai.clima.jackagt.events.EGUIDebugMessage) __a.findEvent("rmit.ai.clima.jackagt.events.EGUIDebugMessage");
-        if (eguidebugmessage_s == null) {
-            warning("Failed to find EGUIDebugMessage eguidebugmessage_s");
-            return false;
-        }
         mesimend_s = (rmit.ai.clima.jackagt.events.MESimEnd) __a.findEvent("rmit.ai.clima.jackagt.events.MESimEnd");
         if (mesimend_s == null) {
             warning("Failed to find MESimEnd mesimend_s");
+            return false;
+        }
+        eguidebugmessage_s = (rmit.ai.clima.jackagt.events.EGUIDebugMessage) __a.findEvent("rmit.ai.clima.jackagt.events.EGUIDebugMessage");
+        if (eguidebugmessage_s == null) {
+            warning("Failed to find EGUIDebugMessage eguidebugmessage_s");
             return false;
         }
         perceiveclimaserver_h = (rmit.ai.clima.iface.PerceiveClimaServer) __a.findEvent("rmit.ai.clima.iface.PerceiveClimaServer");
@@ -142,14 +148,19 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
             warning("Failed to find CellEmpty bel_cellEmpty_dat");
             return false;
         }
-        bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) lookupNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId",aos.jack.jak.agent.Agent.WRITEABLE);
-        if (bel_currentRequestActionId_dat == null) {
-            warning("Failed to find CurrentRequestActionId bel_currentRequestActionId_dat");
+        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) lookupNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt",aos.jack.jak.agent.Agent.WRITEABLE);
+        if (bel_goldAt_dat == null) {
+            warning("Failed to find GoldAt bel_goldAt_dat");
             return false;
         }
         bel_simulationProp_dat = (rmit.ai.clima.jackagt.data.SimulationProp) lookupNamedObject("bel_simulationProp_dat","rmit.ai.clima.jackagt.data.SimulationProp",aos.jack.jak.agent.Agent.WRITEABLE);
         if (bel_simulationProp_dat == null) {
             warning("Failed to find SimulationProp bel_simulationProp_dat");
+            return false;
+        }
+        bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) lookupNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId",aos.jack.jak.agent.Agent.WRITEABLE);
+        if (bel_currentRequestActionId_dat == null) {
+            warning("Failed to find CurrentRequestActionId bel_currentRequestActionId_dat");
             return false;
         }
         return true;
@@ -249,11 +260,11 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
         switch (n) {
             case 0: 
             {
-                return aos.util.ToObject.box(eguidebugmessage_s);
+                return aos.util.ToObject.box(mesimend_s);
             }
             case 1: 
             {
-                return aos.util.ToObject.box(mesimend_s);
+                return aos.util.ToObject.box(eguidebugmessage_s);
             }
             case 2: 
             {
@@ -265,13 +276,17 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
             }
             case 4: 
             {
-                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
+                return aos.util.ToObject.box(bel_goldAt_dat);
             }
             case 5: 
             {
                 return aos.util.ToObject.box(bel_simulationProp_dat);
             }
             case 6: 
+            {
+                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
+            }
+            case 7: 
             {
                 return aos.util.ToObject.box(debugIface);
             }
@@ -336,7 +351,7 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
                             aos.jack.jak.core.Jak.error("FinishSimulation.body: Illegal state");
                             return FAILED_STATE;
                         }
-                        //* (54) 		debugIface.showConsoleDebug("I have received a SIM-END message....");
+                        //* (56) 		debugIface.showConsoleDebug("I have received a SIM-END message....");
                         case 10: 
                         {
                             __breakLevel = 0;
@@ -344,7 +359,7 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
                             debugIface.showConsoleDebug("I have received a SIM-END message....");
                             break;
                         }
-                        //* (58)         logical int $x,$y, $gridX, $gridY, $depotX, $depotY, $noSteps, $id, $step;
+                        //* (60)         logical int $x,$y, $gridX, $gridY, $depotX, $depotY, $noSteps, $id, $step;
                         case 11: 
                         {
                             __local__8_0 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
@@ -359,52 +374,59 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
                             __state = 12;
                             break;
                         }
-                        //* (59)         bel_cellEmpty_dat.get($x,$y).removeAll();
+                        //* (61)         bel_cellEmpty_dat.get($x,$y).removeAll();
                         case 12: 
                         {
                             __state = 13;
                             bel_cellEmpty_dat.get(__local__8_0,__local__8_1).removeAll();
                             break;
                         }
-                        //* (60)         bel_simulationProp_dat.get($gridX,$gridY,$depotX,$depotY,$noSteps).removeAll();
+                        //* (62)         bel_goldAt_dat.getLocWithGold($x,$y).removeAll();
                         case 13: 
                         {
                             __state = 14;
-                            bel_simulationProp_dat.get(__local__8_2,__local__8_3,__local__8_4,__local__8_5,__local__8_6).removeAll();
+                            bel_goldAt_dat.getLocWithGold(__local__8_0,__local__8_1).removeAll();
                             break;
                         }
-                        //* (61) 	    bel_currentRequestActionId_dat.get($id,$step).removeAll();
+                        //* (63)         bel_simulationProp_dat.get($gridX,$gridY,$depotX,$depotY,$noSteps).removeAll();
                         case 14: 
                         {
                             __state = 15;
-                            bel_currentRequestActionId_dat.get(__local__8_7,__local__8_8).removeAll();
+                            bel_simulationProp_dat.get(__local__8_2,__local__8_3,__local__8_4,__local__8_5,__local__8_6).removeAll();
                             break;
                         }
-                        //* (66)         @send("boss", mesimend_s.send());
+                        //* (64) 	    bel_currentRequestActionId_dat.get($id,$step).removeAll();
                         case 15: 
                         {
                             __state = 16;
-                            agent.send("boss",mesimend_s.send());
+                            bel_currentRequestActionId_dat.get(__local__8_7,__local__8_8).removeAll();
                             break;
                         }
-                        //* (67)     	@send("gui", mesimend_s.send());
+                        //* (69)         @send("boss", mesimend_s.send());
                         case 16: 
                         {
                             __state = 17;
-                            agent.send("gui",mesimend_s.send());
+                            agent.send("boss",mesimend_s.send());
                             break;
                         }
-                        //* (71) 		debugIface.showConsoleDebug("I have finished the current simulation");
+                        //* (70)     	@send("gui", mesimend_s.send());
                         case 17: 
                         {
                             __state = 18;
+                            agent.send("gui",mesimend_s.send());
+                            break;
+                        }
+                        //* (74) 		debugIface.showConsoleDebug("I have finished the current simulation");
+                        case 18: 
+                        {
+                            __state = 19;
                             // Report the end of the current simulation for this agent
 
                             debugIface.showConsoleDebug("I have finished the current simulation");
                             break;
                         }
-                        //* (51)     #reasoning method
-                        case 18: 
+                        //* (53)     #reasoning method
+                        case 19: 
                         {
                             if (__pending == null) 
                                 __state = PASSED_STATE;

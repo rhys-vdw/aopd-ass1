@@ -59,6 +59,7 @@ Description: Finalize a simulation
         // Clear agent's beliefs
         logical int $x,$y, $gridX, $gridY, $depotX, $depotY, $noSteps, $id, $step;
         bel_cellEmpty_dat.get($x,$y).removeAll();
+        bel_goldAt_dat.getLocWithGold($x,$y).removeAll();
         bel_simulationProp_dat.get($gridX,$gridY,$depotX,$depotY,$noSteps).removeAll();
 	    bel_currentRequestActionId_dat.get($id,$step).removeAll();
     
