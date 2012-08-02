@@ -40,6 +40,6 @@ public beliefset GoldAt extends OpenWorld
 
     #complex query checkIfGoldInRow(int x) {
     	logical int $x, $y;
-    	return getLocWithGold($x, $y) && x == $x.as_int();
+    	return getLocWithGold($x, $y) && (x == $x.as_int());
     }
 }
