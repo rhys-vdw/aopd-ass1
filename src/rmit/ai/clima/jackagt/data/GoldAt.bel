@@ -25,4 +25,21 @@ public beliefset GoldAt extends OpenWorld
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
     #indexed query checkIfGold(int xCoord, int yCoord);
     #indexed query getLocWithGold(logical int xCoord, logical int yCoord);
+    
+    #function query public int countGold() {
+    	logical int $x, $y;
+    	int count = 0;
+    	
+    	Cursor c = getLocWithGold($x, $y);
+    	while (c.next()) {
+    		count++;
+    	}
+    	
+    	return count;
+    }
+
+    #complex query checkIfGoldInRow(int x) {
+    	logical int $x, $y;
+    	return getLocWithGold($x, $y) && x == $x.as_int();
+    }
 }

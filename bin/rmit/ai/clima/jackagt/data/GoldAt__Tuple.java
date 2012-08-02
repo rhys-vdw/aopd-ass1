@@ -71,6 +71,10 @@ public int hash(int __i)
             __r ^= (((int) (xCoord ^ (xCoord << 13))) & (~(1 << 31)));
             return __r;
         }
+        case 1: 
+        {
+            return __r;
+        }
     }
     return 0;
 }

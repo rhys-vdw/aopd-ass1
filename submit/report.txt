@@ -203,4 +203,36 @@ b. Added to GoldAt.bel (line 27):
 Since there is no input parameter (both are logical), this will just return any
 tuple.
 
+c. Added to GoldAt.bel (line 29):
+
+    #function query public int countGold() {
+        logical int $x, $y;
+        int count = 0;
+
+        Cursor c = getLocWithGold($x, $y);
+        while (c.next()) {
+            count++;
+        }
+
+        return count;
+    }
+
+This function iterates through all tuples/locations in the beliefset,
+incrementing a counter whenever a location is believed to have gold.
+
+d. Added to GoldAt.bel (line 41):
+
+    #complex query checkIfGoldInRow(int x) {
+        logical int $x, $y;
+        return getLocWithGold($x, $y) && (x == $x.as_int());
+    }
+
+The return statement of a complex query invokes an implicit next() method on
+the Counter objects. The return expression will continue to iterate through all
+values returned by getLocWithGold until the && operator returns true or all
+tuples are exhausted.
+
+This means that the iteration will continue until a location with gold also
+satisfies the expression (x == $x.as_int()), ie. a grid co-ordinate with gold
+at row x.
 

@@ -15,8 +15,11 @@ import aos.jack.jak.beliefset.Tuple;
 import aos.jack.jak.beliefset.BeliefSet;
 import aos.jack.jak.logic.ChoicePoint;
 import aos.jack.jak.logic.Variable;
-import aos.jack.jak.cursor.BeliefState;
 import aos.jack.jak.cursor.Cursor;
+import aos.jack.jak.cursor.BeliefState;
+import aos.jack.jak.cursor.BinaryBoolOp;
+import aos.jack.plugin.view.rt.CleanupCursor;
+import java.lang.Object;
 
 public class GoldAt extends aos.jack.jak.beliefset.OpenWorld {
     static public rmit.ai.clima.jackagt.data.GoldAt__Tuple __hole = new rmit.ai.clima.jackagt.data.GoldAt__Tuple(true);
@@ -40,6 +43,63 @@ public class GoldAt extends aos.jack.jak.beliefset.OpenWorld {
         return __c;
     }
     
+    public aos.jack.jak.beliefset.BeliefSetCursor getLocWithGold(aos.jack.jak.logic.IntegerVariable __v0, aos.jack.jak.logic.IntegerVariable __v1)
+        throws aos.jack.jak.beliefset.BeliefSetException
+    {
+        rmit.ai.clima.jackagt.data.GoldAt__Tuple __t = new rmit.ai.clima.jackagt.data.GoldAt__Tuple();
+        rmit.ai.clima.jackagt.data.GoldAt.__Cursor __c = new rmit.ai.clima.jackagt.data.GoldAt.__Cursor(__t);
+        if (!__v0.check_unifiable(java.lang.Integer.TYPE)) 
+            throw new aos.jack.jak.beliefset.BeliefSetException("GoldAt:getLocWithGold:OO: arg 0 xCoord Incorrect Variable type");
+        if (__v0.isGround()) {
+            try {
+                __t.xCoord = __v0.as_int();
+            }
+            catch (java.lang.Exception e) {
+                throw new aos.jack.jak.beliefset.BeliefSetException("GoldAt:getLocWithGold:OO: got " + e.toString());
+            }
+        }
+         else 
+            __c.xCoord = __v0;
+        if (!__v1.check_unifiable(java.lang.Integer.TYPE)) 
+            throw new aos.jack.jak.beliefset.BeliefSetException("GoldAt:getLocWithGold:OO: arg 1 yCoord Incorrect Variable type");
+        if (__v1.isGround()) {
+            try {
+                __t.yCoord = __v1.as_int();
+            }
+            catch (java.lang.Exception e) {
+                throw new aos.jack.jak.beliefset.BeliefSetException("GoldAt:getLocWithGold:OO: got " + e.toString());
+            }
+        }
+         else 
+            __c.yCoord = __v1;
+        __c.init(-1,this);
+        return __c;
+    }
+    
+    public int countGold()
+        throws aos.jack.jak.beliefset.BeliefSetException
+    {
+        rmit.ai.clima.jackagt.data.GoldAt.__complex_13 __c = new rmit.ai.clima.jackagt.data.GoldAt.__complex_13();
+        try {
+            return __c.__complex_13_countGold();
+        }
+        catch (java.lang.Exception __e) {
+            throw new aos.jack.jak.beliefset.BeliefSetException("countGold got exception " + __e);
+        }
+    }
+    
+    public aos.jack.jak.cursor.Cursor checkIfGoldInRow(int x)
+        throws aos.jack.jak.beliefset.BeliefSetException
+    {
+        rmit.ai.clima.jackagt.data.GoldAt.__complex_14 __c = new rmit.ai.clima.jackagt.data.GoldAt.__complex_14(x);
+        try {
+            return __c.setCursor(__c.__complex_14_checkIfGoldInRow());
+        }
+        catch (java.lang.Exception __e) {
+            throw new aos.jack.jak.beliefset.BeliefSetException("checkIfGoldInRow got exception " + __e);
+        }
+    }
+    
     public int keyIndex()
     {
         return 0;
@@ -52,7 +112,7 @@ public class GoldAt extends aos.jack.jak.beliefset.OpenWorld {
     
     public int nIndexes()
     {
-        return 1;
+        return 2;
     }
     
     public aos.jack.jak.beliefset.Tuple newTuple()
@@ -231,6 +291,143 @@ public class GoldAt extends aos.jack.jak.beliefset.OpenWorld {
             if (yCoord != null) 
                 return false;
             return true;
+        }
+        
+    }
+    class __complex_13 extends aos.jack.plugin.view.rt.CleanupCursor {
+        aos.jack.jak.logic.IntegerVariable __local_2;
+        aos.jack.jak.logic.IntegerVariable __local_3;
+        int __local_4;
+        aos.jack.jak.cursor.Cursor __local_5;
+        public java.lang.Object genObject(int __index)
+        {
+            switch (__index) {
+            }
+            aos.jack.jak.core.Jak.error("illegal Object Construction");
+            return null;
+        }
+        
+        public aos.jack.jak.cursor.Cursor genCursor(int __index)
+            throws java.lang.Exception
+        {
+            switch (__index) {
+                case 0: 
+                {
+                    return (getLocWithGold(__local_2,__local_3));
+                }
+                case 1: 
+                {
+                    return (__local_5 = (aos.jack.jak.beliefset.BeliefSetCursor) (genCursor(0)));
+                }
+            }
+            aos.jack.jak.core.Jak.error("illegal Cursor Construction");
+            return null;
+        }
+        
+        public aos.jack.jak.fsm.FSM genFSM(int __index)
+            throws java.lang.Exception
+        {
+            switch (__index) {
+            }
+            aos.jack.jak.core.Jak.error("illegal FSM Construction");
+            return null;
+        }
+        
+        public boolean testCondition(int __index)
+            throws java.lang.Exception
+        {
+            switch (__index) {
+            }
+            aos.jack.jak.core.Jak.error("illegal test Construction");
+            return false;
+        }
+        
+        public __complex_13()
+        {
+            super();
+        }
+        
+        public int __complex_13_countGold()
+            throws java.lang.Exception
+        {
+            {
+                __local_2 = (aos.jack.jak.logic.IntegerVariable) new_variable(java.lang.Integer.TYPE);
+                __local_3 = (aos.jack.jak.logic.IntegerVariable) new_variable(java.lang.Integer.TYPE);
+            }
+            __local_4 = 0;
+            genCursor(1);
+            while (__local_5.next()) {
+                __local_4++ ;
+            }
+            return __local_4;
+        }
+        
+    }
+    class __complex_14 extends aos.jack.plugin.view.rt.CleanupCursor {
+        int x;
+        aos.jack.jak.logic.IntegerVariable __local_2;
+        aos.jack.jak.logic.IntegerVariable __local_3;
+        public java.lang.Object genObject(int __index)
+        {
+            switch (__index) {
+            }
+            aos.jack.jak.core.Jak.error("illegal Object Construction");
+            return null;
+        }
+        
+        public aos.jack.jak.cursor.Cursor genCursor(int __index)
+            throws java.lang.Exception
+        {
+            switch (__index) {
+                case 0: 
+                {
+                    return (getLocWithGold(__local_2,__local_3));
+                }
+                case 1: 
+                {
+                    return (new aos.jack.jak.cursor.BinaryBoolOp(this,__logic,aos.jack.jak.cursor.BinaryBoolOp.AND,(short) 0,true,(short) 0,false));
+                }
+            }
+            aos.jack.jak.core.Jak.error("illegal Cursor Construction");
+            return null;
+        }
+        
+        public aos.jack.jak.fsm.FSM genFSM(int __index)
+            throws java.lang.Exception
+        {
+            switch (__index) {
+            }
+            aos.jack.jak.core.Jak.error("illegal FSM Construction");
+            return null;
+        }
+        
+        public boolean testCondition(int __index)
+            throws java.lang.Exception
+        {
+            switch (__index) {
+                case 0: 
+                {
+                    return (x == __local_2.as_int());
+                }
+            }
+            aos.jack.jak.core.Jak.error("illegal test Construction");
+            return false;
+        }
+        
+        public __complex_14(int x)
+        {
+            super();
+            this.x = x;
+        }
+        
+        aos.jack.jak.cursor.Cursor __complex_14_checkIfGoldInRow()
+            throws java.lang.Exception
+        {
+            {
+                __local_2 = (aos.jack.jak.logic.IntegerVariable) new_variable(java.lang.Integer.TYPE);
+                __local_3 = (aos.jack.jak.logic.IntegerVariable) new_variable(java.lang.Integer.TYPE);
+            }
+            return genCursor(1);
         }
         
     }
