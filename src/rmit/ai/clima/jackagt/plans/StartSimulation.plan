@@ -20,11 +20,11 @@ Plan Name: StartSimulation
 Description: Initialize a simulation
 */
 	//Events handled by the plan are declared here.
-	#sends event MESimStart mesimstart_s;
+	#sends event EGUIDebugMessage eguidebugmessage_s;
 
 	#sends event MEInformCellStatus meinformcellstatus_s;
 
-	#sends event EGUIDebugMessage eguidebugmessage_s;
+	#sends event MESimStart mesimstart_s;
 
 	#handles event PerceiveClimaServer perceiveclimaserver_h;
 
@@ -32,9 +32,11 @@ Description: Initialize a simulation
 	// Declarations of any beliefset/data that the plan accesses.
 	#modifies data CurrentRequestActionId bel_currentRequestActionId_dat;
 
-	#modifies data CellEmpty bel_cellEmpty_dat;
-
 	#modifies data SimulationProp bel_simulationProp_dat;
+
+	#modifies data GoldAt bel_goldAt_dat;
+
+	#modifies data CellEmpty bel_cellEmpty_dat;
 
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
 
@@ -68,11 +70,11 @@ Description: Initialize a simulation
 
         // Obtain sim-start message from the perceiveclimaserver_h and all data inside the message
         SimStart simStart = (SimStart)perceiveclimaserver_h.data;
-    
+
         // Initialise agent's beliefs (it is assumed the beliefs are empty)
         bel_currentRequestActionId_dat.add(0,0);	
         bel_simulationProp_dat.add(simStart.gsizex, simStart.gsizey, simStart.depotx, simStart.depoty, simStart.steps);	// Update the beliefs about the current simulation
-        
+
         // Iterate on all grid positions 
         for(int x=0;x<simStart.gsizex; x++) {
             for(int y=0; y<simStart.gsizey;y++) {

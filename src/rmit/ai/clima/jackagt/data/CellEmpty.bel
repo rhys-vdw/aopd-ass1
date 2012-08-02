@@ -23,11 +23,7 @@ public beliefset CellEmpty extends OpenWorld
 	// Zero of more #value field declarations.
 	// These describe the data attributes of each belief.
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
-   // Zero or more #key field declarations.
-   // These describe the key attributes of each belief.
-   // Zero of more #value field declarations.
-   // These describe the data attributes of each belief.
-   
+
    
     #indexed query check(int xCoord, int yCoord);
     #indexed query get(logical int xCoord, logical int yCoord);

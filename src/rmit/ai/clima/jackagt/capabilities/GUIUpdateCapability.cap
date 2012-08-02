@@ -16,12 +16,12 @@ Capability Name: GUIUpdateCapability
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
 	*/
-	#private data GUICurrentStep bel_GUICurrentStep_dat(/*int agentNum, int step*/);
+	#private data BAgentNumbers bel_agentNumbers_dat(/*String agentName, int agentNo*/);
 
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
 	*/
-	#private data BAgentNumbers bel_agentNumbers_dat(/*String agentName, int agentNo*/);
+	#private data GUICurrentStep bel_GUICurrentStep_dat(/*int agentNum, int step*/);
 
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
@@ -30,8 +30,6 @@ Capability Name: GUIUpdateCapability
 
 
 	//Events handled, posted and sent are declared here.
-	#handles external event MESimEnd ;
-
 	#handles external event MESimStart ;
 
 	#handles external event MEInformAgentStatus ;
@@ -40,10 +38,10 @@ Capability Name: GUIUpdateCapability
 
 	#handles external event MEInformCellStatus ;
 
+	#handles external event MESimEnd ;
+
 
 	//Plans directly used are declared here.
-	#uses plan GUIClose ;
-
 	#uses plan GUIInitiate ;
 
 	#uses plan GUIUpdateAgentLoc ;
@@ -51,6 +49,8 @@ Capability Name: GUIUpdateCapability
 	#uses plan GUIReportMessage ;
 
 	#uses plan GUIUpdateCell ;
+
+	#uses plan GUIClose ;
 
 
 	// Inner capabilities are declared here.

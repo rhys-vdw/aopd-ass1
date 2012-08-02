@@ -23,7 +23,17 @@ Capability Name: GamePlaying
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
 	*/
+	#imports data GoldAt bel_goldAt_dat();
+
+	/*	You may need to change the statement declaration of data/beliefset to:
+	#agent | #global | #private | #import | #export
+	*/
 	#imports data CurrentStatus bel_currentStatus_dat();
+
+	/*	You may need to change the statement declaration of data/beliefset to:
+	#agent | #global | #private | #import | #export
+	*/
+	#imports data CurrentRequestActionId bel_currentRequestActionId_dat();
 
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
@@ -45,47 +55,37 @@ Capability Name: GamePlaying
 	*/
 	#imports data CurrentPosition bel_currentPosition_dat();
 
-	/*	You may need to change the statement declaration of data/beliefset to:
-	#agent | #global | #private | #import | #export
-	*/
-	#imports data GoldAt bel_goldAt_dat();
-
-	/*	You may need to change the statement declaration of data/beliefset to:
-	#agent | #global | #private | #import | #export
-	*/
-	#imports data CurrentRequestActionId bel_currentRequestActionId_dat();
-
 
 	//Events handled, posted and sent are declared here.
-	#sends event EUpdateBel eupdatebel_s;
-
 	#sends event EGUIDebugMessage eguidebugmessage_s;
-
-	#posts external event TellClimaServer tellclimaserver_p;
-
-	#handles event EExecuteCLIMAaction ;
-	#posts event EExecuteCLIMAaction eexecuteclimaaction_p;
 
 	#sends event MEInformAgentStatus meinformagentstatus_s;
 
 	#handles external event EAct ;
-
-	#handles external event PerceiveClimaServer ;
-
-	#sends event MEInformCellStatus meinformcellstatus_s;
 
 	#handles event EShowBeliefs ;
 	#posts event EShowBeliefs eshowbeliefs_p;
 
 	#handles external event ECellChange ;
 
+	#sends event MEInformCellStatus meinformcellstatus_s;
+
+	#handles external event PerceiveClimaServer ;
+
+	#posts external event TellClimaServer tellclimaserver_p;
+
+	#sends event EUpdateBel eupdatebel_s;
+
+	#handles event EExecuteCLIMAaction ;
+	#posts event EExecuteCLIMAaction eexecuteclimaaction_p;
+
 
 	//Plans directly used are declared here.
+	#uses plan HandlePercept ;
+
 	#uses plan UpdateCellsAround ;
 
 	#uses plan SendActionAndWait ;
-
-	#uses plan HandlePercept ;
 
 
 	// Inner capabilities are declared here.

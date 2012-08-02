@@ -236,3 +236,22 @@ This means that the iteration will continue until a location with gold also
 satisfies the expression (x == $x.as_int()), ie. a grid co-ordinate with gold
 at row x.
 
+- Step 3:
+
+Changes to design.pd for plans StartSimulation and FinishSimulation to modify
+beliefset GoldAt:
+
+- In detailed design of Player:
+  - Made connection FROM capability GameSyncing TO bel_goldAt.
+- In GameSyncing:
+  - Set bel_goldAt's JackCode modifier to #imports.
+  - Made connection FROM plan StartSimulation TO bel_goldAt.
+  - Made connection FROM plan FinishSimulation TO bel_goldAt.
+
+Generated code and observed line in PDT block of both StartSimulation.plan and
+FinishSimulation.plan:
+
+    #modifies data GoldAt bel_goldAt_dat;
+
+Code generation success!
+
