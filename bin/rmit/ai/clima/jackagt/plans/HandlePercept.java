@@ -14,11 +14,11 @@ import aos.jack.jak.event.Event;
 import aos.jack.jak.task.Task;
 import aos.jack.jak.core.Generator;
 import aos.jack.jak.logic.Signature;
+import rmit.ai.clima.jackagt.events.EUpdateBel;
 import rmit.ai.clima.jackagt.events.MEInformAgentStatus;
-import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
 import rmit.ai.clima.jackagt.events.EAct;
 import rmit.ai.clima.jackagt.events.EShowBeliefs;
-import rmit.ai.clima.jackagt.events.EUpdateBel;
+import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
 import rmit.ai.clima.iface.PerceiveClimaServer;
 import rmit.ai.clima.jackagt.data.CurrentPosition;
 import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
@@ -33,11 +33,11 @@ import aos.jack.jak.core.Jak;
 
 public class HandlePercept extends aos.jack.jak.plan.Plan {
     final static java.lang.String ID = "HAND_PERC";
+    public rmit.ai.clima.jackagt.events.EUpdateBel eupdatebel_s;
     public rmit.ai.clima.jackagt.events.MEInformAgentStatus meinformagentstatus_s;
-    public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
     public rmit.ai.clima.jackagt.events.EAct eact_p;
     public rmit.ai.clima.jackagt.events.EShowBeliefs eshowbeliefs_p;
-    public rmit.ai.clima.jackagt.events.EUpdateBel eupdatebel_s;
+    public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
     public rmit.ai.clima.iface.PerceiveClimaServer perceiveclimaserver_h;
     public rmit.ai.clima.jackagt.data.CurrentPosition bel_currentPosition_dat;
     public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
@@ -70,22 +70,22 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
             "69"};
     private final static java.lang.String[] __planVariableNames = {
             "ID",
+            "eupdatebel_s",
             "meinformagentstatus_s",
-            "eguidebugmessage_s",
             "eact_p",
             "eshowbeliefs_p",
-            "eupdatebel_s",
+            "eguidebugmessage_s",
             "perceiveclimaserver_h",
             "bel_currentPosition_dat",
             "bel_currentRequestActionId_dat",
             "consoleIface"};
     private final static java.lang.String[] __planVariableTypes = {
             "String",
+            "rmit.ai.clima.jackagt.events.EUpdateBel",
             "MEInformAgentStatus",
-            "EGUIDebugMessage",
             "EAct",
             "EShowBeliefs",
-            "rmit.ai.clima.jackagt.events.EUpdateBel",
+            "EGUIDebugMessage",
             "rmit.ai.clima.iface.PerceiveClimaServer",
             "rmit.ai.clima.jackagt.data.CurrentPosition",
             "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
@@ -139,11 +139,11 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
         __ns = __env.__ns;
         __planTask = __t;
         __logic = __t.logic;
+        eupdatebel_s = __env.eupdatebel_s;
         meinformagentstatus_s = __env.meinformagentstatus_s;
-        eguidebugmessage_s = __env.eguidebugmessage_s;
         eact_p = __env.eact_p;
         eshowbeliefs_p = __env.eshowbeliefs_p;
-        eupdatebel_s = __env.eupdatebel_s;
+        eguidebugmessage_s = __env.eguidebugmessage_s;
         perceiveclimaserver_h = __env.perceiveclimaserver_h;
         bel_currentPosition_dat = __env.bel_currentPosition_dat;
         bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
@@ -152,14 +152,14 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
     
     public boolean init_sentinel(aos.jack.jak.agent.NameSpace __a)
     {
+        eupdatebel_s = (rmit.ai.clima.jackagt.events.EUpdateBel) __a.findEvent("rmit.ai.clima.jackagt.events.EUpdateBel");
+        if (eupdatebel_s == null) {
+            warning("Failed to find EUpdateBel eupdatebel_s");
+            return false;
+        }
         meinformagentstatus_s = (rmit.ai.clima.jackagt.events.MEInformAgentStatus) __a.findEvent("rmit.ai.clima.jackagt.events.MEInformAgentStatus");
         if (meinformagentstatus_s == null) {
             warning("Failed to find MEInformAgentStatus meinformagentstatus_s");
-            return false;
-        }
-        eguidebugmessage_s = (rmit.ai.clima.jackagt.events.EGUIDebugMessage) __a.findEvent("rmit.ai.clima.jackagt.events.EGUIDebugMessage");
-        if (eguidebugmessage_s == null) {
-            warning("Failed to find EGUIDebugMessage eguidebugmessage_s");
             return false;
         }
         eact_p = (rmit.ai.clima.jackagt.events.EAct) __a.findEvent("rmit.ai.clima.jackagt.events.EAct");
@@ -172,9 +172,9 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
             warning("Failed to find EShowBeliefs eshowbeliefs_p");
             return false;
         }
-        eupdatebel_s = (rmit.ai.clima.jackagt.events.EUpdateBel) __a.findEvent("rmit.ai.clima.jackagt.events.EUpdateBel");
-        if (eupdatebel_s == null) {
-            warning("Failed to find EUpdateBel eupdatebel_s");
+        eguidebugmessage_s = (rmit.ai.clima.jackagt.events.EGUIDebugMessage) __a.findEvent("rmit.ai.clima.jackagt.events.EGUIDebugMessage");
+        if (eguidebugmessage_s == null) {
+            warning("Failed to find EGUIDebugMessage eguidebugmessage_s");
             return false;
         }
         perceiveclimaserver_h = (rmit.ai.clima.iface.PerceiveClimaServer) __a.findEvent("rmit.ai.clima.iface.PerceiveClimaServer");
@@ -298,11 +298,11 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
             }
             case 1: 
             {
-                return aos.util.ToObject.box(meinformagentstatus_s);
+                return aos.util.ToObject.box(eupdatebel_s);
             }
             case 2: 
             {
-                return aos.util.ToObject.box(eguidebugmessage_s);
+                return aos.util.ToObject.box(meinformagentstatus_s);
             }
             case 3: 
             {
@@ -314,7 +314,7 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
             }
             case 5: 
             {
-                return aos.util.ToObject.box(eupdatebel_s);
+                return aos.util.ToObject.box(eguidebugmessage_s);
             }
             case 6: 
             {

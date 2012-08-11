@@ -12,6 +12,7 @@ import aos.jack.jak.logic.Signature;
 import aos.jack.jak.logic.LogicEnv;
 import aos.extension.rule.RuleMonitor;
 import rmit.ai.clima.jackagt.data.CellEmpty;
+import rmit.ai.clima.jackagt.data.GoldAt;
 import java.lang.Object;
 import rmit.ai.clima.gui.grid.GridObject;
 import aos.jack.jak.core.Jak;
@@ -26,6 +27,7 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
     aos.jack.jak.logic.IntegerVariable $x;
     aos.jack.jak.logic.IntegerVariable $y;
     aos.jack.jak.logic.IntegerVariable $id;
+    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
     public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
     public aos.jack.jak.logic.LogicEnv __logic = null;
     private final static java.lang.String[] __eventVariableNames = {
@@ -34,6 +36,7 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
             "$x",
             "$y",
             "$id",
+            "bel_goldAt_dat",
             "bel_cellEmpty_dat"};
     private final static java.lang.String[] __eventVariableTypes = {
             "String",
@@ -41,6 +44,7 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
             "logical int",
             "logical int",
             "logical int",
+            "GoldAt",
             "CellEmpty"};
     private boolean __rule_init = false;
     public java.lang.String getDocumentation()
@@ -80,6 +84,14 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
             case 1: 
             {
                 return (bel_cellEmpty_dat.get($x,$y)).negate();
+            }
+            case 2: 
+            {
+                return (bel_goldAt_dat.getLocWithGold($x,$y));
+            }
+            case 3: 
+            {
+                return (bel_goldAt_dat.getLocWithGold($x,$y)).negate();
             }
         }
         aos.jack.jak.core.Jak.error("illegal Cursor Construction");
@@ -171,6 +183,10 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
             }
             case 5: 
             {
+                return aos.util.ToObject.box(bel_goldAt_dat);
+            }
+            case 6: 
+            {
                 return aos.util.ToObject.box(bel_cellEmpty_dat);
             }
             default: 
@@ -191,9 +207,12 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
         }
         catch (aos.jack.jak.logic.LogicException e) {
         }
+        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) agent.getNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt");
         bel_cellEmpty_dat = (rmit.ai.clima.jackagt.data.CellEmpty) agent.getNamedObject("bel_cellEmpty_dat","rmit.ai.clima.jackagt.data.CellEmpty");
         new aos.extension.rule.RuleMonitor(this,0);
         new aos.extension.rule.RuleMonitor(this,1);
+        new aos.extension.rule.RuleMonitor(this,2);
+        new aos.extension.rule.RuleMonitor(this,3);
     }
     
     public void __automatic(rmit.ai.clima.jackagt.events.ECellChange __e, int __index)
@@ -226,6 +245,28 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
                 {
                     gridObject = new rmit.ai.clima.gui.grid.GridObject($x.as_int(),$y.as_int(),rmit.ai.clima.gui.grid.GameGraphics.getObstacleString());
                     message = "Just learned of an obstacle at location " + rmit.ai.clima.gui.grid.GridPoint.toString($x.as_int(),$y.as_int());
+                }
+                break;
+            }
+            case 2: 
+            {
+                {
+                    // Cell has a gold
+
+
+                    gridObject = new rmit.ai.clima.gui.grid.GridObject($x.as_int(),$y.as_int(),rmit.ai.clima.gui.grid.GameGraphics.getGoldString());
+                    message = "Just learned of gold at " + rmit.ai.clima.gui.grid.GridPoint.toString($x.as_int(),$y.as_int());
+                }
+                break;
+            }
+            case 3: 
+            {
+                {
+                    // Cell has no gold
+
+
+                    gridObject = new rmit.ai.clima.gui.grid.GridObject($x.as_int(),$y.as_int(),"nogold");
+                    message = "Just learned no gold at " + rmit.ai.clima.gui.grid.GridPoint.toString($x.as_int(),$y.as_int());
                 }
                 break;
             }

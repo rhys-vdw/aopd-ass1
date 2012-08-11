@@ -294,6 +294,7 @@ UpdateCellsAround.play (line 60):
 
           // This cell contains an obstacle
           bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.FALSE);
+          bel_goldAt_dat.add(loc.x, loc.y, Cursor.FALSE);
         } else {
 
           // The is considered empty if there is no obstacle
@@ -307,5 +308,29 @@ UpdateCellsAround.play (line 60):
       }
     }
 
-  The new line adds a new belief for each cell that is confirmed to either have
-  gold or not. ie. any cell that is not unknown or an obstacle.
+  The new code adds a new tuple to the GoldAt beliefset for each cell that is confirmed to either have
+  gold or not.
+
+- Step 5:
+
+- In design.pd:
+
+Added "posted when" connection from ECellChange event to bel_goldAt so that a
+change in an agent's GoldAt beliefset will post an ECellChange event to
+update the GUI.
+
+Added code from Assignment spec:
+
+    #posted when (bel_goldAt_dat.getLocWithGold($x, $y)){
+      // Cell has a gold
+      gridObject = new GridObject($x.as_int(),$y.as_int(),GameGraphics.getGoldString());
+      message = "Just learned of gold at " +GridPoint.toString($x.as_int(),$y.as_int());
+    }
+    #posted when (!bel_goldAt_dat.getLocWithGold($x, $y)){
+      // Cell has no gold
+      gridObject = new GridObject($x.as_int(), $y.as_int(), "nogold");
+      message = "Just learned no gold at " + GridPoint.toString($x.as_int(),$y.as_int());
+    }
+
+These events are sent to the GUI when a tuple is added to the GoldAt beliefset
+of an agent, updating the display.

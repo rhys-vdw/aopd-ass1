@@ -9,8 +9,8 @@ import aos.jack.jak.agent.Capability;
 import aos.jack.jak.agent.NameSpace;
 import aos.jack.jak.agent.Agent;
 import rmit.ai.clima.jackagt.data.CellEmpty;
-import rmit.ai.clima.jackagt.events.EAct;
 import rmit.ai.clima.jackagt.events.EExecuteCLIMAaction;
+import rmit.ai.clima.jackagt.events.EAct;
 import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
 import rmit.ai.clima.jackagt.plans.MoveRandomly;
 
@@ -39,11 +39,11 @@ public class ActionDecision extends aos.jack.jak.agent.Capability {
     
     synchronized public void __init_desc()
     {
-        externals.put("rmit.ai.clima.jackagt.events.EExecuteCLIMAaction","rmit.ai.clima.jackagt.events.EExecuteCLIMAaction");
         externals.put("rmit.ai.clima.jackagt.events.EAct","rmit.ai.clima.jackagt.events.EAct");
+        externals.put("rmit.ai.clima.jackagt.events.EExecuteCLIMAaction","rmit.ai.clima.jackagt.events.EExecuteCLIMAaction");
         externals.put("bel_cellEmpty_dat","bel_cellEmpty_dat");
-        addEvent("rmit.ai.clima.jackagt.events.EAct",aos.jack.jak.agent.Agent.HANDLED_EVENT);
         addEvent("rmit.ai.clima.jackagt.events.EExecuteCLIMAaction",aos.jack.jak.agent.Agent.POSTED_EVENT);
+        addEvent("rmit.ai.clima.jackagt.events.EAct",aos.jack.jak.agent.Agent.HANDLED_EVENT);
         addEvent("rmit.ai.clima.jackagt.events.EGUIDebugMessage",aos.jack.jak.agent.Agent.SENT_EVENT);
         addPlan("rmit.ai.clima.jackagt.plans.MoveRandomly",0);
     }

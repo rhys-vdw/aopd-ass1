@@ -47,9 +47,10 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
             "65",
             "67",
             "70",
-            "74",
-            "77",
-            "79",
+            "71",
+            "75",
+            "78",
+            "80",
             "61",
             "54",
             "39"};
@@ -350,7 +351,7 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                             if (__local__21_6 < __local__21_3.length) 
                                 __state = 16;
                              else 
-                                __state = 29;
+                                __state = 30;
                             break;
                         }
                         //* (57)             locDir = cells[i].id;	// first, get its direction (e.g., n, nw, s, se, etc.)
@@ -384,7 +385,7 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                             if (__local__21_8 < __local__21_3[__local__21_6].marks.length) 
                                 __state = 20;
                              else 
-                                __state = 28;
+                                __state = 29;
                             break;
                         }
                         //* (62)         	   String cellType = cells[i].marks[j].type;
@@ -401,7 +402,7 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                             if (__local__21_9.equalsIgnoreCase("unknown") == false) 
                                 __state = 22;
                              else 
-                                __state = 27;
+                                __state = 28;
                             break;
                         }
                         //* (67)                     if(cellType.equalsIgnoreCase("obstacle")) {
@@ -411,59 +412,66 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                             if (__local__21_9.equalsIgnoreCase("obstacle")) 
                                 __state = 23;
                              else 
-                                __state = 24;
+                                __state = 25;
                             break;
                         }
                         //* (70)                         bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.FALSE);
                         case 23: 
                         {
                             __breakLevel = 12;
-                            __state = 27;
+                            __state = 24;
                             // This cell contains an obstacle
 
                             bel_cellEmpty_dat.add(__local__21_7.x,__local__21_7.y,aos.jack.jak.cursor.Cursor.FALSE);
                             break;
                         }
-                        //* (74)                         bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.TRUE);
+                        //* (71)                         bel_goldAt_dat.add(loc.x, loc.y, Cursor.FALSE);
                         case 24: 
                         {
+                            __state = 28;
+                            bel_goldAt_dat.add(__local__21_7.x,__local__21_7.y,aos.jack.jak.cursor.Cursor.FALSE);
+                            break;
+                        }
+                        //* (75)                         bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.TRUE);
+                        case 25: 
+                        {
                             __breakLevel = 12;
-                            __state = 25;
+                            __state = 26;
                             // The cell is considered empty if there is no obstacle
 
                             bel_cellEmpty_dat.add(__local__21_7.x,__local__21_7.y,aos.jack.jak.cursor.Cursor.TRUE);
                             break;
                         }
-                        //* (77)                         BeliefState hasGold = cellType.equalsIgnoreCase("gold") ?
-                        case 25: 
-                        {
-                            __local__21_10 = __local__21_9.equalsIgnoreCase("gold")?aos.jack.jak.cursor.Cursor.TRUE:aos.jack.jak.cursor.Cursor.FALSE;
-                            __state = 26;
-                            break;
-                        }
-                        //* (79)                         bel_goldAt_dat.add(loc.x, loc.y, hasGold);
+                        //* (78)                         BeliefState hasGold = cellType.equalsIgnoreCase("gold") ?
                         case 26: 
                         {
+                            __local__21_10 = __local__21_9.equalsIgnoreCase("gold")?aos.jack.jak.cursor.Cursor.TRUE:aos.jack.jak.cursor.Cursor.FALSE;
                             __state = 27;
+                            break;
+                        }
+                        //* (80)                         bel_goldAt_dat.add(loc.x, loc.y, hasGold);
+                        case 27: 
+                        {
+                            __state = 28;
                             bel_goldAt_dat.add(__local__21_7.x,__local__21_7.y,__local__21_10);
                             break;
                         }
                         //* (61)            for(int j = 0; j < cells[i].marks.length; j++) {
-                        case 27: 
+                        case 28: 
                         {
                             __state = 19;
                             __local__21_8++ ;
                             break;
                         }
                         //* (54)         for(int i=0; i < cells.length; i++) {	// interate on each cell
-                        case 28: 
+                        case 29: 
                         {
                             __state = 15;
                             __local__21_6++ ;
                             break;
                         }
                         //* (39)     #reasoning method
-                        case 29: 
+                        case 30: 
                         {
                             if (__pending == null) 
                                 __state = PASSED_STATE;

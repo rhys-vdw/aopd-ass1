@@ -22,15 +22,17 @@ Description: Reports believed information in the console
 
 
 	// Declarations of any beliefset/data that the plan accesses.
-	#reads data CurrentStatus bel_currentStatus_dat;
+	#reads data LastActionSentBel bel_lastActionSent_dat;
 
-	#reads data CellEmpty bel_cellEmpty_dat;
+	#reads data GoldAt bel_goldAt_dat;
+
+	#reads data CurrentStatus bel_currentStatus_dat;
 
 	#reads data CurrentPosition bel_currentPosition_dat;
 
-	#reads data CurrentRequestActionId bel_currentRequestActionId_dat;
+	#reads data CellEmpty bel_cellEmpty_dat;
 
-	#reads data LastActionSentBel bel_lastActionSent_dat;
+	#reads data CurrentRequestActionId bel_currentRequestActionId_dat;
 
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
 
@@ -40,7 +42,8 @@ Description: Reports believed information in the console
    
    
 
-   final static String [] dir = { "cur", "n", "ne", "e", "se", "s", "sw", "w", "nw" };
+   final static String [] DIRECTIONS = { "cur", "n", "ne", "e", "se", "s", "sw", "w", "nw" };
+   final static String [] DIRECTION_NAMES = { "current position", "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west" };
 
    static boolean relevant(EShowBeliefs ev)
     {
@@ -86,5 +89,22 @@ Description: Reports believed information in the console
 	    bel_currentPosition_dat.get($posX, $posY);
 	    consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " believes it is currently at location ("
 	    		+ $posX + "," + $posY + ")");
+	    
+	    // Iterate through all surrounding cells, report what is found
+	    for (int i = 0; i < DIRECTIONS.length; i++) {
+	    	GridPoint loc = GridPoint.getFromDir($posX.as_int(), $posY.as_int(), DIRECTIONS[i]);
+	    	// Check for obstacles
+	    	if (bel_cellEmpty_dat.check(loc.x, loc.y).negate()) {
+	    		logAdjacentContents("an obstacle", i);
+	    	} else if (bel_goldAt_dat.checkIfGold(loc.x, loc.y)) {
+	    		logAdjacentContents("gold", i);
+	    	}
+	    }
+    }
+    
+    void logAdjacentContents(String content, int directionIndex) {
+    	consoleIface.showConsoleDebug(
+    			"Agent " + getAgent().getName() + " believes there is " +
+    		    content + " in the " + DIRECTION_NAMES[directionIndex]);
     }
 }

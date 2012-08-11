@@ -68,6 +68,7 @@ Description: Update the beliefs about the cells around a location
                     	
                     	// This cell contains an obstacle
                         bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.FALSE);
+                        bel_goldAt_dat.add(loc.x, loc.y, Cursor.FALSE);
                     } else {
                     	
                     	// The cell is considered empty if there is no obstacle
@@ -82,7 +83,4 @@ Description: Update the beliefs about the cells around a location
             } // end for j 
          } // end for i 
 	} // end of @body
-
-
-
 }
