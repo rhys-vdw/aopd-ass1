@@ -22,17 +22,19 @@ Description: Reports believed information in the console
 
 
 	// Declarations of any beliefset/data that the plan accesses.
-	#reads data LastActionSentBel bel_lastActionSent_dat;
-
 	#reads data GoldAt bel_goldAt_dat;
 
+	#reads data LastActionSentBel bel_lastActionSent_dat;
+
 	#reads data CurrentStatus bel_currentStatus_dat;
+
+	#reads data CurrentRequestActionId bel_currentRequestActionId_dat;
 
 	#reads data CurrentPosition bel_currentPosition_dat;
 
 	#reads data CellEmpty bel_cellEmpty_dat;
 
-	#reads data CurrentRequestActionId bel_currentRequestActionId_dat;
+	#reads data NumGold bel_numCarryingGold_dat;
 
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
 
@@ -89,6 +91,10 @@ Description: Reports believed information in the console
 	    bel_currentPosition_dat.get($posX, $posY);
 	    consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " believes it is currently at location ("
 	    		+ $posX + "," + $posY + ")");
+	    
+	    logical int $numGold;
+	    bel_numCarryingGold_dat.get($numGold);
+	    consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " is currently carrying " + $numGold.as_int() + " pieces of gold.");
 	    
 	    // Iterate through all surrounding cells, report what is found
 	    for (int i = 0; i < DIRECTIONS.length; i++) {

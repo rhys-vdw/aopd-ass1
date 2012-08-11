@@ -311,6 +311,51 @@ UpdateCellsAround.play (line 60):
   The new code adds a new tuple to the GoldAt beliefset for each cell that is confirmed to either have
   gold or not.
 
+- Step 4:
+design.pd:
+- In GamePlaying detailed view:
+  - Added link FROM bel_goldAt to InfoReporting.
+- In InfoReporting detailed view:
+  - Set bel_goldAt's JackCode modifier to #imports.
+  - Added link FROM bel_goldAt to ConsoleBeliefPrinting.
+
+Generated code.
+
+ConsoleBeliefPrinting.plan:
+
+  final static String [] DIRECTIONS = { "cur", "n", "ne", "e", "se", "s",
+    "sw", "w", "nw" };
+  final static String [] DIRECTION_NAMES = { "current position", "north",
+    "north-east", "east", "south-east", "south", "south-west", "west",
+    "north-west" };
+
+      ...
+
+    #reasoning method
+    body() {
+
+      ...
+
+      // Iterate through all surrounding cells, report what is found
+      for (int i = 0; i < DIRECTIONS.length; i++) {
+        GridPoint loc = GridPoint.getFromDir($posX.as_int(), $posY.as_int(), DIRECTIONS[i]);
+        // Check for obstacles
+        if (bel_cellEmpty_dat.check(loc.x, loc.y).negate()) {
+          logAdjacentContents("an obstacle", i);
+        } else if (bel_goldAt_dat.checkIfGold(loc.x, loc.y)) {
+          logAdjacentContents("gold", i);
+        }
+      }
+    }
+    
+    void logAdjacentContents(String content, int directionIndex) {
+      consoleIface.showConsoleDebug(
+          "Agent " + getAgent().getName() + " believes there is " +
+            content + " in the " + DIRECTION_NAMES[directionIndex]);
+    }
+
+Ran simulation. Trace saved to trace3-5.txt.
+
 - Step 5:
 
 - In design.pd:
@@ -334,3 +379,50 @@ Added code from Assignment spec:
 
 These events are sent to the GUI when a tuple is added to the GoldAt beliefset
 of an agent, updating the display.
+
+Exercise 4: Should I Pick Or Should I Go?
+-----------------------------------------
+
+- Step 1:
+
+Design.pd:
+- In detailed design of Player:
+  - Created data object named "bel_numCarryingGold".
+  - Gave data object one data type, NumGold.
+  - Set JackCode modifier to #private
+  - Added int field "count" to NumGold. Set key to false.
+  - Linked FROM GamePlaying TO bel_numCarryingGold.
+  - Linked FROM GameSyncing TO bel_numCarryingGold.
+- In detailed design of GamePlaying:
+  - Set JackCode modifier of bel_numCarryingGold to #imports.
+  - Linked FROM bel_numCarryingGold TO InfoReporting.
+- In InfoReporting:
+  - Set JackCode modifier of bel_numCarryingGold to #imports.
+  - Linked FROM bel_numCarryingGold TO ConsoleBeliefPrinting.
+- In GameSyncing:
+  - Set JackCode modifier of bel_numCarryingGold to #imports.
+  - Linked FROM StartSimulation TO bel_numCarryingGold_dat
+  - Linked FROM FinishSimulation TO bel_numCarryingGold_dat
+
+Generated code.
+
+The beliefset must be initialized to 0, or else it will fail on query.
+
+StartSimulation (in body() -> line 79):
+
+  bel_numCarryingGold_dat.add(0);
+
+FinishSimulation (in body() -> line 67):
+
+  bel_numCarryingGold_dat.get($numGold).removeAll();
+
+ConsoleBeliefPrinting (line 95):
+
+  logical int $numGold;
+  bel_numCarryingGold_dat.get($numGold);
+  consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
+      " is currently carrying " + $numGold + " pieces of gold.");
+
+Compiled, and run. Output in trace4-1.txt
+
+

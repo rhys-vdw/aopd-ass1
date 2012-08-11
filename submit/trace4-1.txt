@@ -1,0 +1,1905 @@
+Jack AGT: ./lib/jackagt.jar
+Path to jack.jar: 
+Path to climacomms.jar: ./lib/climacomms.jar
+Path to extras.jar: ./lib/gui.jar
+Current path: /home/rhys/workspace/AOPD-Ass1
+Java options: -Xmx90m -Dclima.host=localhost -Dclima.port=12300  -Dclima.agent.player1.username=participant1 -Dclima.agent.player1.password=1 -Dclima.agent.player2.username=participant2 -Dclima.agent.player2.password=2 -Dclima.agent.player3.username=participant3 -Dclima.agent.player3.password=3 -Dclima.agent.player4.username=participant4 -Dclima.agent.player4.password=4  -Dclima.agent.player5.username=participant5 -Dclima.agent.player5.password=5 -Dclima.agent.player6.username=participant6 -Dclima.agent.player6.password=6
+[Uses JACK Intelligent Agents Runtime, Copyright 1999-2008, AOS]
+[Uses JACK Intelligent Agents BDI Extension, Copyright 1999-2008, AOS]
+**** CT Cap ==> Setting ClimaTalking capability debug to: false
+setting debug to: false
+**** CT Cap ==> Setting ClimaTalking capability debug to: false
+setting debug to: false
+**** CT Cap ==> Setting ClimaTalking capability debug to: false
+setting debug to: false
+**** CT Cap ==> Setting ClimaTalking capability debug to: false
+setting debug to: false
+**** CT Cap ==> Setting ClimaTalking capability debug to: false
+setting debug to: false
+**** CT Cap ==> Setting ClimaTalking capability debug to: false
+setting debug to: false
+<AuthRequest
+    :username  "participant1"
+    :password  "1"
+>
+
+<AuthRequest
+    :username  "participant6"
+    :password  "6"
+>
+
+<AuthRequest
+    :username  "participant4"
+    :password  "4"
+>
+
+<AuthRequest
+    :username  "participant5"
+    :password  "5"
+>
+
+<AuthRequest
+    :username  "participant2"
+    :password  "2"
+>
+
+<AuthRequest
+    :username  "participant3"
+    :password  "3"
+>
+
+******************* [[player1@%portal]] I have received a SIM-START message....
+******************* [[player1@%portal]] I have just started a new simulation!
+******************* [[player1@%portal]] I will move randomly to this dir: right
+******************* [[player1@%portal]] I sent CLIMA action *right* for execution with id 0
+******************* [[player2@%portal]] I have received a SIM-START message....
+******************* [[player2@%portal]] I have just started a new simulation!
+******************* [[player2@%portal]] I will move randomly to this dir: down
+******************* [[player2@%portal]] I sent CLIMA action *down* for execution with id 0
+******************* [[player3@%portal]] I have received a SIM-START message....
+******************* [[player3@%portal]] I have just started a new simulation!
+******************* [[player3@%portal]] I will move randomly to this dir: down
+******************* [[player3@%portal]] I sent CLIMA action *down* for execution with id 0
+******************* [[player4@%portal]] I have received a SIM-START message....
+******************* [[player4@%portal]] I have just started a new simulation!
+******************* [[player4@%portal]] I will move randomly to this dir: down
+******************* [[player4@%portal]] I sent CLIMA action *down* for execution with id 0
+******************* [[player5@%portal]] I have received a SIM-START message....
+******************* [[player5@%portal]] I have just started a new simulation!
+******************* [[player5@%portal]] I will move randomly to this dir: up
+******************* [[player5@%portal]] I sent CLIMA action *up* for execution with id 0
+******************* [[player6@%portal]] I have received a SIM-START message....
+******************* [[player6@%portal]] I have just started a new simulation!
+******************* [[player6@%portal]] I will move randomly to this dir: up
+******************* [[player6@%portal]] I sent CLIMA action *up* for execution with id 0
+boss@%portal:: Agent player1@%portal reported the start of a new simulation!
+boss@%portal:: Agent player2@%portal reported the start of a new simulation, but I already know about it...
+boss@%portal:: Agent player3@%portal reported the start of a new simulation, but I already know about it...
+boss@%portal:: Agent player4@%portal reported the start of a new simulation, but I already know about it...
+boss@%portal:: Agent player5@%portal reported the start of a new simulation, but I already know about it...
+boss@%portal:: Agent player6@%portal reported the start of a new simulation, but I already know about it...
+<Action
+    :type  "right"
+    :param  "player1@%portal"
+    :id  "0"
+>
+
+<Action
+    :type  "down"
+    :param  "player2@%portal"
+    :id  "0"
+>
+
+<Action
+    :type  "down"
+    :param  "player3@%portal"
+    :id  "0"
+>
+
+<Action
+    :type  "down"
+    :param  "player4@%portal"
+    :id  "0"
+>
+
+<Action
+    :type  "up"
+    :param  "player5@%portal"
+    :id  "0"
+>
+
+<Action
+    :type  "up"
+    :param  "player6@%portal"
+    :id  "0"
+>
+
+New executor spawned due to plan step taking too long --
+Currently executing task
+     Task: Task@44
+       Agent:rmit.ai.clima.jackagt.agents.GUIAgent( gui@%portal )
+       logic:aos.jack.jak.logic.LogicEnv@55662d9a
+ENV aos.jack.jak.logic.LogicEnv#1432759706:aos.jack.jak.logic.LogicEnv@55662d9a
+TRAIL aos.jack.jak.logic.LogicEnv@55662d9a
+**	trail=658244931:TRAIL:null 1434289620 1434289620
+	trail=1434289620:TRAIL:Trailable(601705765) -> null 658244931 658244931
+CHOICE
+**	c=658244931:TRAIL:null 658244931 658244931
+       pending:null
+       maint:null
+       traceEnabled:true
+       IN:aos.jack.jak.task.TaskList@15f3ca88
+       Task Stack: 2
+        1:PlanFSM:GUIInitiate$__bodyFSM 3875b1fa:2
+        2:MESimStart 36f7b10b:1-- rmit/ai/clima/jackagt/events/MESimStart.event [SUBTASK]
+
+******************* [[player4@%portal]] A request-action event for step-id 0-1 states that player4@%portal is currently at location (5, 38) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 1
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 8
+******************* [[player4@%portal]] Number of believed obstructed cells: 0
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (5,38)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: right
+******************* [[player4@%portal]] I sent CLIMA action *right* for execution with id 1
+<Action
+    :type  "right"
+    :param  "player4@%portal"
+    :id  "1"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 0-1 states that player6@%portal is currently at location (28, 36) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 1
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 7
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (28,36)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the east
+******************* [[player6@%portal]] I will move randomly to this dir: up
+******************* [[player6@%portal]] I sent CLIMA action *up* for execution with id 1
+<Action
+    :type  "up"
+    :param  "player6@%portal"
+    :id  "1"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 0-1 states that player2@%portal is currently at location (40, 2) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 1
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 7
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (40,2)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: right
+******************* [[player2@%portal]] I sent CLIMA action *right* for execution with id 1
+<Action
+    :type  "right"
+    :param  "player2@%portal"
+    :id  "1"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 0-1 states that player1@%portal is currently at location (23, 14) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 1
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 8
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (23,14)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] I will move randomly to this dir: up
+******************* [[player1@%portal]] I sent CLIMA action *up* for execution with id 1
+<Action
+    :type  "up"
+    :param  "player1@%portal"
+    :id  "1"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 0-1 states that player5@%portal is currently at location (49, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 1
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 7
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (49,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: left
+******************* [[player5@%portal]] I sent CLIMA action *left* for execution with id 1
+<Action
+    :type  "left"
+    :param  "player5@%portal"
+    :id  "1"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 0-1 states that player3@%portal is currently at location (31, 43) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 1
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 9
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (31,43)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: right
+******************* [[player3@%portal]] I sent CLIMA action *right* for execution with id 1
+<Action
+    :type  "right"
+    :param  "player3@%portal"
+    :id  "1"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 1-2 states that player4@%portal is currently at location (6, 38) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 2
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 9
+******************* [[player4@%portal]] Number of believed obstructed cells: 0
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (6,38)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: right
+******************* [[player4@%portal]] I sent CLIMA action *right* for execution with id 2
+<Action
+    :type  "right"
+    :param  "player4@%portal"
+    :id  "2"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 1-2 states that player3@%portal is currently at location (32, 43) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 2
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 12
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (32,43)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: up
+******************* [[player3@%portal]] I sent CLIMA action *up* for execution with id 2
+<Action
+    :type  "up"
+    :param  "player3@%portal"
+    :id  "2"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 1-2 states that player2@%portal is currently at location (41, 2) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 2
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 11
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (41,2)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: up
+******************* [[player2@%portal]] I sent CLIMA action *up* for execution with id 2
+<Action
+    :type  "up"
+    :param  "player2@%portal"
+    :id  "2"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 1-2 states that player6@%portal is currently at location (28, 35) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 2
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 12
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (28,35)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the south-east
+******************* [[player6@%portal]] I will move randomly to this dir: right
+******************* [[player6@%portal]] I sent CLIMA action *right* for execution with id 2
+<Action
+    :type  "right"
+    :param  "player6@%portal"
+    :id  "2"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 1-2 states that player1@%portal is currently at location (23, 14) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 2
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 8
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (23,14)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] I will move randomly to this dir: down
+******************* [[player1@%portal]] I sent CLIMA action *down* for execution with id 2
+<Action
+    :type  "down"
+    :param  "player1@%portal"
+    :id  "2"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 1-2 states that player5@%portal is currently at location (48, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 2
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 12
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (48,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: right
+******************* [[player5@%portal]] I sent CLIMA action *right* for execution with id 2
+<Action
+    :type  "right"
+    :param  "player5@%portal"
+    :id  "2"
+>
+
+================> GUI interface initialized <=================
+******************* [[player5@%portal]] A request-action event for step-id 2-3 states that player5@%portal is currently at location (49, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 3
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 12
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (49,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: left
+******************* [[player5@%portal]] I sent CLIMA action *left* for execution with id 3
+<Action
+    :type  "left"
+    :param  "player5@%portal"
+    :id  "3"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 2-3 states that player1@%portal is currently at location (23, 15) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 3
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 11
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (23,15)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] I will move randomly to this dir: up
+******************* [[player1@%portal]] I sent CLIMA action *up* for execution with id 3
+<Action
+    :type  "up"
+    :param  "player1@%portal"
+    :id  "3"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 2-3 states that player6@%portal is currently at location (29, 35) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 3
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 14
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (29,35)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the south
+******************* [[player6@%portal]] I will move randomly to this dir: right
+******************* [[player6@%portal]] I sent CLIMA action *right* for execution with id 3
+<Action
+    :type  "right"
+    :param  "player6@%portal"
+    :id  "3"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 2-3 states that player3@%portal is currently at location (32, 42) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 3
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 15
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (32,42)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] Agent player3@%portal believes there is gold in the north-east
+******************* [[player3@%portal]] I will move randomly to this dir: left
+******************* [[player3@%portal]] I sent CLIMA action *left* for execution with id 3
+<Action
+    :type  "left"
+    :param  "player3@%portal"
+    :id  "3"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 2-3 states that player2@%portal is currently at location (41, 1) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 3
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 13
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (41,1)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: down
+******************* [[player2@%portal]] I sent CLIMA action *down* for execution with id 3
+<Action
+    :type  "down"
+    :param  "player2@%portal"
+    :id  "3"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 2-3 states that player4@%portal is currently at location (6, 38) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 3
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 10
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (6,38)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] Agent player4@%portal believes there is gold in the north-east
+******************* [[player4@%portal]] Agent player4@%portal believes there is an obstacle in the east
+******************* [[player4@%portal]] I will move randomly to this dir: down
+******************* [[player4@%portal]] I sent CLIMA action *down* for execution with id 3
+<Action
+    :type  "down"
+    :param  "player4@%portal"
+    :id  "3"
+>
+
+=================> Agent player1@%portal registered in the GUI with number 1
+=================> Agent player2@%portal registered in the GUI with number 2
+******************* [[player1@%portal]] A request-action event for step-id 3-4 states that player1@%portal is currently at location (23, 14) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 4
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 11
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (23,14)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] I will move randomly to this dir: up
+******************* [[player1@%portal]] I sent CLIMA action *up* for execution with id 4
+<Action
+    :type  "up"
+    :param  "player1@%portal"
+    :id  "4"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 3-4 states that player5@%portal is currently at location (48, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 4
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 12
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (48,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: up
+******************* [[player5@%portal]] I sent CLIMA action *up* for execution with id 4
+<Action
+    :type  "up"
+    :param  "player5@%portal"
+    :id  "4"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 3-4 states that player3@%portal is currently at location (31, 42) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 4
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 16
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (31,42)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: up
+******************* [[player3@%portal]] I sent CLIMA action *up* for execution with id 4
+<Action
+    :type  "up"
+    :param  "player3@%portal"
+    :id  "4"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 3-4 states that player4@%portal is currently at location (6, 38) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 4
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 10
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (6,38)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] Agent player4@%portal believes there is gold in the north-east
+******************* [[player4@%portal]] Agent player4@%portal believes there is an obstacle in the east
+******************* [[player4@%portal]] I will move randomly to this dir: left
+******************* [[player4@%portal]] I sent CLIMA action *left* for execution with id 4
+<Action
+    :type  "left"
+    :param  "player4@%portal"
+    :id  "4"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 3-4 states that player2@%portal is currently at location (41, 2) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 4
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 13
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (41,2)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: right
+******************* [[player2@%portal]] I sent CLIMA action *right* for execution with id 4
+<Action
+    :type  "right"
+    :param  "player2@%portal"
+    :id  "4"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 3-4 states that player6@%portal is currently at location (30, 35) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 4
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 18
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (30,35)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the north-east
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the south-west
+******************* [[player6@%portal]] I will move randomly to this dir: right
+******************* [[player6@%portal]] I sent CLIMA action *right* for execution with id 4
+<Action
+    :type  "right"
+    :param  "player6@%portal"
+    :id  "4"
+>
+
+=================> Agent player3@%portal registered in the GUI with number 3
+=================> Agent player4@%portal registered in the GUI with number 4
+=================> Agent player5@%portal registered in the GUI with number 5
+=================> Agent player6@%portal registered in the GUI with number 6
+******************* [[player3@%portal]] A request-action event for step-id 4-5 states that player3@%portal is currently at location (31, 41) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 5
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 19
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (31,41)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: up
+******************* [[player3@%portal]] I sent CLIMA action *up* for execution with id 5
+<Action
+    :type  "up"
+    :param  "player3@%portal"
+    :id  "5"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 4-5 states that player2@%portal is currently at location (42, 2) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 5
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 16
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (42,2)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] Agent player2@%portal believes there is gold in the east
+******************* [[player2@%portal]] I will move randomly to this dir: up
+******************* [[player2@%portal]] I sent CLIMA action *up* for execution with id 5
+<Action
+    :type  "up"
+    :param  "player2@%portal"
+    :id  "5"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 4-5 states that player4@%portal is currently at location (5, 38) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 5
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 11
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (5,38)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: up
+******************* [[player4@%portal]] I sent CLIMA action *up* for execution with id 5
+<Action
+    :type  "up"
+    :param  "player4@%portal"
+    :id  "5"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 4-5 states that player6@%portal is currently at location (30, 35) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 5
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 18
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (30,35)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the north-east
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the south-west
+******************* [[player6@%portal]] I will move randomly to this dir: left
+******************* [[player6@%portal]] I sent CLIMA action *left* for execution with id 5
+<Action
+    :type  "left"
+    :param  "player6@%portal"
+    :id  "5"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 4-5 states that player1@%portal is currently at location (23, 13) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 5
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 14
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (23,13)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] Agent player1@%portal believes there is gold in the west
+******************* [[player1@%portal]] I will move randomly to this dir: right
+******************* [[player1@%portal]] I sent CLIMA action *right* for execution with id 5
+<Action
+    :type  "right"
+    :param  "player1@%portal"
+    :id  "5"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 4-5 states that player5@%portal is currently at location (48, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 5
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 12
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (48,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: left
+******************* [[player5@%portal]] I sent CLIMA action *left* for execution with id 5
+<Action
+    :type  "left"
+    :param  "player5@%portal"
+    :id  "5"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 5-6 states that player2@%portal is currently at location (42, 1) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 6
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 18
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (42,1)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] Agent player2@%portal believes there is gold in the south-east
+******************* [[player2@%portal]] I will move randomly to this dir: right
+******************* [[player2@%portal]] I sent CLIMA action *right* for execution with id 6
+<Action
+    :type  "right"
+    :param  "player2@%portal"
+    :id  "6"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 5-6 states that player3@%portal is currently at location (31, 40) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 6
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 22
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (31,40)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: right
+******************* [[player3@%portal]] I sent CLIMA action *right* for execution with id 6
+<Action
+    :type  "right"
+    :param  "player3@%portal"
+    :id  "6"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 5-6 states that player4@%portal is currently at location (5, 37) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 6
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 13
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (5,37)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: right
+******************* [[player4@%portal]] I sent CLIMA action *right* for execution with id 6
+<Action
+    :type  "right"
+    :param  "player4@%portal"
+    :id  "6"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 5-6 states that player1@%portal is currently at location (23, 13) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 6
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 15
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (23,13)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] Agent player1@%portal believes there is gold in the west
+******************* [[player1@%portal]] I will move randomly to this dir: down
+******************* [[player1@%portal]] I sent CLIMA action *down* for execution with id 6
+<Action
+    :type  "down"
+    :param  "player1@%portal"
+    :id  "6"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 5-6 states that player6@%portal is currently at location (29, 35) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 6
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 18
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (29,35)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the south
+******************* [[player6@%portal]] I will move randomly to this dir: up
+******************* [[player6@%portal]] I sent CLIMA action *up* for execution with id 6
+<Action
+    :type  "up"
+    :param  "player6@%portal"
+    :id  "6"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 5-6 states that player5@%portal is currently at location (47, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 6
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 14
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (47,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: left
+******************* [[player5@%portal]] I sent CLIMA action *left* for execution with id 6
+<Action
+    :type  "left"
+    :param  "player5@%portal"
+    :id  "6"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 6-7 states that player3@%portal is currently at location (32, 40) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 7
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 24
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (32,40)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] Agent player3@%portal believes there is gold in the south-east
+******************* [[player3@%portal]] I will move randomly to this dir: left
+******************* [[player3@%portal]] I sent CLIMA action *left* for execution with id 7
+<Action
+    :type  "left"
+    :param  "player3@%portal"
+    :id  "7"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 6-7 states that player1@%portal is currently at location (23, 14) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 7
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 15
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (23,14)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] Agent player1@%portal believes there is gold in the north-west
+******************* [[player1@%portal]] I will move randomly to this dir: right
+******************* [[player1@%portal]] I sent CLIMA action *right* for execution with id 7
+<Action
+    :type  "right"
+    :param  "player1@%portal"
+    :id  "7"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 6-7 states that player4@%portal is currently at location (6, 37) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 7
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 15
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (6,37)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] Agent player4@%portal believes there is gold in the east
+******************* [[player4@%portal]] Agent player4@%portal believes there is an obstacle in the south-east
+******************* [[player4@%portal]] I will move randomly to this dir: left
+******************* [[player4@%portal]] I sent CLIMA action *left* for execution with id 7
+<Action
+    :type  "left"
+    :param  "player4@%portal"
+    :id  "7"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 6-7 states that player6@%portal is currently at location (29, 34) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 7
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 21
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (29,34)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] I will move randomly to this dir: up
+******************* [[player6@%portal]] I sent CLIMA action *up* for execution with id 7
+<Action
+    :type  "up"
+    :param  "player6@%portal"
+    :id  "7"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 6-7 states that player5@%portal is currently at location (46, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 7
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 17
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (46,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] Agent player5@%portal believes there is gold in the south-west
+******************* [[player5@%portal]] I will move randomly to this dir: right
+******************* [[player5@%portal]] I sent CLIMA action *right* for execution with id 7
+<Action
+    :type  "right"
+    :param  "player5@%portal"
+    :id  "7"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 6-7 states that player2@%portal is currently at location (42, 1) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 7
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 18
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (42,1)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] Agent player2@%portal believes there is gold in the south-east
+******************* [[player2@%portal]] I will move randomly to this dir: left
+******************* [[player2@%portal]] I sent CLIMA action *left* for execution with id 7
+<Action
+    :type  "left"
+    :param  "player2@%portal"
+    :id  "7"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 7-8 states that player2@%portal is currently at location (41, 1) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 8
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 18
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (41,1)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: left
+******************* [[player2@%portal]] I sent CLIMA action *left* for execution with id 8
+<Action
+    :type  "left"
+    :param  "player2@%portal"
+    :id  "8"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 7-8 states that player5@%portal is currently at location (47, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 8
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 18
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (47,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: right
+******************* [[player5@%portal]] I sent CLIMA action *right* for execution with id 8
+<Action
+    :type  "right"
+    :param  "player5@%portal"
+    :id  "8"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 7-8 states that player6@%portal is currently at location (29, 33) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 8
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 24
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (29,33)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] I will move randomly to this dir: down
+******************* [[player6@%portal]] I sent CLIMA action *down* for execution with id 8
+<Action
+    :type  "down"
+    :param  "player6@%portal"
+    :id  "8"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 7-8 states that player1@%portal is currently at location (24, 14) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 8
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 18
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (24,14)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] I will move randomly to this dir: down
+******************* [[player1@%portal]] I sent CLIMA action *down* for execution with id 8
+<Action
+    :type  "down"
+    :param  "player1@%portal"
+    :id  "8"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 7-8 states that player3@%portal is currently at location (31, 40) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 8
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 24
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (31,40)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: up
+******************* [[player3@%portal]] I sent CLIMA action *up* for execution with id 8
+<Action
+    :type  "up"
+    :param  "player3@%portal"
+    :id  "8"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 7-8 states that player4@%portal is currently at location (5, 37) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 8
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 15
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (5,37)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: down
+******************* [[player4@%portal]] I sent CLIMA action *down* for execution with id 8
+<Action
+    :type  "down"
+    :param  "player4@%portal"
+    :id  "8"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 8-9 states that player6@%portal is currently at location (29, 34) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 9
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 24
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (29,34)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] I will move randomly to this dir: up
+******************* [[player6@%portal]] I sent CLIMA action *up* for execution with id 9
+<Action
+    :type  "up"
+    :param  "player6@%portal"
+    :id  "9"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 8-9 states that player1@%portal is currently at location (24, 15) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 9
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 19
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (24,15)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] I will move randomly to this dir: left
+******************* [[player1@%portal]] I sent CLIMA action *left* for execution with id 9
+<Action
+    :type  "left"
+    :param  "player1@%portal"
+    :id  "9"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 8-9 states that player2@%portal is currently at location (40, 1) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 9
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 20
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (40,1)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: up
+******************* [[player2@%portal]] I sent CLIMA action *up* for execution with id 9
+<Action
+    :type  "up"
+    :param  "player2@%portal"
+    :id  "9"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 8-9 states that player5@%portal is currently at location (48, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 9
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 18
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (48,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: up
+******************* [[player5@%portal]] I sent CLIMA action *up* for execution with id 9
+<Action
+    :type  "up"
+    :param  "player5@%portal"
+    :id  "9"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 8-9 states that player4@%portal is currently at location (5, 37) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 9
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 15
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (5,37)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: left
+******************* [[player4@%portal]] I sent CLIMA action *left* for execution with id 9
+<Action
+    :type  "left"
+    :param  "player4@%portal"
+    :id  "9"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 8-9 states that player3@%portal is currently at location (31, 39) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 9
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 27
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (31,39)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: left
+******************* [[player3@%portal]] I sent CLIMA action *left* for execution with id 9
+<Action
+    :type  "left"
+    :param  "player3@%portal"
+    :id  "9"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 9-10 states that player3@%portal is currently at location (30, 39) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 10
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 30
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (30,39)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: up
+******************* [[player3@%portal]] I sent CLIMA action *up* for execution with id 10
+<Action
+    :type  "up"
+    :param  "player3@%portal"
+    :id  "10"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 9-10 states that player1@%portal is currently at location (23, 15) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 10
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 19
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (23,15)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] I will move randomly to this dir: up
+******************* [[player1@%portal]] I sent CLIMA action *up* for execution with id 10
+<Action
+    :type  "up"
+    :param  "player1@%portal"
+    :id  "10"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 9-10 states that player5@%portal is currently at location (48, 5) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 10
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 20
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (48,5)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: down
+******************* [[player5@%portal]] I sent CLIMA action *down* for execution with id 10
+<Action
+    :type  "down"
+    :param  "player5@%portal"
+    :id  "10"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 9-10 states that player4@%portal is currently at location (4, 37) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 10
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 17
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (4,37)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] Agent player4@%portal believes there is gold in the west
+******************* [[player4@%portal]] I will move randomly to this dir: left
+******************* [[player4@%portal]] I sent CLIMA action *left* for execution with id 10
+<Action
+    :type  "left"
+    :param  "player4@%portal"
+    :id  "10"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 9-10 states that player2@%portal is currently at location (40, 1) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 10
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 20
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (40,1)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: left
+******************* [[player2@%portal]] I sent CLIMA action *left* for execution with id 10
+<Action
+    :type  "left"
+    :param  "player2@%portal"
+    :id  "10"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 9-10 states that player6@%portal is currently at location (29, 33) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 10
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 24
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (29,33)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] I will move randomly to this dir: right
+******************* [[player6@%portal]] I sent CLIMA action *right* for execution with id 10
+<Action
+    :type  "right"
+    :param  "player6@%portal"
+    :id  "10"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 10-11 states that player3@%portal is currently at location (30, 38) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 11
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 33
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (30,38)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: left
+******************* [[player3@%portal]] I sent CLIMA action *left* for execution with id 11
+<Action
+    :type  "left"
+    :param  "player3@%portal"
+    :id  "11"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 10-11 states that player6@%portal is currently at location (30, 33) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 11
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 26
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (30,33)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the south-east
+******************* [[player6@%portal]] I will move randomly to this dir: up
+******************* [[player6@%portal]] I sent CLIMA action *up* for execution with id 11
+<Action
+    :type  "up"
+    :param  "player6@%portal"
+    :id  "11"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 10-11 states that player4@%portal is currently at location (3, 37) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 11
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 21
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (3,37)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] Agent player4@%portal believes there is gold in the current position
+******************* [[player4@%portal]] Agent player4@%portal believes there is gold in the north
+******************* [[player4@%portal]] I will move randomly to this dir: left
+******************* [[player4@%portal]] I sent CLIMA action *left* for execution with id 11
+<Action
+    :type  "left"
+    :param  "player4@%portal"
+    :id  "11"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 10-11 states that player2@%portal is currently at location (39, 1) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 11
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 23
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (39,1)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: up
+******************* [[player2@%portal]] I sent CLIMA action *up* for execution with id 11
+<Action
+    :type  "up"
+    :param  "player2@%portal"
+    :id  "11"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 10-11 states that player5@%portal is currently at location (48, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 11
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 20
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (48,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: up
+******************* [[player5@%portal]] I sent CLIMA action *up* for execution with id 11
+<Action
+    :type  "up"
+    :param  "player5@%portal"
+    :id  "11"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 10-11 states that player1@%portal is currently at location (23, 14) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 11
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 19
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (23,14)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] Agent player1@%portal believes there is gold in the north-west
+******************* [[player1@%portal]] I will move randomly to this dir: left
+******************* [[player1@%portal]] I sent CLIMA action *left* for execution with id 11
+<Action
+    :type  "left"
+    :param  "player1@%portal"
+    :id  "11"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 11-12 states that player6@%portal is currently at location (30, 32) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 12
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 29
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (30,32)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the north-west
+******************* [[player6@%portal]] I will move randomly to this dir: up
+******************* [[player6@%portal]] I sent CLIMA action *up* for execution with id 12
+<Action
+    :type  "up"
+    :param  "player6@%portal"
+    :id  "12"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 11-12 states that player2@%portal is currently at location (39, 0) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 12
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 23
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (39,0)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: left
+******************* [[player2@%portal]] I sent CLIMA action *left* for execution with id 12
+<Action
+    :type  "left"
+    :param  "player2@%portal"
+    :id  "12"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 11-12 states that player3@%portal is currently at location (29, 38) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 12
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 36
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (29,38)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: left
+******************* [[player3@%portal]] I sent CLIMA action *left* for execution with id 12
+<Action
+    :type  "left"
+    :param  "player3@%portal"
+    :id  "12"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 11-12 states that player4@%portal is currently at location (2, 37) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 12
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 24
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (2,37)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] Agent player4@%portal believes there is gold in the north-east
+******************* [[player4@%portal]] Agent player4@%portal believes there is gold in the east
+******************* [[player4@%portal]] I will move randomly to this dir: right
+******************* [[player4@%portal]] I sent CLIMA action *right* for execution with id 12
+<Action
+    :type  "right"
+    :param  "player4@%portal"
+    :id  "12"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 11-12 states that player5@%portal is currently at location (48, 5) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 12
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 21
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (48,5)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: down
+******************* [[player5@%portal]] I sent CLIMA action *down* for execution with id 12
+<Action
+    :type  "down"
+    :param  "player5@%portal"
+    :id  "12"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 11-12 states that player1@%portal is currently at location (22, 14) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 12
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 21
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (22,14)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] Agent player1@%portal believes there is gold in the north
+******************* [[player1@%portal]] I will move randomly to this dir: up
+******************* [[player1@%portal]] I sent CLIMA action *up* for execution with id 12
+<Action
+    :type  "up"
+    :param  "player1@%portal"
+    :id  "12"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 12-13 states that player1@%portal is currently at location (22, 13) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 13
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 23
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (22,13)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] Agent player1@%portal believes there is gold in the current position
+******************* [[player1@%portal]] Agent player1@%portal believes there is gold in the north-west
+******************* [[player1@%portal]] I will move randomly to this dir: up
+******************* [[player1@%portal]] I sent CLIMA action *up* for execution with id 13
+<Action
+    :type  "up"
+    :param  "player1@%portal"
+    :id  "13"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 12-13 states that player5@%portal is currently at location (48, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 13
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 21
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (48,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: left
+******************* [[player5@%portal]] I sent CLIMA action *left* for execution with id 13
+<Action
+    :type  "left"
+    :param  "player5@%portal"
+    :id  "13"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 12-13 states that player3@%portal is currently at location (28, 38) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 13
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 39
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (28,38)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: left
+******************* [[player3@%portal]] I sent CLIMA action *left* for execution with id 13
+<Action
+    :type  "left"
+    :param  "player3@%portal"
+    :id  "13"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 12-13 states that player4@%portal is currently at location (2, 37) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 13
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 24
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (2,37)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] Agent player4@%portal believes there is gold in the north-east
+******************* [[player4@%portal]] Agent player4@%portal believes there is gold in the east
+******************* [[player4@%portal]] I will move randomly to this dir: left
+******************* [[player4@%portal]] I sent CLIMA action *left* for execution with id 13
+<Action
+    :type  "left"
+    :param  "player4@%portal"
+    :id  "13"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 12-13 states that player2@%portal is currently at location (38, 0) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 13
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 25
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (38,0)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: right
+******************* [[player2@%portal]] I sent CLIMA action *right* for execution with id 13
+<Action
+    :type  "right"
+    :param  "player2@%portal"
+    :id  "13"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 12-13 states that player6@%portal is currently at location (30, 31) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 13
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 32
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (30,31)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the west
+******************* [[player6@%portal]] I will move randomly to this dir: left
+******************* [[player6@%portal]] I sent CLIMA action *left* for execution with id 13
+<Action
+    :type  "left"
+    :param  "player6@%portal"
+    :id  "13"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 13-14 states that player3@%portal is currently at location (27, 38) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 14
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 41
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (27,38)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: up
+******************* [[player3@%portal]] I sent CLIMA action *up* for execution with id 14
+<Action
+    :type  "up"
+    :param  "player3@%portal"
+    :id  "14"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 13-14 states that player6@%portal is currently at location (29, 31) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 14
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 34
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (29,31)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the current position
+******************* [[player6@%portal]] I will move randomly to this dir: down
+******************* [[player6@%portal]] I sent CLIMA action *down* for execution with id 14
+<Action
+    :type  "down"
+    :param  "player6@%portal"
+    :id  "14"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 13-14 states that player1@%portal is currently at location (22, 13) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 14
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 23
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (22,13)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] Agent player1@%portal believes there is gold in the current position
+******************* [[player1@%portal]] Agent player1@%portal believes there is gold in the north-west
+******************* [[player1@%portal]] I will move randomly to this dir: right
+******************* [[player1@%portal]] I sent CLIMA action *right* for execution with id 14
+<Action
+    :type  "right"
+    :param  "player1@%portal"
+    :id  "14"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 13-14 states that player4@%portal is currently at location (1, 37) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 14
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 26
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (1,37)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: down
+******************* [[player4@%portal]] I sent CLIMA action *down* for execution with id 14
+<Action
+    :type  "down"
+    :param  "player4@%portal"
+    :id  "14"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 13-14 states that player2@%portal is currently at location (39, 0) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 14
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 25
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (39,0)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: up
+******************* [[player2@%portal]] I sent CLIMA action *up* for execution with id 14
+<Action
+    :type  "up"
+    :param  "player2@%portal"
+    :id  "14"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 13-14 states that player5@%portal is currently at location (47, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 14
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 21
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (47,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: down
+******************* [[player5@%portal]] I sent CLIMA action *down* for execution with id 14
+<Action
+    :type  "down"
+    :param  "player5@%portal"
+    :id  "14"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 14-15 states that player5@%portal is currently at location (47, 7) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 15
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 24
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (47,7)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: up
+******************* [[player5@%portal]] I sent CLIMA action *up* for execution with id 15
+<Action
+    :type  "up"
+    :param  "player5@%portal"
+    :id  "15"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 14-15 states that player1@%portal is currently at location (23, 13) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 15
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 23
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (23,13)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] Agent player1@%portal believes there is gold in the west
+******************* [[player1@%portal]] I will move randomly to this dir: down
+******************* [[player1@%portal]] I sent CLIMA action *down* for execution with id 15
+<Action
+    :type  "down"
+    :param  "player1@%portal"
+    :id  "15"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 14-15 states that player2@%portal is currently at location (39, 0) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 15
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 25
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (39,0)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: up
+******************* [[player2@%portal]] I sent CLIMA action *up* for execution with id 15
+<Action
+    :type  "up"
+    :param  "player2@%portal"
+    :id  "15"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 14-15 states that player6@%portal is currently at location (29, 32) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 15
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 34
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (29,32)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the north
+******************* [[player6@%portal]] I will move randomly to this dir: left
+******************* [[player6@%portal]] I sent CLIMA action *left* for execution with id 15
+<Action
+    :type  "left"
+    :param  "player6@%portal"
+    :id  "15"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 14-15 states that player3@%portal is currently at location (27, 37) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 15
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 45
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (27,37)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: left
+******************* [[player3@%portal]] I sent CLIMA action *left* for execution with id 15
+<Action
+    :type  "left"
+    :param  "player3@%portal"
+    :id  "15"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 14-15 states that player4@%portal is currently at location (1, 38) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 15
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 30
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (1,38)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: down
+******************* [[player4@%portal]] I sent CLIMA action *down* for execution with id 15
+<Action
+    :type  "down"
+    :param  "player4@%portal"
+    :id  "15"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 15-16 states that player4@%portal is currently at location (1, 39) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 16
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 33
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (1,39)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: left
+******************* [[player4@%portal]] I sent CLIMA action *left* for execution with id 16
+<Action
+    :type  "left"
+    :param  "player4@%portal"
+    :id  "16"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 15-16 states that player1@%portal is currently at location (23, 14) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 16
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 23
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (23,14)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] Agent player1@%portal believes there is gold in the north-west
+******************* [[player1@%portal]] I will move randomly to this dir: right
+******************* [[player1@%portal]] I sent CLIMA action *right* for execution with id 16
+<Action
+    :type  "right"
+    :param  "player1@%portal"
+    :id  "16"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 15-16 states that player2@%portal is currently at location (39, 0) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 16
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 25
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (39,0)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: up
+******************* [[player2@%portal]] I sent CLIMA action *up* for execution with id 16
+<Action
+    :type  "up"
+    :param  "player2@%portal"
+    :id  "16"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 15-16 states that player5@%portal is currently at location (47, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 16
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 24
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (47,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: right
+******************* [[player5@%portal]] I sent CLIMA action *right* for execution with id 16
+<Action
+    :type  "right"
+    :param  "player5@%portal"
+    :id  "16"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 15-16 states that player6@%portal is currently at location (28, 32) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 16
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 37
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (28,32)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the north-east
+******************* [[player6@%portal]] I will move randomly to this dir: up
+******************* [[player6@%portal]] I sent CLIMA action *up* for execution with id 16
+<Action
+    :type  "up"
+    :param  "player6@%portal"
+    :id  "16"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 15-16 states that player3@%portal is currently at location (26, 37) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 16
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 48
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (26,37)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: left
+******************* [[player3@%portal]] I sent CLIMA action *left* for execution with id 16
+<Action
+    :type  "left"
+    :param  "player3@%portal"
+    :id  "16"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 16-17 states that player1@%portal is currently at location (24, 14) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 17
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 23
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (24,14)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] I will move randomly to this dir: up
+******************* [[player1@%portal]] I sent CLIMA action *up* for execution with id 17
+<Action
+    :type  "up"
+    :param  "player1@%portal"
+    :id  "17"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 16-17 states that player6@%portal is currently at location (28, 31) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 17
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 38
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (28,31)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the east
+******************* [[player6@%portal]] I will move randomly to this dir: left
+******************* [[player6@%portal]] I sent CLIMA action *left* for execution with id 17
+<Action
+    :type  "left"
+    :param  "player6@%portal"
+    :id  "17"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 16-17 states that player5@%portal is currently at location (48, 6) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 17
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 24
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (48,6)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: down
+******************* [[player5@%portal]] I sent CLIMA action *down* for execution with id 17
+<Action
+    :type  "down"
+    :param  "player5@%portal"
+    :id  "17"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 16-17 states that player3@%portal is currently at location (25, 37) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 17
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 51
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (25,37)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: left
+******************* [[player3@%portal]] I sent CLIMA action *left* for execution with id 17
+<Action
+    :type  "left"
+    :param  "player3@%portal"
+    :id  "17"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 16-17 states that player2@%portal is currently at location (39, 0) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 17
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 25
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (39,0)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: down
+******************* [[player2@%portal]] I sent CLIMA action *down* for execution with id 17
+<Action
+    :type  "down"
+    :param  "player2@%portal"
+    :id  "17"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 16-17 states that player4@%portal is currently at location (1, 39) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 17
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 33
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (1,39)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: left
+******************* [[player4@%portal]] I sent CLIMA action *left* for execution with id 17
+<Action
+    :type  "left"
+    :param  "player4@%portal"
+    :id  "17"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 17-18 states that player5@%portal is currently at location (48, 7) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 18
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 25
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (48,7)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: left
+******************* [[player5@%portal]] I sent CLIMA action *left* for execution with id 18
+<Action
+    :type  "left"
+    :param  "player5@%portal"
+    :id  "18"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 17-18 states that player1@%portal is currently at location (24, 13) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 18
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 23
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (24,13)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] I will move randomly to this dir: up
+******************* [[player1@%portal]] I sent CLIMA action *up* for execution with id 18
+<Action
+    :type  "up"
+    :param  "player1@%portal"
+    :id  "18"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 17-18 states that player6@%portal is currently at location (27, 31) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 18
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 41
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (27,31)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] I will move randomly to this dir: left
+******************* [[player6@%portal]] I sent CLIMA action *left* for execution with id 18
+<Action
+    :type  "left"
+    :param  "player6@%portal"
+    :id  "18"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 17-18 states that player2@%portal is currently at location (39, 1) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 18
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 25
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (39,1)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: right
+******************* [[player2@%portal]] I sent CLIMA action *right* for execution with id 18
+<Action
+    :type  "right"
+    :param  "player2@%portal"
+    :id  "18"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 17-18 states that player4@%portal is currently at location (0, 39) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 18
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 33
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (0,39)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: down
+******************* [[player4@%portal]] I sent CLIMA action *down* for execution with id 18
+<Action
+    :type  "down"
+    :param  "player4@%portal"
+    :id  "18"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 17-18 states that player3@%portal is currently at location (24, 37) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 18
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 54
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (24,37)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: down
+******************* [[player3@%portal]] I sent CLIMA action *down* for execution with id 18
+<Action
+    :type  "down"
+    :param  "player3@%portal"
+    :id  "18"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 18-19 states that player3@%portal is currently at location (24, 38) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 19
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 57
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (24,38)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: right
+******************* [[player3@%portal]] I sent CLIMA action *right* for execution with id 19
+<Action
+    :type  "right"
+    :param  "player3@%portal"
+    :id  "19"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 18-19 states that player5@%portal is currently at location (47, 7) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 19
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 25
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (47,7)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: up
+******************* [[player5@%portal]] I sent CLIMA action *up* for execution with id 19
+<Action
+    :type  "up"
+    :param  "player5@%portal"
+    :id  "19"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 18-19 states that player4@%portal is currently at location (0, 40) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 19
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 35
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (0,40)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: left
+******************* [[player4@%portal]] I sent CLIMA action *left* for execution with id 19
+<Action
+    :type  "left"
+    :param  "player4@%portal"
+    :id  "19"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 18-19 states that player6@%portal is currently at location (26, 31) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 19
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 43
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (26,31)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] I will move randomly to this dir: left
+******************* [[player6@%portal]] I sent CLIMA action *left* for execution with id 19
+<Action
+    :type  "left"
+    :param  "player6@%portal"
+    :id  "19"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 18-19 states that player2@%portal is currently at location (40, 1) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 19
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 25
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (40,1)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: up
+******************* [[player2@%portal]] I sent CLIMA action *up* for execution with id 19
+<Action
+    :type  "up"
+    :param  "player2@%portal"
+    :id  "19"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 18-19 states that player1@%portal is currently at location (24, 12) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 19
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 26
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (24,12)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] I will move randomly to this dir: right
+******************* [[player1@%portal]] I sent CLIMA action *right* for execution with id 19
+<Action
+    :type  "right"
+    :param  "player1@%portal"
+    :id  "19"
+>
+
+******************* [[player1@%portal]] A request-action event for step-id 19-20 states that player1@%portal is currently at location (25, 12) with 0 pieces of gold
+******************* [[player1@%portal]] Current ID step: 20
+******************* [[player1@%portal]] Number of cells believed empty of obstacles: 30
+******************* [[player1@%portal]] Number of believed obstructed cells: 0
+******************* [[player1@%portal]] Agent player1@%portal believes it is currently at location (25,12)
+******************* [[player1@%portal]] Agent player1@%portal is currently carrying 0 pieces of gold.
+******************* [[player1@%portal]] Agent player1@%portal believes there is gold in the south-east
+******************* [[player1@%portal]] I will move randomly to this dir: left
+******************* [[player1@%portal]] I sent CLIMA action *left* for execution with id 20
+<Action
+    :type  "left"
+    :param  "player1@%portal"
+    :id  "20"
+>
+
+******************* [[player3@%portal]] A request-action event for step-id 19-20 states that player3@%portal is currently at location (25, 38) with 0 pieces of gold
+******************* [[player3@%portal]] Current ID step: 20
+******************* [[player3@%portal]] Number of cells believed empty of obstacles: 57
+******************* [[player3@%portal]] Number of believed obstructed cells: 0
+******************* [[player3@%portal]] Agent player3@%portal believes it is currently at location (25,38)
+******************* [[player3@%portal]] Agent player3@%portal is currently carrying 0 pieces of gold.
+******************* [[player3@%portal]] I will move randomly to this dir: up
+******************* [[player3@%portal]] I sent CLIMA action *up* for execution with id 20
+<Action
+    :type  "up"
+    :param  "player3@%portal"
+    :id  "20"
+>
+
+******************* [[player2@%portal]] A request-action event for step-id 19-20 states that player2@%portal is currently at location (40, 0) with 0 pieces of gold
+******************* [[player2@%portal]] Current ID step: 20
+******************* [[player2@%portal]] Number of cells believed empty of obstacles: 25
+******************* [[player2@%portal]] Number of believed obstructed cells: 0
+******************* [[player2@%portal]] Agent player2@%portal believes it is currently at location (40,0)
+******************* [[player2@%portal]] Agent player2@%portal is currently carrying 0 pieces of gold.
+******************* [[player2@%portal]] I will move randomly to this dir: down
+******************* [[player2@%portal]] I sent CLIMA action *down* for execution with id 20
+<Action
+    :type  "down"
+    :param  "player2@%portal"
+    :id  "20"
+>
+
+******************* [[player5@%portal]] A request-action event for step-id 19-20 states that player5@%portal is currently at location (47, 7) with 0 pieces of gold
+******************* [[player5@%portal]] Current ID step: 20
+******************* [[player5@%portal]] Number of cells believed empty of obstacles: 25
+******************* [[player5@%portal]] Number of believed obstructed cells: 0
+******************* [[player5@%portal]] Agent player5@%portal believes it is currently at location (47,7)
+******************* [[player5@%portal]] Agent player5@%portal is currently carrying 0 pieces of gold.
+******************* [[player5@%portal]] I will move randomly to this dir: up
+******************* [[player5@%portal]] I sent CLIMA action *up* for execution with id 20
+<Action
+    :type  "up"
+    :param  "player5@%portal"
+    :id  "20"
+>
+
+******************* [[player4@%portal]] A request-action event for step-id 19-20 states that player4@%portal is currently at location (0, 40) with 0 pieces of gold
+******************* [[player4@%portal]] Current ID step: 20
+******************* [[player4@%portal]] Number of cells believed empty of obstacles: 35
+******************* [[player4@%portal]] Number of believed obstructed cells: 1
+******************* [[player4@%portal]] Agent player4@%portal believes it is currently at location (0,40)
+******************* [[player4@%portal]] Agent player4@%portal is currently carrying 0 pieces of gold.
+******************* [[player4@%portal]] I will move randomly to this dir: down
+******************* [[player4@%portal]] I sent CLIMA action *down* for execution with id 20
+<Action
+    :type  "down"
+    :param  "player4@%portal"
+    :id  "20"
+>
+
+******************* [[player6@%portal]] A request-action event for step-id 19-20 states that player6@%portal is currently at location (25, 31) with 0 pieces of gold
+******************* [[player6@%portal]] Current ID step: 20
+******************* [[player6@%portal]] Number of cells believed empty of obstacles: 46
+******************* [[player6@%portal]] Number of believed obstructed cells: 0
+******************* [[player6@%portal]] Agent player6@%portal believes it is currently at location (25,31)
+******************* [[player6@%portal]] Agent player6@%portal is currently carrying 0 pieces of gold.
+******************* [[player6@%portal]] Agent player6@%portal believes there is gold in the north-west
+******************* [[player6@%portal]] I will move randomly to this dir: down
+******************* [[player6@%portal]] I sent CLIMA action *down* for execution with id 20
+<Action
+    :type  "down"
+    :param  "player6@%portal"
+    :id  "20"
+>
+
+******************* [[player1@%portal]] I have received a SIM-END message....
+The clima-talking socket has been closed successfully
+The clima-talking socket has been closed successfully
+The clima-talking socket has been closed successfully
+******************* [[player1@%portal]] I have finished the current simulation
+******************* [[player1@%portal]] I have been notified of the end of the tournament! I will finish...
+The clima-talking socket has been closed successfully
+******************* [[player2@%portal]] I have received a SIM-END message....
+******************* [[player2@%portal]] I have finished the current simulation
+******************* [[player2@%portal]] I have been notified of the end of the tournament! I will finish...
+******************* [[player3@%portal]] I have received a SIM-END message....
+******************* [[player3@%portal]] I have finished the current simulation
+The clima-talking socket has been closed successfully
+******************* [[player3@%portal]] I have been notified of the end of the tournament! I will finish...
+boss@%portal:: Agent player1@%portal reported the end of a simulation...
+The clima-talking socket has been closed successfully
+boss@%portal:: Agent player1@%portal reported it is finishing...
+boss@%portal:: Agent player2@%portal reported the end of a simulation...
+boss@%portal:: Agent player2@%portal reported it is finishing...
+boss@%portal:: Agent player3@%portal reported the end of a simulation...
+boss@%portal:: Agent player3@%portal reported it is finishing...
+******************* [[player4@%portal]] I have received a SIM-END message....
+******************* [[player4@%portal]] I have finished the current simulation
+******************* [[player4@%portal]] I have been notified of the end of the tournament! I will finish...
+******************* [[player5@%portal]] I have received a SIM-END message....
+******************* [[player5@%portal]] I have finished the current simulation
+******************* [[player5@%portal]] I have been notified of the end of the tournament! I will finish...
+******************* [[player6@%portal]] I have received a SIM-END message....
+******************* [[player6@%portal]] I have finished the current simulation
+******************* [[player6@%portal]] I have been notified of the end of the tournament! I will finish...
+boss@%portal:: Agent player4@%portal reported the end of a simulation...
+boss@%portal:: Agent player4@%portal reported it is finishing...
+boss@%portal:: Agent player5@%portal reported the end of a simulation...
+boss@%portal:: Agent player5@%portal reported it is finishing...
+boss@%portal:: Agent player6@%portal reported the end of a simulation...
+boss@%portal:: Agent player6@%portal reported it is finishing...

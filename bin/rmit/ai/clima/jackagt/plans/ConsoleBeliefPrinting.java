@@ -15,12 +15,13 @@ import aos.jack.jak.core.Generator;
 import aos.jack.jak.cursor.Cursor;
 import aos.jack.jak.logic.Signature;
 import rmit.ai.clima.jackagt.events.EShowBeliefs;
-import rmit.ai.clima.iface.LastActionSentBel;
 import rmit.ai.clima.jackagt.data.GoldAt;
+import rmit.ai.clima.iface.LastActionSentBel;
 import rmit.ai.clima.jackagt.data.CurrentStatus;
+import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
 import rmit.ai.clima.jackagt.data.CurrentPosition;
 import rmit.ai.clima.jackagt.data.CellEmpty;
-import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
+import rmit.ai.clima.jackagt.data.NumGold;
 import rmit.ai.clima.interfaces.DebugInterface;
 import rmit.ai.clima.gui.grid.GridPoint;
 import java.lang.Object;
@@ -49,64 +50,70 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             "west",
             "north-west"};
     public rmit.ai.clima.jackagt.events.EShowBeliefs eshowbeliefs_h;
-    public rmit.ai.clima.iface.LastActionSentBel bel_lastActionSent_dat;
     public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
+    public rmit.ai.clima.iface.LastActionSentBel bel_lastActionSent_dat;
     public rmit.ai.clima.jackagt.data.CurrentStatus bel_currentStatus_dat;
+    public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
     public rmit.ai.clima.jackagt.data.CurrentPosition bel_currentPosition_dat;
     public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
-    public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
+    public rmit.ai.clima.jackagt.data.NumGold bel_numCarryingGold_dat;
     public rmit.ai.clima.interfaces.DebugInterface consoleIface;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
             "rmit/ai/clima/jackagt/plans/ConsoleBeliefPrinting.plan",
             "body",
-            "63",
             "65",
-            "66",
-            "69",
-            "70",
+            "67",
+            "68",
+            "71",
             "72",
-            "72",
-            "73",
+            "74",
+            "74",
             "75",
-            "78",
-            "79",
-            "79",
+            "77",
             "80",
+            "81",
+            "81",
             "82",
-            "88",
-            "89",
+            "84",
             "90",
-            "94",
-            "94",
+            "91",
+            "92",
             "95",
+            "96",
             "97",
-            "98",
-            "99",
             "100",
-            "94",
-            "59"};
+            "100",
+            "101",
+            "103",
+            "104",
+            "105",
+            "106",
+            "100",
+            "61"};
     private final static java.lang.String[] __planVariableNames = {
             "DIRECTIONS",
             "DIRECTION_NAMES",
             "eshowbeliefs_h",
-            "bel_lastActionSent_dat",
             "bel_goldAt_dat",
+            "bel_lastActionSent_dat",
             "bel_currentStatus_dat",
+            "bel_currentRequestActionId_dat",
             "bel_currentPosition_dat",
             "bel_cellEmpty_dat",
-            "bel_currentRequestActionId_dat",
+            "bel_numCarryingGold_dat",
             "consoleIface"};
     private final static java.lang.String[] __planVariableTypes = {
             "java.lang.String[]",
             "String[]",
             "EShowBeliefs",
-            "LastActionSentBel",
             "rmit.ai.clima.jackagt.data.GoldAt",
+            "LastActionSentBel",
             "CurrentStatus",
+            "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
             "rmit.ai.clima.jackagt.data.CurrentPosition",
             "rmit.ai.clima.jackagt.data.CellEmpty",
-            "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
+            "rmit.ai.clima.jackagt.data.NumGold",
             "rmit.ai.clima.interfaces.DebugInterface"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
@@ -120,6 +127,7 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             "c",
             "$posX",
             "$posY",
+            "$numGold",
             "i",
             "loc"};
     private final static java.lang.String[] __fsmTypes_body = {
@@ -130,6 +138,7 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             "int",
             "Cursor",
             "Cursor",
+            "logical int",
             "logical int",
             "logical int",
             "int",
@@ -145,7 +154,8 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             "__local__3_7",
             "__local__3_8",
             "__local__3_9",
-            "__local__3_10"};
+            "__local__3_10",
+            "__local__3_11"};
     static boolean relevant(rmit.ai.clima.jackagt.events.EShowBeliefs ev)
     {
         return true;
@@ -167,12 +177,13 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
         __planTask = __t;
         __logic = __t.logic;
         eshowbeliefs_h = __env.eshowbeliefs_h;
-        bel_lastActionSent_dat = __env.bel_lastActionSent_dat;
         bel_goldAt_dat = __env.bel_goldAt_dat;
+        bel_lastActionSent_dat = __env.bel_lastActionSent_dat;
         bel_currentStatus_dat = __env.bel_currentStatus_dat;
+        bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
         bel_currentPosition_dat = __env.bel_currentPosition_dat;
         bel_cellEmpty_dat = __env.bel_cellEmpty_dat;
-        bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
+        bel_numCarryingGold_dat = __env.bel_numCarryingGold_dat;
         consoleIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
     }
     
@@ -183,19 +194,24 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             warning("Failed to find EShowBeliefs eshowbeliefs_h");
             return false;
         }
-        bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) lookupNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel",0);
-        if (bel_lastActionSent_dat == null) {
-            warning("Failed to find LastActionSentBel bel_lastActionSent_dat");
-            return false;
-        }
         bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) lookupNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt",0);
         if (bel_goldAt_dat == null) {
             warning("Failed to find GoldAt bel_goldAt_dat");
             return false;
         }
+        bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) lookupNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel",0);
+        if (bel_lastActionSent_dat == null) {
+            warning("Failed to find LastActionSentBel bel_lastActionSent_dat");
+            return false;
+        }
         bel_currentStatus_dat = (rmit.ai.clima.jackagt.data.CurrentStatus) lookupNamedObject("bel_currentStatus_dat","rmit.ai.clima.jackagt.data.CurrentStatus",0);
         if (bel_currentStatus_dat == null) {
             warning("Failed to find CurrentStatus bel_currentStatus_dat");
+            return false;
+        }
+        bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) lookupNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId",0);
+        if (bel_currentRequestActionId_dat == null) {
+            warning("Failed to find CurrentRequestActionId bel_currentRequestActionId_dat");
             return false;
         }
         bel_currentPosition_dat = (rmit.ai.clima.jackagt.data.CurrentPosition) lookupNamedObject("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition",0);
@@ -208,9 +224,9 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             warning("Failed to find CellEmpty bel_cellEmpty_dat");
             return false;
         }
-        bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) lookupNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId",0);
-        if (bel_currentRequestActionId_dat == null) {
-            warning("Failed to find CurrentRequestActionId bel_currentRequestActionId_dat");
+        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) lookupNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold",0);
+        if (bel_numCarryingGold_dat == null) {
+            warning("Failed to find NumGold bel_numCarryingGold_dat");
             return false;
         }
         return true;
@@ -322,11 +338,11 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             }
             case 3: 
             {
-                return aos.util.ToObject.box(bel_lastActionSent_dat);
+                return aos.util.ToObject.box(bel_goldAt_dat);
             }
             case 4: 
             {
-                return aos.util.ToObject.box(bel_goldAt_dat);
+                return aos.util.ToObject.box(bel_lastActionSent_dat);
             }
             case 5: 
             {
@@ -334,17 +350,21 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             }
             case 6: 
             {
-                return aos.util.ToObject.box(bel_currentPosition_dat);
+                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
             }
             case 7: 
             {
-                return aos.util.ToObject.box(bel_cellEmpty_dat);
+                return aos.util.ToObject.box(bel_currentPosition_dat);
             }
             case 8: 
             {
-                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
+                return aos.util.ToObject.box(bel_cellEmpty_dat);
             }
             case 9: 
+            {
+                return aos.util.ToObject.box(bel_numCarryingGold_dat);
+            }
+            case 10: 
             {
                 return aos.util.ToObject.box(consoleIface);
             }
@@ -381,8 +401,9 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
         aos.jack.jak.cursor.Cursor __local__3_6;
         aos.jack.jak.logic.IntegerVariable __local__3_7;
         aos.jack.jak.logic.IntegerVariable __local__3_8;
-        int __local__3_9;
-        rmit.ai.clima.gui.grid.GridPoint __local__3_10;
+        aos.jack.jak.logic.IntegerVariable __local__3_9;
+        int __local__3_10;
+        rmit.ai.clima.gui.grid.GridPoint __local__3_11;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -411,7 +432,7 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                             aos.jack.jak.core.Jak.error("ConsoleBeliefPrinting.body: Illegal state");
                             return FAILED_STATE;
                         }
-                        //* (63)         logical int $id, $step;
+                        //* (65)         logical int $id, $step;
                         case 10: 
                         {
                             __breakLevel = 0;
@@ -420,7 +441,7 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                             __state = 11;
                             break;
                         }
-                        //* (65) 		bel_currentRequestActionId_dat.get($id,$step);
+                        //* (67) 		bel_currentRequestActionId_dat.get($id,$step);
                         case 11: 
                         {
                             boolean __b;
@@ -439,14 +460,14 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                                 throw planfailed;
                             break;
                         }
-                        //* (66) 	    consoleIface.showConsoleDebug("Current ID step: "+$id);
+                        //* (68) 	    consoleIface.showConsoleDebug("Current ID step: "+$id);
                         case 12: 
                         {
                             __state = 13;
                             consoleIface.showConsoleDebug("Current ID step: " + __local__3_0);
                             break;
                         }
-                        //* (69)         logical int $x,$y;
+                        //* (71)         logical int $x,$y;
                         case 13: 
                         {
                             __local__3_2 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
@@ -454,21 +475,21 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                             __state = 14;
                             break;
                         }
-                        //* (70)         int count=0;
+                        //* (72)         int count=0;
                         case 14: 
                         {
                             __local__3_4 = 0;
                             __state = 15;
                             break;
                         }
-                        //* (72)         for ( Cursor c = bel_cellEmpty_dat.get($x,$y) ; c.next() ; ) {
+                        //* (74)         for ( Cursor c = bel_cellEmpty_dat.get($x,$y) ; c.next() ; ) {
                         case 15: 
                         {
                             __local__3_5 = (aos.jack.jak.cursor.Cursor) genCursor(1);
                             __state = 16;
                             break;
                         }
-                        //* (72)         for ( Cursor c = bel_cellEmpty_dat.get($x,$y) ; c.next() ; ) {
+                        //* (74)         for ( Cursor c = bel_cellEmpty_dat.get($x,$y) ; c.next() ; ) {
                         case 16: 
                         {
                             if (__local__3_5.next()) 
@@ -477,7 +498,7 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                                 __state = 18;
                             break;
                         }
-                        //* (73)             count++;
+                        //* (75)             count++;
                         case 17: 
                         {
                             __breakLevel = 4;
@@ -485,14 +506,14 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                             __local__3_4++ ;
                             break;
                         }
-                        //* (75) 	    consoleIface.showConsoleDebug("Number of cells believed empty of obstacles: "+count);
+                        //* (77) 	    consoleIface.showConsoleDebug("Number of cells believed empty of obstacles: "+count);
                         case 18: 
                         {
                             __state = 19;
                             consoleIface.showConsoleDebug("Number of cells believed empty of obstacles: " + __local__3_4);
                             break;
                         }
-                        //* (78) 		count = 0;
+                        //* (80) 		count = 0;
                         case 19: 
                         {
                             __state = 20;
@@ -501,14 +522,14 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                             __local__3_4 = 0;
                             break;
                         }
-                        //* (79)         for ( Cursor c = bel_cellEmpty_dat.get($x,$y).negate() ; c.next() ; ) {
+                        //* (81)         for ( Cursor c = bel_cellEmpty_dat.get($x,$y).negate() ; c.next() ; ) {
                         case 20: 
                         {
                             __local__3_6 = (aos.jack.jak.cursor.Cursor) genCursor(2);
                             __state = 21;
                             break;
                         }
-                        //* (79)         for ( Cursor c = bel_cellEmpty_dat.get($x,$y).negate() ; c.next() ; ) {
+                        //* (81)         for ( Cursor c = bel_cellEmpty_dat.get($x,$y).negate() ; c.next() ; ) {
                         case 21: 
                         {
                             if (__local__3_6.next()) 
@@ -517,7 +538,7 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                                 __state = 23;
                             break;
                         }
-                        //* (80)             count++;
+                        //* (82)             count++;
                         case 22: 
                         {
                             __breakLevel = 4;
@@ -525,14 +546,14 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                             __local__3_4++ ;
                             break;
                         }
-                        //* (82) 	    consoleIface.showConsoleDebug("Number of believed obstructed cells: "+count);
+                        //* (84) 	    consoleIface.showConsoleDebug("Number of believed obstructed cells: "+count);
                         case 23: 
                         {
                             __state = 24;
                             consoleIface.showConsoleDebug("Number of believed obstructed cells: " + __local__3_4);
                             break;
                         }
-                        //* (88) 	    logical int $posX, $posY;
+                        //* (90) 	    logical int $posX, $posY;
                         case 24: 
                         {
                             __local__3_7 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
@@ -540,7 +561,7 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                             __state = 25;
                             break;
                         }
-                        //* (89) 	    bel_currentPosition_dat.get($posX, $posY);
+                        //* (91) 	    bel_currentPosition_dat.get($posX, $posY);
                         case 25: 
                         {
                             boolean __b;
@@ -559,39 +580,22 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                                 throw planfailed;
                             break;
                         }
-                        //* (90) 	    consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " believes it is currently at location ("
+                        //* (92) 	    consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " believes it is currently at location ("
                         case 26: 
                         {
                             __state = 27;
                             consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " believes it is currently at location (" + __local__3_7 + "," + __local__3_8 + ")");
                             break;
                         }
-                        //* (94) 	    for (int i = 0; i < DIRECTIONS.length; i++) {
+                        //* (95) 	    logical int $numGold;
                         case 27: 
                         {
-                            __local__3_9 = 0;
+                            __local__3_9 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
                             __state = 28;
                             break;
                         }
-                        //* (94) 	    for (int i = 0; i < DIRECTIONS.length; i++) {
+                        //* (96) 	    bel_numCarryingGold_dat.get($numGold);
                         case 28: 
-                        {
-                            if (__local__3_9 < DIRECTIONS.length) 
-                                __state = 29;
-                             else 
-                                __state = 35;
-                            break;
-                        }
-                        //* (95) 	    	GridPoint loc = GridPoint.getFromDir($posX.as_int(), $posY.as_int(), DIRECTIONS[i]);
-                        case 29: 
-                        {
-                            __breakLevel = 4;
-                            __local__3_10 = rmit.ai.clima.gui.grid.GridPoint.getFromDir(__local__3_7.as_int(),__local__3_8.as_int(),DIRECTIONS[__local__3_9]);
-                            __state = 30;
-                            break;
-                        }
-                        //* (97) 	    	if (bel_cellEmpty_dat.check(loc.x, loc.y).negate()) {
-                        case 30: 
                         {
                             boolean __b;
                             aos.jack.jak.cursor.Cursor __c = null;
@@ -604,21 +608,44 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                                     __c.finished();
                             }
                             if (__b) 
-                                __state = 31;
+                                __state = 29;
                              else 
-                                __state = 32;
+                                throw planfailed;
                             break;
                         }
-                        //* (98) 	    		logAdjacentContents("an obstacle", i);
+                        //* (97) 	    consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " is currently carrying " + $numGold.as_int() + " pieces of gold.");
+                        case 29: 
+                        {
+                            __state = 30;
+                            consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " is currently carrying " + __local__3_9.as_int() + " pieces of gold.");
+                            break;
+                        }
+                        //* (100) 	    for (int i = 0; i < DIRECTIONS.length; i++) {
+                        case 30: 
+                        {
+                            __local__3_10 = 0;
+                            __state = 31;
+                            break;
+                        }
+                        //* (100) 	    for (int i = 0; i < DIRECTIONS.length; i++) {
                         case 31: 
                         {
-                            __breakLevel = 6;
-                            __state = 34;
-                            logAdjacentContents("an obstacle",__local__3_9);
+                            if (__local__3_10 < DIRECTIONS.length) 
+                                __state = 32;
+                             else 
+                                __state = 38;
                             break;
                         }
-                        //* (99) 	    	} else if (bel_goldAt_dat.checkIfGold(loc.x, loc.y)) {
+                        //* (101) 	    	GridPoint loc = GridPoint.getFromDir($posX.as_int(), $posY.as_int(), DIRECTIONS[i]);
                         case 32: 
+                        {
+                            __breakLevel = 4;
+                            __local__3_11 = rmit.ai.clima.gui.grid.GridPoint.getFromDir(__local__3_7.as_int(),__local__3_8.as_int(),DIRECTIONS[__local__3_10]);
+                            __state = 33;
+                            break;
+                        }
+                        //* (103) 	    	if (bel_cellEmpty_dat.check(loc.x, loc.y).negate()) {
+                        case 33: 
                         {
                             boolean __b;
                             aos.jack.jak.cursor.Cursor __c = null;
@@ -631,28 +658,55 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                                     __c.finished();
                             }
                             if (__b) 
-                                __state = 33;
-                             else 
                                 __state = 34;
+                             else 
+                                __state = 35;
                             break;
                         }
-                        //* (100) 	    		logAdjacentContents("gold", i);
-                        case 33: 
-                        {
-                            __breakLevel = 6;
-                            __state = 34;
-                            logAdjacentContents("gold",__local__3_9);
-                            break;
-                        }
-                        //* (94) 	    for (int i = 0; i < DIRECTIONS.length; i++) {
+                        //* (104) 	    		logAdjacentContents("an obstacle", i);
                         case 34: 
                         {
-                            __state = 28;
-                            __local__3_9++ ;
+                            __breakLevel = 6;
+                            __state = 37;
+                            logAdjacentContents("an obstacle",__local__3_10);
                             break;
                         }
-                        //* (59)     #reasoning method
+                        //* (105) 	    	} else if (bel_goldAt_dat.checkIfGold(loc.x, loc.y)) {
                         case 35: 
+                        {
+                            boolean __b;
+                            aos.jack.jak.cursor.Cursor __c = null;
+                            try {
+                                __c = genCursor(6);
+                                __b = __c.next();
+                            }
+                            finally {
+                                if (__c != null) 
+                                    __c.finished();
+                            }
+                            if (__b) 
+                                __state = 36;
+                             else 
+                                __state = 37;
+                            break;
+                        }
+                        //* (106) 	    		logAdjacentContents("gold", i);
+                        case 36: 
+                        {
+                            __breakLevel = 6;
+                            __state = 37;
+                            logAdjacentContents("gold",__local__3_10);
+                            break;
+                        }
+                        //* (100) 	    for (int i = 0; i < DIRECTIONS.length; i++) {
+                        case 37: 
+                        {
+                            __state = 31;
+                            __local__3_10++ ;
+                            break;
+                        }
+                        //* (61)     #reasoning method
+                        case 38: 
                         {
                             if (__pending == null) 
                                 __state = PASSED_STATE;
@@ -720,11 +774,15 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                 }
                 case 4: 
                 {
-                    return (bel_cellEmpty_dat.check(__local__3_10.x,__local__3_10.y).negate());
+                    return (bel_numCarryingGold_dat.get(__local__3_9));
                 }
                 case 5: 
                 {
-                    return (bel_goldAt_dat.checkIfGold(__local__3_10.x,__local__3_10.y));
+                    return (bel_cellEmpty_dat.check(__local__3_11.x,__local__3_11.y).negate());
+                }
+                case 6: 
+                {
+                    return (bel_goldAt_dat.checkIfGold(__local__3_11.x,__local__3_11.y));
                 }
             }
             aos.jack.jak.core.Jak.error("illegal Cursor Construction");
@@ -815,6 +873,10 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
                 case 10: 
                 {
                     return aos.util.ToObject.box(__local__3_10);
+                }
+                case 11: 
+                {
+                    return aos.util.ToObject.box(__local__3_11);
                 }
                 default: 
                 {

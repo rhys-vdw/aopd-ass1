@@ -1,0 +1,24 @@
+package rmit.ai.clima.jackagt.data;
+import rmit.ai.clima.jackagt.events.*;
+
+public beliefset NumGold extends ClosedWorld
+{
+/******** Start PDT Design Block *** DO NOT EDIT IT *********/
+/*
+ * Beliefset Name: NumGold
+ * Description: Number of gold items.
+ */
+
+	// Zero or more #key field declarations.
+	// These describe the key attributes of each belief.
+
+
+	// Zero of more #value field declarations.
+	// These describe the data attributes of each belief.
+	/*	Number of gold pieces.
+	*/
+	#value field int numGold;
+
+/******** End PDT Design Block *** DO NOT EDIT IT *********/
+	#indexed query get(logical int numGold)
+}
