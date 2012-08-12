@@ -12,71 +12,100 @@ import aos.jack.jak.agent.NameSpace;
 import aos.jack.jak.event.Event;
 import aos.jack.jak.task.Task;
 import aos.jack.jak.core.Generator;
-import aos.jack.jak.logic.Signature;
-import rmit.ai.clima.jackagt.events.MEGameEnd;
-import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
-import rmit.ai.clima.iface.PerceiveClimaServer;
-import rmit.ai.clima.interfaces.DebugInterface;
-import rmit.ai.clima.comms.Bye;
-import rmit.ai.clima.comms.AuthResponse;
-import java.lang.Object;
 import aos.jack.jak.cursor.Cursor;
+import aos.jack.jak.cursor.BinaryBoolOp;
+import aos.jack.jak.logic.Signature;
+import rmit.ai.clima.jackagt.events.EExecuteCLIMAaction;
+import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
+import rmit.ai.clima.jackagt.events.EAct;
+import rmit.ai.clima.jackagt.data.NumGold;
+import rmit.ai.clima.jackagt.data.GoldAt;
+import rmit.ai.clima.jackagt.data.CurrentPosition;
+import rmit.ai.clima.interfaces.DebugInterface;
+import java.lang.Object;
 import aos.jack.jak.fsm.FSM;
 import aos.jack.jak.core.Jak;
 
-public class FinishGame extends aos.jack.jak.plan.Plan {
-    public rmit.ai.clima.jackagt.events.MEGameEnd megameend_s;
+public class PickGold extends aos.jack.jak.plan.Plan {
+    static final int MAX_CARRYING_GOLD = 3;
+    aos.jack.jak.logic.IntegerVariable $posX;
+    aos.jack.jak.logic.IntegerVariable $posY;
+    aos.jack.jak.logic.IntegerVariable $numGold;
+    public rmit.ai.clima.jackagt.events.EExecuteCLIMAaction eexecuteclimaaction_p;
     public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
-    public rmit.ai.clima.iface.PerceiveClimaServer perceiveclimaserver_h;
+    public rmit.ai.clima.jackagt.events.EAct eact_h;
+    public rmit.ai.clima.jackagt.data.NumGold bel_numCarryingGold_dat;
+    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
+    public rmit.ai.clima.jackagt.data.CurrentPosition bel_currentPosition_dat;
     public rmit.ai.clima.interfaces.DebugInterface consoleIface;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
-            "rmit/ai/clima/jackagt/plans/FinishGame.plan",
+            "rmit/ai/clima/jackagt/plans/PickGold.plan",
             "body",
-            "51",
-            "53",
-            "56",
-            "59",
-            "63",
-            "47"};
+            "46",
+            "48",
+            "43"};
     private final static java.lang.String[] __planVariableNames = {
-            "megameend_s",
+            "MAX_CARRYING_GOLD",
+            "$posX",
+            "$posY",
+            "$numGold",
+            "eexecuteclimaaction_p",
             "eguidebugmessage_s",
-            "perceiveclimaserver_h",
+            "eact_h",
+            "bel_numCarryingGold_dat",
+            "bel_goldAt_dat",
+            "bel_currentPosition_dat",
             "consoleIface"};
     private final static java.lang.String[] __planVariableTypes = {
-            "MEGameEnd",
+            "int",
+            "logical int",
+            "logical int",
+            "logical int",
+            "rmit.ai.clima.jackagt.events.EExecuteCLIMAaction",
             "EGUIDebugMessage",
-            "rmit.ai.clima.iface.PerceiveClimaServer",
+            "EAct",
+            "NumGold",
+            "GoldAt",
+            "CurrentPosition",
             "rmit.ai.clima.interfaces.DebugInterface"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
-    static boolean relevant(rmit.ai.clima.iface.PerceiveClimaServer perceiveclimaserver_h)
+    private final static java.lang.String[] __logSignatureVariableNames = {
+            "$posX",
+            "$posY",
+            "$numGold"};
+    private final static java.lang.String[] __logSignatureVariableTypes = {
+            "logical int",
+            "logical int",
+            "logical int"};
+    public PickGold()
     {
-        return (perceiveclimaserver_h.data instanceof rmit.ai.clima.comms.Bye || (perceiveclimaserver_h.data instanceof rmit.ai.clima.comms.AuthResponse && "fail".equals(((rmit.ai.clima.comms.AuthResponse) perceiveclimaserver_h.data).result)));
     }
     
-    public FinishGame()
-    {
-    }
-    
-    private FinishGame(aos.jack.jak.task.Task __t, rmit.ai.clima.jackagt.plans.FinishGame __env)
+    private PickGold(aos.jack.jak.task.Task __t, rmit.ai.clima.jackagt.plans.PickGold __env)
     {
         __agent = __env.__agent;
         __ns = __env.__ns;
         __planTask = __t;
         __logic = __t.logic;
-        megameend_s = __env.megameend_s;
+        eexecuteclimaaction_p = __env.eexecuteclimaaction_p;
         eguidebugmessage_s = __env.eguidebugmessage_s;
-        perceiveclimaserver_h = __env.perceiveclimaserver_h;
+        eact_h = __env.eact_h;
+        bel_numCarryingGold_dat = __env.bel_numCarryingGold_dat;
+        bel_goldAt_dat = __env.bel_goldAt_dat;
+        bel_currentPosition_dat = __env.bel_currentPosition_dat;
         consoleIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
+        $posX = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+        $posY = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+        $numGold = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
     }
     
     public boolean init_sentinel(aos.jack.jak.agent.NameSpace __a)
     {
-        megameend_s = (rmit.ai.clima.jackagt.events.MEGameEnd) __a.findEvent("rmit.ai.clima.jackagt.events.MEGameEnd");
-        if (megameend_s == null) {
-            warning("Failed to find MEGameEnd megameend_s");
+        eexecuteclimaaction_p = (rmit.ai.clima.jackagt.events.EExecuteCLIMAaction) __a.findEvent("rmit.ai.clima.jackagt.events.EExecuteCLIMAaction");
+        if (eexecuteclimaaction_p == null) {
+            warning("Failed to find EExecuteCLIMAaction eexecuteclimaaction_p");
             return false;
         }
         eguidebugmessage_s = (rmit.ai.clima.jackagt.events.EGUIDebugMessage) __a.findEvent("rmit.ai.clima.jackagt.events.EGUIDebugMessage");
@@ -84,9 +113,24 @@ public class FinishGame extends aos.jack.jak.plan.Plan {
             warning("Failed to find EGUIDebugMessage eguidebugmessage_s");
             return false;
         }
-        perceiveclimaserver_h = (rmit.ai.clima.iface.PerceiveClimaServer) __a.findEvent("rmit.ai.clima.iface.PerceiveClimaServer");
-        if (perceiveclimaserver_h == null) {
-            warning("Failed to find PerceiveClimaServer perceiveclimaserver_h");
+        eact_h = (rmit.ai.clima.jackagt.events.EAct) __a.findEvent("rmit.ai.clima.jackagt.events.EAct");
+        if (eact_h == null) {
+            warning("Failed to find EAct eact_h");
+            return false;
+        }
+        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) lookupNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold",0);
+        if (bel_numCarryingGold_dat == null) {
+            warning("Failed to find NumGold bel_numCarryingGold_dat");
+            return false;
+        }
+        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) lookupNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt",0);
+        if (bel_goldAt_dat == null) {
+            warning("Failed to find GoldAt bel_goldAt_dat");
+            return false;
+        }
+        bel_currentPosition_dat = (rmit.ai.clima.jackagt.data.CurrentPosition) lookupNamedObject("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition",0);
+        if (bel_currentPosition_dat == null) {
+            warning("Failed to find CurrentPosition bel_currentPosition_dat");
             return false;
         }
         return true;
@@ -114,6 +158,30 @@ public class FinishGame extends aos.jack.jak.plan.Plan {
         throws java.lang.Exception
     {
         switch (__index) {
+            case 0: 
+            {
+                return (bel_currentPosition_dat.get($posX,$posY));
+            }
+            case 1: 
+            {
+                return (bel_goldAt_dat.checkIfGold($posX.as_int(),$posY.as_int()));
+            }
+            case 2: 
+            {
+                return (new aos.jack.jak.cursor.BinaryBoolOp(this,__logic,aos.jack.jak.cursor.BinaryBoolOp.AND,(short) 0,true,(short) 1,true));
+            }
+            case 3: 
+            {
+                return (bel_numCarryingGold_dat.get($numGold));
+            }
+            case 4: 
+            {
+                return (new aos.jack.jak.cursor.BinaryBoolOp(this,__logic,aos.jack.jak.cursor.BinaryBoolOp.AND,(short) 2,true,(short) 3,true));
+            }
+            case 5: 
+            {
+                return (new aos.jack.jak.cursor.BinaryBoolOp(this,__logic,aos.jack.jak.cursor.BinaryBoolOp.AND,(short) 4,true,(short) 0,false));
+            }
         }
         aos.jack.jak.core.Jak.error("illegal Cursor Construction");
         return null;
@@ -132,6 +200,10 @@ public class FinishGame extends aos.jack.jak.plan.Plan {
         throws java.lang.Exception
     {
         switch (__index) {
+            case 0: 
+            {
+                return ($numGold.as_int() < MAX_CARRYING_GOLD);
+            }
         }
         aos.jack.jak.core.Jak.error("illegal test Construction");
         return false;
@@ -139,36 +211,53 @@ public class FinishGame extends aos.jack.jak.plan.Plan {
     
     public aos.jack.jak.plan.PlanFSM body()
     {
-        return new rmit.ai.clima.jackagt.plans.FinishGame.__bodyFSM();
+        return new rmit.ai.clima.jackagt.plans.PickGold.__bodyFSM();
     }
     
-    private FinishGame(rmit.ai.clima.iface.PerceiveClimaServer __ev, aos.jack.jak.task.Task __t, rmit.ai.clima.jackagt.plans.FinishGame __env)
+    private PickGold(rmit.ai.clima.jackagt.events.EAct __ev, aos.jack.jak.task.Task __t, rmit.ai.clima.jackagt.plans.PickGold __env)
     {
         this(__t,__env);
-        this.perceiveclimaserver_h = __ev;
+        this.eact_h = __ev;
     }
     
     protected aos.jack.jak.logic.Signature eventSignature(int __log)
     {
-        return perceiveclimaserver_h.getSignature(__log);
+        return eact_h.getSignature(__log);
     }
     
     public java.lang.String handledEvent()
     {
-        return "rmit.ai.clima.iface.PerceiveClimaServer";
+        return "rmit.ai.clima.jackagt.events.EAct";
     }
     
     public boolean __relevant(aos.jack.jak.event.Event __e)
     {
-        return __ns.isEnabled() && relevant(((rmit.ai.clima.iface.PerceiveClimaServer) __e));
+        return __ns.isEnabled();
     }
     
     public aos.jack.jak.plan.Plan createPlan(aos.jack.jak.event.Event __e, aos.jack.jak.task.Task __t)
     {
-        if (!(__e instanceof rmit.ai.clima.iface.PerceiveClimaServer)) 
+        if (!(__e instanceof rmit.ai.clima.jackagt.events.EAct)) 
             return null;
-        rmit.ai.clima.iface.PerceiveClimaServer __e1 = (rmit.ai.clima.iface.PerceiveClimaServer) __e;
-        return new rmit.ai.clima.jackagt.plans.FinishGame(__e1,__t,this);
+        rmit.ai.clima.jackagt.events.EAct __e1 = (rmit.ai.clima.jackagt.events.EAct) __e;
+        return new rmit.ai.clima.jackagt.plans.PickGold(__e1,__t,this);
+    }
+    
+    protected aos.jack.jak.logic.Signature initSignature(int __log)
+    {
+        aos.jack.jak.logic.Signature __s = super.initSignature(__log + 3);
+        __s.addLogical($posX);
+        __s.addLogical($posY);
+        __s.addLogical($numGold);
+        return __s;
+    }
+    
+    public void setFromSignature(aos.jack.jak.logic.Signature __s)
+    {
+        super.setFromSignature(__s);
+        $posX = (aos.jack.jak.logic.IntegerVariable) __s.getLogical();
+        $posY = (aos.jack.jak.logic.IntegerVariable) __s.getLogical();
+        $numGold = (aos.jack.jak.logic.IntegerVariable) __s.getLogical();
     }
     
     public java.lang.String[] variableNames()
@@ -186,17 +275,45 @@ public class FinishGame extends aos.jack.jak.plan.Plan {
         switch (n) {
             case 0: 
             {
-                return aos.util.ToObject.box(megameend_s);
+                return aos.util.ToObject.box(MAX_CARRYING_GOLD);
             }
             case 1: 
             {
-                return aos.util.ToObject.box(eguidebugmessage_s);
+                return aos.util.ToObject.box($posX);
             }
             case 2: 
             {
-                return aos.util.ToObject.box(perceiveclimaserver_h);
+                return aos.util.ToObject.box($posY);
             }
             case 3: 
+            {
+                return aos.util.ToObject.box($numGold);
+            }
+            case 4: 
+            {
+                return aos.util.ToObject.box(eexecuteclimaaction_p);
+            }
+            case 5: 
+            {
+                return aos.util.ToObject.box(eguidebugmessage_s);
+            }
+            case 6: 
+            {
+                return aos.util.ToObject.box(eact_h);
+            }
+            case 7: 
+            {
+                return aos.util.ToObject.box(bel_numCarryingGold_dat);
+            }
+            case 8: 
+            {
+                return aos.util.ToObject.box(bel_goldAt_dat);
+            }
+            case 9: 
+            {
+                return aos.util.ToObject.box(bel_currentPosition_dat);
+            }
+            case 10: 
             {
                 return aos.util.ToObject.box(consoleIface);
             }
@@ -212,10 +329,20 @@ public class FinishGame extends aos.jack.jak.plan.Plan {
         return mergeReasoningMethods(__reasoningMethods,super.reasoningMethods());
     }
     
+    public java.lang.String[] logSignatureVariableNames()
+    {
+        return __logSignatureVariableNames;
+    }
+    
+    public java.lang.String[] logSignatureVariableTypes()
+    {
+        return __logSignatureVariableTypes;
+    }
+    
     public aos.jack.jak.cursor.Cursor context()
     {
         try {
-            return (((true)?aos.jack.jak.cursor.Cursor.trueCursor:aos.jack.jak.cursor.Cursor.falseCursor));
+            return (genCursor(5));
         }
         catch (java.lang.Exception e) {
             e.printStackTrace();
@@ -233,14 +360,14 @@ public class FinishGame extends aos.jack.jak.plan.Plan {
                     if (__tothrow != null) 
                         throw __tothrow;
                     if ((aos.jack.jak.core.Jak.debugging & aos.jack.jak.core.Jak.LOG_PLANS) != 0) 
-                        aos.util.logging.LogMsg.log(this,aos.jack.jak.core.Jak.LOG_PLANS,__task + "-FinishGame.body:" + java.lang.Integer.toString(__state));
+                        aos.util.logging.LogMsg.log(this,aos.jack.jak.core.Jak.LOG_PLANS,__task + "-PickGold.body:" + java.lang.Integer.toString(__state));
                     if (__task.nsteps > 0) {
                         __task.nsteps-- ;
                         if (__task.nsteps == 0) 
                             agent.changeFocus();
                     }
                     if (__state < 10) {
-                        __status = super.stdrun(rmit.ai.clima.jackagt.plans.FinishGame.this,__status);
+                        __status = super.stdrun(rmit.ai.clima.jackagt.plans.PickGold.this,__status);
                         if (__status != CONTINUE || agent.changing_focus) 
                             return __status;
                         continue;
@@ -249,55 +376,28 @@ public class FinishGame extends aos.jack.jak.plan.Plan {
                     switch (__state) {
                         default: 
                         {
-                            aos.jack.jak.core.Jak.error("FinishGame.body: Illegal state");
+                            aos.jack.jak.core.Jak.error("PickGold.body: Illegal state");
                             return FAILED_STATE;
                         }
-                        //* (51)         if (perceiveclimaserver_h.data instanceof Bye) {
+                        //* (46) 		consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " tries to pick up gold.");
                         case 10: 
                         {
                             __breakLevel = 0;
-                            if (perceiveclimaserver_h.data instanceof rmit.ai.clima.comms.Bye) 
-                                __state = 11;
-                             else 
-                                __state = 13;
+                            __state = 11;
+                            consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " tries to pick up gold.");
                             break;
                         }
-                        //* (53) 			consoleIface.showConsoleDebug("I have been notified of the end of the tournament! I will finish...");
+                        //* (48)     	@subtask(eexecuteclimaaction_p.post("pick"));
                         case 11: 
                         {
-                            __breakLevel = 2;
-                            __state = 12;
-                            // Report the end of the current simulation for this agent
-
-                            consoleIface.showConsoleDebug("I have been notified of the end of the tournament! I will finish...");
-                            break;
+                            __task.push(eexecuteclimaaction_p.post("pick"));
+                            __state = -__state;
+                            __subtask_pass = 12;
+                            __subtask_fail = 4;
+                            return SUBTASK;
                         }
-                        //* (56)         	@send("boss", megameend_s.send());
+                        //* (43) 	#reasoning method
                         case 12: 
-                        {
-                            __state = 14;
-                            agent.send("boss",megameend_s.send());
-                            break;
-                        }
-                        //* (59) 			consoleIface.showConsoleDebug("Authentication was wrong; cannot continue anymore....");
-                        case 13: 
-                        {
-                            __breakLevel = 2;
-                            __state = 14;
-                            consoleIface.showConsoleDebug("Authentication was wrong; cannot continue anymore....");
-                            break;
-                        }
-                        //* (63)         getAgent().finish();   
-                        case 14: 
-                        {
-                            __state = 15;
-                            // Finish agent
-
-                            getAgent().finish();
-                            break;
-                        }
-                        //* (47)     #reasoning method
-                        case 15: 
                         {
                             if (__pending == null) 
                                 __state = PASSED_STATE;
@@ -372,7 +472,7 @@ public class FinishGame extends aos.jack.jak.plan.Plan {
         
         public aos.jack.jak.plan.Plan getPlan()
         {
-            return rmit.ai.clima.jackagt.plans.FinishGame.this;
+            return rmit.ai.clima.jackagt.plans.PickGold.this;
         }
         
         protected aos.jack.jak.fsm.FSM fail()
@@ -387,7 +487,7 @@ public class FinishGame extends aos.jack.jak.plan.Plan {
         
         public void enter()
         {
-            __trace = agent.trace("rmit.ai.clima.jackagt.plans.FinishGame.body");
+            __trace = agent.trace("rmit.ai.clima.jackagt.plans.PickGold.body");
         }
         
     }

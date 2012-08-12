@@ -8,16 +8,16 @@ package rmit.ai.clima.jackagt.capabilities;
 import aos.jack.jak.agent.Capability;
 import aos.jack.jak.agent.NameSpace;
 import aos.jack.jak.agent.Agent;
-import rmit.ai.clima.jackagt.data.CurrentPosition;
-import rmit.ai.clima.jackagt.data.NumGold;
-import rmit.ai.clima.jackagt.data.GoldAt;
-import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
-import rmit.ai.clima.jackagt.data.CellEmpty;
 import rmit.ai.clima.iface.LastActionSentBel;
+import rmit.ai.clima.jackagt.data.GoldAt;
 import rmit.ai.clima.jackagt.data.CurrentStatus;
+import rmit.ai.clima.jackagt.data.CellEmpty;
+import rmit.ai.clima.jackagt.data.CurrentPosition;
+import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
+import rmit.ai.clima.jackagt.data.NumGold;
+import rmit.ai.clima.jackagt.events.MEInformAgentStatus;
 import rmit.ai.clima.jackagt.events.EShowBeliefs;
 import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
-import rmit.ai.clima.jackagt.events.MEInformAgentStatus;
 import rmit.ai.clima.jackagt.events.MEInformCellStatus;
 import rmit.ai.clima.jackagt.events.ECellChange;
 import rmit.ai.clima.jackagt.plans.ConsoleBeliefPrinting;
@@ -35,15 +35,15 @@ import rmit.ai.clima.jackagt.plans.ReportCellChangeToGUI;
 //import ;
 
 public class InfoReporting extends aos.jack.jak.agent.Capability {
-    public rmit.ai.clima.jackagt.data.CurrentPosition bel_currentPosition_dat;
-    public rmit.ai.clima.jackagt.data.NumGold bel_numCarryingGold_dat;
-    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
-    public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
-    public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
     public rmit.ai.clima.iface.LastActionSentBel bel_lastActionSent_dat;
+    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
     public rmit.ai.clima.jackagt.data.CurrentStatus bel_currentStatus_dat;
-    public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
+    public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
+    public rmit.ai.clima.jackagt.data.CurrentPosition bel_currentPosition_dat;
+    public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
+    public rmit.ai.clima.jackagt.data.NumGold bel_numCarryingGold_dat;
     public rmit.ai.clima.jackagt.events.MEInformAgentStatus meinformagentstatus_s;
+    public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
     public rmit.ai.clima.jackagt.events.MEInformCellStatus meinformcellstatus_s;
     public java.lang.String getDocumentation()
     {
@@ -52,17 +52,10 @@ public class InfoReporting extends aos.jack.jak.agent.Capability {
     
     public void __init1()
     {
-        setNamedCreator("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition",new aos.jack.jak.agent.DataCreator(false){
+        setNamedCreator("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel",new aos.jack.jak.agent.DataCreator(false){
             public java.lang.Object create()
             {
-                return __named_data_bel_currentPosition_dat();
-            }
-            
-        },true);
-        setNamedCreator("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold",new aos.jack.jak.agent.DataCreator(false){
-            public java.lang.Object create()
-            {
-                return __named_data_bel_numCarryingGold_dat();
+                return __named_data_bel_lastActionSent_dat();
             }
             
         },true);
@@ -73,10 +66,10 @@ public class InfoReporting extends aos.jack.jak.agent.Capability {
             }
             
         },true);
-        setNamedCreator("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId",new aos.jack.jak.agent.DataCreator(false){
+        setNamedCreator("bel_currentStatus_dat","rmit.ai.clima.jackagt.data.CurrentStatus",new aos.jack.jak.agent.DataCreator(false){
             public java.lang.Object create()
             {
-                return __named_data_bel_currentRequestActionId_dat();
+                return __named_data_bel_currentStatus_dat();
             }
             
         },true);
@@ -87,17 +80,24 @@ public class InfoReporting extends aos.jack.jak.agent.Capability {
             }
             
         },true);
-        setNamedCreator("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel",new aos.jack.jak.agent.DataCreator(false){
+        setNamedCreator("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition",new aos.jack.jak.agent.DataCreator(false){
             public java.lang.Object create()
             {
-                return __named_data_bel_lastActionSent_dat();
+                return __named_data_bel_currentPosition_dat();
             }
             
         },true);
-        setNamedCreator("bel_currentStatus_dat","rmit.ai.clima.jackagt.data.CurrentStatus",new aos.jack.jak.agent.DataCreator(false){
+        setNamedCreator("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId",new aos.jack.jak.agent.DataCreator(false){
             public java.lang.Object create()
             {
-                return __named_data_bel_currentStatus_dat();
+                return __named_data_bel_currentRequestActionId_dat();
+            }
+            
+        },true);
+        setNamedCreator("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold",new aos.jack.jak.agent.DataCreator(false){
+            public java.lang.Object create()
+            {
+                return __named_data_bel_numCarryingGold_dat();
             }
             
         },true);
@@ -105,15 +105,15 @@ public class InfoReporting extends aos.jack.jak.agent.Capability {
     
     public void __init2()
     {
-        bel_currentPosition_dat = (rmit.ai.clima.jackagt.data.CurrentPosition) getNamedObject("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition");
-        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) getNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold");
-        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) getNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt");
-        bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) getNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId");
-        bel_cellEmpty_dat = (rmit.ai.clima.jackagt.data.CellEmpty) getNamedObject("bel_cellEmpty_dat","rmit.ai.clima.jackagt.data.CellEmpty");
         bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) getNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel");
+        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) getNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt");
         bel_currentStatus_dat = (rmit.ai.clima.jackagt.data.CurrentStatus) getNamedObject("bel_currentStatus_dat","rmit.ai.clima.jackagt.data.CurrentStatus");
-        eguidebugmessage_s = (rmit.ai.clima.jackagt.events.EGUIDebugMessage) findEvent("rmit.ai.clima.jackagt.events.EGUIDebugMessage");
+        bel_cellEmpty_dat = (rmit.ai.clima.jackagt.data.CellEmpty) getNamedObject("bel_cellEmpty_dat","rmit.ai.clima.jackagt.data.CellEmpty");
+        bel_currentPosition_dat = (rmit.ai.clima.jackagt.data.CurrentPosition) getNamedObject("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition");
+        bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) getNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId");
+        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) getNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold");
         meinformagentstatus_s = (rmit.ai.clima.jackagt.events.MEInformAgentStatus) findEvent("rmit.ai.clima.jackagt.events.MEInformAgentStatus");
+        eguidebugmessage_s = (rmit.ai.clima.jackagt.events.EGUIDebugMessage) findEvent("rmit.ai.clima.jackagt.events.EGUIDebugMessage");
         meinformcellstatus_s = (rmit.ai.clima.jackagt.events.MEInformCellStatus) findEvent("rmit.ai.clima.jackagt.events.MEInformCellStatus");
         autorun();
     }
@@ -122,16 +122,16 @@ public class InfoReporting extends aos.jack.jak.agent.Capability {
     {
         externals.put("rmit.ai.clima.jackagt.events.ECellChange","rmit.ai.clima.jackagt.events.ECellChange");
         externals.put("rmit.ai.clima.jackagt.events.EShowBeliefs","rmit.ai.clima.jackagt.events.EShowBeliefs");
-        externals.put("bel_currentStatus_dat","bel_currentStatus_dat");
-        externals.put("bel_lastActionSent_dat","bel_lastActionSent_dat");
-        externals.put("bel_cellEmpty_dat","bel_cellEmpty_dat");
-        externals.put("bel_currentRequestActionId_dat","bel_currentRequestActionId_dat");
-        externals.put("bel_goldAt_dat","bel_goldAt_dat");
         externals.put("bel_numCarryingGold_dat","bel_numCarryingGold_dat");
+        externals.put("bel_currentRequestActionId_dat","bel_currentRequestActionId_dat");
         externals.put("bel_currentPosition_dat","bel_currentPosition_dat");
+        externals.put("bel_cellEmpty_dat","bel_cellEmpty_dat");
+        externals.put("bel_currentStatus_dat","bel_currentStatus_dat");
+        externals.put("bel_goldAt_dat","bel_goldAt_dat");
+        externals.put("bel_lastActionSent_dat","bel_lastActionSent_dat");
+        addEvent("rmit.ai.clima.jackagt.events.MEInformAgentStatus",aos.jack.jak.agent.Agent.SENT_EVENT);
         addEvent("rmit.ai.clima.jackagt.events.EShowBeliefs",aos.jack.jak.agent.Agent.HANDLED_EVENT);
         addEvent("rmit.ai.clima.jackagt.events.EGUIDebugMessage",aos.jack.jak.agent.Agent.SENT_EVENT);
-        addEvent("rmit.ai.clima.jackagt.events.MEInformAgentStatus",aos.jack.jak.agent.Agent.SENT_EVENT);
         addEvent("rmit.ai.clima.jackagt.events.MEInformCellStatus",aos.jack.jak.agent.Agent.SENT_EVENT);
         addEvent("rmit.ai.clima.jackagt.events.ECellChange",aos.jack.jak.agent.Agent.HANDLED_EVENT);
         addPlan("rmit.ai.clima.jackagt.plans.ConsoleBeliefPrinting",0);
@@ -152,16 +152,10 @@ public class InfoReporting extends aos.jack.jak.agent.Capability {
         __bindToPlan("rmit.ai.clima.jackagt.plans.ReportCellChangeToGUI");
     }
     
-    private rmit.ai.clima.jackagt.data.CurrentPosition __named_data_bel_currentPosition_dat()
+    private rmit.ai.clima.iface.LastActionSentBel __named_data_bel_lastActionSent_dat()
     {
-        bel_currentPosition_dat = (rmit.ai.clima.jackagt.data.CurrentPosition) getNamedObject("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition");
-        return bel_currentPosition_dat;
-    }
-    
-    private rmit.ai.clima.jackagt.data.NumGold __named_data_bel_numCarryingGold_dat()
-    {
-        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) getNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold");
-        return bel_numCarryingGold_dat;
+        bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) getNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel");
+        return bel_lastActionSent_dat;
     }
     
     private rmit.ai.clima.jackagt.data.GoldAt __named_data_bel_goldAt_dat()
@@ -170,10 +164,10 @@ public class InfoReporting extends aos.jack.jak.agent.Capability {
         return bel_goldAt_dat;
     }
     
-    private rmit.ai.clima.jackagt.data.CurrentRequestActionId __named_data_bel_currentRequestActionId_dat()
+    private rmit.ai.clima.jackagt.data.CurrentStatus __named_data_bel_currentStatus_dat()
     {
-        bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) getNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId");
-        return bel_currentRequestActionId_dat;
+        bel_currentStatus_dat = (rmit.ai.clima.jackagt.data.CurrentStatus) getNamedObject("bel_currentStatus_dat","rmit.ai.clima.jackagt.data.CurrentStatus");
+        return bel_currentStatus_dat;
     }
     
     private rmit.ai.clima.jackagt.data.CellEmpty __named_data_bel_cellEmpty_dat()
@@ -182,16 +176,22 @@ public class InfoReporting extends aos.jack.jak.agent.Capability {
         return bel_cellEmpty_dat;
     }
     
-    private rmit.ai.clima.iface.LastActionSentBel __named_data_bel_lastActionSent_dat()
+    private rmit.ai.clima.jackagt.data.CurrentPosition __named_data_bel_currentPosition_dat()
     {
-        bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) getNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel");
-        return bel_lastActionSent_dat;
+        bel_currentPosition_dat = (rmit.ai.clima.jackagt.data.CurrentPosition) getNamedObject("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition");
+        return bel_currentPosition_dat;
     }
     
-    private rmit.ai.clima.jackagt.data.CurrentStatus __named_data_bel_currentStatus_dat()
+    private rmit.ai.clima.jackagt.data.CurrentRequestActionId __named_data_bel_currentRequestActionId_dat()
     {
-        bel_currentStatus_dat = (rmit.ai.clima.jackagt.data.CurrentStatus) getNamedObject("bel_currentStatus_dat","rmit.ai.clima.jackagt.data.CurrentStatus");
-        return bel_currentStatus_dat;
+        bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) getNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId");
+        return bel_currentRequestActionId_dat;
+    }
+    
+    private rmit.ai.clima.jackagt.data.NumGold __named_data_bel_numCarryingGold_dat()
+    {
+        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) getNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold");
+        return bel_numCarryingGold_dat;
     }
     
 }

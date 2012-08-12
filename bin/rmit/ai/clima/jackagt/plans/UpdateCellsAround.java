@@ -17,8 +17,8 @@ import aos.jack.jak.cursor.Cursor;
 import aos.jack.jak.cursor.BeliefState;
 import aos.jack.jak.logic.Signature;
 import rmit.ai.clima.jackagt.events.EUpdateBel;
-import rmit.ai.clima.jackagt.data.CellEmpty;
 import rmit.ai.clima.jackagt.data.GoldAt;
+import rmit.ai.clima.jackagt.data.CellEmpty;
 import rmit.ai.clima.comms.Cell;
 import rmit.ai.clima.gui.grid.GridPoint;
 import java.lang.Object;
@@ -27,8 +27,8 @@ import aos.jack.jak.core.Jak;
 
 public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
     public rmit.ai.clima.jackagt.events.EUpdateBel eupdatebel_h;
-    public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
     public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
+    public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
             "rmit/ai/clima/jackagt/plans/UpdateCellsAround.plan",
@@ -56,12 +56,12 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
             "39"};
     private final static java.lang.String[] __planVariableNames = {
             "eupdatebel_h",
-            "bel_cellEmpty_dat",
-            "bel_goldAt_dat"};
+            "bel_goldAt_dat",
+            "bel_cellEmpty_dat"};
     private final static java.lang.String[] __planVariableTypes = {
             "rmit.ai.clima.jackagt.events.EUpdateBel",
-            "rmit.ai.clima.jackagt.data.CellEmpty",
-            "rmit.ai.clima.jackagt.data.GoldAt"};
+            "rmit.ai.clima.jackagt.data.GoldAt",
+            "rmit.ai.clima.jackagt.data.CellEmpty"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
     private final static java.lang.String[] __fsmVariableNames_body = {
@@ -89,17 +89,17 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
             "String",
             "BeliefState"};
     private final static java.lang.String[] __fsmLocalNames_body = {
-            "__local__21_0",
-            "__local__21_1",
-            "__local__21_2",
-            "__local__21_3",
-            "__local__21_4",
-            "__local__21_5",
-            "__local__21_6",
-            "__local__21_7",
-            "__local__21_8",
-            "__local__21_9",
-            "__local__21_10"};
+            "__local__22_0",
+            "__local__22_1",
+            "__local__22_2",
+            "__local__22_3",
+            "__local__22_4",
+            "__local__22_5",
+            "__local__22_6",
+            "__local__22_7",
+            "__local__22_8",
+            "__local__22_9",
+            "__local__22_10"};
     /******** End PDT Design Block *** DO NOT EDIT IT *********/
 
     static boolean relevant(rmit.ai.clima.jackagt.events.EUpdateBel ev)
@@ -118,8 +118,8 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
         __planTask = __t;
         __logic = __t.logic;
         eupdatebel_h = __env.eupdatebel_h;
-        bel_cellEmpty_dat = __env.bel_cellEmpty_dat;
         bel_goldAt_dat = __env.bel_goldAt_dat;
+        bel_cellEmpty_dat = __env.bel_cellEmpty_dat;
     }
     
     public boolean init_sentinel(aos.jack.jak.agent.NameSpace __a)
@@ -129,14 +129,14 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
             warning("Failed to find EUpdateBel eupdatebel_h");
             return false;
         }
-        bel_cellEmpty_dat = (rmit.ai.clima.jackagt.data.CellEmpty) lookupNamedObject("bel_cellEmpty_dat","rmit.ai.clima.jackagt.data.CellEmpty",aos.jack.jak.agent.Agent.WRITEABLE);
-        if (bel_cellEmpty_dat == null) {
-            warning("Failed to find CellEmpty bel_cellEmpty_dat");
-            return false;
-        }
         bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) lookupNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt",aos.jack.jak.agent.Agent.WRITEABLE);
         if (bel_goldAt_dat == null) {
             warning("Failed to find GoldAt bel_goldAt_dat");
+            return false;
+        }
+        bel_cellEmpty_dat = (rmit.ai.clima.jackagt.data.CellEmpty) lookupNamedObject("bel_cellEmpty_dat","rmit.ai.clima.jackagt.data.CellEmpty",aos.jack.jak.agent.Agent.WRITEABLE);
+        if (bel_cellEmpty_dat == null) {
+            warning("Failed to find CellEmpty bel_cellEmpty_dat");
             return false;
         }
         return true;
@@ -240,11 +240,11 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
             }
             case 1: 
             {
-                return aos.util.ToObject.box(bel_cellEmpty_dat);
+                return aos.util.ToObject.box(bel_goldAt_dat);
             }
             case 2: 
             {
-                return aos.util.ToObject.box(bel_goldAt_dat);
+                return aos.util.ToObject.box(bel_cellEmpty_dat);
             }
             default: 
             {
@@ -270,17 +270,17 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
     }
     
     class __bodyFSM extends aos.jack.jak.plan.PlanFSM implements aos.jack.jak.core.Generator {
-        int __local__21_0;
-        int __local__21_1;
-        int __local__21_2;
-        rmit.ai.clima.comms.Cell[] __local__21_3;
-        java.lang.String __local__21_4;
-        boolean __local__21_5;
-        int __local__21_6;
-        rmit.ai.clima.gui.grid.GridPoint __local__21_7;
-        int __local__21_8;
-        java.lang.String __local__21_9;
-        aos.jack.jak.cursor.BeliefState __local__21_10;
+        int __local__22_0;
+        int __local__22_1;
+        int __local__22_2;
+        rmit.ai.clima.comms.Cell[] __local__22_3;
+        java.lang.String __local__22_4;
+        boolean __local__22_5;
+        int __local__22_6;
+        rmit.ai.clima.gui.grid.GridPoint __local__22_7;
+        int __local__22_8;
+        java.lang.String __local__22_9;
+        aos.jack.jak.cursor.BeliefState __local__22_10;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -313,42 +313,42 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                         case 10: 
                         {
                             __breakLevel = 0;
-                            __local__21_0 = eupdatebel_h.step;
+                            __local__22_0 = eupdatebel_h.step;
                             __state = 11;
                             break;
                         }
                         //* (44)         int posX = eupdatebel_h.currentPos.x;
                         case 11: 
                         {
-                            __local__21_1 = eupdatebel_h.currentPos.x;
+                            __local__22_1 = eupdatebel_h.currentPos.x;
                             __state = 12;
                             break;
                         }
                         //* (45)         int posY = eupdatebel_h.currentPos.y;
                         case 12: 
                         {
-                            __local__21_2 = eupdatebel_h.currentPos.y;
+                            __local__22_2 = eupdatebel_h.currentPos.y;
                             __state = 13;
                             break;
                         }
                         //* (46)         Cell[] cells = eupdatebel_h.cells;	// the array of adjacent cells
                         case 13: 
                         {
-                            __local__21_3 = eupdatebel_h.cells;
+                            __local__22_3 = eupdatebel_h.cells;
                             __state = 14;
                             break;
                         }
                         //* (54)         for(int i=0; i < cells.length; i++) {	// interate on each cell
                         case 14: 
                         {
-                            __local__21_6 = 0;
+                            __local__22_6 = 0;
                             __state = 15;
                             break;
                         }
                         //* (54)         for(int i=0; i < cells.length; i++) {	// interate on each cell
                         case 15: 
                         {
-                            if (__local__21_6 < __local__21_3.length) 
+                            if (__local__22_6 < __local__22_3.length) 
                                 __state = 16;
                              else 
                                 __state = 30;
@@ -362,27 +362,27 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                             // interate on each cell
 // Calculate the exact point of cells[i]: store it in GridPoint loc
 
-                            __local__21_4 = __local__21_3[__local__21_6].id;
+                            __local__22_4 = __local__22_3[__local__22_6].id;
                             break;
                         }
                         //* (58)             GridPoint loc = GridPoint.getFromDir(posX, posY, locDir);
                         case 17: 
                         {
-                            __local__21_7 = rmit.ai.clima.gui.grid.GridPoint.getFromDir(__local__21_1,__local__21_2,__local__21_4);
+                            __local__22_7 = rmit.ai.clima.gui.grid.GridPoint.getFromDir(__local__22_1,__local__22_2,__local__22_4);
                             __state = 18;
                             break;
                         }
                         //* (61)            for(int j = 0; j < cells[i].marks.length; j++) {
                         case 18: 
                         {
-                            __local__21_8 = 0;
+                            __local__22_8 = 0;
                             __state = 19;
                             break;
                         }
                         //* (61)            for(int j = 0; j < cells[i].marks.length; j++) {
                         case 19: 
                         {
-                            if (__local__21_8 < __local__21_3[__local__21_6].marks.length) 
+                            if (__local__22_8 < __local__22_3[__local__22_6].marks.length) 
                                 __state = 20;
                              else 
                                 __state = 29;
@@ -392,14 +392,14 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                         case 20: 
                         {
                             __breakLevel = 8;
-                            __local__21_9 = __local__21_3[__local__21_6].marks[__local__21_8].type;
+                            __local__22_9 = __local__22_3[__local__22_6].marks[__local__22_8].type;
                             __state = 21;
                             break;
                         }
                         //* (65)                if(cellType.equalsIgnoreCase("unknown") == false) {
                         case 21: 
                         {
-                            if (__local__21_9.equalsIgnoreCase("unknown") == false) 
+                            if (__local__22_9.equalsIgnoreCase("unknown") == false) 
                                 __state = 22;
                              else 
                                 __state = 28;
@@ -409,7 +409,7 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                         case 22: 
                         {
                             __breakLevel = 10;
-                            if (__local__21_9.equalsIgnoreCase("obstacle")) 
+                            if (__local__22_9.equalsIgnoreCase("obstacle")) 
                                 __state = 23;
                              else 
                                 __state = 25;
@@ -422,14 +422,14 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                             __state = 24;
                             // This cell contains an obstacle
 
-                            bel_cellEmpty_dat.add(__local__21_7.x,__local__21_7.y,aos.jack.jak.cursor.Cursor.FALSE);
+                            bel_cellEmpty_dat.add(__local__22_7.x,__local__22_7.y,aos.jack.jak.cursor.Cursor.FALSE);
                             break;
                         }
                         //* (71)                         bel_goldAt_dat.add(loc.x, loc.y, Cursor.FALSE);
                         case 24: 
                         {
                             __state = 28;
-                            bel_goldAt_dat.add(__local__21_7.x,__local__21_7.y,aos.jack.jak.cursor.Cursor.FALSE);
+                            bel_goldAt_dat.add(__local__22_7.x,__local__22_7.y,aos.jack.jak.cursor.Cursor.FALSE);
                             break;
                         }
                         //* (75)                         bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.TRUE);
@@ -439,13 +439,13 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                             __state = 26;
                             // The cell is considered empty if there is no obstacle
 
-                            bel_cellEmpty_dat.add(__local__21_7.x,__local__21_7.y,aos.jack.jak.cursor.Cursor.TRUE);
+                            bel_cellEmpty_dat.add(__local__22_7.x,__local__22_7.y,aos.jack.jak.cursor.Cursor.TRUE);
                             break;
                         }
                         //* (78)                         BeliefState hasGold = cellType.equalsIgnoreCase("gold") ?
                         case 26: 
                         {
-                            __local__21_10 = __local__21_9.equalsIgnoreCase("gold")?aos.jack.jak.cursor.Cursor.TRUE:aos.jack.jak.cursor.Cursor.FALSE;
+                            __local__22_10 = __local__22_9.equalsIgnoreCase("gold")?aos.jack.jak.cursor.Cursor.TRUE:aos.jack.jak.cursor.Cursor.FALSE;
                             __state = 27;
                             break;
                         }
@@ -453,21 +453,21 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
                         case 27: 
                         {
                             __state = 28;
-                            bel_goldAt_dat.add(__local__21_7.x,__local__21_7.y,__local__21_10);
+                            bel_goldAt_dat.add(__local__22_7.x,__local__22_7.y,__local__22_10);
                             break;
                         }
                         //* (61)            for(int j = 0; j < cells[i].marks.length; j++) {
                         case 28: 
                         {
                             __state = 19;
-                            __local__21_8++ ;
+                            __local__22_8++ ;
                             break;
                         }
                         //* (54)         for(int i=0; i < cells.length; i++) {	// interate on each cell
                         case 29: 
                         {
                             __state = 15;
-                            __local__21_6++ ;
+                            __local__22_6++ ;
                             break;
                         }
                         //* (39)     #reasoning method
@@ -569,47 +569,47 @@ public class UpdateCellsAround extends aos.jack.jak.plan.Plan {
             switch (n) {
                 case 0: 
                 {
-                    return aos.util.ToObject.box(__local__21_0);
+                    return aos.util.ToObject.box(__local__22_0);
                 }
                 case 1: 
                 {
-                    return aos.util.ToObject.box(__local__21_1);
+                    return aos.util.ToObject.box(__local__22_1);
                 }
                 case 2: 
                 {
-                    return aos.util.ToObject.box(__local__21_2);
+                    return aos.util.ToObject.box(__local__22_2);
                 }
                 case 3: 
                 {
-                    return aos.util.ToObject.box(__local__21_3);
+                    return aos.util.ToObject.box(__local__22_3);
                 }
                 case 4: 
                 {
-                    return aos.util.ToObject.box(__local__21_4);
+                    return aos.util.ToObject.box(__local__22_4);
                 }
                 case 5: 
                 {
-                    return aos.util.ToObject.box(__local__21_5);
+                    return aos.util.ToObject.box(__local__22_5);
                 }
                 case 6: 
                 {
-                    return aos.util.ToObject.box(__local__21_6);
+                    return aos.util.ToObject.box(__local__22_6);
                 }
                 case 7: 
                 {
-                    return aos.util.ToObject.box(__local__21_7);
+                    return aos.util.ToObject.box(__local__22_7);
                 }
                 case 8: 
                 {
-                    return aos.util.ToObject.box(__local__21_8);
+                    return aos.util.ToObject.box(__local__22_8);
                 }
                 case 9: 
                 {
-                    return aos.util.ToObject.box(__local__21_9);
+                    return aos.util.ToObject.box(__local__22_9);
                 }
                 case 10: 
                 {
-                    return aos.util.ToObject.box(__local__21_10);
+                    return aos.util.ToObject.box(__local__22_10);
                 }
                 default: 
                 {

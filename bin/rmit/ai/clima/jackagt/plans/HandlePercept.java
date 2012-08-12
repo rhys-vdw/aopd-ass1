@@ -15,11 +15,12 @@ import aos.jack.jak.task.Task;
 import aos.jack.jak.core.Generator;
 import aos.jack.jak.logic.Signature;
 import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
-import rmit.ai.clima.jackagt.events.EShowBeliefs;
 import rmit.ai.clima.jackagt.events.MEInformAgentStatus;
-import rmit.ai.clima.jackagt.events.EAct;
 import rmit.ai.clima.jackagt.events.EUpdateBel;
+import rmit.ai.clima.jackagt.events.EAct;
+import rmit.ai.clima.jackagt.events.EShowBeliefs;
 import rmit.ai.clima.iface.PerceiveClimaServer;
+import rmit.ai.clima.jackagt.data.NumGold;
 import rmit.ai.clima.jackagt.data.CurrentPosition;
 import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
 import rmit.ai.clima.interfaces.DebugInterface;
@@ -34,11 +35,12 @@ import aos.jack.jak.core.Jak;
 public class HandlePercept extends aos.jack.jak.plan.Plan {
     final static java.lang.String ID = "HAND_PERC";
     public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
-    public rmit.ai.clima.jackagt.events.EShowBeliefs eshowbeliefs_p;
     public rmit.ai.clima.jackagt.events.MEInformAgentStatus meinformagentstatus_s;
-    public rmit.ai.clima.jackagt.events.EAct eact_p;
     public rmit.ai.clima.jackagt.events.EUpdateBel eupdatebel_s;
+    public rmit.ai.clima.jackagt.events.EAct eact_p;
+    public rmit.ai.clima.jackagt.events.EShowBeliefs eshowbeliefs_p;
     public rmit.ai.clima.iface.PerceiveClimaServer perceiveclimaserver_h;
+    public rmit.ai.clima.jackagt.data.NumGold bel_numCarryingGold_dat;
     public rmit.ai.clima.jackagt.data.CurrentPosition bel_currentPosition_dat;
     public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
     public rmit.ai.clima.interfaces.DebugInterface consoleIface;
@@ -46,47 +48,51 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
     private static java.lang.String[] __tt__fail = {
             "rmit/ai/clima/jackagt/plans/HandlePercept.plan",
             "fail",
-            "65",
-            "62"};
+            "67",
+            "64"};
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
             "rmit/ai/clima/jackagt/plans/HandlePercept.plan",
             "body",
-            "73",
-            "76",
-            "77",
+            "75",
             "78",
             "79",
             "80",
             "81",
             "82",
+            "83",
+            "84",
+            "95",
+            "98",
             "102",
-            "112",
+            "103",
+            "107",
+            "110",
+            "113",
             "116",
             "117",
-            "121",
-            "124",
-            "127",
-            "69"};
+            "71"};
     private final static java.lang.String[] __planVariableNames = {
             "ID",
             "eguidebugmessage_s",
-            "eshowbeliefs_p",
             "meinformagentstatus_s",
-            "eact_p",
             "eupdatebel_s",
+            "eact_p",
+            "eshowbeliefs_p",
             "perceiveclimaserver_h",
+            "bel_numCarryingGold_dat",
             "bel_currentPosition_dat",
             "bel_currentRequestActionId_dat",
             "consoleIface"};
     private final static java.lang.String[] __planVariableTypes = {
             "String",
             "EGUIDebugMessage",
-            "EShowBeliefs",
             "MEInformAgentStatus",
-            "EAct",
             "rmit.ai.clima.jackagt.events.EUpdateBel",
+            "EAct",
+            "EShowBeliefs",
             "rmit.ai.clima.iface.PerceiveClimaServer",
+            "rmit.ai.clima.jackagt.data.NumGold",
             "rmit.ai.clima.jackagt.data.CurrentPosition",
             "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
             "rmit.ai.clima.interfaces.DebugInterface"};
@@ -140,11 +146,12 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
         __planTask = __t;
         __logic = __t.logic;
         eguidebugmessage_s = __env.eguidebugmessage_s;
-        eshowbeliefs_p = __env.eshowbeliefs_p;
         meinformagentstatus_s = __env.meinformagentstatus_s;
-        eact_p = __env.eact_p;
         eupdatebel_s = __env.eupdatebel_s;
+        eact_p = __env.eact_p;
+        eshowbeliefs_p = __env.eshowbeliefs_p;
         perceiveclimaserver_h = __env.perceiveclimaserver_h;
+        bel_numCarryingGold_dat = __env.bel_numCarryingGold_dat;
         bel_currentPosition_dat = __env.bel_currentPosition_dat;
         bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
         consoleIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
@@ -157,19 +164,9 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
             warning("Failed to find EGUIDebugMessage eguidebugmessage_s");
             return false;
         }
-        eshowbeliefs_p = (rmit.ai.clima.jackagt.events.EShowBeliefs) __a.findEvent("rmit.ai.clima.jackagt.events.EShowBeliefs");
-        if (eshowbeliefs_p == null) {
-            warning("Failed to find EShowBeliefs eshowbeliefs_p");
-            return false;
-        }
         meinformagentstatus_s = (rmit.ai.clima.jackagt.events.MEInformAgentStatus) __a.findEvent("rmit.ai.clima.jackagt.events.MEInformAgentStatus");
         if (meinformagentstatus_s == null) {
             warning("Failed to find MEInformAgentStatus meinformagentstatus_s");
-            return false;
-        }
-        eact_p = (rmit.ai.clima.jackagt.events.EAct) __a.findEvent("rmit.ai.clima.jackagt.events.EAct");
-        if (eact_p == null) {
-            warning("Failed to find EAct eact_p");
             return false;
         }
         eupdatebel_s = (rmit.ai.clima.jackagt.events.EUpdateBel) __a.findEvent("rmit.ai.clima.jackagt.events.EUpdateBel");
@@ -177,9 +174,24 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
             warning("Failed to find EUpdateBel eupdatebel_s");
             return false;
         }
+        eact_p = (rmit.ai.clima.jackagt.events.EAct) __a.findEvent("rmit.ai.clima.jackagt.events.EAct");
+        if (eact_p == null) {
+            warning("Failed to find EAct eact_p");
+            return false;
+        }
+        eshowbeliefs_p = (rmit.ai.clima.jackagt.events.EShowBeliefs) __a.findEvent("rmit.ai.clima.jackagt.events.EShowBeliefs");
+        if (eshowbeliefs_p == null) {
+            warning("Failed to find EShowBeliefs eshowbeliefs_p");
+            return false;
+        }
         perceiveclimaserver_h = (rmit.ai.clima.iface.PerceiveClimaServer) __a.findEvent("rmit.ai.clima.iface.PerceiveClimaServer");
         if (perceiveclimaserver_h == null) {
             warning("Failed to find PerceiveClimaServer perceiveclimaserver_h");
+            return false;
+        }
+        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) lookupNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold",aos.jack.jak.agent.Agent.WRITEABLE);
+        if (bel_numCarryingGold_dat == null) {
+            warning("Failed to find NumGold bel_numCarryingGold_dat");
             return false;
         }
         bel_currentPosition_dat = (rmit.ai.clima.jackagt.data.CurrentPosition) lookupNamedObject("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition",aos.jack.jak.agent.Agent.WRITEABLE);
@@ -302,11 +314,11 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
             }
             case 2: 
             {
-                return aos.util.ToObject.box(eshowbeliefs_p);
+                return aos.util.ToObject.box(meinformagentstatus_s);
             }
             case 3: 
             {
-                return aos.util.ToObject.box(meinformagentstatus_s);
+                return aos.util.ToObject.box(eupdatebel_s);
             }
             case 4: 
             {
@@ -314,7 +326,7 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
             }
             case 5: 
             {
-                return aos.util.ToObject.box(eupdatebel_s);
+                return aos.util.ToObject.box(eshowbeliefs_p);
             }
             case 6: 
             {
@@ -322,13 +334,17 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
             }
             case 7: 
             {
-                return aos.util.ToObject.box(bel_currentPosition_dat);
+                return aos.util.ToObject.box(bel_numCarryingGold_dat);
             }
             case 8: 
             {
-                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
+                return aos.util.ToObject.box(bel_currentPosition_dat);
             }
             case 9: 
+            {
+                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
+            }
+            case 10: 
             {
                 return aos.util.ToObject.box(consoleIface);
             }
@@ -384,7 +400,7 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
                             aos.jack.jak.core.Jak.error("HandlePercept.fail: Illegal state");
                             return FAILED_STATE;
                         }
-                        //* (65) 		consoleIface.showConsoleDebug(getPlanName(), "Plan has failed!");
+                        //* (67) 		consoleIface.showConsoleDebug(getPlanName(), "Plan has failed!");
                         case 10: 
                         {
                             __breakLevel = 0;
@@ -392,7 +408,7 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
                             consoleIface.showConsoleDebug(getPlanName(),"Plan has failed!");
                             break;
                         }
-                        //* (62)     #reasoning method
+                        //* (64)     #reasoning method
                         case 11: 
                         {
                             if (__pending == null) 
@@ -514,7 +530,7 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
                             aos.jack.jak.core.Jak.error("HandlePercept.body: Illegal state");
                             return FAILED_STATE;
                         }
-                        //* (73)         RequestAction reqAction = (RequestAction)perceiveclimaserver_h.data;
+                        //* (75)         RequestAction reqAction = (RequestAction)perceiveclimaserver_h.data;
                         case 10: 
                         {
                             __breakLevel = 0;
@@ -522,56 +538,56 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
                             __state = 11;
                             break;
                         }
-                        //* (76)         int id = Integer.parseInt(reqAction.id.trim());	// unique ID of the request-action package
+                        //* (78)         int id = Integer.parseInt(reqAction.id.trim());	// unique ID of the request-action package
                         case 11: 
                         {
                             __local__15_1 = java.lang.Integer.parseInt(__local__15_0.id.trim());
                             __state = 12;
                             break;
                         }
-                        //* (77)         int step = reqAction.step;	// step number within this simulation (id may be much larger)
+                        //* (79)         int step = reqAction.step;	// step number within this simulation (id may be much larger)
                         case 12: 
                         {
                             __local__15_2 = __local__15_0.step;
                             __state = 13;
                             break;
                         }
-                        //* (78)         int items = reqAction.items;    // if items<0 then no information on perceiveclimaserver_h message
+                        //* (80)         int items = reqAction.items;    // if items<0 then no information on perceiveclimaserver_h message
                         case 13: 
                         {
                             __local__15_3 = __local__15_0.items;
                             __state = 14;
                             break;
                         }
-                        //* (79)         int posX = reqAction.posx;
+                        //* (81)         int posX = reqAction.posx;
                         case 14: 
                         {
                             __local__15_4 = __local__15_0.posx;
                             __state = 15;
                             break;
                         }
-                        //* (80)         int posY = reqAction.posy;
+                        //* (82)         int posY = reqAction.posy;
                         case 15: 
                         {
                             __local__15_5 = __local__15_0.posy;
                             __state = 16;
                             break;
                         }
-                        //* (81)         GridPoint currentPos = new GridPoint(posX, posY);
+                        //* (83)         GridPoint currentPos = new GridPoint(posX, posY);
                         case 16: 
                         {
                             __local__15_6 = new rmit.ai.clima.gui.grid.GridPoint(__local__15_4,__local__15_5);
                             __state = 17;
                             break;
                         }
-                        //* (82)         Cell[] cells = reqAction.cells;	// the cells around
+                        //* (84)         Cell[] cells = reqAction.cells;	// the cells around
                         case 17: 
                         {
                             __local__15_7 = __local__15_0.cells;
                             __state = 18;
                             break;
                         }
-                        //* (102)         @subtask( eupdatebel_s.post(id, currentPos, cells, items) );
+                        //* (95)         @subtask( eupdatebel_s.post(id, currentPos, cells, items) );
                         case 18: 
                         {
                             __task.push(eupdatebel_s.post(__local__15_1,__local__15_6,__local__15_7,__local__15_3));
@@ -580,14 +596,14 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
                             __subtask_fail = 4;
                             return SUBTASK;
                         }
-                        //* (112) 		@send("gui", meinformagentstatus_s.post(currentPos, items, id) );
+                        //* (98) 		@send("gui", meinformagentstatus_s.post(currentPos, items, id) );
                         case 19: 
                         {
                             __state = 20;
                             agent.send("gui",meinformagentstatus_s.post(__local__15_6,__local__15_3,__local__15_1));
                             break;
                         }
-                        //* (116)         consoleIface.showConsoleDebug("A request-action event for step-id " + step + "-" + id + " states that " + getAgent().name() + " is currently at location " + currentPos.toString() + " with " + items + " pieces of gold");
+                        //* (102)         consoleIface.showConsoleDebug("A request-action event for step-id " + step + "-" + id + " states that " + getAgent().name() + " is currently at location " + currentPos.toString() + " with " + items + " pieces of gold");
                         case 20: 
                         {
                             __state = 21;
@@ -596,21 +612,21 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
                             consoleIface.showConsoleDebug("A request-action event for step-id " + __local__15_2 + "-" + __local__15_1 + " states that " + getAgent().name() + " is currently at location " + __local__15_6.toString() + " with " + __local__15_3 + " pieces of gold");
                             break;
                         }
-                        //* (117) 		@send("gui", eguidebugmessage_s.reportMessage(ID, "Step: "+ id + " - Location: " + GridPoint.toString(currentPos) + " - Gold: " + items) );
+                        //* (103) 		@send("gui", eguidebugmessage_s.reportMessage(ID, "Step: "+ id + " - Location: " + GridPoint.toString(currentPos) + " - Gold: " + items) );
                         case 21: 
                         {
                             __state = 22;
                             agent.send("gui",eguidebugmessage_s.reportMessage(ID,"Step: " + __local__15_1 + " - Location: " + rmit.ai.clima.gui.grid.GridPoint.toString(__local__15_6) + " - Gold: " + __local__15_3));
                             break;
                         }
-                        //* (121)         @post( eshowbeliefs_p.show() );
+                        //* (107)         @post( eshowbeliefs_p.show() );
                         case 22: 
                         {
                             __state = 23;
                             agent.postEvent(eshowbeliefs_p.show());
                             break;
                         }
-                        //* (124) 		bel_currentRequestActionId_dat.add(id,step);
+                        //* (110) 		bel_currentRequestActionId_dat.add(id,step);
                         case 23: 
                         {
                             __state = 24;
@@ -619,7 +635,7 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
                             bel_currentRequestActionId_dat.add(__local__15_1,__local__15_2);
                             break;
                         }
-                        //* (127) 		bel_currentPosition_dat.add(posX, posY);
+                        //* (113) 		bel_currentPosition_dat.add(posX, posY);
                         case 24: 
                         {
                             __state = 25;
@@ -628,8 +644,25 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
                             bel_currentPosition_dat.add(__local__15_4,__local__15_5);
                             break;
                         }
-                        //* (69)     #reasoning method
+                        //* (116) 		if (items >= 0) {
                         case 25: 
+                        {
+                            if (__local__15_3 >= 0) 
+                                __state = 26;
+                             else 
+                                __state = 27;
+                            break;
+                        }
+                        //* (117) 			bel_numCarryingGold_dat.add(items);
+                        case 26: 
+                        {
+                            __breakLevel = 2;
+                            __state = 27;
+                            bel_numCarryingGold_dat.add(__local__15_3);
+                            break;
+                        }
+                        //* (71)     #reasoning method
+                        case 27: 
                         {
                             if (__pending == null) 
                                 __state = PASSED_STATE;

@@ -1,0 +1,51 @@
+package rmit.ai.clima.jackagt.plans;
+import rmit.ai.clima.jackagt.events.*;
+import rmit.ai.clima.jackagt.data.*;
+import rmit.ai.clima.interfaces.*;
+
+public plan PickGold extends Plan
+{
+/******** Start PDT Design Block *** DO NOT EDIT IT *********/
+
+/*
+Plan Name: PickGold
+*/
+	//Events handled by the plan are declared here.
+	#posts event EExecuteCLIMAaction eexecuteclimaaction_p;
+
+	#sends event EGUIDebugMessage eguidebugmessage_s;
+
+	#handles event EAct eact_h;
+
+
+	// Declarations of any beliefset/data that the plan accesses.
+	#reads data NumGold bel_numCarryingGold_dat;
+
+	#reads data GoldAt bel_goldAt_dat;
+
+	#reads data CurrentPosition bel_currentPosition_dat;
+
+/******** End PDT Design Block *** DO NOT EDIT IT *********/
+
+	#uses interface DebugInterface consoleIface;
+	
+	static final int MAX_CARRYING_GOLD = 3;
+	logical int $posX, $posY;
+	logical int $numGold;
+	
+	context()
+	{
+		// Is there gold at current position?
+		bel_currentPosition_dat.get($posX, $posY) && bel_goldAt_dat.checkIfGold($posX.as_int(), $posY.as_int()) &&
+		// Is the agent carrying less than its capacity?
+			bel_numCarryingGold_dat.get($numGold) && $numGold.as_int() < MAX_CARRYING_GOLD;
+	}
+
+	#reasoning method
+	body()
+	{
+		consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " tries to pick up gold.");
+		
+    	@subtask(eexecuteclimaaction_p.post("pick"));
+	}
+}

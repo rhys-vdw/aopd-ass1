@@ -396,6 +396,7 @@ Design.pd:
 - In detailed design of GamePlaying:
   - Set JackCode modifier of bel_numCarryingGold to #imports.
   - Linked FROM bel_numCarryingGold TO InfoReporting.
+  - Linked FROM HandlePercept TO bel_numCarryingGold.
 - In InfoReporting:
   - Set JackCode modifier of bel_numCarryingGold to #imports.
   - Linked FROM bel_numCarryingGold TO ConsoleBeliefPrinting.
@@ -406,15 +407,23 @@ Design.pd:
 
 Generated code.
 
-The beliefset must be initialized to 0, or else it will fail on query.
+The beliefset must be initialized to 0, emptied on game end, and updated on
+HandlePercept.
 
-StartSimulation (in body() -> line 79):
+StartSimulation.plan (in body() -> line 79):
 
   bel_numCarryingGold_dat.add(0);
 
-FinishSimulation (in body() -> line 67):
+FinishSimulation.plan (in body() -> line 67):
 
   bel_numCarryingGold_dat.get($numGold).removeAll();
+
+HandlePercept.plan (in body() -> line 115):
+
+  // Update the beliefset with the current amount of gold carried.
+  if (items >= 0) {
+    bel_numCarryingGold_dat.add(items);
+  }
 
 ConsoleBeliefPrinting (line 95):
 
@@ -423,6 +432,81 @@ ConsoleBeliefPrinting (line 95):
   consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
       " is currently carrying " + $numGold + " pieces of gold.");
 
-Compiled, and run. Output in trace4-1.txt
+Compiled, and run. Output in trace4-1.txt.
 
+- Step 2:
+
+Design.pd:
+- In detailed deisign of GamePlaying
+  - Make connection FROM bel_currentPosition TO ActionDecision.
+  - Make connection FROM bel_numCarryingGold TO ActionDecision.
+  - Make connection FROM bel_goldAt to ActionDecision.
+- In detailed design of ActionDecision capability:
+  - Set bel_currentPosition's JackCode modifier to #imports.
+  - Set bel_numCarryingGold's JackCode modifier to #imports.
+  - Set bel_goldAt's JackCode modifier to #imports.
+  - Make connection FROM bel_currentPosition TO PickGold.
+  - Make connection FROM bel_numCarryingGold TO PickGold.
+  - Make connection FROM bel_goldAt TO PickGold.
+  - Make connection FROM PickGold TO EExecuteCLIMAction.
+  - Make connection FROM PickGold TO EGUIDebugMessage.
+  - Create plan called PickGold.
+  - Add EAct to its list of triggers.
+
+Generated code.
+
+Make plan valid whenever the player is in a tile with gold.
+
+PickGold.Plan (line 34):
+
+  logical int $posX, $posY;
+  
+  context()
+  {
+    // Is there gold at current position?
+    bel_currentPosition_dat.get($posX, $posY) && bel_goldAt_dat.checkIfGold(
+        $posX.as_int(), $posY.as_int());
+  }
+
+  #reasoning method
+  body()
+  {
+    consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
+        " tries to pick up gold.");
+    
+      @subtask(eexecuteclimaaction_p.post("pick"));
+  }
+
+Ran 20 steps. Players pick up gold. See trace4-2.txt.
+
+- Step 3:
+
+Since the precendence of the plans are set correctly in EAct's properties in PDT,
+only the context method of PickGold needs to be updated.
+
+PickGold.plan (line 32):
+
+  static final int MAX_CARRYING_GOLD = 3;
+  logical int $posX, $posY;
+  logical int $numGold;
+  
+  context()
+  {
+    // Is there gold at current position?
+    bel_currentPosition_dat.get($posX, $posY) && bel_goldAt_dat.checkIfGold($posX.as_int(), $posY.as_int()) &&
+    // Is the agent carrying less than its capacity?
+      bel_numCarryingGold_dat.get($numGold) && $numGold.as_int() < MAX_CARRYING_GOLD;
+  }
+
+Ran 20 steps. Players pick up gold. See trace4-2.txt.
+
+Summary:
+In this section I learned how to:
+ - Create plans, and specify their context and precedence.
+ - Send messages to the server.
+
+I had the following problems:
+- PDT showed the wrong plan precedence for EAct, which confused me. In PTD
+  MoveRandomly was first, and PickGold was second. In ActionDecision.cap the
+  order was opposite. This was solved by regenerating.
 
