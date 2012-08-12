@@ -66,13 +66,14 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
             "86",
             "97",
             "100",
-            "104",
-            "105",
-            "109",
+            "103",
+            "107",
+            "108",
             "112",
             "115",
             "118",
-            "119",
+            "121",
+            "122",
             "73"};
     private final static java.lang.String[] __planVariableNames = {
             "ID",
@@ -610,73 +611,80 @@ public class HandlePercept extends aos.jack.jak.plan.Plan {
                             __subtask_fail = 4;
                             return SUBTASK;
                         }
-                        //* (100) 		@send("gui", meinformagentstatus_s.post(currentPos, items, id) );
+                        //* (100)         @send("boss", eupdatebel_s.post(id, currentPos, cells, items));
                         case 19: 
                         {
                             __state = 20;
-                            agent.send("gui",meinformagentstatus_s.post(__local__16_6,__local__16_3,__local__16_1));
+                            agent.send("boss",eupdatebel_s.post(__local__16_1,__local__16_6,__local__16_7,__local__16_3));
                             break;
                         }
-                        //* (104)         consoleIface.showConsoleDebug("A request-action event for step-id " + step + "-" + id + " states that " + getAgent().name() + " is currently at location " + currentPos.toString() + " with " + items + " pieces of gold");
+                        //* (103) 		@send("gui", meinformagentstatus_s.post(currentPos, items, id) );
                         case 20: 
                         {
                             __state = 21;
+                            agent.send("gui",meinformagentstatus_s.post(__local__16_6,__local__16_3,__local__16_1));
+                            break;
+                        }
+                        //* (107)         consoleIface.showConsoleDebug("A request-action event for step-id " + step + "-" + id + " states that " + getAgent().name() + " is currently at location " + currentPos.toString() + " with " + items + " pieces of gold");
+                        case 21: 
+                        {
+                            __state = 22;
                             // Report current location, step number, and no of gold pieces carrying
 
                             consoleIface.showConsoleDebug("A request-action event for step-id " + __local__16_2 + "-" + __local__16_1 + " states that " + getAgent().name() + " is currently at location " + __local__16_6.toString() + " with " + __local__16_3 + " pieces of gold");
                             break;
                         }
-                        //* (105) 		@send("gui", eguidebugmessage_s.reportMessage(ID, "Step: "+ id + " - Location: " + GridPoint.toString(currentPos) + " - Gold: " + items) );
-                        case 21: 
-                        {
-                            __state = 22;
-                            agent.send("gui",eguidebugmessage_s.reportMessage(ID,"Step: " + __local__16_1 + " - Location: " + rmit.ai.clima.gui.grid.GridPoint.toString(__local__16_6) + " - Gold: " + __local__16_3));
-                            break;
-                        }
-                        //* (109)         @post( eshowbeliefs_p.show() );
+                        //* (108) 		@send("gui", eguidebugmessage_s.reportMessage(ID, "Step: "+ id + " - Location: " + GridPoint.toString(currentPos) + " - Gold: " + items) );
                         case 22: 
                         {
                             __state = 23;
-                            agent.postEvent(eshowbeliefs_p.show());
+                            agent.send("gui",eguidebugmessage_s.reportMessage(ID,"Step: " + __local__16_1 + " - Location: " + rmit.ai.clima.gui.grid.GridPoint.toString(__local__16_6) + " - Gold: " + __local__16_3));
                             break;
                         }
-                        //* (112) 		bel_currentRequestActionId_dat.add(id,step);
+                        //* (112)         @post( eshowbeliefs_p.show() );
                         case 23: 
                         {
                             __state = 24;
+                            agent.postEvent(eshowbeliefs_p.show());
+                            break;
+                        }
+                        //* (115) 		bel_currentRequestActionId_dat.add(id,step);
+                        case 24: 
+                        {
+                            __state = 25;
                             // Update beliefset with the current request action id from the incoming percept
 
                             bel_currentRequestActionId_dat.add(__local__16_1,__local__16_2);
                             break;
                         }
-                        //* (115) 		bel_currentPosition_dat.add(posX, posY);
-                        case 24: 
+                        //* (118) 		bel_currentPosition_dat.add(posX, posY);
+                        case 25: 
                         {
-                            __state = 25;
+                            __state = 26;
                             // Update beliefset with the current position of the agent
 
                             bel_currentPosition_dat.add(__local__16_4,__local__16_5);
                             break;
                         }
-                        //* (118) 		if (items >= 0) {
-                        case 25: 
-                        {
-                            if (__local__16_3 >= 0) 
-                                __state = 26;
-                             else 
-                                __state = 27;
-                            break;
-                        }
-                        //* (119) 			bel_numCarryingGold_dat.add(items);
+                        //* (121) 		if (items >= 0) {
                         case 26: 
                         {
+                            if (__local__16_3 >= 0) 
+                                __state = 27;
+                             else 
+                                __state = 28;
+                            break;
+                        }
+                        //* (122) 			bel_numCarryingGold_dat.add(items);
+                        case 27: 
+                        {
                             __breakLevel = 2;
-                            __state = 27;
+                            __state = 28;
                             bel_numCarryingGold_dat.add(__local__16_3);
                             break;
                         }
                         //* (73)     #reasoning method
-                        case 27: 
+                        case 28: 
                         {
                             if (__pending == null) 
                                 __state = PASSED_STATE;

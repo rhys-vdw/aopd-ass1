@@ -95,6 +95,9 @@ Description: This plan assimilates each percept information received from the ga
        
         // Update the information on all the cells around (as a subtask)
         @subtask( eupdatebel_s.post(id, currentPos, cells, items) );
+        
+        // Send update information to the co-ordinator.
+        @send("boss", eupdatebel_s.post(id, currentPos, cells, items));
     
 	    // Inform the GUIAgent of the current status, that is, location and no of gold pieces
 		@send("gui", meinformagentstatus_s.post(currentPos, items, id) );

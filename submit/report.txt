@@ -691,3 +691,20 @@ In detailed design of Coordinator:
 - Set bel_goldAt's JackCode modifier to #private.
 - Add data object bel_cellEmpty.
 - Set bel_cellEmpty's JackCode modifier to #private.
+
+- Step 5:
+
+design.pd
+In detailed design of Coordinator:
+- Add event object EUpdateBel.
+- Add plan object UpdateCellsAround.
+(it automatically connects to bel_goldAt and bel_cellEmpty).
+
+HandlePercept must send message to coordinator.
+
+HandlePercept.plan (line 99):
+
+  // Send update information to the co-ordinator.
+  @send("boss", eupdatebel_s.post(id, currentPos, cells, items));
+
+- Step 6:
