@@ -60,6 +60,7 @@
 <Relation DST="15873" IMemento.internal.id="129797" Prominence="0" RelationType="1073741830" SRC="11521"/>
 <Relation DST="36609" IMemento.internal.id="274181" Prominence="0" RelationType="-2147483648" SRC="76801"/>
 <Relation DST="43009" IMemento.internal.id="126725" Prominence="0" RelationType="-2147483648" SRC="34561"/>
+<Relation DST="320001" IMemento.internal.id="320517" Prominence="0" RelationType="1073741831" SRC="318209"/>
 <Relation DST="57345" IMemento.internal.id="123653" Prominence="0" RelationType="-2147483648" SRC="40449"/>
 <Relation DST="24833" IMemento.internal.id="122117" Prominence="0" RelationType="-2147483648" SRC="60929"/>
 <Relation DST="63489" IMemento.internal.id="121349" Prominence="0" RelationType="-2147483648" SRC="24833"/>
@@ -195,7 +196,9 @@
 <Relation DST="43009" IMemento.internal.id="125701" Prominence="0" RelationType="-2147483648" SRC="23297"/>
 <Relation DST="43009" IMemento.internal.id="124933" Prominence="0" RelationType="1073741831" SRC="40961"/>
 <Relation DST="57345" IMemento.internal.id="124165" Prominence="0" RelationType="-2147483648" SRC="37889"/>
+<Relation DST="72961" IMemento.internal.id="319493" Prominence="0" RelationType="-2147483648" SRC="318209"/>
 <Relation DST="57345" IMemento.internal.id="123397" Prominence="0" RelationType="-2147483648" SRC="48385"/>
+<Relation DST="318209" IMemento.internal.id="318725" Prominence="0" RelationType="-2147483648" SRC="76801"/>
 <Relation DST="28417" IMemento.internal.id="122629" Prominence="0" RelationType="-2147483648" SRC="60929"/>
 <Relation DST="60929" IMemento.internal.id="121861" Prominence="0" RelationType="1073741831" SRC="40449"/>
 <Relation DST="48385" IMemento.internal.id="317189" Prominence="0" RelationType="-2147483648" SRC="311041"/>
@@ -259,8 +262,10 @@
 <Connection ConnectionType="536870913" DST="46082" IMemento.internal.id="225540" MotherDiagram="21251" SRC="37634"/>
 <Connection ConnectionType="-2147483648" DST="37634" IMemento.internal.id="273412" MotherDiagram="21251" SRC="269826"/>
 <Connection ConnectionType="536870913" DST="52226" IMemento.internal.id="223236" MotherDiagram="20227" SRC="54786"/>
+<Connection ConnectionType="-2147483648" DST="73474" IMemento.internal.id="319748" MotherDiagram="37379" SRC="318466"/>
 <Connection ConnectionType="536870913" DST="21506" IMemento.internal.id="221700" MotherDiagram="1283" SRC="11266"/>
 <Connection ConnectionType="536870913" DST="46082" IMemento.internal.id="270340" MotherDiagram="21251" SRC="269826"/>
+<Connection ConnectionType="-2147483648" DST="318466" IMemento.internal.id="318980" MotherDiagram="37379" SRC="77058"/>
 <Connection ConnectionType="536870913" DST="62978" IMemento.internal.id="220932" MotherDiagram="57603" SRC="64002"/>
 <Connection ConnectionType="536870913" DST="64514" IMemento.internal.id="220164" MotherDiagram="57603" SRC="64770"/>
 <Connection ConnectionType="-2147483648" DST="83714" IMemento.internal.id="317444" MotherDiagram="70659" SRC="311298"/>
@@ -319,6 +324,7 @@
 <Connection ConnectionType="536870913" DST="85506" IMemento.internal.id="175620" MotherDiagram="70659" SRC="84226"/>
 <Connection ConnectionType="536870913" DST="75010" IMemento.internal.id="272900" MotherDiagram="37379" SRC="271874"/>
 <Connection ConnectionType="536870913" DST="51458" IMemento.internal.id="223492" MotherDiagram="20227" SRC="50178"/>
+<Connection ConnectionType="-2147483648" DST="320258" IMemento.internal.id="320772" MotherDiagram="73219" SRC="319234"/>
 <Connection ConnectionType="536870913" DST="62978" IMemento.internal.id="221188" MotherDiagram="57603" SRC="61954"/>
 <Connection ConnectionType="536870913" DST="63746" IMemento.internal.id="220420" MotherDiagram="57603" SRC="61954"/>
 <Connection ConnectionType="536870913" DST="37634" IMemento.internal.id="171012" MotherDiagram="21251" SRC="40194"/>
@@ -529,7 +535,7 @@
 <Look Height="-1" Width="-1" XCoordinate="723" YCoordinate="383"/>
 </EntityCell>
 <EntityCell IMemento.internal.id="312066" MotherDiagram="70659" WrappedEntity="290305">
-<Look Height="-1" Width="-1" XCoordinate="605" YCoordinate="247"/>
+<Look Height="-1" Width="-1" XCoordinate="638" YCoordinate="250"/>
 </EntityCell>
 <EntityCell IMemento.internal.id="66562" MotherDiagram="35587" WrappedEntity="37889">
 <Look Height="-1" Width="-1" XCoordinate="180" YCoordinate="370"/>
@@ -636,6 +642,9 @@
 <EntityCell IMemento.internal.id="74498" MotherDiagram="37379" WrappedEntity="40961">
 <Look Height="-1" Width="-1" XCoordinate="362" YCoordinate="164"/>
 </EntityCell>
+<EntityCell IMemento.internal.id="319234" MotherDiagram="73219" WrappedEntity="318209">
+<Look Height="-1" Width="-1" XCoordinate="663" YCoordinate="338"/>
+</EntityCell>
 <EntityCell IMemento.internal.id="25090" MotherDiagram="2307" WrappedEntity="24833">
 <Look Height="-1" Width="-1" XCoordinate="384" YCoordinate="339"/>
 </EntityCell>
@@ -644,6 +653,9 @@
 </EntityCell>
 <EntityCell IMemento.internal.id="269826" MotherDiagram="21251" WrappedEntity="82433">
 <Look Height="-1" Width="-1" XCoordinate="324" YCoordinate="232"/>
+</EntityCell>
+<EntityCell IMemento.internal.id="318466" MotherDiagram="37379" WrappedEntity="318209">
+<Look Height="-1" Width="-1" XCoordinate="548" YCoordinate="18"/>
 </EntityCell>
 <EntityCell IMemento.internal.id="23554" MotherDiagram="2307" WrappedEntity="23297">
 <Look Height="-1" Width="-1" XCoordinate="60" YCoordinate="157"/>
@@ -733,7 +745,7 @@
 <Look Height="-1" Width="-1" XCoordinate="413" YCoordinate="328"/>
 </EntityCell>
 <EntityCell IMemento.internal.id="292354" MotherDiagram="37379" WrappedEntity="290305">
-<Look Height="-1" Width="-1" XCoordinate="641" YCoordinate="60"/>
+<Look Height="-1" Width="-1" XCoordinate="609" YCoordinate="93"/>
 </EntityCell>
 <EntityCell IMemento.internal.id="46082" MotherDiagram="21251" WrappedEntity="23297">
 <Look Height="-1" Width="-1" XCoordinate="85" YCoordinate="420"/>
@@ -763,7 +775,7 @@
 <Look Height="-1" Width="-1" XCoordinate="327" YCoordinate="147"/>
 </EntityCell>
 <EntityCell IMemento.internal.id="81666" MotherDiagram="73219" WrappedEntity="36609">
-<Look Height="-1" Width="-1" XCoordinate="498" YCoordinate="280"/>
+<Look Height="-1" Width="-1" XCoordinate="543" YCoordinate="263"/>
 </EntityCell>
 <EntityCell IMemento.internal.id="80898" MotherDiagram="73219" WrappedEntity="43009">
 <Look Height="-1" Width="-1" XCoordinate="208" YCoordinate="116"/>
@@ -788,6 +800,9 @@
 </EntityCell>
 <EntityCell IMemento.internal.id="75522" MotherDiagram="37379" WrappedEntity="48385">
 <Look Height="-1" Width="-1" XCoordinate="685" YCoordinate="382"/>
+</EntityCell>
+<EntityCell IMemento.internal.id="320258" MotherDiagram="73219" WrappedEntity="320001">
+<Look Height="-1" Width="-1" XCoordinate="541" YCoordinate="404"/>
 </EntityCell>
 <EntityCell IMemento.internal.id="26114" MotherDiagram="2307" WrappedEntity="25857">
 <Look Height="-1" Width="-1" XCoordinate="26" YCoordinate="238"/>
@@ -844,7 +859,7 @@
 <Look Height="-1" Width="-1" XCoordinate="100" YCoordinate="244"/>
 </EntityCell>
 <EntityCell IMemento.internal.id="305666" MotherDiagram="37379" WrappedEntity="304641">
-<Look Height="-1" Width="-1" XCoordinate="694" YCoordinate="130"/>
+<Look Height="-1" Width="-1" XCoordinate="711" YCoordinate="139"/>
 </EntityCell>
 <EntityCell IMemento.internal.id="10754" MotherDiagram="515" WrappedEntity="10497">
 <Look Height="-1" Width="-1" XCoordinate="117" YCoordinate="105"/>
@@ -970,6 +985,7 @@
 </Beliefset>
 <Data DataType="296705" Description="Grid co-ordinates believed to have gold." EntityName="bel_goldAt" IMemento.internal.id="295937"/>
 <Plan Context="" Description="Reports a text message in the GUI" EntityName="GUIReportMessage" Failure="" FailureRecovery="" IMemento.internal.id="63489" Procedure=""/>
+<Plan Description="Report agent&apos;s new position when it changes." EntityName="ReportCurrentPositionChange" IMemento.internal.id="320001"/>
 <DataField FieldName="noSteps" FieldType="int" IMemento.internal.id="160513" IsKey="true"/>
 <Plan Context="" Description="Close the GUI interface" EntityName="GUIClose" Failure="" FailureRecovery="" IMemento.internal.id="62721" Procedure=""/>
 <Data DataType="159233" Description="int gridX,int gridY,int depotX,int depotY,int noStepsProperties of the current simulation" EntityName="bel_simulationProp" IMemento.internal.id="25857" Initialization="" IsExternal="false" IsPersistent="true" Package="" WriteWhen=""/>
@@ -1012,6 +1028,7 @@
 <DataField Description="Number of gold pieces." FieldName="numGold" FieldType="int" IMemento.internal.id="307713" IsKey="false"/>
 <DataField FieldName="depotY" FieldType="int" IMemento.internal.id="160257" IsKey="true"/>
 <DataField FieldName="gridX" FieldType="int" IMemento.internal.id="159489" IsKey="true"/>
+<Message Description="Event posted when the agent has moved." EntityName="ECurrentPositionChange" IMemento.internal.id="318209" InfoCarried="The new co-ordinates of the agent." Purpose="To determine whether the agent has moved successfully."/>
 <Data DataType="252417" Description="Mutex to coordinate access to the actual GUI Window" EntityName="mutex_accessGUI" IMemento.internal.id="24833" Initialization="" IsExternal="false" IsPersistent="true" Package="aos.jack.util.thread.Semaphore" WriteWhen=""/>
 <Message Description="Instruct the execution of an action" EntityName="EExecuteCLIMAaction" IMemento.internal.id="48897" InfoCarried="" IsCovered="true" IsExternal="false" IsOverlapped="true" Package="" Purpose=""/>
 <Plan Context="" Description="Start the GUI interface" EntityName="GUIInitiate" Failure="" FailureRecovery="" IMemento.internal.id="60929" Procedure=""/>

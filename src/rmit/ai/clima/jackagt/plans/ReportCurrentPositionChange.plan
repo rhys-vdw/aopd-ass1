@@ -1,0 +1,30 @@
+package rmit.ai.clima.jackagt.plans;
+import rmit.ai.clima.jackagt.events.*;
+import rmit.ai.clima.jackagt.data.*;
+import rmit.ai.clima.interfaces.*;
+
+public plan ReportCurrentPositionChange extends Plan
+{
+/******** Start PDT Design Block *** DO NOT EDIT IT *********/
+
+/*
+Plan Name: ReportCurrentPositionChange
+Description: Report agent's new position when it changes.
+*/
+	//Events handled by the plan are declared here.
+	#handles event ECurrentPositionChange ecurrentpositionchange_h;
+
+
+	// Declarations of any beliefset/data that the plan accesses.
+/******** End PDT Design Block *** DO NOT EDIT IT *********/
+
+	#uses interface DebugInterface consoleIface;
+	
+	context() { true; }
+
+	body() {
+		consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
+				" has just moved to location " + ecurrentpositionchange_h.posX +
+				"," + ecurrentpositionchange_h.posY + ".");
+	}
+}

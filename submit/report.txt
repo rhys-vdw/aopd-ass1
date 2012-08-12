@@ -497,7 +497,6 @@ PickGold.plan (line 32):
     // Is the agent carrying less than its capacity?
       bel_numCarryingGold_dat.get($numGold) && $numGold.as_int() < MAX_CARRYING_GOLD;
   }
-
 Ran 20 steps. Players pick up gold. See trace4-2.txt.
 
 Summary:
@@ -510,3 +509,76 @@ I had the following problems:
   MoveRandomly was first, and PickGold was second. In ActionDecision.cap the
   order was opposite. This was solved by regenerating.
 
+Exercise 5: Realising That We've Moved
+--------------------------------------
+
+- Step 1:
+
+design.pd:
+In detailed design view of GamePlaying capablity:
+ - Created new Message object called "ECurrentPositionChange".
+ - Set its properties:
+    - Description "Event posted when the agent has moved."
+    - Purpose     "To determine whether the agent has moved successfully."
+    - Info Carried "The new co-ordinates of the agent."
+ - Created connection FROM HandlePercept TO ECurrentPositionChange.
+
+Generated code.
+
+Add new position information to event.
+ECurrentPositionChange.event:
+
+  public event ECurrentPositionChange extends BDIGoalEvent {
+  /*
+   * Message Name: ECurrentPositionChange
+   * Description: Event posted when the agent has moved.
+   * Information Carried: The new co-ordinates of the agent.
+   * Purpose: To determine whether the agent has moved successfully.
+  */
+    public int posX, posY;
+    
+    #posted as post(int posX, int posY) {
+      this.posX = posX;
+      this.posY = posY;
+    }
+  }
+
+HandlePercept must post event when appropriate.
+HandlePercept.plan (body() -> line 115):
+
+  // Has position changed?
+  if (bel_currentPosition_dat.check(posX, posY).negate()) {
+    // Update beliefset with the new position of the agent
+    bel_currentPosition_dat.add(posX, posY);
+    
+    // Report that position has changed.
+    @post(ecurrentpositionchange_p.post(posX, posY));
+  }
+
+- Step 2:
+
+design.pd:
+In detailed design view of GamePlaying:
+- Added connection FROM ECurrentPositionChange TO InfoReporting.
+In detailed design view of InfoReporting:
+- Created new plan called ReportCurrentPositionChange.
+- Added connection FROM ECurrentPositionChange TO ReportCurrentPositionChange.
+- Added ECurrentPositionChange to triggers in ReportCurrentPositionChange's
+  properties.
+
+Generated code.
+
+ReportCurrentPositionChange.plan:
+
+  #uses interface DebugInterface consoleIface;
+
+  context() { true; }
+
+  body() {
+    consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
+        " has just moved to location " + ecurrentpositionchange_h.posX +
+        "," + ecurrentpositionchange_h.posY + ".");
+  }
+
+Ran simulation for 20 steps. Observed that message was only printed when agent
+moved. See trace5-2.txt.

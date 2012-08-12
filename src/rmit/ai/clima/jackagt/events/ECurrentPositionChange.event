@@ -1,0 +1,20 @@
+package rmit.ai.clima.jackagt.events;
+import rmit.ai.clima.jackagt.data.*;
+
+/******** Start PDT Design Block *** DO NOT EDIT IT *********/
+public event ECurrentPositionChange extends BDIGoalEvent
+{
+/*
+ * Message Name: ECurrentPositionChange
+ * Description: Event posted when the agent has moved.
+ * Information Carried: The new co-ordinates of the agent.
+ * Purpose: To determine whether the agent has moved successfully.
+*/
+/******** End PDT Design Block *** DO NOT EDIT IT *********/
+	public int posX, posY;
+	
+	#posted as post(int posX, int posY) {
+		this.posX = posX;
+		this.posY = posY;
+	}
+}

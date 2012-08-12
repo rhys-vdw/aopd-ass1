@@ -51,6 +51,7 @@
 <Entity DataFields="int xCoord, int yCoord" DataType="GoldAt" ID="295937" name="bel_goldAt"/>
 <Entity ID="2561" name="sim-start XML"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/GUIReportMessage.plan" ID="63489" name="GUIReportMessage"/>
+<Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/ReportCurrentPositionChange.plan" ID="320001" name="ReportCurrentPositionChange"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/GUIClose.plan" ID="62721" name="GUIClose"/>
 <Entity DataFields="int gridX, int gridY, int depotX, int depotY, int noSteps" DataType="SimulationProp" ID="25857" name="bel_simulationProp"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/MEInformCellStatus.event" ID="37889" name="MEInformCellStatus"/>
@@ -76,6 +77,7 @@
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/Coord_InitSimulation.plan" ID="51201" name="Coord_InitSimulation"/>
 <Entity DataFields="String agentName, int no, int x, int y" DataType="PlayersCurrentPositions" ID="26369" name="bel_playersCurrentPositions"/>
 <Entity DataType="Semaphore" ID="24833" name="mutex_accessGUI" package="aos.jack.util.thread.Semaphore"/>
+<Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/ECurrentPositionChange.event" ID="318209" name="ECurrentPositionChange"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/EExecuteCLIMAaction.event" ID="48897" name="EExecuteCLIMAaction"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/GUIInitiate.plan" ID="60929" name="GUIInitiate"/>
 </JACKCodeRoot>
