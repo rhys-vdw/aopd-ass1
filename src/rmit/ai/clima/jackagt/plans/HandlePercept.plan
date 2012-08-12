@@ -20,27 +20,27 @@ Plan Name: HandlePercept
 Description: This plan assimilates each percept information received from the game server.
 */
 	//Events handled by the plan are declared here.
-	#sends event EUpdateBel eupdatebel_s;
+	#posts event ECurrentPositionChange ecurrentpositionchange_p;
 
-	#posts event EAct eact_p;
+	#posts event EShowBeliefs eshowbeliefs_p;
+
+	#sends event EUpdateBel eupdatebel_s;
 
 	#sends event MEInformAgentStatus meinformagentstatus_s;
 
-	#posts event ECurrentPositionChange ecurrentpositionchange_p;
-
 	#sends event EGUIDebugMessage eguidebugmessage_s;
 
-	#posts event EShowBeliefs eshowbeliefs_p;
+	#posts event EAct eact_p;
 
 	#handles event PerceiveClimaServer perceiveclimaserver_h;
 
 
 	// Declarations of any beliefset/data that the plan accesses.
-	#modifies data CurrentPosition bel_currentPosition_dat;
+	#modifies data NumGold bel_numCarryingGold_dat;
 
 	#modifies data CurrentRequestActionId bel_currentRequestActionId_dat;
 
-	#modifies data NumGold bel_numCarryingGold_dat;
+	#modifies data CurrentPosition bel_currentPosition_dat;
 
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
 
@@ -111,15 +111,8 @@ Description: This plan assimilates each percept information received from the ga
 		// Update beliefset with the current request action id from the incoming percept
 		bel_currentRequestActionId_dat.add(id,step);
 		
-
-		// Has position changed?
-		if (bel_currentPosition_dat.check(posX, posY).negate()) {
-			// Update beliefset with the new position of the agent
-			bel_currentPosition_dat.add(posX, posY);
-			
-			// Report that position has changed.
-			@post(ecurrentpositionchange_p.post(posX, posY));
-		}
+		// Update beliefset with the current position of the agent
+		bel_currentPosition_dat.add(posX, posY);
 		
 		// Update the beliefset with the current amount of gold carried.
 		if (items >= 0) {

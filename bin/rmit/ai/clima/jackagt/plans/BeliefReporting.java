@@ -16,10 +16,10 @@ import aos.jack.jak.logic.Signature;
 import rmit.ai.clima.jackagt.events.MEInformAgentStatus;
 import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
 import rmit.ai.clima.jackagt.events.EShowBeliefs;
-import rmit.ai.clima.jackagt.data.CurrentStatus;
 import rmit.ai.clima.jackagt.data.CellEmpty;
-import rmit.ai.clima.iface.LastActionSentBel;
 import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
+import rmit.ai.clima.jackagt.data.CurrentStatus;
+import rmit.ai.clima.iface.LastActionSentBel;
 import java.lang.Object;
 import aos.jack.jak.cursor.Cursor;
 import aos.jack.jak.fsm.FSM;
@@ -40,10 +40,10 @@ public class BeliefReporting extends aos.jack.jak.plan.Plan {
     public rmit.ai.clima.jackagt.events.MEInformAgentStatus meinformagentstatus_s;
     public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
     public rmit.ai.clima.jackagt.events.EShowBeliefs eshowbeliefs_h;
-    public rmit.ai.clima.jackagt.data.CurrentStatus bel_currentStatus_dat;
     public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
-    public rmit.ai.clima.iface.LastActionSentBel bel_lastActionSent_dat;
     public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
+    public rmit.ai.clima.jackagt.data.CurrentStatus bel_currentStatus_dat;
+    public rmit.ai.clima.iface.LastActionSentBel bel_lastActionSent_dat;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
             "rmit/ai/clima/jackagt/plans/BeliefReporting.plan",
@@ -64,20 +64,20 @@ public class BeliefReporting extends aos.jack.jak.plan.Plan {
             "meinformagentstatus_s",
             "eguidebugmessage_s",
             "eshowbeliefs_h",
-            "bel_currentStatus_dat",
             "bel_cellEmpty_dat",
-            "bel_lastActionSent_dat",
-            "bel_currentRequestActionId_dat"};
+            "bel_currentRequestActionId_dat",
+            "bel_currentStatus_dat",
+            "bel_lastActionSent_dat"};
     private final static java.lang.String[] __planVariableTypes = {
             "String[]",
             "String",
             "MEInformAgentStatus",
             "EGUIDebugMessage",
             "EShowBeliefs",
-            "CurrentStatus",
             "CellEmpty",
-            "LastActionSentBel",
-            "rmit.ai.clima.jackagt.data.CurrentRequestActionId"};
+            "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
+            "CurrentStatus",
+            "LastActionSentBel"};
     private final static java.lang.String[] __reasoningMethods = {
             "body",
             "fail"};
@@ -110,10 +110,10 @@ public class BeliefReporting extends aos.jack.jak.plan.Plan {
         meinformagentstatus_s = __env.meinformagentstatus_s;
         eguidebugmessage_s = __env.eguidebugmessage_s;
         eshowbeliefs_h = __env.eshowbeliefs_h;
-        bel_currentStatus_dat = __env.bel_currentStatus_dat;
         bel_cellEmpty_dat = __env.bel_cellEmpty_dat;
-        bel_lastActionSent_dat = __env.bel_lastActionSent_dat;
         bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
+        bel_currentStatus_dat = __env.bel_currentStatus_dat;
+        bel_lastActionSent_dat = __env.bel_lastActionSent_dat;
     }
     
     public boolean init_sentinel(aos.jack.jak.agent.NameSpace __a)
@@ -133,24 +133,24 @@ public class BeliefReporting extends aos.jack.jak.plan.Plan {
             warning("Failed to find EShowBeliefs eshowbeliefs_h");
             return false;
         }
-        bel_currentStatus_dat = (rmit.ai.clima.jackagt.data.CurrentStatus) lookupNamedObject("bel_currentStatus_dat","rmit.ai.clima.jackagt.data.CurrentStatus",0);
-        if (bel_currentStatus_dat == null) {
-            warning("Failed to find CurrentStatus bel_currentStatus_dat");
-            return false;
-        }
         bel_cellEmpty_dat = (rmit.ai.clima.jackagt.data.CellEmpty) lookupNamedObject("bel_cellEmpty_dat","rmit.ai.clima.jackagt.data.CellEmpty",0);
         if (bel_cellEmpty_dat == null) {
             warning("Failed to find CellEmpty bel_cellEmpty_dat");
             return false;
         }
-        bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) lookupNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel",0);
-        if (bel_lastActionSent_dat == null) {
-            warning("Failed to find LastActionSentBel bel_lastActionSent_dat");
-            return false;
-        }
         bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) lookupNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId",0);
         if (bel_currentRequestActionId_dat == null) {
             warning("Failed to find CurrentRequestActionId bel_currentRequestActionId_dat");
+            return false;
+        }
+        bel_currentStatus_dat = (rmit.ai.clima.jackagt.data.CurrentStatus) lookupNamedObject("bel_currentStatus_dat","rmit.ai.clima.jackagt.data.CurrentStatus",0);
+        if (bel_currentStatus_dat == null) {
+            warning("Failed to find CurrentStatus bel_currentStatus_dat");
+            return false;
+        }
+        bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) lookupNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel",0);
+        if (bel_lastActionSent_dat == null) {
+            warning("Failed to find LastActionSentBel bel_lastActionSent_dat");
             return false;
         }
         return true;
@@ -275,19 +275,19 @@ public class BeliefReporting extends aos.jack.jak.plan.Plan {
             }
             case 5: 
             {
-                return aos.util.ToObject.box(bel_currentStatus_dat);
+                return aos.util.ToObject.box(bel_cellEmpty_dat);
             }
             case 6: 
             {
-                return aos.util.ToObject.box(bel_cellEmpty_dat);
+                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
             }
             case 7: 
             {
-                return aos.util.ToObject.box(bel_lastActionSent_dat);
+                return aos.util.ToObject.box(bel_currentStatus_dat);
             }
             case 8: 
             {
-                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
+                return aos.util.ToObject.box(bel_lastActionSent_dat);
             }
             default: 
             {

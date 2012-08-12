@@ -1,4 +1,5 @@
 package rmit.ai.clima.jackagt.events;
+import rmit.ai.clima.iface.LastActionSentBel;
 import rmit.ai.clima.jackagt.data.*;
 
 /******** Start PDT Design Block *** DO NOT EDIT IT *********/
@@ -10,11 +11,17 @@ public event ECurrentPositionChange extends BDIGoalEvent
  * Information Carried: The new co-ordinates of the agent.
  * Purpose: To determine whether the agent has moved successfully.
 */
+	#uses data CurrentPosition bel_currentPosition_dat;
+
+	#uses data LastActionSentBel bel_lastActionSent_dat;
+
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
 	public int posX, posY;
 	
-	#posted as post(int posX, int posY) {
-		this.posX = posX;
-		this.posY = posY;
+	logical int $posX, $posY;
+	
+	#posted when (bel_currentPosition_dat.get($posX, $posY)) {
+		this.posX = $posX.as_int();
+		this.posY = $posY.as_int();
 	}
 }

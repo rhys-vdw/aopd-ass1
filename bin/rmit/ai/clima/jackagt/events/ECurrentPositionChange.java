@@ -6,39 +6,109 @@
  *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*/
 package rmit.ai.clima.jackagt.events;
 import aos.jack.jak.event.BDIGoalEvent;
+import aos.jack.jak.event.Event;
+import aos.jack.jak.logic.LogicException;
+import aos.jack.jak.logic.Signature;
+import aos.jack.jak.logic.LogicEnv;
+import aos.extension.rule.RuleMonitor;
+import rmit.ai.clima.jackagt.data.CurrentPosition;
+import rmit.ai.clima.iface.LastActionSentBel;
+import java.lang.Object;
+import aos.jack.jak.core.Jak;
 
 /******** Start PDT Design Block *** DO NOT EDIT IT *********/
 
-public class ECurrentPositionChange extends aos.jack.jak.event.BDIGoalEvent {
+public class ECurrentPositionChange extends aos.jack.jak.event.BDIGoalEvent implements aos.extension.rule.RuleHandler {
     public int posX;
     public int posY;
+    aos.jack.jak.logic.IntegerVariable $posX;
+    aos.jack.jak.logic.IntegerVariable $posY;
+    public rmit.ai.clima.jackagt.data.CurrentPosition bel_currentPosition_dat;
+    public rmit.ai.clima.iface.LastActionSentBel bel_lastActionSent_dat;
+    public aos.jack.jak.logic.LogicEnv __logic = null;
     private final static java.lang.String[] __eventVariableNames = {
             "posX",
-            "posY"};
+            "posY",
+            "$posX",
+            "$posY",
+            "bel_currentPosition_dat",
+            "bel_lastActionSent_dat"};
     private final static java.lang.String[] __eventVariableTypes = {
             "int",
-            "int"};
+            "int",
+            "logical int",
+            "logical int",
+            "CurrentPosition",
+            "LastActionSentBel"};
+    private boolean __rule_init = false;
     public java.lang.String getDocumentation()
     {
         return "/******** Start PDT Design Block *** DO NOT EDIT IT *********/\n";
     }
     
-    public rmit.ai.clima.jackagt.events.ECurrentPositionChange post(int posX, int posY)
+    public java.lang.Object genObject(int __index)
     {
-        rmit.ai.clima.jackagt.events.ECurrentPositionChange tmp = new rmit.ai.clima.jackagt.events.ECurrentPositionChange();
-        tmp.init(this);
-        return tmp.post_body(posX,posY);
+        switch (__index) {
+        }
+        aos.jack.jak.core.Jak.error("illegal Object Construction");
+        return null;
     }
     
-    private rmit.ai.clima.jackagt.events.ECurrentPositionChange post_body(int posX, int posY)
+    public aos.jack.jak.cursor.Cursor genCursor(int __index)
+        throws java.lang.Exception
     {
-        this.posX = posX;
-        this.posY = posY;
-        return this;
+        switch (__index) {
+            case 0: 
+            {
+                return (bel_currentPosition_dat.get($posX,$posY));
+            }
+        }
+        aos.jack.jak.core.Jak.error("illegal Cursor Construction");
+        return null;
+    }
+    
+    public aos.jack.jak.fsm.FSM genFSM(int __index)
+        throws java.lang.Exception
+    {
+        switch (__index) {
+        }
+        aos.jack.jak.core.Jak.error("illegal FSM Construction");
+        return null;
+    }
+    
+    public boolean testCondition(int __index)
+        throws java.lang.Exception
+    {
+        switch (__index) {
+        }
+        aos.jack.jak.core.Jak.error("illegal test Construction");
+        return false;
+    }
+    
+    public aos.jack.jak.event.Event __auto_post(int __index)
+        throws aos.jack.jak.logic.LogicException
+    {
+        rmit.ai.clima.jackagt.events.ECurrentPositionChange __tmp = new rmit.ai.clima.jackagt.events.ECurrentPositionChange();
+        __tmp.__automatic(this,__index);
+        agent.postEvent(__tmp);
+        return __tmp;
+    }
+    
+    public void backtrack()
+    {
+        __logic.clear();
     }
     
     public ECurrentPositionChange()
     {
+    }
+    
+    public aos.jack.jak.logic.Signature getSignature(int __log)
+    {
+        aos.jack.jak.logic.Signature __s = super.getSignature(__log + 2);
+        __s.addLogical($posX);
+        __s.addLogical($posY);
+        return __s;
     }
     
     public java.lang.String stateInfo()
@@ -67,9 +137,66 @@ public class ECurrentPositionChange extends aos.jack.jak.event.BDIGoalEvent {
             {
                 return aos.util.ToObject.box(posY);
             }
+            case 2: 
+            {
+                return aos.util.ToObject.box($posX);
+            }
+            case 3: 
+            {
+                return aos.util.ToObject.box($posY);
+            }
+            case 4: 
+            {
+                return aos.util.ToObject.box(bel_currentPosition_dat);
+            }
+            case 5: 
+            {
+                return aos.util.ToObject.box(bel_lastActionSent_dat);
+            }
             default: 
             {
                 throw new java.lang.IndexOutOfBoundsException("Event " + this + " does not have variable number " + n);
+            }
+        }
+    }
+    
+    public void addRelevant(aos.jack.jak.plan.Plan __p)
+    {
+        super.addRelevant(__p);
+        if (__rule_init) 
+            return ;
+        __rule_init = true;
+        try {
+            __automatic(null,-1);
+        }
+        catch (aos.jack.jak.logic.LogicException e) {
+        }
+        bel_currentPosition_dat = (rmit.ai.clima.jackagt.data.CurrentPosition) agent.getNamedObject("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition");
+        bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) agent.getNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel");
+        new aos.extension.rule.RuleMonitor(this,0);
+    }
+    
+    public void __automatic(rmit.ai.clima.jackagt.events.ECurrentPositionChange __e, int __index)
+        throws aos.jack.jak.logic.LogicException
+    {
+        __logic = new aos.jack.jak.logic.LogicEnv();
+        $posX = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+        $posY = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+        if (__e == null) 
+            return ;
+        init(__e);
+        if ((__e.$posX != null) && __e.$posX.isBound()) 
+            $posX.unify(__e.$posX.deref());
+        if ((__e.$posY != null) && __e.$posY.isBound()) 
+            $posY.unify(__e.$posY.deref());
+        switch (__index) {
+            case 0: 
+            {
+                {
+                    this.posX = $posX.as_int();
+                    this.posY = $posY.as_int();
+                }
+                break;
             }
         }
     }

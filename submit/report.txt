@@ -521,7 +521,7 @@ In detailed design view of GamePlaying capablity:
     - Description "Event posted when the agent has moved."
     - Purpose     "To determine whether the agent has moved successfully."
     - Info Carried "The new co-ordinates of the agent."
- - Created connection FROM HandlePercept TO ECurrentPositionChange.
+ - Created connection FROM ECurrentPositionChange TO bel_currentPosition.
 
 Generated code.
 
@@ -529,30 +529,20 @@ Add new position information to event.
 ECurrentPositionChange.event:
 
   public event ECurrentPositionChange extends BDIGoalEvent {
-  /*
-   * Message Name: ECurrentPositionChange
-   * Description: Event posted when the agent has moved.
-   * Information Carried: The new co-ordinates of the agent.
-   * Purpose: To determine whether the agent has moved successfully.
-  */
+    /*
+     * Message Name: ECurrentPositionChange
+     * Description: Event posted when the agent has moved.
+     * Information Carried: The new co-ordinates of the agent.
+     * Purpose: To determine whether the agent has moved successfully.
+     */
     public int posX, posY;
-    
-    #posted as post(int posX, int posY) {
-      this.posX = posX;
-      this.posY = posY;
+
+    logical int $posX, $posY;
+
+    #posted when (bel_currentPosition_dat.get($posX, $posY))) {
+      this.posX = $posX.as_int();
+      this.posY = $posY.as_int();
     }
-  }
-
-HandlePercept must post event when appropriate.
-HandlePercept.plan (body() -> line 115):
-
-  // Has position changed?
-  if (bel_currentPosition_dat.check(posX, posY).negate()) {
-    // Update beliefset with the new position of the agent
-    bel_currentPosition_dat.add(posX, posY);
-    
-    // Report that position has changed.
-    @post(ecurrentpositionchange_p.post(posX, posY));
   }
 
 - Step 2:
@@ -582,3 +572,8 @@ ReportCurrentPositionChange.plan:
 
 Ran simulation for 20 steps. Observed that message was only printed when agent
 moved. See trace5-2.txt.
+
+- Summary:
+In this exercise I learned how to:
+- Create events and deal with them using simple plans.
+- Use Jack's automatic event posting system. (ie. #posted when)
