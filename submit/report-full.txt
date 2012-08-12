@@ -1,0 +1,759 @@
+********************************************************************************
+*                   Agent-Oriented Programming and Design 2012                 *
+*                            Report - Assignment 1                             *
+*                        Rhys van der Waerden (s3134601)                       *
+********************************************************************************
+
+Exercise 1: Warming Up!
+-----------------------
+
+- Step 1:
+Already completed during warmup.
+
+- Step 2:
+Opened design.pd.
+
+- Step 3:
+Exported Player diagram as png. (See player-design.png).
+
+- Step 4:
+Added descriptionfor HandlePercept plan.
+
+- Step 5:
+Generated JACK code.
+
+- Step 6:
+Verified that sources were present and up to date.
+
+- Step 7:
+Added to Main.java (line 57):
+
+	System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
+
+Removed from Makefile (line 17):
+
+	-DJAVACARGS="-target 1.5"
+
+To enabled error free compilation and exectuion under Java 1.7.
+As advised I will change to JDK 1.6.
+
+- Summary:
+I have learned basic navigation of a PDT project, and how to generate JACK code
+and then compile that to Java code. I have also learned how to export diagrams
+as PNG files for documentation.
+
+Exercise 2: Knowing where we are
+--------------------------------
+
+- Step 1:
+Did not add console output, as a similar output was already present in
+HandlePercept.plan (line 114):
+
+    consoleIface.showConsoleDebug("A request-action event for step-id " + step
+        + "-" + id + " states that " + getAgent().name() +
+        " is currently at location " + currentPos.toString() + " with " + items
+        + " pieces of gold");
+
+Completing step would simply add redundant output for event. I have not included
+the program output as it would be indistinguishable from 'trace1-7.txt'.
+
+- Step 2:
+Created new beliefset 'CurrentPosition' for Player.
+Fields: int posX, int posY.
+Neither fields are keys, as only one position can be "current" for an agent.
+The beliefset is #private because each Player has its own unique current
+position in the game.
+
+
+- Step 3:
+Generated code successfully.
+
+- Step 4:
+Added two queries to CurrentPosition.bel (line 26, just after PDT Design Block):
+
+    #linear query get(logical int posX, logical int posY);
+    #linear query check(int posX, int posY);
+
+These queries allow the current position to be retrieved (get) or checked
+against supplies integer values (check). The 'logical' arguments on get are
+output variables.
+
+As the operation is on a set of exactly one tuple, the queries are linear for
+efficiency.
+
+- Step 5:
+
+a: Added link from GamePlaying to bel_currentPosition in Player page in Detailed
+Design. This is because current position is updated by the game.
+
+Then within this GamePlaying capability, linked from HandlePercept to
+bel_currentPosition.
+
+b: Generate JACK code. Observed new #modifies statement in HandlePercept.plan
+(line 39).
+
+        #modifies data CurrentPosition bel_currentPosition_dat;
+
+c. Added code to HandlePercept.plan to update current position beliefset
+(line 126):
+
+    // Update beliefset with the current position of the agent
+    bel_currentPosition_dat.add(posX, posY);
+
+PROBLEMS:
+The first time I attempted this step I added the link from GamePlaying to
+bel_currentPosition and then removed it before continuin. This did not remove
+bel_currentPosition from within the GamePlaying capability. PDT stopped
+working and I had to start again.
+
+- Step 6:
+Modify plan ConsoleBeliefPrinting to print out the agent's believed current position.
+
+Added connection from bel_currentPosition to InfoReporting in Player's
+GamePlaying capability.
+
+Set bel_currentPosition's modifier to #imports in the InfoReporting diagram.
+Added link from bel_currentPosition to ConsoleBeliefPrinting.
+
+Added these lines to the end of body in ConsoleBeliefPrinting.plan (line 85):
+
+        logical int $posX, $posY;
+        bel_currentPosition_dat.get($posX, $posY);
+        consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
+            " believes it is currently at location (" + $posX + "," + $posY +
+            ")");
+
+The output can be seen when the program runs (output edited for readability):
+
+[[player6@%portal]] A request-action event for step-id 19-20 states that
+                    player6@%portal is currently at location (5, 5) with 0
+                    pieces of gold
+[[player6@%portal]] Current ID step: 20
+[[player6@%portal]] Number of cells believed empty of obstacles: 32
+[[player6@%portal]] Number of believed obstructed cells: 2
+[[player6@%portal]] Agent player6@%portal believes it is currently at location
+                    (5,5)                           <------- THIS THE NEW OUTPUT
+[[player6@%portal]] I will move randomly to this dir: down
+[[player6@%portal]] I sent CLIMA action *down* for execution with id 20
+
+<Action
+    :type  "down"
+    :param  "player6@%portal"
+    :id  "20"
+>
+
+(full output available in trace2-4.txt)
+
+- Summary:
+In this exercise I have learned how to:
+ - display debug output to console.
+ - create a new beliefset.
+ - add and retrieve data from a beliefset.
+ - interpret and extend the relationship between beliefs and plans in PDT.
+ - use version control to prevent losing my progress :)
+
+Exercise 3: Keeping track of gold pieces
+----------------------------------------
+
+- Step 1:
+CellEmpty is updated by plan UpdateCellsAround. This plan takes an event
+'EUpdateBelief' containing a grid coordinate and a list of contents from
+its surrounding cells.
+
+At the moment HandlePercept is the only source of EUpdateBelief events, so the
+belief updates could be performed within HandlePercept without any change in
+behaviour. However, it makes sense to decouple these because later we would
+like the agents to benefit from each other's perception.
+
+More specifically, an agent will send an EUpdateBelief to each of its team
+mates so that they may know positions of gold, barriers, opponents etc.
+When they receive it they will use their "UpdateCellsAround" plan.
+
+- Step 2:
+Created data object "bel_goldAt" in Detailed Design -> Player. Modifer is
+"#private" because each agent has its own record of perception (for now).
+
+Added data type:
+name: GoldAt
+fields: int xCoord, int yCoord (both fields are keys, because a different value
+must be stored for every unique cell)
+
+- Added connection FROM GamePlaying TO bel_goldAt.
+
+- Within GamePlaying:
+  - Added connection FROM UpdateCellsAround TO bel_goldAt.
+  - Set modifier of bel_goldAt to #imports.
+  - Added connection FROM bel_goldAt TO InfoReporting (for debugging changes).
+
+- Generated Jack successfully!
+
+- Changed belief GoldAt's superclass to OpenWorld (agents will not know the
+status of every cell in the game)
+
+a. Added to GoldAt.bel after PDT Design Block (line 26):
+
+    #indexed query checkIfGold(int xCoord, int yCoord);
+
+Parameters are not logical because we are checking against two keys.
+
+b. Added to GoldAt.bel (line 27):
+
+    #indexed query get(logical int xCoord, logical int yCoord);
+
+Since there is no input parameter (both are logical), this will just return any
+tuple.
+
+c. Added to GoldAt.bel (line 29):
+
+    #function query public int countGold() {
+        logical int $x, $y;
+        int count = 0;
+
+        Cursor c = getLocWithGold($x, $y);
+        while (c.next()) {
+            count++;
+        }
+
+        return count;
+    }
+
+This function iterates through all tuples/locations in the beliefset,
+incrementing a counter whenever a location is believed to have gold.
+
+d. Added to GoldAt.bel (line 41):
+
+    #complex query checkIfGoldInRow(int x) {
+        logical int $x, $y;
+        return getLocWithGold($x, $y) && (x == $x.as_int());
+    }
+
+The return statement of a complex query invokes an implicit next() method on
+the Counter objects. The return expression will continue to iterate through all
+values returned by getLocWithGold until the && operator returns true or all
+tuples are exhausted.
+
+This means that the iteration will continue until a location with gold also
+satisfies the expression (x == $x.as_int()), ie. a grid co-ordinate with gold
+at row x.
+
+- Step 3:
+
+Changes to design.pd for plans StartSimulation and FinishSimulation to modify
+beliefset GoldAt:
+
+- In detailed design of Player:
+  - Made connection FROM capability GameSyncing TO bel_goldAt.
+- In GameSyncing:
+  - Set bel_goldAt's JackCode modifier to #imports.
+  - Made connection FROM plan StartSimulation TO bel_goldAt.
+  - Made connection FROM plan FinishSimulation TO bel_goldAt.
+
+Generated code and observed line in PDT block of both StartSimulation.plan and
+FinishSimulation.plan:
+
+    #modifies data GoldAt bel_goldAt_dat;
+
+Code generation success!
+
+- Code changes:
+
+StartSimulation.plan:
+- No changes required, an empty OpenWorld beliefset is constructed with its
+  default constructor.
+  Since there are no known gold locations before a percept is received, an
+  empty beliefset is appropriate.
+
+  I initially tried initialising all tuples to "Cursor.UKNOWN",
+  which failed because:
+
+    "Attempts to add tuples with an unknown belief state into a beliefset with
+     Open World semantics will cause a BeliefSetException to be thrown."
+                                                    -JACK Agent Manual
+
+
+FinishSimulation.plan (line 62):
+- Remove all tuples at the end of simulation, this data has now expired.
+
+    bel_goldAt_dat.getLocWithGold($x,$y).removeAll(); 
+
+  OpenWorldCursor.removeAll() will remove all tuples from the beliefset that
+  match the Cursor returned by getLocWithGold(). ie, all the tuples in the
+  beliefset.
+
+UpdateCellsAround.play (line 60):
+- Update the GoldAt beliefset for each cell:
+
+    // Iterate on all the marks/labels for cells[i]
+    for(int j = 0; j < cells[i].marks.length; j++) {
+      String cellType = cells[i].marks[j].type;
+
+      // if mark is "unknown" then do not process the cell at all
+      if(cellType.equalsIgnoreCase("unknown") == false) {
+
+        if(cellType.equalsIgnoreCase("obstacle")) {
+
+          // This cell contains an obstacle
+          bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.FALSE);
+          bel_goldAt_dat.add(loc.x, loc.y, Cursor.FALSE);
+        } else {
+
+          // The is considered empty if there is no obstacle
+          bel_cellEmpty_dat.add(loc.x, loc.y, Cursor.TRUE);
+
+          // Is there gold in this cell?
+          BeliefState hasGold = cellType.equalsIgnoreCase("gold") ?
+            Cursor.TRUE : Cursor.FALSE;
+          bel_goldAt_dat.add(loc.x, loc.y, hasGold);
+        }
+      }
+    }
+
+  The new code adds a new tuple to the GoldAt beliefset for each cell that is confirmed to either have
+  gold or not.
+
+- Step 4:
+design.pd:
+- In GamePlaying detailed view:
+  - Added link FROM bel_goldAt to InfoReporting.
+- In InfoReporting detailed view:
+  - Set bel_goldAt's JackCode modifier to #imports.
+  - Added link FROM bel_goldAt to ConsoleBeliefPrinting.
+
+Generated code.
+
+ConsoleBeliefPrinting.plan:
+
+  final static String [] DIRECTIONS = { "cur", "n", "ne", "e", "se", "s",
+    "sw", "w", "nw" };
+  final static String [] DIRECTION_NAMES = { "current position", "north",
+    "north-east", "east", "south-east", "south", "south-west", "west",
+    "north-west" };
+
+      ...
+
+    #reasoning method
+    body() {
+
+      ...
+
+      // Iterate through all surrounding cells, report what is found
+      for (int i = 0; i < DIRECTIONS.length; i++) {
+        GridPoint loc = GridPoint.getFromDir($posX.as_int(), $posY.as_int(), DIRECTIONS[i]);
+        // Check for obstacles
+        if (bel_cellEmpty_dat.check(loc.x, loc.y).negate()) {
+          logAdjacentContents("an obstacle", i);
+        } else if (bel_goldAt_dat.checkIfGold(loc.x, loc.y)) {
+          logAdjacentContents("gold", i);
+        }
+      }
+    }
+    
+    void logAdjacentContents(String content, int directionIndex) {
+      consoleIface.showConsoleDebug(
+          "Agent " + getAgent().getName() + " believes there is " +
+            content + " in the " + DIRECTION_NAMES[directionIndex]);
+    }
+
+Ran simulation. Trace saved to trace3-5.txt.
+
+- Step 5:
+
+- In design.pd:
+
+Added "posted when" connection from ECellChange event to bel_goldAt so that a
+change in an agent's GoldAt beliefset will post an ECellChange event to
+update the GUI.
+
+Added code from Assignment spec:
+
+    #posted when (bel_goldAt_dat.getLocWithGold($x, $y)){
+      // Cell has a gold
+      gridObject = new GridObject($x.as_int(),$y.as_int(),GameGraphics.getGoldString());
+      message = "Just learned of gold at " +GridPoint.toString($x.as_int(),$y.as_int());
+    }
+    #posted when (!bel_goldAt_dat.getLocWithGold($x, $y)){
+      // Cell has no gold
+      gridObject = new GridObject($x.as_int(), $y.as_int(), "nogold");
+      message = "Just learned no gold at " + GridPoint.toString($x.as_int(),$y.as_int());
+    }
+
+These events are sent to the GUI when a tuple is added to the GoldAt beliefset
+of an agent, updating the display.
+
+Exercise 4: Should I Pick Or Should I Go?
+-----------------------------------------
+
+- Step 1:
+
+Design.pd:
+- In detailed design of Player:
+  - Created data object named "bel_numCarryingGold".
+  - Gave data object one data type, NumGold.
+  - Set JackCode modifier to #private
+  - Added int field "count" to NumGold. Set key to false.
+  - Linked FROM GamePlaying TO bel_numCarryingGold.
+  - Linked FROM GameSyncing TO bel_numCarryingGold.
+- In detailed design of GamePlaying:
+  - Set JackCode modifier of bel_numCarryingGold to #imports.
+  - Linked FROM bel_numCarryingGold TO InfoReporting.
+  - Linked FROM HandlePercept TO bel_numCarryingGold.
+- In InfoReporting:
+  - Set JackCode modifier of bel_numCarryingGold to #imports.
+  - Linked FROM bel_numCarryingGold TO ConsoleBeliefPrinting.
+- In GameSyncing:
+  - Set JackCode modifier of bel_numCarryingGold to #imports.
+  - Linked FROM StartSimulation TO bel_numCarryingGold_dat
+  - Linked FROM FinishSimulation TO bel_numCarryingGold_dat
+
+Generated code.
+
+The beliefset must be initialized to 0, emptied on game end, and updated on
+HandlePercept.
+
+StartSimulation.plan (in body() -> line 79):
+
+  bel_numCarryingGold_dat.add(0);
+
+FinishSimulation.plan (in body() -> line 67):
+
+  bel_numCarryingGold_dat.get($numGold).removeAll();
+
+HandlePercept.plan (in body() -> line 115):
+
+  // Update the beliefset with the current amount of gold carried.
+  if (items >= 0) {
+    bel_numCarryingGold_dat.add(items);
+  }
+
+ConsoleBeliefPrinting (line 95):
+
+  logical int $numGold;
+  bel_numCarryingGold_dat.get($numGold);
+  consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
+      " is currently carrying " + $numGold + " pieces of gold.");
+
+Compiled, and run. Output in trace4-1.txt.
+
+- Step 2:
+
+Design.pd:
+- In detailed deisign of GamePlaying
+  - Make connection FROM bel_currentPosition TO ActionDecision.
+  - Make connection FROM bel_numCarryingGold TO ActionDecision.
+  - Make connection FROM bel_goldAt to ActionDecision.
+- In detailed design of ActionDecision capability:
+  - Set bel_currentPosition's JackCode modifier to #imports.
+  - Set bel_numCarryingGold's JackCode modifier to #imports.
+  - Set bel_goldAt's JackCode modifier to #imports.
+  - Make connection FROM bel_currentPosition TO PickGold.
+  - Make connection FROM bel_numCarryingGold TO PickGold.
+  - Make connection FROM bel_goldAt TO PickGold.
+  - Make connection FROM PickGold TO EExecuteCLIMAction.
+  - Make connection FROM PickGold TO EGUIDebugMessage.
+  - Create plan called PickGold.
+  - Add EAct to its list of triggers.
+
+Generated code.
+
+Make plan valid whenever the player is in a tile with gold.
+
+PickGold.Plan (line 34):
+
+  logical int $posX, $posY;
+  
+  context()
+  {
+    // Is there gold at current position?
+    bel_currentPosition_dat.get($posX, $posY) && bel_goldAt_dat.checkIfGold(
+        $posX.as_int(), $posY.as_int());
+  }
+
+  #reasoning method
+  body()
+  {
+    consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
+        " tries to pick up gold.");
+    
+      @subtask(eexecuteclimaaction_p.post("pick"));
+  }
+
+Ran 20 steps. Players pick up gold. See trace4-2.txt.
+
+- Step 3:
+
+Since the precendence of the plans are set correctly in EAct's properties in PDT,
+only the context method of PickGold needs to be updated.
+
+PickGold.plan (line 32):
+
+  static final int MAX_CARRYING_GOLD = 3;
+  logical int $posX, $posY;
+  logical int $numGold;
+  
+  context()
+  {
+    // Is there gold at current position?
+    bel_currentPosition_dat.get($posX, $posY) && bel_goldAt_dat.checkIfGold($posX.as_int(), $posY.as_int()) &&
+    // Is the agent carrying less than its capacity?
+      bel_numCarryingGold_dat.get($numGold) && $numGold.as_int() < MAX_CARRYING_GOLD;
+  }
+Ran 20 steps. Players pick up gold. See trace4-2.txt.
+
+Summary:
+In this section I learned how to:
+ - Create plans, and specify their context and precedence.
+ - Send messages to the server.
+
+I had the following problems:
+- PDT showed the wrong plan precedence for EAct, which confused me. In PTD
+  MoveRandomly was first, and PickGold was second. In ActionDecision.cap the
+  order was opposite. This was solved by regenerating.
+
+Exercise 5: Realising That We've Moved
+--------------------------------------
+
+- Step 1:
+
+design.pd:
+In detailed design view of GamePlaying capablity:
+ - Created new Message object called "ECurrentPositionChange".
+ - Set its properties:
+    - Description "Event posted when the agent has moved."
+    - Purpose     "To determine whether the agent has moved successfully."
+    - Info Carried "The new co-ordinates of the agent."
+ - Created connection FROM ECurrentPositionChange TO bel_currentPosition.
+
+Generated code.
+
+Add new position information to event.
+ECurrentPositionChange.event:
+
+  public event ECurrentPositionChange extends BDIGoalEvent {
+    /*
+     * Message Name: ECurrentPositionChange
+     * Description: Event posted when the agent has moved.
+     * Information Carried: The new co-ordinates of the agent.
+     * Purpose: To determine whether the agent has moved successfully.
+     */
+    public int posX, posY;
+
+    logical int $posX, $posY;
+
+    #posted when (bel_currentPosition_dat.get($posX, $posY))) {
+      this.posX = $posX.as_int();
+      this.posY = $posY.as_int();
+    }
+  }
+
+- Step 2:
+
+design.pd:
+In detailed design view of GamePlaying:
+- Added connection FROM ECurrentPositionChange TO InfoReporting.
+In detailed design view of InfoReporting:
+- Created new plan called ReportCurrentPositionChange.
+- Added connection FROM ECurrentPositionChange TO ReportCurrentPositionChange.
+- Added ECurrentPositionChange to triggers in ReportCurrentPositionChange's
+  properties.
+
+Generated code.
+
+ReportCurrentPositionChange.plan:
+
+  #uses interface DebugInterface consoleIface;
+
+  context() { true; }
+
+  body() {
+    consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
+        " has just moved to location " + ecurrentpositionchange_h.posX +
+        "," + ecurrentpositionchange_h.posY + ".");
+  }
+
+Ran simulation for 20 steps. Observed that message was only printed when agent
+moved. See trace5-2.txt.
+
+- Summary:
+In this exercise I learned how to:
+- Create events and deal with them using simple plans.
+- Use Jack's automatic event posting system. (ie. #posted when)
+
+Exercise 6: Sending a message to a coordinator agent
+----------------------------------------------------
+
+- Step 1:
+
+design.pd:
+In detailed design view of Coordinator:
+- Create data object called "bel_agentPositions".
+  - Set its JackCode modifier to #private.
+  - Give it key field of type String called "agentName".
+  - Give it value field of type in called "posX".
+  - Give it value field of type in called "posY".
+
+Generate code.
+
+Add query to retrieve position data.
+AgentPosition.bel (line 32):
+
+  #indexed query get(logical String $agentName, logical int posX, logical int posY);
+  #indexed query get(String agentName, logical int posX, logical int posY);
+
+- Step 2:
+
+design.pd:
+In detailed design view of Coordinator:
+- Add connection FROM Coord_EndSimulation TO bel_agentPositions.
+
+Generate code.
+
+Clear agent positions at the end of the simulation.
+
+Coord_EndSimulation.plan (body() -> line 47)
+
+      logical int $gridX, $gridY, $depotX, $depotY, $noSteps, $posX, $posY;
+      logical String $agent;
+      bel_simulationProp_dat.get($gridX, $gridY, $depotX, $depotY, $noSteps).removeAll();
+      bel_agentPositions_dat.get($agent, $posX, $posY).removeAll();
+
+- Step 3:
+
+design.pd:
+In the detailed design view of Player's InfoReporting capability:
+ - Create a new Event called MEInformCurrentPositionChange.
+ - Add connection FROM ReportCurrentPositionChange TO
+     MEInformCurrentPositionChange.
+In the detailed design view of Coordinator:
+ - Add the MEInformCurrentPositionChange Event object.
+ - Create a Plan object called Coord_UpdatePlayerPositions.
+ - Add connection FROM MEInformCurrentPositionChange TO Coord_UpdatePlayerPositions.
+ - Add ECurrentPositionChange to Coord_UpdatePlayerPositions's trigger list.
+ - Add connection FROM Coord_UpdatePlayerPositions TO MEInformCurrentPositionChange.
+
+Generate code.
+
+MEInformCurrentPositionChange.event:
+
+  public String agentName;
+  public int posX;
+  public int posY;
+  
+  #posted as post(String agentName, int posX, int posY) {
+    this.agentName = agentName;
+    this.posX = posX;
+    this.posY = posY;
+  }
+
+
+ReportCurrentPositionChange.plan:
+
+  @send("boss", meinformcurrentpositionchange_p.post(getAgent().getName(),
+    posX, posY));
+
+
+Coord_UpdatePlayerPositions.plan:
+
+  #uses interface DebugInterface consoleIface;
+  
+  context() { true; }
+
+  body() {
+    String agentName = meinformcurrentpositionchange_h.agentName;
+    int posX = meinformcurrentpositionchange_h.posX;
+    int posY = meinformcurrentpositionchange_h.posY;
+    
+    bel_agentPositions_dat.add(agentName, posX, posY);
+    
+    StringBuilder message = new StringBuilder("Current Agent positions:\n");
+    logical String $agentName;
+    logical int $posX, $posY;
+    for (Cursor c = bel_agentPositions_dat.get($agentName, $posX, $posY); c.next();) {
+      message.append($agentName + " is at (" + $posX + "," + $posY + ")\n");
+    }
+    consoleIface.showConsoleDebug(message.toString());
+  }
+
+NOTE: The plan should be called Coord_UpdatePlayerPosition (singular), because
+it only deals with one player at a time. But I didn't want to risk breaking
+PDT so I have left it.
+
+NOTE: At this stage the .PD file is corrupted, so every time I regenerate I have
+to manually remove an extra #handles line from Coord_UpdatePlayerPosition.
+This is not ideal, but the chance of me repeating the mistake or making
+another one similar is so high that it's not worth the risk of going back and
+redoing it.
+
+- Step 4:
+
+design.pd:
+In detailed design of Coordinator:
+- Add data object bel_goldAt.
+- Set bel_goldAt's JackCode modifier to #private.
+- Add data object bel_cellEmpty.
+- Set bel_cellEmpty's JackCode modifier to #private.
+
+- Step 5:
+
+design.pd
+In detailed design of Coordinator:
+- Add event object EUpdateBel.
+- Add plan object UpdateCellsAround.
+(it automatically connects to bel_goldAt and bel_cellEmpty).
+
+HandlePercept must send message to coordinator.
+
+HandlePercept.plan (line 99):
+
+  // Send update information to the co-ordinator.
+  @send("boss", eupdatebel_s.post(id, currentPos, cells, items));
+
+- Step 6:
+
+design.pd:
+In detailed design of Coordinator:
+- Add new Message object "ECellStatusChanged".
+- Create connection FROM ECellStatusChanged TO bel_cellEmpty.
+- Create connection FROM ECellStatusChanged TO bel_agentPositions.
+- Create new plan called PrintCellChange.
+- Create connection FROM ECellStatusChanged TO PrintCellChange.
+- Add ECellStatusChanged as trigger of PrintCellChange.
+
+Generate Code.
+
+ECellStatusChanged.event (line 15):
+
+  public String message;
+  logical int $posX, $posY;
+  logical String $agentName;
+
+  #posted when (bel_cellEmpty_dat.get($posX, $posY).negate()) {
+    message = "Obstacle found at " + $posX + "," + $posY + ".";
+  }
+
+  #posted when (bel_agentPositions_dat.get($agentName,
+        $posX, $posY)) {
+    message = "Agent " + $agentName + " is now at " +
+      $posX + "," + $posY + ".";
+  }
+
+PrintCellChange.plan:
+
+  public plan PrintCellChange extends Plan
+  {
+    #handles event ECellStatusChanged ecellstatuschanged_h;
+
+    #uses interface DebugInterface consoleIface;
+    
+    context() { true; }
+
+    body() {
+      String message = ecellstatuschanged_h.message;
+      consoleIface.showConsoleDebug(message);
+    }
+  }
+
+Ran 20 steps and witnessed the output. See trace6-5.txt.
+
+- Summary:
+In this exercise I learned how to communicate between agents, reusing plans
+and beliefsets.
