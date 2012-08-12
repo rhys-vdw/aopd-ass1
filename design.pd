@@ -463,6 +463,9 @@
 <EntityCell IMemento.internal.id="40194" MotherDiagram="21251" WrappedEntity="25857">
 <Look Height="-1" Width="-1" XCoordinate="25" YCoordinate="94"/>
 </EntityCell>
+<EntityCell IMemento.internal.id="330498" MotherDiagram="20227" WrappedEntity="23297">
+<Look Height="-1" Width="-1" XCoordinate="358" YCoordinate="377"/>
+</EntityCell>
 <EntityCell IMemento.internal.id="84226" MotherDiagram="70659" WrappedEntity="33793">
 <Look Height="-1" Width="-1" XCoordinate="404" YCoordinate="48"/>
 </EntityCell>
@@ -627,6 +630,9 @@
 </EntityCell>
 <EntityCell IMemento.internal.id="38146" MotherDiagram="21251" WrappedEntity="37889">
 <Look Height="-1" Width="-1" XCoordinate="669" YCoordinate="433"/>
+</EntityCell>
+<EntityCell IMemento.internal.id="330754" MotherDiagram="20227" WrappedEntity="295937">
+<Look Height="-1" Width="-1" XCoordinate="545" YCoordinate="379"/>
 </EntityCell>
 <EntityCell IMemento.internal.id="35842" MotherDiagram="21251" WrappedEntity="35329">
 <Look Height="-1" Width="-1" XCoordinate="167" YCoordinate="220"/>

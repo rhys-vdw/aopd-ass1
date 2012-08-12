@@ -682,3 +682,12 @@ to manually remove an extra #handles line from Coord_UpdatePlayerPosition.
 This is not ideal, but the chance of me repeating the mistake or making
 another one similar is so high that it's not worth the risk of going back and
 redoing it.
+
+- Step 4:
+
+design.pd:
+In detailed design of Coordinator:
+- Add data object bel_goldAt.
+- Set bel_goldAt's JackCode modifier to #private.
+- Add data object bel_cellEmpty.
+- Set bel_cellEmpty's JackCode modifier to #private.

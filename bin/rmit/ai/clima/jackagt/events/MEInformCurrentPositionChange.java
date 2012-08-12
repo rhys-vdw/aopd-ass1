@@ -64,6 +64,7 @@ private rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange post_body(jav
     this.agentName = agentName;
     this.posX = posX;
     this.posY = posY;
+    java.lang.System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     return this;
 }
 
