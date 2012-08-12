@@ -28,17 +28,22 @@ Capability Name: GamePlaying
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
 	*/
-	#imports data LastActionSentBel bel_lastActionSent_dat();
-
-	/*	You may need to change the statement declaration of data/beliefset to:
-	#agent | #global | #private | #import | #export
-	*/
 	#imports data SimulationProp bel_simulationProp_dat();
 
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
 	*/
+	#imports data LastActionSentBel bel_lastActionSent_dat();
+
+	/*	You may need to change the statement declaration of data/beliefset to:
+	#agent | #global | #private | #import | #export
+	*/
 	#imports data CurrentStatus bel_currentStatus_dat();
+
+	/*	You may need to change the statement declaration of data/beliefset to:
+	#agent | #global | #private | #import | #export
+	*/
+	#imports data CurrentRequestActionId bel_currentRequestActionId_dat();
 
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
@@ -55,16 +60,19 @@ Capability Name: GamePlaying
 	*/
 	#imports data CurrentPosition bel_currentPosition_dat();
 
-	/*	You may need to change the statement declaration of data/beliefset to:
-	#agent | #global | #private | #import | #export
-	*/
-	#imports data CurrentRequestActionId bel_currentRequestActionId_dat();
-
 
 	//Events handled, posted and sent are declared here.
-	#handles external event PerceiveClimaServer ;
+	#handles external event ECellChange ;
 
 	#sends event EGUIDebugMessage eguidebugmessage_s;
+
+	#sends event MEInformCellStatus meinformcellstatus_s;
+
+	#handles external event PerceiveClimaServer ;
+
+	#sends event MEInformAgentStatus meinformagentstatus_s;
+
+	#posts external event TellClimaServer tellclimaserver_p;
 
 	#handles event EExecuteCLIMAaction ;
 	#posts event EExecuteCLIMAaction eexecuteclimaaction_p;
@@ -72,20 +80,12 @@ Capability Name: GamePlaying
 	#handles event EShowBeliefs ;
 	#posts event EShowBeliefs eshowbeliefs_p;
 
-	#posts external event TellClimaServer tellclimaserver_p;
-
 	#handles event ECurrentPositionChange ;
 	#posts event ECurrentPositionChange ecurrentpositionchange_p;
 
-	#handles external event ECellChange ;
-
-	#sends event EUpdateBel eupdatebel_s;
-
-	#sends event MEInformCellStatus meinformcellstatus_s;
-
 	#handles external event EAct ;
 
-	#sends event MEInformAgentStatus meinformagentstatus_s;
+	#sends event EUpdateBel eupdatebel_s;
 
 
 	//Plans directly used are declared here.
@@ -97,9 +97,9 @@ Capability Name: GamePlaying
 
 
 	// Inner capabilities are declared here.
-	#has capability ActionDecision actiondecision_cap;
-
 	#has capability InfoReporting inforeporting_cap;
+
+	#has capability ActionDecision actiondecision_cap;
 
 
 /******** End PDT Design Block *** DO NOT EDIT IT *********/

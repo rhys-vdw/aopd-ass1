@@ -7,6 +7,7 @@
 package rmit.ai.clima.jackagt.agents;
 import aos.jack.jak.agent.Agent;
 import rmit.ai.clima.interfaces.DebugInterface;
+import rmit.ai.clima.jackagt.data.AgentPosition;
 import rmit.ai.clima.jackagt.data.SimulationProp;
 import rmit.ai.clima.jackagt.events.MESimStart;
 import rmit.ai.clima.jackagt.events.MEGameEnd;
@@ -17,6 +18,7 @@ import rmit.ai.clima.jackagt.plans.Coord_EndSimulation;
 import java.lang.Object;
 
 public class Coordinator extends aos.jack.jak.agent.Agent implements rmit.ai.clima.interfaces.DebugInterface {
+    public rmit.ai.clima.jackagt.data.AgentPosition bel_agentPositions_dat;
     public rmit.ai.clima.jackagt.data.SimulationProp bel_simulationProp_dat;
     // Inner capabilities are declared here.
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
@@ -67,6 +69,13 @@ public class Coordinator extends aos.jack.jak.agent.Agent implements rmit.ai.cli
     public void __init1()
     {
         super.__init1();
+        setNamedCreator("bel_agentPositions_dat","rmit.ai.clima.jackagt.data.AgentPosition",new aos.jack.jak.agent.DataCreator(true){
+            public java.lang.Object create()
+            {
+                return __named_data_bel_agentPositions_dat();
+            }
+            
+        },true);
         setNamedCreator("bel_simulationProp_dat","rmit.ai.clima.jackagt.data.SimulationProp",new aos.jack.jak.agent.DataCreator(true){
             public java.lang.Object create()
             {
@@ -79,11 +88,13 @@ public class Coordinator extends aos.jack.jak.agent.Agent implements rmit.ai.cli
     public void __init2()
     {
         super.__init2();
+        getNamedObject("bel_agentPositions_dat","rmit.ai.clima.jackagt.data.AgentPosition");
         getNamedObject("bel_simulationProp_dat","rmit.ai.clima.jackagt.data.SimulationProp");
     }
     
     synchronized private void __init_desc()
     {
+        addNamedObject("bel_agentPositions_dat","rmit.ai.clima.jackagt.data.AgentPosition",aos.jack.jak.agent.Agent.WRITEABLE);
         addNamedObject("bel_simulationProp_dat","rmit.ai.clima.jackagt.data.SimulationProp",aos.jack.jak.agent.Agent.WRITEABLE);
         addEvent("rmit.ai.clima.jackagt.events.MESimStart",aos.jack.jak.agent.Agent.HANDLED_EVENT);
         addEvent("rmit.ai.clima.jackagt.events.MEGameEnd",aos.jack.jak.agent.Agent.HANDLED_EVENT);
@@ -103,6 +114,17 @@ public class Coordinator extends aos.jack.jak.agent.Agent implements rmit.ai.cli
     synchronized public void __bindNames()
     {
         super.__bindNames();
+    }
+    
+    private rmit.ai.clima.jackagt.data.AgentPosition __named_data_bel_agentPositions_dat()
+    {
+        if (bel_agentPositions_dat != null) 
+            return bel_agentPositions_dat;
+        bel_agentPositions_dat = new rmit.ai.clima.jackagt.data.AgentPosition();
+        if (!bel_agentPositions_dat.attach(this)) 
+            bel_agentPositions_dat = null;
+        setNamedObject("bel_agentPositions_dat","rmit.ai.clima.jackagt.data.AgentPosition",bel_agentPositions_dat);
+        return bel_agentPositions_dat;
     }
     
     private rmit.ai.clima.jackagt.data.SimulationProp __named_data_bel_simulationProp_dat()

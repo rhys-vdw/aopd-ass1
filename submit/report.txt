@@ -577,3 +577,41 @@ moved. See trace5-2.txt.
 In this exercise I learned how to:
 - Create events and deal with them using simple plans.
 - Use Jack's automatic event posting system. (ie. #posted when)
+
+Exercise 6: Sending a message to a coordinator agent
+----------------------------------------------------
+
+- Step 1:
+
+design.pd:
+In detailed design view of Coordinator:
+- Create data object called "bel_agentPositions".
+  - Set its JackCode modifier to #private.
+  - Give it key field of type String called "agentName".
+  - Give it value field of type in called "posX".
+  - Give it value field of type in called "posY".
+
+Generate code.
+
+Add query to retrieve position data.
+AgentPosition.bel (line 32):
+
+  #indexed query get(logical String $agentName, logical int posX, logical int posY);
+  #indexed query get(String agentName, logical int posX, logical int posY);
+
+- Step 2:
+
+design.pd:
+In detailed design view of Coordinator:
+- Add connection FROM Coord_EndSimulation TO bel_agentPositions.
+
+Generate code.
+
+Clear agent positions at the end of the simulation.
+
+Coord_EndSimulation.plan (body() -> line 47)
+
+      logical int $gridX, $gridY, $depotX, $depotY, $noSteps, $posX, $posY;
+      logical String $agent;
+      bel_simulationProp_dat.get($gridX, $gridY, $depotX, $depotY, $noSteps).removeAll();
+      bel_agentPositions_dat.get($agent, $posX, $posY).removeAll();

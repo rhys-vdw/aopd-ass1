@@ -9,11 +9,13 @@ import aos.jack.jak.plan.Plan;
 import aos.jack.jak.plan.PlanFSM;
 import aos.jack.jak.plan.ExMap;
 import aos.jack.jak.agent.NameSpace;
+import aos.jack.jak.agent.Agent;
 import aos.jack.jak.event.Event;
 import aos.jack.jak.task.Task;
 import aos.jack.jak.core.Generator;
 import aos.jack.jak.logic.Signature;
 import rmit.ai.clima.jackagt.events.MESimEnd;
+import rmit.ai.clima.jackagt.data.AgentPosition;
 import rmit.ai.clima.jackagt.data.SimulationProp;
 import rmit.ai.clima.interfaces.DebugInterface;
 import java.lang.Object;
@@ -23,22 +25,27 @@ import aos.jack.jak.core.Jak;
 
 public class Coord_EndSimulation extends aos.jack.jak.plan.Plan {
     public rmit.ai.clima.jackagt.events.MESimEnd mesimend_h;
+    public rmit.ai.clima.jackagt.data.AgentPosition bel_agentPositions_dat;
     public rmit.ai.clima.jackagt.data.SimulationProp bel_simulationProp_dat;
     public rmit.ai.clima.interfaces.DebugInterface consoleIface;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
             "rmit/ai/clima/jackagt/plans/Coord_EndSimulation.plan",
             "body",
-            "45",
-            "46",
+            "47",
+            "48",
             "49",
-            "41"};
+            "50",
+            "53",
+            "43"};
     private final static java.lang.String[] __planVariableNames = {
             "mesimend_h",
+            "bel_agentPositions_dat",
             "bel_simulationProp_dat",
             "consoleIface"};
     private final static java.lang.String[] __planVariableTypes = {
             "rmit.ai.clima.jackagt.events.MESimEnd",
+            "rmit.ai.clima.jackagt.data.AgentPosition",
             "rmit.ai.clima.jackagt.data.SimulationProp",
             "rmit.ai.clima.interfaces.DebugInterface"};
     private final static java.lang.String[] __reasoningMethods = {
@@ -48,19 +55,28 @@ public class Coord_EndSimulation extends aos.jack.jak.plan.Plan {
             "$gridY",
             "$depotX",
             "$depotY",
-            "$noSteps"};
+            "$noSteps",
+            "$posX",
+            "$posY",
+            "$agent"};
     private final static java.lang.String[] __fsmTypes_body = {
             "logical int",
             "logical int",
             "logical int",
             "logical int",
-            "logical int"};
+            "logical int",
+            "logical int",
+            "logical int",
+            "logical String"};
     private final static java.lang.String[] __fsmLocalNames_body = {
             "__local__5_0",
             "__local__5_1",
             "__local__5_2",
             "__local__5_3",
-            "__local__5_4"};
+            "__local__5_4",
+            "__local__5_5",
+            "__local__5_6",
+            "__local__5_7"};
     static boolean relevant(rmit.ai.clima.jackagt.events.MESimEnd ev)
     {
         return true;
@@ -77,6 +93,7 @@ public class Coord_EndSimulation extends aos.jack.jak.plan.Plan {
         __planTask = __t;
         __logic = __t.logic;
         mesimend_h = __env.mesimend_h;
+        bel_agentPositions_dat = __env.bel_agentPositions_dat;
         bel_simulationProp_dat = __env.bel_simulationProp_dat;
         consoleIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
     }
@@ -86,6 +103,11 @@ public class Coord_EndSimulation extends aos.jack.jak.plan.Plan {
         mesimend_h = (rmit.ai.clima.jackagt.events.MESimEnd) __a.findEvent("rmit.ai.clima.jackagt.events.MESimEnd");
         if (mesimend_h == null) {
             warning("Failed to find MESimEnd mesimend_h");
+            return false;
+        }
+        bel_agentPositions_dat = (rmit.ai.clima.jackagt.data.AgentPosition) lookupNamedObject("bel_agentPositions_dat","rmit.ai.clima.jackagt.data.AgentPosition",aos.jack.jak.agent.Agent.WRITEABLE);
+        if (bel_agentPositions_dat == null) {
+            warning("Failed to find AgentPosition bel_agentPositions_dat");
             return false;
         }
         bel_simulationProp_dat = (rmit.ai.clima.jackagt.data.SimulationProp) lookupNamedObject("bel_simulationProp_dat","rmit.ai.clima.jackagt.data.SimulationProp",0);
@@ -194,9 +216,13 @@ public class Coord_EndSimulation extends aos.jack.jak.plan.Plan {
             }
             case 1: 
             {
-                return aos.util.ToObject.box(bel_simulationProp_dat);
+                return aos.util.ToObject.box(bel_agentPositions_dat);
             }
             case 2: 
+            {
+                return aos.util.ToObject.box(bel_simulationProp_dat);
+            }
+            case 3: 
             {
                 return aos.util.ToObject.box(consoleIface);
             }
@@ -229,6 +255,9 @@ public class Coord_EndSimulation extends aos.jack.jak.plan.Plan {
         aos.jack.jak.logic.IntegerVariable __local__5_2;
         aos.jack.jak.logic.IntegerVariable __local__5_3;
         aos.jack.jak.logic.IntegerVariable __local__5_4;
+        aos.jack.jak.logic.IntegerVariable __local__5_5;
+        aos.jack.jak.logic.IntegerVariable __local__5_6;
+        aos.jack.jak.logic.StringVariable __local__5_7;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -257,7 +286,7 @@ public class Coord_EndSimulation extends aos.jack.jak.plan.Plan {
                             aos.jack.jak.core.Jak.error("Coord_EndSimulation.body: Illegal state");
                             return FAILED_STATE;
                         }
-                        //* (45)         logical int $gridX, $gridY, $depotX, $depotY, $noSteps;
+                        //* (47)         logical int $gridX, $gridY, $depotX, $depotY, $noSteps, $posX, $posY;
                         case 10: 
                         {
                             __breakLevel = 0;
@@ -266,25 +295,41 @@ public class Coord_EndSimulation extends aos.jack.jak.plan.Plan {
                             __local__5_2 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
                             __local__5_3 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
                             __local__5_4 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__5_5 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__5_6 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
                             __state = 11;
                             break;
                         }
-                        //* (46)         bel_simulationProp_dat.get($gridX, $gridY, $depotX, $depotY, $noSteps).removeAll();
+                        //* (48)         logical String $agent;
                         case 11: 
                         {
+                            __local__5_7 = (aos.jack.jak.logic.StringVariable) __logic.new_variable(java.lang.String.class);
                             __state = 12;
-                            bel_simulationProp_dat.get(__local__5_0,__local__5_1,__local__5_2,__local__5_3,__local__5_4).removeAll();
                             break;
                         }
-                        //* (49)       	consoleIface.showConsoleDebug("Agent "+mesimend_h.from+ " reported the end of a simulation...");
+                        //* (49)         bel_simulationProp_dat.get($gridX, $gridY, $depotX, $depotY, $noSteps).removeAll();
                         case 12: 
                         {
                             __state = 13;
+                            bel_simulationProp_dat.get(__local__5_0,__local__5_1,__local__5_2,__local__5_3,__local__5_4).removeAll();
+                            break;
+                        }
+                        //* (50)         bel_agentPositions_dat.get($agent, $posX, $posY).removeAll();
+                        case 13: 
+                        {
+                            __state = 14;
+                            bel_agentPositions_dat.get(__local__5_7,__local__5_5,__local__5_6).removeAll();
+                            break;
+                        }
+                        //* (53)       	consoleIface.showConsoleDebug("Agent "+mesimend_h.from+ " reported the end of a simulation...");
+                        case 14: 
+                        {
+                            __state = 15;
                             consoleIface.showConsoleDebug("Agent " + mesimend_h.from + " reported the end of a simulation...");
                             break;
                         }
-                        //* (41)     #reasoning method
-                        case 13: 
+                        //* (43)     #reasoning method
+                        case 15: 
                         {
                             if (__pending == null) 
                                 __state = PASSED_STATE;
@@ -399,6 +444,18 @@ public class Coord_EndSimulation extends aos.jack.jak.plan.Plan {
                 case 4: 
                 {
                     return aos.util.ToObject.box(__local__5_4);
+                }
+                case 5: 
+                {
+                    return aos.util.ToObject.box(__local__5_5);
+                }
+                case 6: 
+                {
+                    return aos.util.ToObject.box(__local__5_6);
+                }
+                case 7: 
+                {
+                    return aos.util.ToObject.box(__local__5_7);
                 }
                 default: 
                 {

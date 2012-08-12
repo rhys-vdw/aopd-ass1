@@ -20,6 +20,8 @@ Description: Coordination plan to finish a simulation
 
 
 	// Declarations of any beliefset/data that the plan accesses.
+	#modifies data AgentPosition bel_agentPositions_dat;
+
 	#reads data SimulationProp bel_simulationProp_dat;
 
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
@@ -42,8 +44,10 @@ Description: Coordination plan to finish a simulation
     body()
     {
         // Clear current simulation properties
-        logical int $gridX, $gridY, $depotX, $depotY, $noSteps;
+        logical int $gridX, $gridY, $depotX, $depotY, $noSteps, $posX, $posY;
+        logical String $agent;
         bel_simulationProp_dat.get($gridX, $gridY, $depotX, $depotY, $noSteps).removeAll();
+        bel_agentPositions_dat.get($agent, $posX, $posY).removeAll();
 
 
       	consoleIface.showConsoleDebug("Agent "+mesimend_h.from+ " reported the end of a simulation...");

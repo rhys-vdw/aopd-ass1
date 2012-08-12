@@ -27,8 +27,8 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
     aos.jack.jak.logic.IntegerVariable $x;
     aos.jack.jak.logic.IntegerVariable $y;
     aos.jack.jak.logic.IntegerVariable $id;
-    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
     public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
+    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
     public aos.jack.jak.logic.LogicEnv __logic = null;
     private final static java.lang.String[] __eventVariableNames = {
             "message",
@@ -36,16 +36,16 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
             "$x",
             "$y",
             "$id",
-            "bel_goldAt_dat",
-            "bel_cellEmpty_dat"};
+            "bel_cellEmpty_dat",
+            "bel_goldAt_dat"};
     private final static java.lang.String[] __eventVariableTypes = {
             "String",
             "GridObject",
             "logical int",
             "logical int",
             "logical int",
-            "GoldAt",
-            "CellEmpty"};
+            "CellEmpty",
+            "GoldAt"};
     private boolean __rule_init = false;
     public java.lang.String getDocumentation()
     {
@@ -183,11 +183,11 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
             }
             case 5: 
             {
-                return aos.util.ToObject.box(bel_goldAt_dat);
+                return aos.util.ToObject.box(bel_cellEmpty_dat);
             }
             case 6: 
             {
-                return aos.util.ToObject.box(bel_cellEmpty_dat);
+                return aos.util.ToObject.box(bel_goldAt_dat);
             }
             default: 
             {
@@ -207,8 +207,8 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
         }
         catch (aos.jack.jak.logic.LogicException e) {
         }
-        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) agent.getNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt");
         bel_cellEmpty_dat = (rmit.ai.clima.jackagt.data.CellEmpty) agent.getNamedObject("bel_cellEmpty_dat","rmit.ai.clima.jackagt.data.CellEmpty");
+        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) agent.getNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt");
         new aos.extension.rule.RuleMonitor(this,0);
         new aos.extension.rule.RuleMonitor(this,1);
         new aos.extension.rule.RuleMonitor(this,2);
