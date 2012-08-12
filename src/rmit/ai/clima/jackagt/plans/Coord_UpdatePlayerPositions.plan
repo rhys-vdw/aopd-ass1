@@ -1,0 +1,39 @@
+package rmit.ai.clima.jackagt.plans;
+import rmit.ai.clima.jackagt.events.*;
+import rmit.ai.clima.jackagt.data.*;
+import rmit.ai.clima.interfaces.*;
+
+public plan Coord_UpdatePlayerPositions extends Plan
+{
+/******** Start PDT Design Block *** DO NOT EDIT IT *********/
+
+/*
+Plan Name: Coord_UpdatePlayerPositions
+*/
+	//Events handled by the plan are declared here.
+	#handles event MEInformCurrentPositionChange meinformcurrentpositionchange_h;
+
+	// Declarations of any beliefset/data that the plan accesses.
+	#modifies data AgentPosition bel_agentPositions_dat;
+
+/******** End PDT Design Block *** DO NOT EDIT IT *********/
+	#uses interface DebugInterface consoleIface;
+	
+	context() { true; }
+
+	body() {
+		String agentName = meinformcurrentpositionchange_h.agentName;
+		int posX = meinformcurrentpositionchange_h.posX;
+		int posY = meinformcurrentpositionchange_h.posY;
+		
+		bel_agentPositions_dat.add(agentName, posX, posY);
+		
+		StringBuilder message = new StringBuilder("Current Agent positions:\n");
+		logical String $agentName;
+		logical int $posX, $posY;
+		for (Cursor c = bel_agentPositions_dat.get($agentName, $posX, $posY); c.next();) {
+			message.append($agentName + " is at (" + $posX + "," + $posY + ")\n");
+		}
+		consoleIface.showConsoleDebug(message.toString());
+	}
+}

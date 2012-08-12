@@ -46,7 +46,7 @@ public class GUIClose extends aos.jack.jak.plan.Plan {
     private final static java.lang.String[] __fsmTypes_body = {
             "GUIAgent"};
     private final static java.lang.String[] __fsmLocalNames_body = {
-            "__local__9_0"};
+            "__local__10_0"};
     public GUIClose()
     {
     }
@@ -200,7 +200,7 @@ public class GUIClose extends aos.jack.jak.plan.Plan {
     }
     
     class __bodyFSM extends aos.jack.jak.plan.PlanFSM implements aos.jack.jak.core.Generator {
-        rmit.ai.clima.jackagt.agents.GUIAgent __local__9_0;
+        rmit.ai.clima.jackagt.agents.GUIAgent __local__10_0;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -233,7 +233,7 @@ public class GUIClose extends aos.jack.jak.plan.Plan {
                         case 10: 
                         {
                             __breakLevel = 0;
-                            __local__9_0 = (rmit.ai.clima.jackagt.agents.GUIAgent) getAgent();
+                            __local__10_0 = (rmit.ai.clima.jackagt.agents.GUIAgent) getAgent();
                             __state = 11;
                             break;
                         }
@@ -252,7 +252,7 @@ public class GUIClose extends aos.jack.jak.plan.Plan {
                             __state = 13;
                             // Hold the mutex for updating the GUI
 
-                            __local__9_0.reset();
+                            __local__10_0.reset();
                             break;
                         }
                         //* (38) 		mutex_accessGUI_dat.signal(); // release mutex
@@ -365,7 +365,7 @@ public class GUIClose extends aos.jack.jak.plan.Plan {
             switch (n) {
                 case 0: 
                 {
-                    return aos.util.ToObject.box(__local__9_0);
+                    return aos.util.ToObject.box(__local__10_0);
                 }
                 default: 
                 {

@@ -18,9 +18,9 @@ import aos.jack.jak.logic.Signature;
 import rmit.ai.clima.jackagt.events.EExecuteCLIMAaction;
 import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
 import rmit.ai.clima.jackagt.events.EAct;
+import rmit.ai.clima.jackagt.data.CurrentPosition;
 import rmit.ai.clima.jackagt.data.NumGold;
 import rmit.ai.clima.jackagt.data.GoldAt;
-import rmit.ai.clima.jackagt.data.CurrentPosition;
 import rmit.ai.clima.interfaces.DebugInterface;
 import java.lang.Object;
 import aos.jack.jak.fsm.FSM;
@@ -34,9 +34,9 @@ public class PickGold extends aos.jack.jak.plan.Plan {
     public rmit.ai.clima.jackagt.events.EExecuteCLIMAaction eexecuteclimaaction_p;
     public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
     public rmit.ai.clima.jackagt.events.EAct eact_h;
+    public rmit.ai.clima.jackagt.data.CurrentPosition bel_currentPosition_dat;
     public rmit.ai.clima.jackagt.data.NumGold bel_numCarryingGold_dat;
     public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
-    public rmit.ai.clima.jackagt.data.CurrentPosition bel_currentPosition_dat;
     public rmit.ai.clima.interfaces.DebugInterface consoleIface;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
@@ -53,9 +53,9 @@ public class PickGold extends aos.jack.jak.plan.Plan {
             "eexecuteclimaaction_p",
             "eguidebugmessage_s",
             "eact_h",
+            "bel_currentPosition_dat",
             "bel_numCarryingGold_dat",
             "bel_goldAt_dat",
-            "bel_currentPosition_dat",
             "consoleIface"};
     private final static java.lang.String[] __planVariableTypes = {
             "int",
@@ -65,9 +65,9 @@ public class PickGold extends aos.jack.jak.plan.Plan {
             "rmit.ai.clima.jackagt.events.EExecuteCLIMAaction",
             "EGUIDebugMessage",
             "EAct",
+            "CurrentPosition",
             "NumGold",
             "GoldAt",
-            "CurrentPosition",
             "rmit.ai.clima.interfaces.DebugInterface"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
@@ -92,9 +92,9 @@ public class PickGold extends aos.jack.jak.plan.Plan {
         eexecuteclimaaction_p = __env.eexecuteclimaaction_p;
         eguidebugmessage_s = __env.eguidebugmessage_s;
         eact_h = __env.eact_h;
+        bel_currentPosition_dat = __env.bel_currentPosition_dat;
         bel_numCarryingGold_dat = __env.bel_numCarryingGold_dat;
         bel_goldAt_dat = __env.bel_goldAt_dat;
-        bel_currentPosition_dat = __env.bel_currentPosition_dat;
         consoleIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
         $posX = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
         $posY = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
@@ -118,6 +118,11 @@ public class PickGold extends aos.jack.jak.plan.Plan {
             warning("Failed to find EAct eact_h");
             return false;
         }
+        bel_currentPosition_dat = (rmit.ai.clima.jackagt.data.CurrentPosition) lookupNamedObject("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition",0);
+        if (bel_currentPosition_dat == null) {
+            warning("Failed to find CurrentPosition bel_currentPosition_dat");
+            return false;
+        }
         bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) lookupNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold",0);
         if (bel_numCarryingGold_dat == null) {
             warning("Failed to find NumGold bel_numCarryingGold_dat");
@@ -126,11 +131,6 @@ public class PickGold extends aos.jack.jak.plan.Plan {
         bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) lookupNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt",0);
         if (bel_goldAt_dat == null) {
             warning("Failed to find GoldAt bel_goldAt_dat");
-            return false;
-        }
-        bel_currentPosition_dat = (rmit.ai.clima.jackagt.data.CurrentPosition) lookupNamedObject("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition",0);
-        if (bel_currentPosition_dat == null) {
-            warning("Failed to find CurrentPosition bel_currentPosition_dat");
             return false;
         }
         return true;
@@ -303,15 +303,15 @@ public class PickGold extends aos.jack.jak.plan.Plan {
             }
             case 7: 
             {
-                return aos.util.ToObject.box(bel_numCarryingGold_dat);
+                return aos.util.ToObject.box(bel_currentPosition_dat);
             }
             case 8: 
             {
-                return aos.util.ToObject.box(bel_goldAt_dat);
+                return aos.util.ToObject.box(bel_numCarryingGold_dat);
             }
             case 9: 
             {
-                return aos.util.ToObject.box(bel_currentPosition_dat);
+                return aos.util.ToObject.box(bel_goldAt_dat);
             }
             case 10: 
             {

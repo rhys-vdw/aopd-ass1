@@ -12,6 +12,8 @@ Plan Name: ReportCurrentPositionChange
 Description: Report agent's new position when it changes.
 */
 	//Events handled by the plan are declared here.
+	#posts event MEInformCurrentPositionChange meinformcurrentpositionchange_p;
+
 	#handles event ECurrentPositionChange ecurrentpositionchange_h;
 
 
@@ -23,8 +25,10 @@ Description: Report agent's new position when it changes.
 	context() { true; }
 
 	body() {
+		int posX = ecurrentpositionchange_h.posX;
+		int posY = ecurrentpositionchange_h.posY;
 		consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
-				" has just moved to location " + ecurrentpositionchange_h.posX +
-				"," + ecurrentpositionchange_h.posY + ".");
+				" has just moved to location " + posX + "," + posY + ".");
+		@send("boss", meinformcurrentpositionchange_p.post(getAgent().getName(), posX, posY));
 	}
 }

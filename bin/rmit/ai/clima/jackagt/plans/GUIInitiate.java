@@ -15,9 +15,9 @@ import aos.jack.jak.task.Task;
 import aos.jack.jak.core.Generator;
 import aos.jack.jak.logic.Signature;
 import rmit.ai.clima.jackagt.events.MESimStart;
-import aos.jack.util.thread.Semaphore;
 import rmit.ai.clima.jackagt.data.BAgentNumbers;
 import rmit.ai.clima.jackagt.data.GUICurrentStep;
+import aos.jack.util.thread.Semaphore;
 import rmit.ai.clima.jackagt.agents.GUIAgent;
 import rmit.ai.clima.gui.GuiInterface;
 import rmit.ai.clima.gui.grid.GameGraphics;
@@ -28,9 +28,9 @@ import aos.jack.jak.core.Jak;
 
 public class GUIInitiate extends aos.jack.jak.plan.Plan {
     public rmit.ai.clima.jackagt.events.MESimStart mesimstart_h;
-    public aos.jack.util.thread.Semaphore mutex_accessGUI_dat;
     public rmit.ai.clima.jackagt.data.BAgentNumbers bel_agentNumbers_dat;
     public rmit.ai.clima.jackagt.data.GUICurrentStep bel_GUICurrentStep_dat;
+    public aos.jack.util.thread.Semaphore mutex_accessGUI_dat;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
             "rmit/ai/clima/jackagt/plans/GUIInitiate.plan",
@@ -51,14 +51,14 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
             "43"};
     private final static java.lang.String[] __planVariableNames = {
             "mesimstart_h",
-            "mutex_accessGUI_dat",
             "bel_agentNumbers_dat",
-            "bel_GUICurrentStep_dat"};
+            "bel_GUICurrentStep_dat",
+            "mutex_accessGUI_dat"};
     private final static java.lang.String[] __planVariableTypes = {
             "rmit.ai.clima.jackagt.events.MESimStart",
-            "aos.jack.util.thread.Semaphore",
             "rmit.ai.clima.jackagt.data.BAgentNumbers",
-            "rmit.ai.clima.jackagt.data.GUICurrentStep"};
+            "rmit.ai.clima.jackagt.data.GUICurrentStep",
+            "aos.jack.util.thread.Semaphore"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
     private final static java.lang.String[] __fsmVariableNames_body = {
@@ -70,9 +70,9 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
             "String",
             "int"};
     private final static java.lang.String[] __fsmLocalNames_body = {
-            "__local__10_0",
-            "__local__10_1",
-            "__local__10_2"};
+            "__local__11_0",
+            "__local__11_1",
+            "__local__11_2"};
     public GUIInitiate()
     {
     }
@@ -84,9 +84,9 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
         __planTask = __t;
         __logic = __t.logic;
         mesimstart_h = __env.mesimstart_h;
-        mutex_accessGUI_dat = __env.mutex_accessGUI_dat;
         bel_agentNumbers_dat = __env.bel_agentNumbers_dat;
         bel_GUICurrentStep_dat = __env.bel_GUICurrentStep_dat;
+        mutex_accessGUI_dat = __env.mutex_accessGUI_dat;
     }
     
     public boolean init_sentinel(aos.jack.jak.agent.NameSpace __a)
@@ -94,11 +94,6 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
         mesimstart_h = (rmit.ai.clima.jackagt.events.MESimStart) __a.findEvent("rmit.ai.clima.jackagt.events.MESimStart");
         if (mesimstart_h == null) {
             warning("Failed to find MESimStart mesimstart_h");
-            return false;
-        }
-        mutex_accessGUI_dat = (aos.jack.util.thread.Semaphore) lookupNamedObject("mutex_accessGUI_dat","aos.jack.util.thread.Semaphore",0);
-        if (mutex_accessGUI_dat == null) {
-            warning("Failed to find Semaphore mutex_accessGUI_dat");
             return false;
         }
         bel_agentNumbers_dat = (rmit.ai.clima.jackagt.data.BAgentNumbers) lookupNamedObject("bel_agentNumbers_dat","rmit.ai.clima.jackagt.data.BAgentNumbers",aos.jack.jak.agent.Agent.WRITEABLE);
@@ -109,6 +104,11 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
         bel_GUICurrentStep_dat = (rmit.ai.clima.jackagt.data.GUICurrentStep) lookupNamedObject("bel_GUICurrentStep_dat","rmit.ai.clima.jackagt.data.GUICurrentStep",aos.jack.jak.agent.Agent.WRITEABLE);
         if (bel_GUICurrentStep_dat == null) {
             warning("Failed to find GUICurrentStep bel_GUICurrentStep_dat");
+            return false;
+        }
+        mutex_accessGUI_dat = (aos.jack.util.thread.Semaphore) lookupNamedObject("mutex_accessGUI_dat","aos.jack.util.thread.Semaphore",0);
+        if (mutex_accessGUI_dat == null) {
+            warning("Failed to find Semaphore mutex_accessGUI_dat");
             return false;
         }
         return true;
@@ -212,15 +212,15 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
             }
             case 1: 
             {
-                return aos.util.ToObject.box(mutex_accessGUI_dat);
+                return aos.util.ToObject.box(bel_agentNumbers_dat);
             }
             case 2: 
             {
-                return aos.util.ToObject.box(bel_agentNumbers_dat);
+                return aos.util.ToObject.box(bel_GUICurrentStep_dat);
             }
             case 3: 
             {
-                return aos.util.ToObject.box(bel_GUICurrentStep_dat);
+                return aos.util.ToObject.box(mutex_accessGUI_dat);
             }
             default: 
             {
@@ -246,9 +246,9 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
     }
     
     class __bodyFSM extends aos.jack.jak.plan.PlanFSM implements aos.jack.jak.core.Generator {
-        rmit.ai.clima.jackagt.agents.GUIAgent __local__10_0;
-        java.lang.String __local__10_1;
-        int __local__10_2;
+        rmit.ai.clima.jackagt.agents.GUIAgent __local__11_0;
+        java.lang.String __local__11_1;
+        int __local__11_2;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -281,7 +281,7 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
                         case 10: 
                         {
                             __breakLevel = 0;
-                            __local__10_0 = (rmit.ai.clima.jackagt.agents.GUIAgent) getAgent();
+                            __local__11_0 = (rmit.ai.clima.jackagt.agents.GUIAgent) getAgent();
                             __state = 11;
                             break;
                         }
@@ -297,7 +297,7 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
                         //* (58)         if(gui.showGUI && !gui.guiReady) {
                         case 12: 
                         {
-                            if (__local__10_0.showGUI && !__local__10_0.guiReady) 
+                            if (__local__11_0.showGUI && !__local__11_0.guiReady) 
                                 __state = 13;
                              else 
                                 __state = 17;
@@ -307,7 +307,7 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
                         case 13: 
                         {
                             __breakLevel = 2;
-                            __local__10_1 = "Sim Id: " + mesimstart_h.id + " - Opponent: " + mesimstart_h.opponent;
+                            __local__11_1 = "Sim Id: " + mesimstart_h.id + " - Opponent: " + mesimstart_h.opponent;
                             __state = 14;
                             break;
                         }
@@ -318,7 +318,7 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
                             // We pass the gui agent itself for call backs 				
 // constructor for new gui
 
-                            __local__10_0.guiInterface = new rmit.ai.clima.gui.GuiInterface(__local__10_1,"Gold","Diggers ",mesimstart_h.gridSize.x,mesimstart_h.gridSize.y,__local__10_0.maxAgents,__local__10_0,rmit.ai.clima.gui.grid.GameGraphics.getEmptyGraphic(),rmit.ai.clima.gui.grid.GameGraphics.getEmptyGraphic());
+                            __local__11_0.guiInterface = new rmit.ai.clima.gui.GuiInterface(__local__11_1,"Gold","Diggers ",mesimstart_h.gridSize.x,mesimstart_h.gridSize.y,__local__11_0.maxAgents,__local__11_0,rmit.ai.clima.gui.grid.GameGraphics.getEmptyGraphic(),rmit.ai.clima.gui.grid.GameGraphics.getEmptyGraphic());
                             break;
                         }
                         //* (75)             	gui.guiReady=true;	// now the GUI is ready to be used!
@@ -327,7 +327,7 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
                             __state = 16;
                             //gui.guiInterface.setVisible(true);
 
-                            __local__10_0.guiReady = true;
+                            __local__11_0.guiReady = true;
                             break;
                         }
                         //* (77) 	            System.out.println("================> GUI interface initialized <=================");
@@ -342,7 +342,7 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
                         //* (83)     if(gui.showGUI){
                         case 17: 
                         {
-                            if (__local__10_0.showGUI) 
+                            if (__local__11_0.showGUI) 
                                 __state = 18;
                              else 
                                 __state = 22;
@@ -352,7 +352,7 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
                         case 18: 
                         {
                             __breakLevel = 2;
-                            __local__10_2 = __local__10_0.guiInterface.newAgent(mesimstart_h.from,rmit.ai.clima.gui.grid.GameGraphics.getAgentGraphic());
+                            __local__11_2 = __local__11_0.guiInterface.newAgent(mesimstart_h.from,rmit.ai.clima.gui.grid.GameGraphics.getAgentGraphic());
                             __state = 19;
                             break;
                         }
@@ -362,7 +362,7 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
                             __state = 20;
                             // Register the agent for tracking
 
-                            bel_agentNumbers_dat.add(mesimstart_h.from,__local__10_2);
+                            bel_agentNumbers_dat.add(mesimstart_h.from,__local__11_2);
                             break;
                         }
                         //* (91) 	    bel_GUICurrentStep_dat.add(agentNo, 0);
@@ -371,14 +371,14 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
                             __state = 21;
                             // Second, initialize the agent in the GUI
 
-                            bel_GUICurrentStep_dat.add(__local__10_2,0);
+                            bel_GUICurrentStep_dat.add(__local__11_2,0);
                             break;
                         }
                         //* (93) 	    System.out.println("=================> Agent "+mesimstart_h.from+" registered in the GUI with number "+agentNo);
                         case 21: 
                         {
                             __state = 22;
-                            java.lang.System.out.println("=================> Agent " + mesimstart_h.from + " registered in the GUI with number " + __local__10_2);
+                            java.lang.System.out.println("=================> Agent " + mesimstart_h.from + " registered in the GUI with number " + __local__11_2);
                             break;
                         }
                         //* (97)     mutex_accessGUI_dat.signal(); // release mutex
@@ -491,15 +491,15 @@ public class GUIInitiate extends aos.jack.jak.plan.Plan {
             switch (n) {
                 case 0: 
                 {
-                    return aos.util.ToObject.box(__local__10_0);
+                    return aos.util.ToObject.box(__local__11_0);
                 }
                 case 1: 
                 {
-                    return aos.util.ToObject.box(__local__10_1);
+                    return aos.util.ToObject.box(__local__11_1);
                 }
                 case 2: 
                 {
-                    return aos.util.ToObject.box(__local__10_2);
+                    return aos.util.ToObject.box(__local__11_2);
                 }
                 default: 
                 {

@@ -33,9 +33,11 @@
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/GUIUpdateCell.plan" ID="61441" name="GUIUpdateCell"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/MEInformAgentStatus.event" ID="36609" name="MEInformAgentStatus"/>
 <Entity DataFields="int id, int step" DataType="CurrentRequestActionId" ID="23809" name="bel_currentRequestActionId"/>
+<Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/MEInformCurrentPositionChange.event" ID="328449" name="MEInformCurrentPositionChange"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/data/CurrentPosition.bel" ID="291585" name="CurrentPosition"/>
 <Entity CodeFileURI="file:/home/ssardina/workspace/RACT-JACKAGT-GOLD-NPDT/src/rmit/ai/clima/jackagt/events/TellClimaServer.event" ID="47105" name="TellClimaServer" package="rmit.ai.clima.iface"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/capabilities/ActionDecision.cap" ID="70401" name="ActionDecision"/>
+<Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/Coord_UpdatePlayerPositions.plan" ID="326913" name="Coord_UpdatePlayerPositions"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/ECellChange.event" ID="82433" name="ECellChange"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/MEGameEnd.event" ID="45569" name="MEGameEnd"/>
 <Entity ID="252417" name="Semaphore" package="aos.jack.util.thread.Semaphore"/>
@@ -72,14 +74,14 @@
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/data/AgentPosition.bel" ID="323585" name="AgentPosition"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/ReportCellChangeToGUI.plan" ID="79105" name="ReportCellChangeToGUI"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/AuthenticateToServer.plan" ID="41473" name="AuthenticateToServer"/>
-<Entity DataFields="int noGold" DataType="NumCarryingGold" ID="27905" name="bel_numCarryingGold"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/HandlePercept.plan" ID="76801" name="HandlePercept"/>
+<Entity DataFields="int noGold" DataType="NumCarryingGold" ID="27905" name="bel_numCarryingGold"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/Coord_EndSimulation.plan" ID="51969" name="Coord_EndSimulation"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/MoveRandomly.plan" ID="39169" name="MoveRandomly"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/Coord_InitSimulation.plan" ID="51201" name="Coord_InitSimulation"/>
 <Entity DataFields="String agentName, int no, int x, int y" DataType="PlayersCurrentPositions" ID="26369" name="bel_playersCurrentPositions"/>
-<Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/ECurrentPositionChange.event" ID="318209" name="ECurrentPositionChange"/>
 <Entity DataType="Semaphore" ID="24833" name="mutex_accessGUI" package="aos.jack.util.thread.Semaphore"/>
+<Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/ECurrentPositionChange.event" ID="318209" name="ECurrentPositionChange"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/EExecuteCLIMAaction.event" ID="48897" name="EExecuteCLIMAaction"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/GUIInitiate.plan" ID="60929" name="GUIInitiate"/>
 </JACKCodeRoot>

@@ -23,23 +23,23 @@ public class ECurrentPositionChange extends aos.jack.jak.event.BDIGoalEvent impl
     public int posY;
     aos.jack.jak.logic.IntegerVariable $posX;
     aos.jack.jak.logic.IntegerVariable $posY;
-    public rmit.ai.clima.iface.LastActionSentBel bel_lastActionSent_dat;
     public rmit.ai.clima.jackagt.data.CurrentPosition bel_currentPosition_dat;
+    public rmit.ai.clima.iface.LastActionSentBel bel_lastActionSent_dat;
     public aos.jack.jak.logic.LogicEnv __logic = null;
     private final static java.lang.String[] __eventVariableNames = {
             "posX",
             "posY",
             "$posX",
             "$posY",
-            "bel_lastActionSent_dat",
-            "bel_currentPosition_dat"};
+            "bel_currentPosition_dat",
+            "bel_lastActionSent_dat"};
     private final static java.lang.String[] __eventVariableTypes = {
             "int",
             "int",
             "logical int",
             "logical int",
-            "LastActionSentBel",
-            "CurrentPosition"};
+            "CurrentPosition",
+            "LastActionSentBel"};
     private boolean __rule_init = false;
     public java.lang.String getDocumentation()
     {
@@ -147,11 +147,11 @@ public class ECurrentPositionChange extends aos.jack.jak.event.BDIGoalEvent impl
             }
             case 4: 
             {
-                return aos.util.ToObject.box(bel_lastActionSent_dat);
+                return aos.util.ToObject.box(bel_currentPosition_dat);
             }
             case 5: 
             {
-                return aos.util.ToObject.box(bel_currentPosition_dat);
+                return aos.util.ToObject.box(bel_lastActionSent_dat);
             }
             default: 
             {
@@ -171,8 +171,8 @@ public class ECurrentPositionChange extends aos.jack.jak.event.BDIGoalEvent impl
         }
         catch (aos.jack.jak.logic.LogicException e) {
         }
-        bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) agent.getNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel");
         bel_currentPosition_dat = (rmit.ai.clima.jackagt.data.CurrentPosition) agent.getNamedObject("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition");
+        bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) agent.getNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel");
         new aos.extension.rule.RuleMonitor(this,0);
     }
     

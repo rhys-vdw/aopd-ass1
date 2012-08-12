@@ -15,8 +15,8 @@ import aos.jack.jak.task.Task;
 import aos.jack.jak.core.Generator;
 import aos.jack.jak.logic.Signature;
 import rmit.ai.clima.jackagt.events.MEInformAgentStatus;
-import aos.jack.util.thread.Semaphore;
 import rmit.ai.clima.jackagt.data.GUICurrentStep;
+import aos.jack.util.thread.Semaphore;
 import rmit.ai.clima.jackagt.data.BAgentNumbers;
 import rmit.ai.clima.jackagt.agents.GUIAgent;
 import java.lang.Object;
@@ -26,8 +26,8 @@ import aos.jack.jak.core.Jak;
 
 public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
     public rmit.ai.clima.jackagt.events.MEInformAgentStatus meinformagentstatus_h;
-    public aos.jack.util.thread.Semaphore mutex_accessGUI_dat;
     public rmit.ai.clima.jackagt.data.GUICurrentStep bel_GUICurrentStep_dat;
+    public aos.jack.util.thread.Semaphore mutex_accessGUI_dat;
     public rmit.ai.clima.jackagt.data.BAgentNumbers bel_agentNumbers_dat;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
@@ -43,13 +43,13 @@ public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
             "42"};
     private final static java.lang.String[] __planVariableNames = {
             "meinformagentstatus_h",
-            "mutex_accessGUI_dat",
             "bel_GUICurrentStep_dat",
+            "mutex_accessGUI_dat",
             "bel_agentNumbers_dat"};
     private final static java.lang.String[] __planVariableTypes = {
             "rmit.ai.clima.jackagt.events.MEInformAgentStatus",
-            "aos.jack.util.thread.Semaphore",
             "GUICurrentStep",
+            "aos.jack.util.thread.Semaphore",
             "rmit.ai.clima.jackagt.data.BAgentNumbers"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
@@ -60,8 +60,8 @@ public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
             "GUIAgent",
             "logical int"};
     private final static java.lang.String[] __fsmLocalNames_body = {
-            "__local__12_0",
-            "__local__12_1"};
+            "__local__13_0",
+            "__local__13_1"};
     public GUIUpdateAgentLoc()
     {
     }
@@ -73,8 +73,8 @@ public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
         __planTask = __t;
         __logic = __t.logic;
         meinformagentstatus_h = __env.meinformagentstatus_h;
-        mutex_accessGUI_dat = __env.mutex_accessGUI_dat;
         bel_GUICurrentStep_dat = __env.bel_GUICurrentStep_dat;
+        mutex_accessGUI_dat = __env.mutex_accessGUI_dat;
         bel_agentNumbers_dat = __env.bel_agentNumbers_dat;
     }
     
@@ -85,14 +85,14 @@ public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
             warning("Failed to find MEInformAgentStatus meinformagentstatus_h");
             return false;
         }
-        mutex_accessGUI_dat = (aos.jack.util.thread.Semaphore) lookupNamedObject("mutex_accessGUI_dat","aos.jack.util.thread.Semaphore",0);
-        if (mutex_accessGUI_dat == null) {
-            warning("Failed to find Semaphore mutex_accessGUI_dat");
-            return false;
-        }
         bel_GUICurrentStep_dat = (rmit.ai.clima.jackagt.data.GUICurrentStep) lookupNamedObject("bel_GUICurrentStep_dat","rmit.ai.clima.jackagt.data.GUICurrentStep",aos.jack.jak.agent.Agent.WRITEABLE);
         if (bel_GUICurrentStep_dat == null) {
             warning("Failed to find GUICurrentStep bel_GUICurrentStep_dat");
+            return false;
+        }
+        mutex_accessGUI_dat = (aos.jack.util.thread.Semaphore) lookupNamedObject("mutex_accessGUI_dat","aos.jack.util.thread.Semaphore",0);
+        if (mutex_accessGUI_dat == null) {
+            warning("Failed to find Semaphore mutex_accessGUI_dat");
             return false;
         }
         bel_agentNumbers_dat = (rmit.ai.clima.jackagt.data.BAgentNumbers) lookupNamedObject("bel_agentNumbers_dat","rmit.ai.clima.jackagt.data.BAgentNumbers",0);
@@ -201,11 +201,11 @@ public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
             }
             case 1: 
             {
-                return aos.util.ToObject.box(mutex_accessGUI_dat);
+                return aos.util.ToObject.box(bel_GUICurrentStep_dat);
             }
             case 2: 
             {
-                return aos.util.ToObject.box(bel_GUICurrentStep_dat);
+                return aos.util.ToObject.box(mutex_accessGUI_dat);
             }
             case 3: 
             {
@@ -235,8 +235,8 @@ public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
     }
     
     class __bodyFSM extends aos.jack.jak.plan.PlanFSM implements aos.jack.jak.core.Generator {
-        rmit.ai.clima.jackagt.agents.GUIAgent __local__12_0;
-        aos.jack.jak.logic.IntegerVariable __local__12_1;
+        rmit.ai.clima.jackagt.agents.GUIAgent __local__13_0;
+        aos.jack.jak.logic.IntegerVariable __local__13_1;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -269,7 +269,7 @@ public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
                         case 10: 
                         {
                             __breakLevel = 0;
-                            __local__12_0 = (rmit.ai.clima.jackagt.agents.GUIAgent) getAgent();
+                            __local__13_0 = (rmit.ai.clima.jackagt.agents.GUIAgent) getAgent();
                             __state = 11;
                             break;
                         }
@@ -285,7 +285,7 @@ public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
                         //* (51) 			logical int $agentNo;
                         case 12: 
                         {
-                            __local__12_1 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__13_1 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
                             __state = 13;
                             break;
                         }
@@ -311,7 +311,7 @@ public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
                         //* (61)        		if(guiAgent.showGUI && (guiAgent.guiInterface.newTurn($agentNo.as_int()) != -1) ) {
                         case 14: 
                         {
-                            if (__local__12_0.showGUI && (__local__12_0.guiInterface.newTurn(__local__12_1.as_int()) != -1)) 
+                            if (__local__13_0.showGUI && (__local__13_0.guiInterface.newTurn(__local__13_1.as_int()) != -1)) 
                                 __state = 15;
                              else 
                                 __state = 16;
@@ -322,7 +322,7 @@ public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
                         {
                             __breakLevel = 2;
                             __state = 16;
-                            __local__12_0.guiInterface.updateAgentLocation(__local__12_1.as_int(),meinformagentstatus_h.agentLocation);
+                            __local__13_0.guiInterface.updateAgentLocation(__local__13_1.as_int(),meinformagentstatus_h.agentLocation);
                             break;
                         }
                         //* (65) 	   mutex_accessGUI_dat.signal(); // release mutex
@@ -389,7 +389,7 @@ public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
                 }
                 case 1: 
                 {
-                    return (bel_agentNumbers_dat.getNo(meinformagentstatus_h.from,__local__12_1));
+                    return (bel_agentNumbers_dat.getNo(meinformagentstatus_h.from,__local__13_1));
                 }
             }
             aos.jack.jak.core.Jak.error("illegal Cursor Construction");
@@ -439,11 +439,11 @@ public class GUIUpdateAgentLoc extends aos.jack.jak.plan.Plan {
             switch (n) {
                 case 0: 
                 {
-                    return aos.util.ToObject.box(__local__12_0);
+                    return aos.util.ToObject.box(__local__13_0);
                 }
                 case 1: 
                 {
-                    return aos.util.ToObject.box(__local__12_1);
+                    return aos.util.ToObject.box(__local__13_1);
                 }
                 default: 
                 {

@@ -1,0 +1,20 @@
+package rmit.ai.clima.jackagt.events;
+import rmit.ai.clima.jackagt.data.*;
+
+/******** Start PDT Design Block *** DO NOT EDIT IT *********/
+public event MEInformCurrentPositionChange extends MessageEvent
+{
+/*
+ * Message Name: MEInformCurrentPositionChange
+*/
+/******** End PDT Design Block *** DO NOT EDIT IT *********/
+	public String agentName;
+	public int posX;
+	public int posY;
+	
+	#posted as post(String agentName, int posX, int posY) {
+		this.agentName = agentName;
+		this.posX = posX;
+		this.posY = posY;
+	}
+}

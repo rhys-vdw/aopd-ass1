@@ -22,7 +22,7 @@ Description: Reports believed information in the console
 
 
 	// Declarations of any beliefset/data that the plan accesses.
-	#reads data GoldAt bel_goldAt_dat;
+	#reads data NumGold bel_numCarryingGold_dat;
 
 	#reads data LastActionSentBel bel_lastActionSent_dat;
 
@@ -32,9 +32,9 @@ Description: Reports believed information in the console
 
 	#reads data CurrentStatus bel_currentStatus_dat;
 
-	#reads data CurrentPosition bel_currentPosition_dat;
+	#reads data GoldAt bel_goldAt_dat;
 
-	#reads data NumGold bel_numCarryingGold_dat;
+	#reads data CurrentPosition bel_currentPosition_dat;
 
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
 

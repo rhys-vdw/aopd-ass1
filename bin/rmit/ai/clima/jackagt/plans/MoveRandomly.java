@@ -84,7 +84,7 @@ public class MoveRandomly extends aos.jack.jak.plan.Plan {
     private final static java.lang.String[] __fsmTypes_body = {
             "String"};
     private final static java.lang.String[] __fsmLocalNames_body = {
-            "__local__16_0"};
+            "__local__17_0"};
     static boolean relevant(rmit.ai.clima.jackagt.events.EAct ev)
     {
         return true;
@@ -318,7 +318,7 @@ public class MoveRandomly extends aos.jack.jak.plan.Plan {
     }
     
     class __bodyFSM extends aos.jack.jak.plan.PlanFSM implements aos.jack.jak.core.Generator {
-        java.lang.String __local__16_0;
+        java.lang.String __local__17_0;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -351,7 +351,7 @@ public class MoveRandomly extends aos.jack.jak.plan.Plan {
                         case 10: 
                         {
                             __breakLevel = 0;
-                            __local__16_0 = actions[random.nextInt(4)];
+                            __local__17_0 = actions[random.nextInt(4)];
                             __state = 11;
                             break;
                         }
@@ -361,13 +361,13 @@ public class MoveRandomly extends aos.jack.jak.plan.Plan {
                             __state = 12;
                             // pick a random direction
 
-                            consoleIface.showConsoleDebug("I will move randomly to this dir: " + __local__16_0);
+                            consoleIface.showConsoleDebug("I will move randomly to this dir: " + __local__17_0);
                             break;
                         }
                         //* (62)     	@subtask(eexecuteclimaaction_p.post(dir));	// Post an ExecuteClimaAction event to execute the action in the server
                         case 12: 
                         {
-                            __task.push(eexecuteclimaaction_p.post(__local__16_0));
+                            __task.push(eexecuteclimaaction_p.post(__local__17_0));
                             __state = -__state;
                             __subtask_pass = 13;
                             __subtask_fail = 4;
@@ -472,7 +472,7 @@ public class MoveRandomly extends aos.jack.jak.plan.Plan {
             switch (n) {
                 case 0: 
                 {
-                    return aos.util.ToObject.box(__local__16_0);
+                    return aos.util.ToObject.box(__local__17_0);
                 }
                 default: 
                 {

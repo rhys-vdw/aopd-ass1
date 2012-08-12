@@ -59,9 +59,9 @@ public class GUIReportMessage extends aos.jack.jak.plan.Plan {
             "logical int",
             "int"};
     private final static java.lang.String[] __fsmLocalNames_body = {
-            "__local__11_0",
-            "__local__11_1",
-            "__local__11_2"};
+            "__local__12_0",
+            "__local__12_1",
+            "__local__12_2"};
     public GUIReportMessage()
     {
     }
@@ -225,9 +225,9 @@ public class GUIReportMessage extends aos.jack.jak.plan.Plan {
     }
     
     class __bodyFSM extends aos.jack.jak.plan.PlanFSM implements aos.jack.jak.core.Generator {
-        rmit.ai.clima.jackagt.agents.GUIAgent __local__11_0;
-        aos.jack.jak.logic.IntegerVariable __local__11_1;
-        int __local__11_2;
+        rmit.ai.clima.jackagt.agents.GUIAgent __local__12_0;
+        aos.jack.jak.logic.IntegerVariable __local__12_1;
+        int __local__12_2;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -260,7 +260,7 @@ public class GUIReportMessage extends aos.jack.jak.plan.Plan {
                         case 10: 
                         {
                             __breakLevel = 0;
-                            __local__11_0 = (rmit.ai.clima.jackagt.agents.GUIAgent) getAgent();
+                            __local__12_0 = (rmit.ai.clima.jackagt.agents.GUIAgent) getAgent();
                             __state = 11;
                             break;
                         }
@@ -276,7 +276,7 @@ public class GUIReportMessage extends aos.jack.jak.plan.Plan {
                         //* (47) 			logical int $agentNo;
                         case 12: 
                         {
-                            __local__11_1 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__12_1 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
                             __state = 13;
                             break;
                         }
@@ -302,14 +302,14 @@ public class GUIReportMessage extends aos.jack.jak.plan.Plan {
                         //* (50) 			int agentNo = $agentNo.as_int();
                         case 14: 
                         {
-                            __local__11_2 = __local__11_1.as_int();
+                            __local__12_2 = __local__12_1.as_int();
                             __state = 15;
                             break;
                         }
                         //* (53)        		if(guiAgent.showGUI) {
                         case 15: 
                         {
-                            if (__local__11_0.showGUI) 
+                            if (__local__12_0.showGUI) 
                                 __state = 16;
                              else 
                                 __state = 17;
@@ -320,7 +320,7 @@ public class GUIReportMessage extends aos.jack.jak.plan.Plan {
                         {
                             __breakLevel = 2;
                             __state = 17;
-                            __local__11_0.guiInterface.reportMessage(__local__11_2,eguidebugmessage_h.entity,"[" + eguidebugmessage_h.timestamp.get(java.util.Calendar.MINUTE) + ":" + eguidebugmessage_h.timestamp.get(java.util.Calendar.SECOND) + ":" + eguidebugmessage_h.timestamp.get(java.util.Calendar.MILLISECOND) + "] " + eguidebugmessage_h.message);
+                            __local__12_0.guiInterface.reportMessage(__local__12_2,eguidebugmessage_h.entity,"[" + eguidebugmessage_h.timestamp.get(java.util.Calendar.MINUTE) + ":" + eguidebugmessage_h.timestamp.get(java.util.Calendar.SECOND) + ":" + eguidebugmessage_h.timestamp.get(java.util.Calendar.MILLISECOND) + "] " + eguidebugmessage_h.message);
                             break;
                         }
                         //* (60) 	    mutex_accessGUI_dat.signal(); // release mutex
@@ -387,7 +387,7 @@ public class GUIReportMessage extends aos.jack.jak.plan.Plan {
                 }
                 case 1: 
                 {
-                    return (bel_agentNumbers_dat.getNo(eguidebugmessage_h.from,__local__11_1));
+                    return (bel_agentNumbers_dat.getNo(eguidebugmessage_h.from,__local__12_1));
                 }
             }
             aos.jack.jak.core.Jak.error("illegal Cursor Construction");
@@ -437,15 +437,15 @@ public class GUIReportMessage extends aos.jack.jak.plan.Plan {
             switch (n) {
                 case 0: 
                 {
-                    return aos.util.ToObject.box(__local__11_0);
+                    return aos.util.ToObject.box(__local__12_0);
                 }
                 case 1: 
                 {
-                    return aos.util.ToObject.box(__local__11_1);
+                    return aos.util.ToObject.box(__local__12_1);
                 }
                 case 2: 
                 {
-                    return aos.util.ToObject.box(__local__11_2);
+                    return aos.util.ToObject.box(__local__12_2);
                 }
                 default: 
                 {

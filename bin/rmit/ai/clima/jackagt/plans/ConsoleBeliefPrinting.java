@@ -15,13 +15,13 @@ import aos.jack.jak.core.Generator;
 import aos.jack.jak.cursor.Cursor;
 import aos.jack.jak.logic.Signature;
 import rmit.ai.clima.jackagt.events.EShowBeliefs;
-import rmit.ai.clima.jackagt.data.GoldAt;
+import rmit.ai.clima.jackagt.data.NumGold;
 import rmit.ai.clima.iface.LastActionSentBel;
 import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
 import rmit.ai.clima.jackagt.data.CellEmpty;
 import rmit.ai.clima.jackagt.data.CurrentStatus;
+import rmit.ai.clima.jackagt.data.GoldAt;
 import rmit.ai.clima.jackagt.data.CurrentPosition;
-import rmit.ai.clima.jackagt.data.NumGold;
 import rmit.ai.clima.interfaces.DebugInterface;
 import rmit.ai.clima.gui.grid.GridPoint;
 import java.lang.Object;
@@ -50,13 +50,13 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             "west",
             "north-west"};
     public rmit.ai.clima.jackagt.events.EShowBeliefs eshowbeliefs_h;
-    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
+    public rmit.ai.clima.jackagt.data.NumGold bel_numCarryingGold_dat;
     public rmit.ai.clima.iface.LastActionSentBel bel_lastActionSent_dat;
     public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
     public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
     public rmit.ai.clima.jackagt.data.CurrentStatus bel_currentStatus_dat;
+    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
     public rmit.ai.clima.jackagt.data.CurrentPosition bel_currentPosition_dat;
-    public rmit.ai.clima.jackagt.data.NumGold bel_numCarryingGold_dat;
     public rmit.ai.clima.interfaces.DebugInterface consoleIface;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
@@ -95,25 +95,25 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             "DIRECTIONS",
             "DIRECTION_NAMES",
             "eshowbeliefs_h",
-            "bel_goldAt_dat",
+            "bel_numCarryingGold_dat",
             "bel_lastActionSent_dat",
             "bel_currentRequestActionId_dat",
             "bel_cellEmpty_dat",
             "bel_currentStatus_dat",
+            "bel_goldAt_dat",
             "bel_currentPosition_dat",
-            "bel_numCarryingGold_dat",
             "consoleIface"};
     private final static java.lang.String[] __planVariableTypes = {
             "java.lang.String[]",
             "String[]",
             "EShowBeliefs",
-            "rmit.ai.clima.jackagt.data.GoldAt",
+            "rmit.ai.clima.jackagt.data.NumGold",
             "LastActionSentBel",
             "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
             "rmit.ai.clima.jackagt.data.CellEmpty",
             "CurrentStatus",
+            "rmit.ai.clima.jackagt.data.GoldAt",
             "rmit.ai.clima.jackagt.data.CurrentPosition",
-            "rmit.ai.clima.jackagt.data.NumGold",
             "rmit.ai.clima.interfaces.DebugInterface"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
@@ -177,13 +177,13 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
         __planTask = __t;
         __logic = __t.logic;
         eshowbeliefs_h = __env.eshowbeliefs_h;
-        bel_goldAt_dat = __env.bel_goldAt_dat;
+        bel_numCarryingGold_dat = __env.bel_numCarryingGold_dat;
         bel_lastActionSent_dat = __env.bel_lastActionSent_dat;
         bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
         bel_cellEmpty_dat = __env.bel_cellEmpty_dat;
         bel_currentStatus_dat = __env.bel_currentStatus_dat;
+        bel_goldAt_dat = __env.bel_goldAt_dat;
         bel_currentPosition_dat = __env.bel_currentPosition_dat;
-        bel_numCarryingGold_dat = __env.bel_numCarryingGold_dat;
         consoleIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
     }
     
@@ -194,9 +194,9 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             warning("Failed to find EShowBeliefs eshowbeliefs_h");
             return false;
         }
-        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) lookupNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt",0);
-        if (bel_goldAt_dat == null) {
-            warning("Failed to find GoldAt bel_goldAt_dat");
+        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) lookupNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold",0);
+        if (bel_numCarryingGold_dat == null) {
+            warning("Failed to find NumGold bel_numCarryingGold_dat");
             return false;
         }
         bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) lookupNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel",0);
@@ -219,14 +219,14 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             warning("Failed to find CurrentStatus bel_currentStatus_dat");
             return false;
         }
+        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) lookupNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt",0);
+        if (bel_goldAt_dat == null) {
+            warning("Failed to find GoldAt bel_goldAt_dat");
+            return false;
+        }
         bel_currentPosition_dat = (rmit.ai.clima.jackagt.data.CurrentPosition) lookupNamedObject("bel_currentPosition_dat","rmit.ai.clima.jackagt.data.CurrentPosition",0);
         if (bel_currentPosition_dat == null) {
             warning("Failed to find CurrentPosition bel_currentPosition_dat");
-            return false;
-        }
-        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) lookupNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold",0);
-        if (bel_numCarryingGold_dat == null) {
-            warning("Failed to find NumGold bel_numCarryingGold_dat");
             return false;
         }
         return true;
@@ -338,7 +338,7 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             }
             case 3: 
             {
-                return aos.util.ToObject.box(bel_goldAt_dat);
+                return aos.util.ToObject.box(bel_numCarryingGold_dat);
             }
             case 4: 
             {
@@ -358,11 +358,11 @@ public class ConsoleBeliefPrinting extends aos.jack.jak.plan.Plan {
             }
             case 8: 
             {
-                return aos.util.ToObject.box(bel_currentPosition_dat);
+                return aos.util.ToObject.box(bel_goldAt_dat);
             }
             case 9: 
             {
-                return aos.util.ToObject.box(bel_numCarryingGold_dat);
+                return aos.util.ToObject.box(bel_currentPosition_dat);
             }
             case 10: 
             {

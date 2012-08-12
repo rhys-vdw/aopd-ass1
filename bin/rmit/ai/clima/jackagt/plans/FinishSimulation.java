@@ -14,13 +14,13 @@ import aos.jack.jak.event.Event;
 import aos.jack.jak.task.Task;
 import aos.jack.jak.core.Generator;
 import aos.jack.jak.logic.Signature;
-import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
 import rmit.ai.clima.jackagt.events.MESimEnd;
+import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
 import rmit.ai.clima.iface.PerceiveClimaServer;
-import rmit.ai.clima.jackagt.data.SimulationProp;
 import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
-import rmit.ai.clima.jackagt.data.NumGold;
 import rmit.ai.clima.jackagt.data.CellEmpty;
+import rmit.ai.clima.jackagt.data.SimulationProp;
+import rmit.ai.clima.jackagt.data.NumGold;
 import rmit.ai.clima.jackagt.data.GoldAt;
 import rmit.ai.clima.interfaces.DebugInterface;
 import java.lang.Object;
@@ -30,13 +30,13 @@ import rmit.ai.clima.comms.SimEnd;
 import aos.jack.jak.core.Jak;
 
 public class FinishSimulation extends aos.jack.jak.plan.Plan {
-    public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
     public rmit.ai.clima.jackagt.events.MESimEnd mesimend_s;
+    public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
     public rmit.ai.clima.iface.PerceiveClimaServer perceiveclimaserver_h;
-    public rmit.ai.clima.jackagt.data.SimulationProp bel_simulationProp_dat;
     public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
-    public rmit.ai.clima.jackagt.data.NumGold bel_numCarryingGold_dat;
     public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
+    public rmit.ai.clima.jackagt.data.SimulationProp bel_simulationProp_dat;
+    public rmit.ai.clima.jackagt.data.NumGold bel_numCarryingGold_dat;
     public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
     public rmit.ai.clima.interfaces.DebugInterface debugIface;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
@@ -55,23 +55,23 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
             "77",
             "55"};
     private final static java.lang.String[] __planVariableNames = {
-            "eguidebugmessage_s",
             "mesimend_s",
+            "eguidebugmessage_s",
             "perceiveclimaserver_h",
-            "bel_simulationProp_dat",
             "bel_currentRequestActionId_dat",
-            "bel_numCarryingGold_dat",
             "bel_cellEmpty_dat",
+            "bel_simulationProp_dat",
+            "bel_numCarryingGold_dat",
             "bel_goldAt_dat",
             "debugIface"};
     private final static java.lang.String[] __planVariableTypes = {
-            "EGUIDebugMessage",
             "MESimEnd",
+            "EGUIDebugMessage",
             "PerceiveClimaServer",
-            "rmit.ai.clima.jackagt.data.SimulationProp",
             "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
-            "rmit.ai.clima.jackagt.data.NumGold",
             "rmit.ai.clima.jackagt.data.CellEmpty",
+            "rmit.ai.clima.jackagt.data.SimulationProp",
+            "rmit.ai.clima.jackagt.data.NumGold",
             "rmit.ai.clima.jackagt.data.GoldAt",
             "rmit.ai.clima.interfaces.DebugInterface"};
     private final static java.lang.String[] __reasoningMethods = {
@@ -99,16 +99,16 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
             "logical int",
             "logical int"};
     private final static java.lang.String[] __fsmLocalNames_body = {
-            "__local__8_0",
-            "__local__8_1",
-            "__local__8_2",
-            "__local__8_3",
-            "__local__8_4",
-            "__local__8_5",
-            "__local__8_6",
-            "__local__8_7",
-            "__local__8_8",
-            "__local__8_9"};
+            "__local__9_0",
+            "__local__9_1",
+            "__local__9_2",
+            "__local__9_3",
+            "__local__9_4",
+            "__local__9_5",
+            "__local__9_6",
+            "__local__9_7",
+            "__local__9_8",
+            "__local__9_9"};
     static boolean relevant(rmit.ai.clima.iface.PerceiveClimaServer perceiveclimaserver_h)
     {
         return perceiveclimaserver_h.data instanceof rmit.ai.clima.comms.SimEnd;
@@ -124,27 +124,27 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
         __ns = __env.__ns;
         __planTask = __t;
         __logic = __t.logic;
-        eguidebugmessage_s = __env.eguidebugmessage_s;
         mesimend_s = __env.mesimend_s;
+        eguidebugmessage_s = __env.eguidebugmessage_s;
         perceiveclimaserver_h = __env.perceiveclimaserver_h;
-        bel_simulationProp_dat = __env.bel_simulationProp_dat;
         bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
-        bel_numCarryingGold_dat = __env.bel_numCarryingGold_dat;
         bel_cellEmpty_dat = __env.bel_cellEmpty_dat;
+        bel_simulationProp_dat = __env.bel_simulationProp_dat;
+        bel_numCarryingGold_dat = __env.bel_numCarryingGold_dat;
         bel_goldAt_dat = __env.bel_goldAt_dat;
         debugIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
     }
     
     public boolean init_sentinel(aos.jack.jak.agent.NameSpace __a)
     {
-        eguidebugmessage_s = (rmit.ai.clima.jackagt.events.EGUIDebugMessage) __a.findEvent("rmit.ai.clima.jackagt.events.EGUIDebugMessage");
-        if (eguidebugmessage_s == null) {
-            warning("Failed to find EGUIDebugMessage eguidebugmessage_s");
-            return false;
-        }
         mesimend_s = (rmit.ai.clima.jackagt.events.MESimEnd) __a.findEvent("rmit.ai.clima.jackagt.events.MESimEnd");
         if (mesimend_s == null) {
             warning("Failed to find MESimEnd mesimend_s");
+            return false;
+        }
+        eguidebugmessage_s = (rmit.ai.clima.jackagt.events.EGUIDebugMessage) __a.findEvent("rmit.ai.clima.jackagt.events.EGUIDebugMessage");
+        if (eguidebugmessage_s == null) {
+            warning("Failed to find EGUIDebugMessage eguidebugmessage_s");
             return false;
         }
         perceiveclimaserver_h = (rmit.ai.clima.iface.PerceiveClimaServer) __a.findEvent("rmit.ai.clima.iface.PerceiveClimaServer");
@@ -152,24 +152,24 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
             warning("Failed to find PerceiveClimaServer perceiveclimaserver_h");
             return false;
         }
-        bel_simulationProp_dat = (rmit.ai.clima.jackagt.data.SimulationProp) lookupNamedObject("bel_simulationProp_dat","rmit.ai.clima.jackagt.data.SimulationProp",aos.jack.jak.agent.Agent.WRITEABLE);
-        if (bel_simulationProp_dat == null) {
-            warning("Failed to find SimulationProp bel_simulationProp_dat");
-            return false;
-        }
         bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) lookupNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId",aos.jack.jak.agent.Agent.WRITEABLE);
         if (bel_currentRequestActionId_dat == null) {
             warning("Failed to find CurrentRequestActionId bel_currentRequestActionId_dat");
             return false;
         }
-        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) lookupNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold",aos.jack.jak.agent.Agent.WRITEABLE);
-        if (bel_numCarryingGold_dat == null) {
-            warning("Failed to find NumGold bel_numCarryingGold_dat");
-            return false;
-        }
         bel_cellEmpty_dat = (rmit.ai.clima.jackagt.data.CellEmpty) lookupNamedObject("bel_cellEmpty_dat","rmit.ai.clima.jackagt.data.CellEmpty",aos.jack.jak.agent.Agent.WRITEABLE);
         if (bel_cellEmpty_dat == null) {
             warning("Failed to find CellEmpty bel_cellEmpty_dat");
+            return false;
+        }
+        bel_simulationProp_dat = (rmit.ai.clima.jackagt.data.SimulationProp) lookupNamedObject("bel_simulationProp_dat","rmit.ai.clima.jackagt.data.SimulationProp",aos.jack.jak.agent.Agent.WRITEABLE);
+        if (bel_simulationProp_dat == null) {
+            warning("Failed to find SimulationProp bel_simulationProp_dat");
+            return false;
+        }
+        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) lookupNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold",aos.jack.jak.agent.Agent.WRITEABLE);
+        if (bel_numCarryingGold_dat == null) {
+            warning("Failed to find NumGold bel_numCarryingGold_dat");
             return false;
         }
         bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) lookupNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt",aos.jack.jak.agent.Agent.WRITEABLE);
@@ -274,11 +274,11 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
         switch (n) {
             case 0: 
             {
-                return aos.util.ToObject.box(eguidebugmessage_s);
+                return aos.util.ToObject.box(mesimend_s);
             }
             case 1: 
             {
-                return aos.util.ToObject.box(mesimend_s);
+                return aos.util.ToObject.box(eguidebugmessage_s);
             }
             case 2: 
             {
@@ -286,19 +286,19 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
             }
             case 3: 
             {
-                return aos.util.ToObject.box(bel_simulationProp_dat);
+                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
             }
             case 4: 
             {
-                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
+                return aos.util.ToObject.box(bel_cellEmpty_dat);
             }
             case 5: 
             {
-                return aos.util.ToObject.box(bel_numCarryingGold_dat);
+                return aos.util.ToObject.box(bel_simulationProp_dat);
             }
             case 6: 
             {
-                return aos.util.ToObject.box(bel_cellEmpty_dat);
+                return aos.util.ToObject.box(bel_numCarryingGold_dat);
             }
             case 7: 
             {
@@ -332,16 +332,16 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
     }
     
     class __bodyFSM extends aos.jack.jak.plan.PlanFSM implements aos.jack.jak.core.Generator {
-        aos.jack.jak.logic.IntegerVariable __local__8_0;
-        aos.jack.jak.logic.IntegerVariable __local__8_1;
-        aos.jack.jak.logic.IntegerVariable __local__8_2;
-        aos.jack.jak.logic.IntegerVariable __local__8_3;
-        aos.jack.jak.logic.IntegerVariable __local__8_4;
-        aos.jack.jak.logic.IntegerVariable __local__8_5;
-        aos.jack.jak.logic.IntegerVariable __local__8_6;
-        aos.jack.jak.logic.IntegerVariable __local__8_7;
-        aos.jack.jak.logic.IntegerVariable __local__8_8;
-        aos.jack.jak.logic.IntegerVariable __local__8_9;
+        aos.jack.jak.logic.IntegerVariable __local__9_0;
+        aos.jack.jak.logic.IntegerVariable __local__9_1;
+        aos.jack.jak.logic.IntegerVariable __local__9_2;
+        aos.jack.jak.logic.IntegerVariable __local__9_3;
+        aos.jack.jak.logic.IntegerVariable __local__9_4;
+        aos.jack.jak.logic.IntegerVariable __local__9_5;
+        aos.jack.jak.logic.IntegerVariable __local__9_6;
+        aos.jack.jak.logic.IntegerVariable __local__9_7;
+        aos.jack.jak.logic.IntegerVariable __local__9_8;
+        aos.jack.jak.logic.IntegerVariable __local__9_9;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -381,16 +381,16 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
                         //* (62)         logical int $x,$y, $gridX, $gridY, $depotX, $depotY, $noSteps, $id, $step, $numGold;
                         case 11: 
                         {
-                            __local__8_0 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
-                            __local__8_1 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
-                            __local__8_2 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
-                            __local__8_3 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
-                            __local__8_4 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
-                            __local__8_5 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
-                            __local__8_6 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
-                            __local__8_7 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
-                            __local__8_8 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
-                            __local__8_9 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__9_0 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__9_1 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__9_2 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__9_3 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__9_4 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__9_5 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__9_6 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__9_7 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__9_8 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__9_9 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
                             __state = 12;
                             break;
                         }
@@ -398,35 +398,35 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
                         case 12: 
                         {
                             __state = 13;
-                            bel_cellEmpty_dat.get(__local__8_0,__local__8_1).removeAll();
+                            bel_cellEmpty_dat.get(__local__9_0,__local__9_1).removeAll();
                             break;
                         }
                         //* (64)         bel_goldAt_dat.getLocWithGold($x,$y).removeAll();
                         case 13: 
                         {
                             __state = 14;
-                            bel_goldAt_dat.getLocWithGold(__local__8_0,__local__8_1).removeAll();
+                            bel_goldAt_dat.getLocWithGold(__local__9_0,__local__9_1).removeAll();
                             break;
                         }
                         //* (65)         bel_simulationProp_dat.get($gridX,$gridY,$depotX,$depotY,$noSteps).removeAll();
                         case 14: 
                         {
                             __state = 15;
-                            bel_simulationProp_dat.get(__local__8_2,__local__8_3,__local__8_4,__local__8_5,__local__8_6).removeAll();
+                            bel_simulationProp_dat.get(__local__9_2,__local__9_3,__local__9_4,__local__9_5,__local__9_6).removeAll();
                             break;
                         }
                         //* (66) 	    bel_currentRequestActionId_dat.get($id,$step).removeAll();
                         case 15: 
                         {
                             __state = 16;
-                            bel_currentRequestActionId_dat.get(__local__8_7,__local__8_8).removeAll();
+                            bel_currentRequestActionId_dat.get(__local__9_7,__local__9_8).removeAll();
                             break;
                         }
                         //* (67) 	    bel_numCarryingGold_dat.get($numGold).removeAll();
                         case 16: 
                         {
                             __state = 17;
-                            bel_numCarryingGold_dat.get(__local__8_9).removeAll();
+                            bel_numCarryingGold_dat.get(__local__9_9).removeAll();
                             break;
                         }
                         //* (72)         @send("boss", mesimend_s.send());
@@ -551,43 +551,43 @@ public class FinishSimulation extends aos.jack.jak.plan.Plan {
             switch (n) {
                 case 0: 
                 {
-                    return aos.util.ToObject.box(__local__8_0);
+                    return aos.util.ToObject.box(__local__9_0);
                 }
                 case 1: 
                 {
-                    return aos.util.ToObject.box(__local__8_1);
+                    return aos.util.ToObject.box(__local__9_1);
                 }
                 case 2: 
                 {
-                    return aos.util.ToObject.box(__local__8_2);
+                    return aos.util.ToObject.box(__local__9_2);
                 }
                 case 3: 
                 {
-                    return aos.util.ToObject.box(__local__8_3);
+                    return aos.util.ToObject.box(__local__9_3);
                 }
                 case 4: 
                 {
-                    return aos.util.ToObject.box(__local__8_4);
+                    return aos.util.ToObject.box(__local__9_4);
                 }
                 case 5: 
                 {
-                    return aos.util.ToObject.box(__local__8_5);
+                    return aos.util.ToObject.box(__local__9_5);
                 }
                 case 6: 
                 {
-                    return aos.util.ToObject.box(__local__8_6);
+                    return aos.util.ToObject.box(__local__9_6);
                 }
                 case 7: 
                 {
-                    return aos.util.ToObject.box(__local__8_7);
+                    return aos.util.ToObject.box(__local__9_7);
                 }
                 case 8: 
                 {
-                    return aos.util.ToObject.box(__local__8_8);
+                    return aos.util.ToObject.box(__local__9_8);
                 }
                 case 9: 
                 {
-                    return aos.util.ToObject.box(__local__8_9);
+                    return aos.util.ToObject.box(__local__9_9);
                 }
                 default: 
                 {

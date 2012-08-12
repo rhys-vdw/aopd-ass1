@@ -22,26 +22,31 @@ Agent Name: Coordinator
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private
 	*/
-	#private data AgentPosition bel_agentPositions_dat(/*String agentName, int posX, int posY*/);
+	#private data SimulationProp bel_simulationProp_dat(/*int gridX, int gridY, int depotX, int depotY, int noSteps*/);
 
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private
 	*/
-	#private data SimulationProp bel_simulationProp_dat(/*int gridX, int gridY, int depotX, int depotY, int noSteps*/);
+	#private data AgentPosition bel_agentPositions_dat(/*String agentName, int posX, int posY*/);
 
 
 	//Events handled, posted and sent are declared here.
-	#handles event MESimStart ;
+	#handles event MEInformCurrentPositionChange ;
+	#posts event MEInformCurrentPositionChange meinformcurrentpositionchange_p;
 
 	#handles event MEGameEnd ;
+
+	#handles event MESimStart ;
 
 	#handles event MESimEnd ;
 
 
 	//Plans directly used are declared here.
-	#uses plan Coord_InitSimulation ;
+	#uses plan Coord_UpdatePlayerPositions ;
 
 	#uses plan Coord_EndGame ;
+
+	#uses plan Coord_InitSimulation ;
 
 	#uses plan Coord_EndSimulation ;
 

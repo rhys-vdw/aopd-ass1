@@ -615,3 +615,70 @@ Coord_EndSimulation.plan (body() -> line 47)
       logical String $agent;
       bel_simulationProp_dat.get($gridX, $gridY, $depotX, $depotY, $noSteps).removeAll();
       bel_agentPositions_dat.get($agent, $posX, $posY).removeAll();
+
+- Step 3:
+
+design.pd:
+In the detailed design view of Player's InfoReporting capability:
+ - Create a new Event called MEInformCurrentPositionChange.
+ - Add connection FROM ReportCurrentPositionChange TO
+     MEInformCurrentPositionChange.
+In the detailed design view of Coordinator:
+ - Add the MEInformCurrentPositionChange Event object.
+ - Create a Plan object called Coord_UpdatePlayerPositions.
+ - Add connection FROM MEInformCurrentPositionChange TO Coord_UpdatePlayerPositions.
+ - Add ECurrentPositionChange to Coord_UpdatePlayerPositions's trigger list.
+ - Add connection FROM Coord_UpdatePlayerPositions TO MEInformCurrentPositionChange.
+
+Generate code.
+
+MEInformCurrentPositionChange.event:
+
+  public String agentName;
+  public int posX;
+  public int posY;
+  
+  #posted as post(String agentName, int posX, int posY) {
+    this.agentName = agentName;
+    this.posX = posX;
+    this.posY = posY;
+  }
+
+
+ReportCurrentPositionChange.plan:
+
+  @send("boss", meinformcurrentpositionchange_p.post(getAgent().getName(),
+    posX, posY));
+
+
+Coord_UpdatePlayerPositions.plan:
+
+  #uses interface DebugInterface consoleIface;
+  
+  context() { true; }
+
+  body() {
+    String agentName = meinformcurrentpositionchange_h.agentName;
+    int posX = meinformcurrentpositionchange_h.posX;
+    int posY = meinformcurrentpositionchange_h.posY;
+    
+    bel_agentPositions_dat.add(agentName, posX, posY);
+    
+    StringBuilder message = new StringBuilder("Current Agent positions:\n");
+    logical String $agentName;
+    logical int $posX, $posY;
+    for (Cursor c = bel_agentPositions_dat.get($agentName, $posX, $posY); c.next();) {
+      message.append($agentName + " is at (" + $posX + "," + $posY + ")\n");
+    }
+    consoleIface.showConsoleDebug(message.toString());
+  }
+
+NOTE: The plan should be called Coord_UpdatePlayerPosition (singular), because
+it only deals with one player at a time. But I didn't want to risk breaking
+PDT so I have left it.
+
+NOTE: At this stage the .PD file is corrupted, so every time I regenerate I have
+to manually remove an extra #handles line from Coord_UpdatePlayerPosition.
+This is not ideal, but the chance of me repeating the mistake or making
+another one similar is so high that it's not worth the risk of going back and
+redoing it.

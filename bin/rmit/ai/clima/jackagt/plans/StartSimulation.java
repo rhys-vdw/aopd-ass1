@@ -14,15 +14,15 @@ import aos.jack.jak.event.Event;
 import aos.jack.jak.task.Task;
 import aos.jack.jak.core.Generator;
 import aos.jack.jak.logic.Signature;
-import rmit.ai.clima.jackagt.events.MEInformCellStatus;
 import rmit.ai.clima.jackagt.events.MESimStart;
 import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
+import rmit.ai.clima.jackagt.events.MEInformCellStatus;
 import rmit.ai.clima.iface.PerceiveClimaServer;
-import rmit.ai.clima.jackagt.data.GoldAt;
-import rmit.ai.clima.jackagt.data.SimulationProp;
 import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
-import rmit.ai.clima.jackagt.data.CellEmpty;
 import rmit.ai.clima.jackagt.data.NumGold;
+import rmit.ai.clima.jackagt.data.SimulationProp;
+import rmit.ai.clima.jackagt.data.CellEmpty;
+import rmit.ai.clima.jackagt.data.GoldAt;
 import rmit.ai.clima.interfaces.DebugInterface;
 import rmit.ai.clima.comms.SimStart;
 import rmit.ai.clima.gui.grid.GridObject;
@@ -34,15 +34,15 @@ import aos.jack.jak.core.Jak;
 import rmit.ai.clima.gui.grid.GridPoint;
 
 public class StartSimulation extends aos.jack.jak.plan.Plan {
-    public rmit.ai.clima.jackagt.events.MEInformCellStatus meinformcellstatus_s;
     public rmit.ai.clima.jackagt.events.MESimStart mesimstart_s;
     public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
+    public rmit.ai.clima.jackagt.events.MEInformCellStatus meinformcellstatus_s;
     public rmit.ai.clima.iface.PerceiveClimaServer perceiveclimaserver_h;
-    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
-    public rmit.ai.clima.jackagt.data.SimulationProp bel_simulationProp_dat;
     public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
-    public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
     public rmit.ai.clima.jackagt.data.NumGold bel_numCarryingGold_dat;
+    public rmit.ai.clima.jackagt.data.SimulationProp bel_simulationProp_dat;
+    public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
+    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
     public rmit.ai.clima.interfaces.DebugInterface consoleIface;
     private static aos.jack.jak.plan.ExMap[] __exMap_fail;
     private static java.lang.String[] __tt__fail = {
@@ -73,26 +73,26 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
             "105",
             "68"};
     private final static java.lang.String[] __planVariableNames = {
-            "meinformcellstatus_s",
             "mesimstart_s",
             "eguidebugmessage_s",
+            "meinformcellstatus_s",
             "perceiveclimaserver_h",
-            "bel_goldAt_dat",
-            "bel_simulationProp_dat",
             "bel_currentRequestActionId_dat",
-            "bel_cellEmpty_dat",
             "bel_numCarryingGold_dat",
+            "bel_simulationProp_dat",
+            "bel_cellEmpty_dat",
+            "bel_goldAt_dat",
             "consoleIface"};
     private final static java.lang.String[] __planVariableTypes = {
-            "MEInformCellStatus",
             "MESimStart",
             "EGUIDebugMessage",
+            "MEInformCellStatus",
             "rmit.ai.clima.iface.PerceiveClimaServer",
-            "GoldAt",
-            "rmit.ai.clima.jackagt.data.SimulationProp",
             "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
-            "CellEmpty",
             "rmit.ai.clima.jackagt.data.NumGold",
+            "rmit.ai.clima.jackagt.data.SimulationProp",
+            "CellEmpty",
+            "GoldAt",
             "rmit.ai.clima.interfaces.DebugInterface"};
     private final static java.lang.String[] __reasoningMethods = {
             "body",
@@ -108,10 +108,10 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
             "int",
             "GridObject"};
     private final static java.lang.String[] __fsmLocalNames_body = {
-            "__local__22_0",
-            "__local__22_1",
-            "__local__22_2",
-            "__local__22_3"};
+            "__local__23_0",
+            "__local__23_1",
+            "__local__23_2",
+            "__local__23_3"};
     static boolean relevant(rmit.ai.clima.iface.PerceiveClimaServer perceiveclimaserver_h)
     {
         return perceiveclimaserver_h.data instanceof rmit.ai.clima.comms.SimStart;
@@ -127,25 +127,20 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
         __ns = __env.__ns;
         __planTask = __t;
         __logic = __t.logic;
-        meinformcellstatus_s = __env.meinformcellstatus_s;
         mesimstart_s = __env.mesimstart_s;
         eguidebugmessage_s = __env.eguidebugmessage_s;
+        meinformcellstatus_s = __env.meinformcellstatus_s;
         perceiveclimaserver_h = __env.perceiveclimaserver_h;
-        bel_goldAt_dat = __env.bel_goldAt_dat;
-        bel_simulationProp_dat = __env.bel_simulationProp_dat;
         bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
-        bel_cellEmpty_dat = __env.bel_cellEmpty_dat;
         bel_numCarryingGold_dat = __env.bel_numCarryingGold_dat;
+        bel_simulationProp_dat = __env.bel_simulationProp_dat;
+        bel_cellEmpty_dat = __env.bel_cellEmpty_dat;
+        bel_goldAt_dat = __env.bel_goldAt_dat;
         consoleIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
     }
     
     public boolean init_sentinel(aos.jack.jak.agent.NameSpace __a)
     {
-        meinformcellstatus_s = (rmit.ai.clima.jackagt.events.MEInformCellStatus) __a.findEvent("rmit.ai.clima.jackagt.events.MEInformCellStatus");
-        if (meinformcellstatus_s == null) {
-            warning("Failed to find MEInformCellStatus meinformcellstatus_s");
-            return false;
-        }
         mesimstart_s = (rmit.ai.clima.jackagt.events.MESimStart) __a.findEvent("rmit.ai.clima.jackagt.events.MESimStart");
         if (mesimstart_s == null) {
             warning("Failed to find MESimStart mesimstart_s");
@@ -156,19 +151,14 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
             warning("Failed to find EGUIDebugMessage eguidebugmessage_s");
             return false;
         }
+        meinformcellstatus_s = (rmit.ai.clima.jackagt.events.MEInformCellStatus) __a.findEvent("rmit.ai.clima.jackagt.events.MEInformCellStatus");
+        if (meinformcellstatus_s == null) {
+            warning("Failed to find MEInformCellStatus meinformcellstatus_s");
+            return false;
+        }
         perceiveclimaserver_h = (rmit.ai.clima.iface.PerceiveClimaServer) __a.findEvent("rmit.ai.clima.iface.PerceiveClimaServer");
         if (perceiveclimaserver_h == null) {
             warning("Failed to find PerceiveClimaServer perceiveclimaserver_h");
-            return false;
-        }
-        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) lookupNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt",aos.jack.jak.agent.Agent.WRITEABLE);
-        if (bel_goldAt_dat == null) {
-            warning("Failed to find GoldAt bel_goldAt_dat");
-            return false;
-        }
-        bel_simulationProp_dat = (rmit.ai.clima.jackagt.data.SimulationProp) lookupNamedObject("bel_simulationProp_dat","rmit.ai.clima.jackagt.data.SimulationProp",aos.jack.jak.agent.Agent.WRITEABLE);
-        if (bel_simulationProp_dat == null) {
-            warning("Failed to find SimulationProp bel_simulationProp_dat");
             return false;
         }
         bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) lookupNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId",aos.jack.jak.agent.Agent.WRITEABLE);
@@ -176,14 +166,24 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
             warning("Failed to find CurrentRequestActionId bel_currentRequestActionId_dat");
             return false;
         }
+        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) lookupNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold",aos.jack.jak.agent.Agent.WRITEABLE);
+        if (bel_numCarryingGold_dat == null) {
+            warning("Failed to find NumGold bel_numCarryingGold_dat");
+            return false;
+        }
+        bel_simulationProp_dat = (rmit.ai.clima.jackagt.data.SimulationProp) lookupNamedObject("bel_simulationProp_dat","rmit.ai.clima.jackagt.data.SimulationProp",aos.jack.jak.agent.Agent.WRITEABLE);
+        if (bel_simulationProp_dat == null) {
+            warning("Failed to find SimulationProp bel_simulationProp_dat");
+            return false;
+        }
         bel_cellEmpty_dat = (rmit.ai.clima.jackagt.data.CellEmpty) lookupNamedObject("bel_cellEmpty_dat","rmit.ai.clima.jackagt.data.CellEmpty",aos.jack.jak.agent.Agent.WRITEABLE);
         if (bel_cellEmpty_dat == null) {
             warning("Failed to find CellEmpty bel_cellEmpty_dat");
             return false;
         }
-        bel_numCarryingGold_dat = (rmit.ai.clima.jackagt.data.NumGold) lookupNamedObject("bel_numCarryingGold_dat","rmit.ai.clima.jackagt.data.NumGold",aos.jack.jak.agent.Agent.WRITEABLE);
-        if (bel_numCarryingGold_dat == null) {
-            warning("Failed to find NumGold bel_numCarryingGold_dat");
+        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) lookupNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt",aos.jack.jak.agent.Agent.WRITEABLE);
+        if (bel_goldAt_dat == null) {
+            warning("Failed to find GoldAt bel_goldAt_dat");
             return false;
         }
         return true;
@@ -288,15 +288,15 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
         switch (n) {
             case 0: 
             {
-                return aos.util.ToObject.box(meinformcellstatus_s);
+                return aos.util.ToObject.box(mesimstart_s);
             }
             case 1: 
             {
-                return aos.util.ToObject.box(mesimstart_s);
+                return aos.util.ToObject.box(eguidebugmessage_s);
             }
             case 2: 
             {
-                return aos.util.ToObject.box(eguidebugmessage_s);
+                return aos.util.ToObject.box(meinformcellstatus_s);
             }
             case 3: 
             {
@@ -304,15 +304,15 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
             }
             case 4: 
             {
-                return aos.util.ToObject.box(bel_goldAt_dat);
+                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
             }
             case 5: 
             {
-                return aos.util.ToObject.box(bel_simulationProp_dat);
+                return aos.util.ToObject.box(bel_numCarryingGold_dat);
             }
             case 6: 
             {
-                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
+                return aos.util.ToObject.box(bel_simulationProp_dat);
             }
             case 7: 
             {
@@ -320,7 +320,7 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
             }
             case 8: 
             {
-                return aos.util.ToObject.box(bel_numCarryingGold_dat);
+                return aos.util.ToObject.box(bel_goldAt_dat);
             }
             case 9: 
             {
@@ -472,10 +472,10 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
         
     }
     class __bodyFSM extends aos.jack.jak.plan.PlanFSM implements aos.jack.jak.core.Generator {
-        rmit.ai.clima.comms.SimStart __local__22_0;
-        int __local__22_1;
-        int __local__22_2;
-        rmit.ai.clima.gui.grid.GridObject __local__22_3;
+        rmit.ai.clima.comms.SimStart __local__23_0;
+        int __local__23_1;
+        int __local__23_2;
+        rmit.ai.clima.gui.grid.GridObject __local__23_3;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -515,7 +515,7 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
                         //* (74)         SimStart simStart = (SimStart)perceiveclimaserver_h.data;
                         case 11: 
                         {
-                            __local__22_0 = (rmit.ai.clima.comms.SimStart) perceiveclimaserver_h.data;
+                            __local__23_0 = (rmit.ai.clima.comms.SimStart) perceiveclimaserver_h.data;
                             __state = 12;
                             break;
                         }
@@ -532,7 +532,7 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
                         case 13: 
                         {
                             __state = 14;
-                            bel_simulationProp_dat.add(__local__22_0.gsizex,__local__22_0.gsizey,__local__22_0.depotx,__local__22_0.depoty,__local__22_0.steps);
+                            bel_simulationProp_dat.add(__local__23_0.gsizex,__local__23_0.gsizey,__local__23_0.depotx,__local__23_0.depoty,__local__23_0.steps);
                             break;
                         }
                         //* (79)         bel_numCarryingGold_dat.add(0);
@@ -547,14 +547,14 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
                         //* (82)         for(int x=0;x<simStart.gsizex; x++) {
                         case 15: 
                         {
-                            __local__22_1 = 0;
+                            __local__23_1 = 0;
                             __state = 16;
                             break;
                         }
                         //* (82)         for(int x=0;x<simStart.gsizex; x++) {
                         case 16: 
                         {
-                            if (__local__22_1 < __local__22_0.gsizex) 
+                            if (__local__23_1 < __local__23_0.gsizex) 
                                 __state = 17;
                              else 
                                 __state = 22;
@@ -564,14 +564,14 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
                         case 17: 
                         {
                             __breakLevel = 4;
-                            __local__22_2 = 0;
+                            __local__23_2 = 0;
                             __state = 18;
                             break;
                         }
                         //* (83)             for(int y=0; y<simStart.gsizey;y++) {
                         case 18: 
                         {
-                            if (__local__22_2 < __local__22_0.gsizey) 
+                            if (__local__23_2 < __local__23_0.gsizey) 
                                 __state = 19;
                              else 
                                 __state = 21;
@@ -588,34 +588,34 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
                         case 20: 
                         {
                             __state = 18;
-                            __local__22_2++ ;
+                            __local__23_2++ ;
                             break;
                         }
                         //* (82)         for(int x=0;x<simStart.gsizex; x++) {
                         case 21: 
                         {
                             __state = 16;
-                            __local__22_1++ ;
+                            __local__23_1++ ;
                             break;
                         }
                         //* (91)         @send("boss", mesimstart_s.send(simStart.id, simStart.opponent, GridPoint.getCur(simStart.gsizex, simStart.gsizey),
                         case 22: 
                         {
                             __state = 23;
-                            agent.send("boss",mesimstart_s.send(__local__22_0.id,__local__22_0.opponent,rmit.ai.clima.gui.grid.GridPoint.getCur(__local__22_0.gsizex,__local__22_0.gsizey),rmit.ai.clima.gui.grid.GridPoint.getCur(__local__22_0.depotx,__local__22_0.depoty),__local__22_0.steps));
+                            agent.send("boss",mesimstart_s.send(__local__23_0.id,__local__23_0.opponent,rmit.ai.clima.gui.grid.GridPoint.getCur(__local__23_0.gsizex,__local__23_0.gsizey),rmit.ai.clima.gui.grid.GridPoint.getCur(__local__23_0.depotx,__local__23_0.depoty),__local__23_0.steps));
                             break;
                         }
                         //* (96)     	@send("gui", mesimstart_s.send(simStart.id, simStart.opponent, GridPoint.getCur(simStart.gsizex, simStart.gsizey),
                         case 23: 
                         {
                             __state = 24;
-                            agent.send("gui",mesimstart_s.send(__local__22_0.id,__local__22_0.opponent,rmit.ai.clima.gui.grid.GridPoint.getCur(__local__22_0.gsizex,__local__22_0.gsizey),rmit.ai.clima.gui.grid.GridPoint.getCur(__local__22_0.depotx,__local__22_0.depoty),__local__22_0.steps));
+                            agent.send("gui",mesimstart_s.send(__local__23_0.id,__local__23_0.opponent,rmit.ai.clima.gui.grid.GridPoint.getCur(__local__23_0.gsizex,__local__23_0.gsizey),rmit.ai.clima.gui.grid.GridPoint.getCur(__local__23_0.depotx,__local__23_0.depoty),__local__23_0.steps));
                             break;
                         }
                         //* (100)     	GridObject gridobj = new GridObject(simStart.depotx, simStart.depoty, GameGraphics.getDepotString());
                         case 24: 
                         {
-                            __local__22_3 = new rmit.ai.clima.gui.grid.GridObject(__local__22_0.depotx,__local__22_0.depoty,rmit.ai.clima.gui.grid.GameGraphics.getDepotString());
+                            __local__23_3 = new rmit.ai.clima.gui.grid.GridObject(__local__23_0.depotx,__local__23_0.depoty,rmit.ai.clima.gui.grid.GameGraphics.getDepotString());
                             __state = 25;
                             break;
                         }
@@ -623,7 +623,7 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
                         case 25: 
                         {
                             __state = 26;
-                            agent.send("gui",meinformcellstatus_s.send(__local__22_3));
+                            agent.send("gui",meinformcellstatus_s.send(__local__23_3));
                             break;
                         }
                         //* (105) 		consoleIface.showConsoleDebug("I have just started a new simulation!");
@@ -734,19 +734,19 @@ public class StartSimulation extends aos.jack.jak.plan.Plan {
             switch (n) {
                 case 0: 
                 {
-                    return aos.util.ToObject.box(__local__22_0);
+                    return aos.util.ToObject.box(__local__23_0);
                 }
                 case 1: 
                 {
-                    return aos.util.ToObject.box(__local__22_1);
+                    return aos.util.ToObject.box(__local__23_1);
                 }
                 case 2: 
                 {
-                    return aos.util.ToObject.box(__local__22_2);
+                    return aos.util.ToObject.box(__local__23_2);
                 }
                 case 3: 
                 {
-                    return aos.util.ToObject.box(__local__22_3);
+                    return aos.util.ToObject.box(__local__23_3);
                 }
                 default: 
                 {

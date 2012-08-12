@@ -13,6 +13,7 @@ import aos.jack.jak.event.Event;
 import aos.jack.jak.task.Task;
 import aos.jack.jak.core.Generator;
 import aos.jack.jak.logic.Signature;
+import rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange;
 import rmit.ai.clima.jackagt.events.ECurrentPositionChange;
 import rmit.ai.clima.interfaces.DebugInterface;
 import java.lang.Object;
@@ -21,22 +22,37 @@ import aos.jack.jak.fsm.FSM;
 import aos.jack.jak.core.Jak;
 
 public class ReportCurrentPositionChange extends aos.jack.jak.plan.Plan {
+    public rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange meinformcurrentpositionchange_p;
     public rmit.ai.clima.jackagt.events.ECurrentPositionChange ecurrentpositionchange_h;
     public rmit.ai.clima.interfaces.DebugInterface consoleIface;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
             "rmit/ai/clima/jackagt/plans/ReportCurrentPositionChange.plan",
             "body",
-            "26",
-            "25"};
+            "28",
+            "29",
+            "30",
+            "32",
+            "27"};
     private final static java.lang.String[] __planVariableNames = {
+            "meinformcurrentpositionchange_p",
             "ecurrentpositionchange_h",
             "consoleIface"};
     private final static java.lang.String[] __planVariableTypes = {
+            "MEInformCurrentPositionChange",
             "rmit.ai.clima.jackagt.events.ECurrentPositionChange",
             "rmit.ai.clima.interfaces.DebugInterface"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
+    private final static java.lang.String[] __fsmVariableNames_body = {
+            "posX",
+            "posY"};
+    private final static java.lang.String[] __fsmTypes_body = {
+            "int",
+            "int"};
+    private final static java.lang.String[] __fsmLocalNames_body = {
+            "__local__20_0",
+            "__local__20_1"};
     public ReportCurrentPositionChange()
     {
     }
@@ -47,12 +63,18 @@ public class ReportCurrentPositionChange extends aos.jack.jak.plan.Plan {
         __ns = __env.__ns;
         __planTask = __t;
         __logic = __t.logic;
+        meinformcurrentpositionchange_p = __env.meinformcurrentpositionchange_p;
         ecurrentpositionchange_h = __env.ecurrentpositionchange_h;
         consoleIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
     }
     
     public boolean init_sentinel(aos.jack.jak.agent.NameSpace __a)
     {
+        meinformcurrentpositionchange_p = (rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange) __a.findEvent("rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange");
+        if (meinformcurrentpositionchange_p == null) {
+            warning("Failed to find MEInformCurrentPositionChange meinformcurrentpositionchange_p");
+            return false;
+        }
         ecurrentpositionchange_h = (rmit.ai.clima.jackagt.events.ECurrentPositionChange) __a.findEvent("rmit.ai.clima.jackagt.events.ECurrentPositionChange");
         if (ecurrentpositionchange_h == null) {
             warning("Failed to find ECurrentPositionChange ecurrentpositionchange_h");
@@ -155,9 +177,13 @@ public class ReportCurrentPositionChange extends aos.jack.jak.plan.Plan {
         switch (n) {
             case 0: 
             {
-                return aos.util.ToObject.box(ecurrentpositionchange_h);
+                return aos.util.ToObject.box(meinformcurrentpositionchange_p);
             }
             case 1: 
+            {
+                return aos.util.ToObject.box(ecurrentpositionchange_h);
+            }
+            case 2: 
             {
                 return aos.util.ToObject.box(consoleIface);
             }
@@ -185,6 +211,8 @@ public class ReportCurrentPositionChange extends aos.jack.jak.plan.Plan {
     }
     
     class __bodyFSM extends aos.jack.jak.plan.PlanFSM implements aos.jack.jak.core.Generator {
+        int __local__20_0;
+        int __local__20_1;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -213,16 +241,37 @@ public class ReportCurrentPositionChange extends aos.jack.jak.plan.Plan {
                             aos.jack.jak.core.Jak.error("ReportCurrentPositionChange.body: Illegal state");
                             return FAILED_STATE;
                         }
-                        //* (26) 		consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
+                        //* (28) 		int posX = ecurrentpositionchange_h.posX;
                         case 10: 
                         {
                             __breakLevel = 0;
+                            __local__20_0 = ecurrentpositionchange_h.posX;
                             __state = 11;
-                            consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " has just moved to location " + ecurrentpositionchange_h.posX + "," + ecurrentpositionchange_h.posY + ".");
                             break;
                         }
-                        //* (25) 	body() {
+                        //* (29) 		int posY = ecurrentpositionchange_h.posY;
                         case 11: 
+                        {
+                            __local__20_1 = ecurrentpositionchange_h.posY;
+                            __state = 12;
+                            break;
+                        }
+                        //* (30) 		consoleIface.showConsoleDebug("Agent " + getAgent().getName() +
+                        case 12: 
+                        {
+                            __state = 13;
+                            consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " has just moved to location " + __local__20_0 + "," + __local__20_1 + ".");
+                            break;
+                        }
+                        //* (32) 		@send("boss", meinformcurrentpositionchange_p.post(getAgent().getName(), posX, posY));
+                        case 13: 
+                        {
+                            __state = 14;
+                            agent.send("boss",meinformcurrentpositionchange_p.post(getAgent().getName(),__local__20_0,__local__20_1));
+                            break;
+                        }
+                        //* (27) 	body() {
+                        case 14: 
                         {
                             if (__pending == null) 
                                 __state = PASSED_STATE;
@@ -313,6 +362,39 @@ public class ReportCurrentPositionChange extends aos.jack.jak.plan.Plan {
         public void enter()
         {
             __trace = agent.trace("rmit.ai.clima.jackagt.plans.ReportCurrentPositionChange.body");
+        }
+        
+        public java.lang.Object getVariable(int n)
+        {
+            switch (n) {
+                case 0: 
+                {
+                    return aos.util.ToObject.box(__local__20_0);
+                }
+                case 1: 
+                {
+                    return aos.util.ToObject.box(__local__20_1);
+                }
+                default: 
+                {
+                    throw new java.lang.IndexOutOfBoundsException("Reasoning Method " + methodName() + " does not have variable number " + n);
+                }
+            }
+        }
+        
+        public java.lang.String[] variableNames()
+        {
+            return __fsmVariableNames_body;
+        }
+        
+        public java.lang.String[] variableTypes()
+        {
+            return __fsmTypes_body;
+        }
+        
+        public java.lang.String[] variableLocalNames()
+        {
+            return __fsmLocalNames_body;
         }
         
     }

@@ -9,101 +9,101 @@ import aos.jack.jak.plan.Plan;
 import aos.jack.jak.plan.PlanFSM;
 import aos.jack.jak.plan.ExMap;
 import aos.jack.jak.agent.NameSpace;
+import aos.jack.jak.agent.Agent;
 import aos.jack.jak.event.Event;
 import aos.jack.jak.task.Task;
 import aos.jack.jak.core.Generator;
-import aos.jack.jak.logic.Signature;
-import rmit.ai.clima.jackagt.events.MEInformCellStatus;
-import aos.jack.util.thread.Semaphore;
-import rmit.ai.clima.jackagt.data.BAgentNumbers;
-import rmit.ai.clima.jackagt.agents.GUIAgent;
-import rmit.ai.clima.gui.grid.GridObject;
-import rmit.ai.clima.gui.grid.GameGraphics;
 import aos.jack.jak.cursor.Cursor;
+import aos.jack.jak.logic.Signature;
+import rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange;
+import rmit.ai.clima.jackagt.data.AgentPosition;
+import rmit.ai.clima.interfaces.DebugInterface;
+import java.lang.Object;
 import aos.jack.jak.fsm.FSM;
 import aos.jack.jak.core.Jak;
 
-public class GUIUpdateCell extends aos.jack.jak.plan.Plan {
-    public rmit.ai.clima.jackagt.events.MEInformCellStatus meinformcellstatus_h;
-    public aos.jack.util.thread.Semaphore mutex_accessGUI_dat;
-    public rmit.ai.clima.jackagt.data.BAgentNumbers bel_agentNumbers_dat;
+public class Coord_UpdatePlayerPositions extends aos.jack.jak.plan.Plan {
+    public rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange meinformcurrentpositionchange_h;
+    public rmit.ai.clima.jackagt.data.AgentPosition bel_agentPositions_dat;
+    public rmit.ai.clima.interfaces.DebugInterface consoleIface;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
-            "rmit/ai/clima/jackagt/plans/GUIUpdateCell.plan",
+            "rmit/ai/clima/jackagt/plans/Coord_UpdatePlayerPositions.plan",
             "body",
-            "39",
-            "41",
-            "45",
-            "46",
-            "47",
-            "49",
-            "50",
-            "54",
-            "56",
-            "57",
-            "59",
-            "61",
-            "64",
-            "68",
-            "36"};
+            "25",
+            "26",
+            "27",
+            "29",
+            "31",
+            "32",
+            "33",
+            "34",
+            "34",
+            "35",
+            "37",
+            "24"};
     private final static java.lang.String[] __planVariableNames = {
-            "meinformcellstatus_h",
-            "mutex_accessGUI_dat",
-            "bel_agentNumbers_dat"};
+            "meinformcurrentpositionchange_h",
+            "bel_agentPositions_dat",
+            "consoleIface"};
     private final static java.lang.String[] __planVariableTypes = {
-            "rmit.ai.clima.jackagt.events.MEInformCellStatus",
-            "aos.jack.util.thread.Semaphore",
-            "rmit.ai.clima.jackagt.data.BAgentNumbers"};
+            "rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange",
+            "rmit.ai.clima.jackagt.data.AgentPosition",
+            "rmit.ai.clima.interfaces.DebugInterface"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
     private final static java.lang.String[] __fsmVariableNames_body = {
-            "gui",
-            "$agentNo",
-            "agentNo",
-            "gridobject",
-            "content"};
+            "agentName",
+            "posX",
+            "posY",
+            "message",
+            "$agentName",
+            "$posX",
+            "$posY",
+            "c"};
     private final static java.lang.String[] __fsmTypes_body = {
-            "GUIAgent",
-            "logical int",
+            "String",
             "int",
-            "GridObject",
-            "String"};
+            "int",
+            "StringBuilder",
+            "logical String",
+            "logical int",
+            "logical int",
+            "Cursor"};
     private final static java.lang.String[] __fsmLocalNames_body = {
-            "__local__14_0",
-            "__local__14_1",
-            "__local__14_2",
-            "__local__14_3",
-            "__local__14_4"};
-    public GUIUpdateCell()
+            "__local__7_0",
+            "__local__7_1",
+            "__local__7_2",
+            "__local__7_3",
+            "__local__7_4",
+            "__local__7_5",
+            "__local__7_6",
+            "__local__7_7"};
+    public Coord_UpdatePlayerPositions()
     {
     }
     
-    private GUIUpdateCell(aos.jack.jak.task.Task __t, rmit.ai.clima.jackagt.plans.GUIUpdateCell __env)
+    private Coord_UpdatePlayerPositions(aos.jack.jak.task.Task __t, rmit.ai.clima.jackagt.plans.Coord_UpdatePlayerPositions __env)
     {
         __agent = __env.__agent;
         __ns = __env.__ns;
         __planTask = __t;
         __logic = __t.logic;
-        meinformcellstatus_h = __env.meinformcellstatus_h;
-        mutex_accessGUI_dat = __env.mutex_accessGUI_dat;
-        bel_agentNumbers_dat = __env.bel_agentNumbers_dat;
+        meinformcurrentpositionchange_h = __env.meinformcurrentpositionchange_h;
+        bel_agentPositions_dat = __env.bel_agentPositions_dat;
+        consoleIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
     }
     
     public boolean init_sentinel(aos.jack.jak.agent.NameSpace __a)
     {
-        meinformcellstatus_h = (rmit.ai.clima.jackagt.events.MEInformCellStatus) __a.findEvent("rmit.ai.clima.jackagt.events.MEInformCellStatus");
-        if (meinformcellstatus_h == null) {
-            warning("Failed to find MEInformCellStatus meinformcellstatus_h");
+        meinformcurrentpositionchange_h = (rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange) __a.findEvent("rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange");
+        if (meinformcurrentpositionchange_h == null) {
+            warning("Failed to find MEInformCurrentPositionChange meinformcurrentpositionchange_h");
             return false;
         }
-        mutex_accessGUI_dat = (aos.jack.util.thread.Semaphore) lookupNamedObject("mutex_accessGUI_dat","aos.jack.util.thread.Semaphore",0);
-        if (mutex_accessGUI_dat == null) {
-            warning("Failed to find Semaphore mutex_accessGUI_dat");
-            return false;
-        }
-        bel_agentNumbers_dat = (rmit.ai.clima.jackagt.data.BAgentNumbers) lookupNamedObject("bel_agentNumbers_dat","rmit.ai.clima.jackagt.data.BAgentNumbers",0);
-        if (bel_agentNumbers_dat == null) {
-            warning("Failed to find BAgentNumbers bel_agentNumbers_dat");
+        bel_agentPositions_dat = (rmit.ai.clima.jackagt.data.AgentPosition) lookupNamedObject("bel_agentPositions_dat","rmit.ai.clima.jackagt.data.AgentPosition",aos.jack.jak.agent.Agent.WRITEABLE);
+        if (bel_agentPositions_dat == null) {
+            warning("Failed to find AgentPosition bel_agentPositions_dat");
             return false;
         }
         return true;
@@ -156,23 +156,23 @@ public class GUIUpdateCell extends aos.jack.jak.plan.Plan {
     
     public aos.jack.jak.plan.PlanFSM body()
     {
-        return new rmit.ai.clima.jackagt.plans.GUIUpdateCell.__bodyFSM();
+        return new rmit.ai.clima.jackagt.plans.Coord_UpdatePlayerPositions.__bodyFSM();
     }
     
-    private GUIUpdateCell(rmit.ai.clima.jackagt.events.MEInformCellStatus __ev, aos.jack.jak.task.Task __t, rmit.ai.clima.jackagt.plans.GUIUpdateCell __env)
+    private Coord_UpdatePlayerPositions(rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange __ev, aos.jack.jak.task.Task __t, rmit.ai.clima.jackagt.plans.Coord_UpdatePlayerPositions __env)
     {
         this(__t,__env);
-        this.meinformcellstatus_h = __ev;
+        this.meinformcurrentpositionchange_h = __ev;
     }
     
     protected aos.jack.jak.logic.Signature eventSignature(int __log)
     {
-        return meinformcellstatus_h.getSignature(__log);
+        return meinformcurrentpositionchange_h.getSignature(__log);
     }
     
     public java.lang.String handledEvent()
     {
-        return "rmit.ai.clima.jackagt.events.MEInformCellStatus";
+        return "rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange";
     }
     
     public boolean __relevant(aos.jack.jak.event.Event __e)
@@ -182,10 +182,10 @@ public class GUIUpdateCell extends aos.jack.jak.plan.Plan {
     
     public aos.jack.jak.plan.Plan createPlan(aos.jack.jak.event.Event __e, aos.jack.jak.task.Task __t)
     {
-        if (!(__e instanceof rmit.ai.clima.jackagt.events.MEInformCellStatus)) 
+        if (!(__e instanceof rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange)) 
             return null;
-        rmit.ai.clima.jackagt.events.MEInformCellStatus __e1 = (rmit.ai.clima.jackagt.events.MEInformCellStatus) __e;
-        return new rmit.ai.clima.jackagt.plans.GUIUpdateCell(__e1,__t,this);
+        rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange __e1 = (rmit.ai.clima.jackagt.events.MEInformCurrentPositionChange) __e;
+        return new rmit.ai.clima.jackagt.plans.Coord_UpdatePlayerPositions(__e1,__t,this);
     }
     
     public java.lang.String[] variableNames()
@@ -203,15 +203,15 @@ public class GUIUpdateCell extends aos.jack.jak.plan.Plan {
         switch (n) {
             case 0: 
             {
-                return aos.util.ToObject.box(meinformcellstatus_h);
+                return aos.util.ToObject.box(meinformcurrentpositionchange_h);
             }
             case 1: 
             {
-                return aos.util.ToObject.box(mutex_accessGUI_dat);
+                return aos.util.ToObject.box(bel_agentPositions_dat);
             }
             case 2: 
             {
-                return aos.util.ToObject.box(bel_agentNumbers_dat);
+                return aos.util.ToObject.box(consoleIface);
             }
             default: 
             {
@@ -228,7 +228,7 @@ public class GUIUpdateCell extends aos.jack.jak.plan.Plan {
     public aos.jack.jak.cursor.Cursor context()
     {
         try {
-            return (((((rmit.ai.clima.jackagt.agents.GUIAgent) getAgent()).guiReady)?aos.jack.jak.cursor.Cursor.trueCursor:aos.jack.jak.cursor.Cursor.falseCursor));
+            return (((true)?aos.jack.jak.cursor.Cursor.trueCursor:aos.jack.jak.cursor.Cursor.falseCursor));
         }
         catch (java.lang.Exception e) {
             e.printStackTrace();
@@ -237,11 +237,14 @@ public class GUIUpdateCell extends aos.jack.jak.plan.Plan {
     }
     
     class __bodyFSM extends aos.jack.jak.plan.PlanFSM implements aos.jack.jak.core.Generator {
-        rmit.ai.clima.jackagt.agents.GUIAgent __local__14_0;
-        aos.jack.jak.logic.IntegerVariable __local__14_1;
-        int __local__14_2;
-        rmit.ai.clima.gui.grid.GridObject __local__14_3;
-        java.lang.String __local__14_4;
+        java.lang.String __local__7_0;
+        int __local__7_1;
+        int __local__7_2;
+        java.lang.StringBuilder __local__7_3;
+        aos.jack.jak.logic.StringVariable __local__7_4;
+        aos.jack.jak.logic.IntegerVariable __local__7_5;
+        aos.jack.jak.logic.IntegerVariable __local__7_6;
+        aos.jack.jak.cursor.Cursor __local__7_7;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -251,14 +254,14 @@ public class GUIUpdateCell extends aos.jack.jak.plan.Plan {
                     if (__tothrow != null) 
                         throw __tothrow;
                     if ((aos.jack.jak.core.Jak.debugging & aos.jack.jak.core.Jak.LOG_PLANS) != 0) 
-                        aos.util.logging.LogMsg.log(this,aos.jack.jak.core.Jak.LOG_PLANS,__task + "-GUIUpdateCell.body:" + java.lang.Integer.toString(__state));
+                        aos.util.logging.LogMsg.log(this,aos.jack.jak.core.Jak.LOG_PLANS,__task + "-Coord_UpdatePlayerPositions.body:" + java.lang.Integer.toString(__state));
                     if (__task.nsteps > 0) {
                         __task.nsteps-- ;
                         if (__task.nsteps == 0) 
                             agent.changeFocus();
                     }
                     if (__state < 10) {
-                        __status = super.stdrun(rmit.ai.clima.jackagt.plans.GUIUpdateCell.this,__status);
+                        __status = super.stdrun(rmit.ai.clima.jackagt.plans.Coord_UpdatePlayerPositions.this,__status);
                         if (__status != CONTINUE || agent.changing_focus) 
                             return __status;
                         continue;
@@ -267,134 +270,93 @@ public class GUIUpdateCell extends aos.jack.jak.plan.Plan {
                     switch (__state) {
                         default: 
                         {
-                            aos.jack.jak.core.Jak.error("GUIUpdateCell.body: Illegal state");
+                            aos.jack.jak.core.Jak.error("Coord_UpdatePlayerPositions.body: Illegal state");
                             return FAILED_STATE;
                         }
-                        //* (39) 	@waitFor(mutex_accessGUI_dat.planWait()); // Hold the mutex for updating the GUI
+                        //* (25) 		String agentName = meinformcurrentpositionchange_h.agentName;
                         case 10: 
                         {
                             __breakLevel = 0;
-                            __task.push(new aos.jack.jak.fsm.WaitForFSM(getAgent(),__task,this,0));
-                            __state = -__state;
-                            __subtask_pass = 11;
-                            __subtask_fail = 4;
-                            return SUBTASK;
+                            __local__7_0 = meinformcurrentpositionchange_h.agentName;
+                            __state = 11;
+                            break;
                         }
-                        //* (41) 	      	GUIAgent gui = (GUIAgent)getAgent();
+                        //* (26) 		int posX = meinformcurrentpositionchange_h.posX;
                         case 11: 
                         {
-                            __local__14_0 = (rmit.ai.clima.jackagt.agents.GUIAgent) getAgent();
+                            __local__7_1 = meinformcurrentpositionchange_h.posX;
                             __state = 12;
                             break;
                         }
-                        //* (45) 			logical int $agentNo;
+                        //* (27) 		int posY = meinformcurrentpositionchange_h.posY;
                         case 12: 
                         {
-                            __local__14_1 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__7_2 = meinformcurrentpositionchange_h.posY;
                             __state = 13;
                             break;
                         }
-                        //* (46) 	    	bel_agentNumbers_dat.getNo(meinformcellstatus_h.from, $agentNo);
+                        //* (29) 		bel_agentPositions_dat.add(agentName, posX, posY);
                         case 13: 
                         {
-                            boolean __b;
-                            aos.jack.jak.cursor.Cursor __c = null;
-                            try {
-                                __c = genCursor(1);
-                                __b = __c.next();
-                            }
-                            finally {
-                                if (__c != null) 
-                                    __c.finished();
-                            }
-                            if (__b) 
-                                __state = 14;
-                             else 
-                                throw planfailed;
+                            __state = 14;
+                            bel_agentPositions_dat.add(__local__7_0,__local__7_1,__local__7_2);
                             break;
                         }
-                        //* (47) 			int agentNo = $agentNo.as_int();
+                        //* (31) 		StringBuilder message = new StringBuilder("Current Agent positions:\n");
                         case 14: 
                         {
-                            __local__14_2 = __local__14_1.as_int();
+                            __local__7_3 = new java.lang.StringBuilder("Current Agent positions:\n");
                             __state = 15;
                             break;
                         }
-                        //* (49) 			GridObject gridobject = meinformcellstatus_h.gridObject;	        	
+                        //* (32) 		logical String $agentName;
                         case 15: 
                         {
-                            __local__14_3 = meinformcellstatus_h.gridObject;
+                            __local__7_4 = (aos.jack.jak.logic.StringVariable) __logic.new_variable(java.lang.String.class);
                             __state = 16;
                             break;
                         }
-                        //* (50) 	        String content = gridobject.getContent();
+                        //* (33) 		logical int $posX, $posY;
                         case 16: 
                         {
-                            __local__14_4 = __local__14_3.getContent();
+                            __local__7_5 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__7_6 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
                             __state = 17;
                             break;
                         }
-                        //* (54) 	        if(gui.showGUI) {
+                        //* (34) 		for (Cursor c = bel_agentPositions_dat.get($agentName, $posX, $posY); c.next();) {
                         case 17: 
                         {
-                            if (__local__14_0.showGUI) 
-                                __state = 18;
-                             else 
-                                __state = 23;
+                            __local__7_7 = (aos.jack.jak.cursor.Cursor) genCursor(0);
+                            __state = 18;
                             break;
                         }
-                        //* (56) 	        	if (content == null) {
+                        //* (34) 		for (Cursor c = bel_agentPositions_dat.get($agentName, $posX, $posY); c.next();) {
                         case 18: 
                         {
-                            __breakLevel = 2;
-                            if (__local__14_4 == null) 
+                            if (__local__7_7.next()) 
                                 __state = 19;
                              else 
                                 __state = 20;
                             break;
                         }
-                        //* (57) 	        		System.out.println("============================ ERROR: content is null!");
+                        //* (35) 			message.append($agentName + " is at (" + $posX + "," + $posY + ")\n");
                         case 19: 
                         {
                             __breakLevel = 4;
-                            __state = 23;
-                            java.lang.System.out.println("============================ ERROR: content is null!");
+                            __state = 18;
+                            __local__7_3.append(__local__7_4 + " is at (" + __local__7_5 + "," + __local__7_6 + ")\n");
                             break;
                         }
-                        //* (59) 	        	else if(content.equals("nogold"))
+                        //* (37) 		consoleIface.showConsoleDebug(message.toString());
                         case 20: 
                         {
-                            if (__local__14_4.equals("nogold")) 
-                                __state = 21;
-                             else 
-                                __state = 22;
+                            __state = 21;
+                            consoleIface.showConsoleDebug(__local__7_3.toString());
                             break;
                         }
-                        //* (61) 	        		gui.guiInterface.removeFromGridLocation(agentNo,meinformcellstatus_h.gridObject, GameGraphics.getGraphicObject(GameGraphics.getGoldString())); 
+                        //* (24) 	body() {
                         case 21: 
-                        {
-                            __breakLevel = 4;
-                            __state = 23;
-                            __local__14_0.guiInterface.removeFromGridLocation(__local__14_2,meinformcellstatus_h.gridObject,rmit.ai.clima.gui.grid.GameGraphics.getGraphicObject(rmit.ai.clima.gui.grid.GameGraphics.getGoldString()));
-                            break;
-                        }
-                        //* (64) 	        		gui.guiInterface.updateGridLocation(agentNo, meinformcellstatus_h.gridObject, GameGraphics.getGraphicObject(content));
-                        case 22: 
-                        {
-                            __breakLevel = 4;
-                            __state = 23;
-                            __local__14_0.guiInterface.updateGridLocation(__local__14_2,meinformcellstatus_h.gridObject,rmit.ai.clima.gui.grid.GameGraphics.getGraphicObject(__local__14_4));
-                            break;
-                        }
-                        //* (68)     mutex_accessGUI_dat.signal(); // release mutex
-                        case 23: 
-                        {
-                            __state = 24;
-                            mutex_accessGUI_dat.signal();
-                            break;
-                        }
-                        //* (36)    body()
-                        case 24: 
                         {
                             if (__pending == null) 
                                 __state = PASSED_STATE;
@@ -446,11 +408,7 @@ public class GUIUpdateCell extends aos.jack.jak.plan.Plan {
             switch (__index) {
                 case 0: 
                 {
-                    return (mutex_accessGUI_dat.planWait());
-                }
-                case 1: 
-                {
-                    return (bel_agentNumbers_dat.getNo(meinformcellstatus_h.from,__local__14_1));
+                    return (bel_agentPositions_dat.get(__local__7_4,__local__7_5,__local__7_6));
                 }
             }
             aos.jack.jak.core.Jak.error("illegal Cursor Construction");
@@ -477,7 +435,7 @@ public class GUIUpdateCell extends aos.jack.jak.plan.Plan {
         
         public aos.jack.jak.plan.Plan getPlan()
         {
-            return rmit.ai.clima.jackagt.plans.GUIUpdateCell.this;
+            return rmit.ai.clima.jackagt.plans.Coord_UpdatePlayerPositions.this;
         }
         
         protected aos.jack.jak.fsm.FSM fail()
@@ -492,7 +450,7 @@ public class GUIUpdateCell extends aos.jack.jak.plan.Plan {
         
         public void enter()
         {
-            __trace = agent.trace("rmit.ai.clima.jackagt.plans.GUIUpdateCell.body");
+            __trace = agent.trace("rmit.ai.clima.jackagt.plans.Coord_UpdatePlayerPositions.body");
         }
         
         public java.lang.Object getVariable(int n)
@@ -500,23 +458,35 @@ public class GUIUpdateCell extends aos.jack.jak.plan.Plan {
             switch (n) {
                 case 0: 
                 {
-                    return aos.util.ToObject.box(__local__14_0);
+                    return aos.util.ToObject.box(__local__7_0);
                 }
                 case 1: 
                 {
-                    return aos.util.ToObject.box(__local__14_1);
+                    return aos.util.ToObject.box(__local__7_1);
                 }
                 case 2: 
                 {
-                    return aos.util.ToObject.box(__local__14_2);
+                    return aos.util.ToObject.box(__local__7_2);
                 }
                 case 3: 
                 {
-                    return aos.util.ToObject.box(__local__14_3);
+                    return aos.util.ToObject.box(__local__7_3);
                 }
                 case 4: 
                 {
-                    return aos.util.ToObject.box(__local__14_4);
+                    return aos.util.ToObject.box(__local__7_4);
+                }
+                case 5: 
+                {
+                    return aos.util.ToObject.box(__local__7_5);
+                }
+                case 6: 
+                {
+                    return aos.util.ToObject.box(__local__7_6);
+                }
+                case 7: 
+                {
+                    return aos.util.ToObject.box(__local__7_7);
                 }
                 default: 
                 {
