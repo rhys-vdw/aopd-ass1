@@ -1,0 +1,26 @@
+package rmit.ai.clima.jackagt.events;
+import rmit.ai.clima.jackagt.data.*;
+
+/******** Start PDT Design Block *** DO NOT EDIT IT *********/
+public event ECellStatusChanged extends BDIGoalEvent
+{
+/*
+ * Message Name: ECellStatusChanged
+*/
+	#uses data AgentPosition bel_agentPositions_dat;
+
+	#uses data CellEmpty bel_cellEmpty_dat;
+
+/******** End PDT Design Block *** DO NOT EDIT IT *********/
+	public String message;
+	logical int $posX, $posY;
+	logical String $agentName;
+	
+	#posted when (bel_cellEmpty_dat.get($posX, $posY).negate()) {
+		message = "Obstacle found at " + $posX + "," + $posY + ".";
+	}
+	
+	#posted when (bel_agentPositions_dat.get($agentName, $posX, $posY)) {
+		message = "Agent " + $agentName + " is now at " + $posX + "," + $posY + ".";
+	}
+}

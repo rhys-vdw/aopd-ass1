@@ -11,9 +11,9 @@ public event ECurrentPositionChange extends BDIGoalEvent
  * Information Carried: The new co-ordinates of the agent.
  * Purpose: To determine whether the agent has moved successfully.
 */
-	#uses data CurrentPosition bel_currentPosition_dat;
-
 	#uses data LastActionSentBel bel_lastActionSent_dat;
+
+	#uses data CurrentPosition bel_currentPosition_dat;
 
 /******** End PDT Design Block *** DO NOT EDIT IT *********/
 	public int posX, posY;

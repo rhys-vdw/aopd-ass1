@@ -51,8 +51,8 @@ public class ReportCurrentPositionChange extends aos.jack.jak.plan.Plan {
             "int",
             "int"};
     private final static java.lang.String[] __fsmLocalNames_body = {
-            "__local__20_0",
-            "__local__20_1"};
+            "__local__21_0",
+            "__local__21_1"};
     public ReportCurrentPositionChange()
     {
     }
@@ -211,8 +211,8 @@ public class ReportCurrentPositionChange extends aos.jack.jak.plan.Plan {
     }
     
     class __bodyFSM extends aos.jack.jak.plan.PlanFSM implements aos.jack.jak.core.Generator {
-        int __local__20_0;
-        int __local__20_1;
+        int __local__21_0;
+        int __local__21_1;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -245,14 +245,14 @@ public class ReportCurrentPositionChange extends aos.jack.jak.plan.Plan {
                         case 10: 
                         {
                             __breakLevel = 0;
-                            __local__20_0 = ecurrentpositionchange_h.posX;
+                            __local__21_0 = ecurrentpositionchange_h.posX;
                             __state = 11;
                             break;
                         }
                         //* (29) 		int posY = ecurrentpositionchange_h.posY;
                         case 11: 
                         {
-                            __local__20_1 = ecurrentpositionchange_h.posY;
+                            __local__21_1 = ecurrentpositionchange_h.posY;
                             __state = 12;
                             break;
                         }
@@ -260,14 +260,14 @@ public class ReportCurrentPositionChange extends aos.jack.jak.plan.Plan {
                         case 12: 
                         {
                             __state = 13;
-                            consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " has just moved to location " + __local__20_0 + "," + __local__20_1 + ".");
+                            consoleIface.showConsoleDebug("Agent " + getAgent().getName() + " has just moved to location " + __local__21_0 + "," + __local__21_1 + ".");
                             break;
                         }
                         //* (32) 		@send("boss", meinformcurrentpositionchange_p.post(getAgent().getName(), posX, posY));
                         case 13: 
                         {
                             __state = 14;
-                            agent.send("boss",meinformcurrentpositionchange_p.post(getAgent().getName(),__local__20_0,__local__20_1));
+                            agent.send("boss",meinformcurrentpositionchange_p.post(getAgent().getName(),__local__21_0,__local__21_1));
                             break;
                         }
                         //* (27) 	body() {
@@ -369,11 +369,11 @@ public class ReportCurrentPositionChange extends aos.jack.jak.plan.Plan {
             switch (n) {
                 case 0: 
                 {
-                    return aos.util.ToObject.box(__local__20_0);
+                    return aos.util.ToObject.box(__local__21_0);
                 }
                 case 1: 
                 {
-                    return aos.util.ToObject.box(__local__20_1);
+                    return aos.util.ToObject.box(__local__21_1);
                 }
                 default: 
                 {

@@ -13,110 +13,56 @@ import aos.jack.jak.event.Event;
 import aos.jack.jak.task.Task;
 import aos.jack.jak.core.Generator;
 import aos.jack.jak.logic.Signature;
-import rmit.ai.clima.iface.TellClimaServer;
-import rmit.ai.clima.jackagt.events.EGUIDebugMessage;
-import rmit.ai.clima.jackagt.events.EExecuteCLIMAaction;
-import rmit.ai.clima.jackagt.data.CurrentRequestActionId;
-import rmit.ai.clima.iface.LastActionSentBel;
+import rmit.ai.clima.jackagt.events.ECellStatusChanged;
 import rmit.ai.clima.interfaces.DebugInterface;
 import java.lang.Object;
 import aos.jack.jak.cursor.Cursor;
 import aos.jack.jak.fsm.FSM;
 import aos.jack.jak.core.Jak;
-import rmit.ai.clima.comms.Action;
 
-public class SendActionAndWait extends aos.jack.jak.plan.Plan {
-    final static java.lang.String ID = "SEND_ACT";
-    public rmit.ai.clima.iface.TellClimaServer tellclimaserver_p;
-    public rmit.ai.clima.jackagt.events.EGUIDebugMessage eguidebugmessage_s;
-    public rmit.ai.clima.jackagt.events.EExecuteCLIMAaction eexecuteclimaaction_h;
-    public rmit.ai.clima.jackagt.data.CurrentRequestActionId bel_currentRequestActionId_dat;
-    public rmit.ai.clima.iface.LastActionSentBel bel_lastActionSent_dat;
-    public rmit.ai.clima.interfaces.DebugInterface debugIface;
+public class PrintCellChange extends aos.jack.jak.plan.Plan {
+    public rmit.ai.clima.jackagt.events.ECellStatusChanged ecellstatuschanged_h;
+    public rmit.ai.clima.interfaces.DebugInterface consoleIface;
     private static aos.jack.jak.plan.ExMap[] __exMap_body;
     private static java.lang.String[] __tt__body = {
-            "rmit/ai/clima/jackagt/plans/SendActionAndWait.plan",
+            "rmit/ai/clima/jackagt/plans/PrintCellChange.plan",
             "body",
-            "56",
-            "57",
-            "62",
-            "65",
-            "66",
-            "51"};
+            "26",
+            "27",
+            "25"};
     private final static java.lang.String[] __planVariableNames = {
-            "ID",
-            "tellclimaserver_p",
-            "eguidebugmessage_s",
-            "eexecuteclimaaction_h",
-            "bel_currentRequestActionId_dat",
-            "bel_lastActionSent_dat",
-            "debugIface"};
+            "ecellstatuschanged_h",
+            "consoleIface"};
     private final static java.lang.String[] __planVariableTypes = {
-            "String",
-            "TellClimaServer",
-            "EGUIDebugMessage",
-            "rmit.ai.clima.jackagt.events.EExecuteCLIMAaction",
-            "rmit.ai.clima.jackagt.data.CurrentRequestActionId",
-            "LastActionSentBel",
+            "rmit.ai.clima.jackagt.events.ECellStatusChanged",
             "rmit.ai.clima.interfaces.DebugInterface"};
     private final static java.lang.String[] __reasoningMethods = {
             "body"};
     private final static java.lang.String[] __fsmVariableNames_body = {
-            "$id"};
+            "message"};
     private final static java.lang.String[] __fsmTypes_body = {
-            "logical int"};
+            "String"};
     private final static java.lang.String[] __fsmLocalNames_body = {
-            "__local__22_0"};
-    // The ID of the plan (for printing)	
-
-    static boolean relevant(rmit.ai.clima.jackagt.events.EExecuteCLIMAaction ev)
-    {
-        return true;
-    }
-    
-    public SendActionAndWait()
+            "__local__19_0"};
+    public PrintCellChange()
     {
     }
     
-    private SendActionAndWait(aos.jack.jak.task.Task __t, rmit.ai.clima.jackagt.plans.SendActionAndWait __env)
+    private PrintCellChange(aos.jack.jak.task.Task __t, rmit.ai.clima.jackagt.plans.PrintCellChange __env)
     {
         __agent = __env.__agent;
         __ns = __env.__ns;
         __planTask = __t;
         __logic = __t.logic;
-        tellclimaserver_p = __env.tellclimaserver_p;
-        eguidebugmessage_s = __env.eguidebugmessage_s;
-        eexecuteclimaaction_h = __env.eexecuteclimaaction_h;
-        bel_currentRequestActionId_dat = __env.bel_currentRequestActionId_dat;
-        bel_lastActionSent_dat = __env.bel_lastActionSent_dat;
-        debugIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
+        ecellstatuschanged_h = __env.ecellstatuschanged_h;
+        consoleIface = (rmit.ai.clima.interfaces.DebugInterface) __ns.getIF(rmit.ai.clima.interfaces.DebugInterface.class);
     }
     
     public boolean init_sentinel(aos.jack.jak.agent.NameSpace __a)
     {
-        tellclimaserver_p = (rmit.ai.clima.iface.TellClimaServer) __a.findEvent("rmit.ai.clima.iface.TellClimaServer");
-        if (tellclimaserver_p == null) {
-            warning("Failed to find TellClimaServer tellclimaserver_p");
-            return false;
-        }
-        eguidebugmessage_s = (rmit.ai.clima.jackagt.events.EGUIDebugMessage) __a.findEvent("rmit.ai.clima.jackagt.events.EGUIDebugMessage");
-        if (eguidebugmessage_s == null) {
-            warning("Failed to find EGUIDebugMessage eguidebugmessage_s");
-            return false;
-        }
-        eexecuteclimaaction_h = (rmit.ai.clima.jackagt.events.EExecuteCLIMAaction) __a.findEvent("rmit.ai.clima.jackagt.events.EExecuteCLIMAaction");
-        if (eexecuteclimaaction_h == null) {
-            warning("Failed to find EExecuteCLIMAaction eexecuteclimaaction_h");
-            return false;
-        }
-        bel_currentRequestActionId_dat = (rmit.ai.clima.jackagt.data.CurrentRequestActionId) lookupNamedObject("bel_currentRequestActionId_dat","rmit.ai.clima.jackagt.data.CurrentRequestActionId",0);
-        if (bel_currentRequestActionId_dat == null) {
-            warning("Failed to find CurrentRequestActionId bel_currentRequestActionId_dat");
-            return false;
-        }
-        bel_lastActionSent_dat = (rmit.ai.clima.iface.LastActionSentBel) lookupNamedObject("bel_lastActionSent_dat","rmit.ai.clima.iface.LastActionSentBel",0);
-        if (bel_lastActionSent_dat == null) {
-            warning("Failed to find LastActionSentBel bel_lastActionSent_dat");
+        ecellstatuschanged_h = (rmit.ai.clima.jackagt.events.ECellStatusChanged) __a.findEvent("rmit.ai.clima.jackagt.events.ECellStatusChanged");
+        if (ecellstatuschanged_h == null) {
+            warning("Failed to find ECellStatusChanged ecellstatuschanged_h");
             return false;
         }
         return true;
@@ -169,36 +115,36 @@ public class SendActionAndWait extends aos.jack.jak.plan.Plan {
     
     public aos.jack.jak.plan.PlanFSM body()
     {
-        return new rmit.ai.clima.jackagt.plans.SendActionAndWait.__bodyFSM();
+        return new rmit.ai.clima.jackagt.plans.PrintCellChange.__bodyFSM();
     }
     
-    private SendActionAndWait(rmit.ai.clima.jackagt.events.EExecuteCLIMAaction __ev, aos.jack.jak.task.Task __t, rmit.ai.clima.jackagt.plans.SendActionAndWait __env)
+    private PrintCellChange(rmit.ai.clima.jackagt.events.ECellStatusChanged __ev, aos.jack.jak.task.Task __t, rmit.ai.clima.jackagt.plans.PrintCellChange __env)
     {
         this(__t,__env);
-        this.eexecuteclimaaction_h = __ev;
+        this.ecellstatuschanged_h = __ev;
     }
     
     protected aos.jack.jak.logic.Signature eventSignature(int __log)
     {
-        return eexecuteclimaaction_h.getSignature(__log);
+        return ecellstatuschanged_h.getSignature(__log);
     }
     
     public java.lang.String handledEvent()
     {
-        return "rmit.ai.clima.jackagt.events.EExecuteCLIMAaction";
+        return "rmit.ai.clima.jackagt.events.ECellStatusChanged";
     }
     
     public boolean __relevant(aos.jack.jak.event.Event __e)
     {
-        return __ns.isEnabled() && relevant(((rmit.ai.clima.jackagt.events.EExecuteCLIMAaction) __e));
+        return __ns.isEnabled();
     }
     
     public aos.jack.jak.plan.Plan createPlan(aos.jack.jak.event.Event __e, aos.jack.jak.task.Task __t)
     {
-        if (!(__e instanceof rmit.ai.clima.jackagt.events.EExecuteCLIMAaction)) 
+        if (!(__e instanceof rmit.ai.clima.jackagt.events.ECellStatusChanged)) 
             return null;
-        rmit.ai.clima.jackagt.events.EExecuteCLIMAaction __e1 = (rmit.ai.clima.jackagt.events.EExecuteCLIMAaction) __e;
-        return new rmit.ai.clima.jackagt.plans.SendActionAndWait(__e1,__t,this);
+        rmit.ai.clima.jackagt.events.ECellStatusChanged __e1 = (rmit.ai.clima.jackagt.events.ECellStatusChanged) __e;
+        return new rmit.ai.clima.jackagt.plans.PrintCellChange(__e1,__t,this);
     }
     
     public java.lang.String[] variableNames()
@@ -216,31 +162,11 @@ public class SendActionAndWait extends aos.jack.jak.plan.Plan {
         switch (n) {
             case 0: 
             {
-                return aos.util.ToObject.box(ID);
+                return aos.util.ToObject.box(ecellstatuschanged_h);
             }
             case 1: 
             {
-                return aos.util.ToObject.box(tellclimaserver_p);
-            }
-            case 2: 
-            {
-                return aos.util.ToObject.box(eguidebugmessage_s);
-            }
-            case 3: 
-            {
-                return aos.util.ToObject.box(eexecuteclimaaction_h);
-            }
-            case 4: 
-            {
-                return aos.util.ToObject.box(bel_currentRequestActionId_dat);
-            }
-            case 5: 
-            {
-                return aos.util.ToObject.box(bel_lastActionSent_dat);
-            }
-            case 6: 
-            {
-                return aos.util.ToObject.box(debugIface);
+                return aos.util.ToObject.box(consoleIface);
             }
             default: 
             {
@@ -266,7 +192,7 @@ public class SendActionAndWait extends aos.jack.jak.plan.Plan {
     }
     
     class __bodyFSM extends aos.jack.jak.plan.PlanFSM implements aos.jack.jak.core.Generator {
-        aos.jack.jak.logic.IntegerVariable __local__22_0;
+        java.lang.String __local__19_0;
         private int __breakLevel = 0;
         public int run(int __status)
             throws java.lang.Throwable
@@ -276,14 +202,14 @@ public class SendActionAndWait extends aos.jack.jak.plan.Plan {
                     if (__tothrow != null) 
                         throw __tothrow;
                     if ((aos.jack.jak.core.Jak.debugging & aos.jack.jak.core.Jak.LOG_PLANS) != 0) 
-                        aos.util.logging.LogMsg.log(this,aos.jack.jak.core.Jak.LOG_PLANS,__task + "-SendActionAndWait.body:" + java.lang.Integer.toString(__state));
+                        aos.util.logging.LogMsg.log(this,aos.jack.jak.core.Jak.LOG_PLANS,__task + "-PrintCellChange.body:" + java.lang.Integer.toString(__state));
                     if (__task.nsteps > 0) {
                         __task.nsteps-- ;
                         if (__task.nsteps == 0) 
                             agent.changeFocus();
                     }
                     if (__state < 10) {
-                        __status = super.stdrun(rmit.ai.clima.jackagt.plans.SendActionAndWait.this,__status);
+                        __status = super.stdrun(rmit.ai.clima.jackagt.plans.PrintCellChange.this,__status);
                         if (__status != CONTINUE || agent.changing_focus) 
                             return __status;
                         continue;
@@ -292,61 +218,26 @@ public class SendActionAndWait extends aos.jack.jak.plan.Plan {
                     switch (__state) {
                         default: 
                         {
-                            aos.jack.jak.core.Jak.error("SendActionAndWait.body: Illegal state");
+                            aos.jack.jak.core.Jak.error("PrintCellChange.body: Illegal state");
                             return FAILED_STATE;
                         }
-                        //* (56)     	logical int $id;
+                        //* (26) 		String message = ecellstatuschanged_h.message;
                         case 10: 
                         {
                             __breakLevel = 0;
-                            __local__22_0 = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+                            __local__19_0 = ecellstatuschanged_h.message;
                             __state = 11;
                             break;
                         }
-                        //* (57)     	bel_currentRequestActionId_dat.query_id($id);
+                        //* (27) 		consoleIface.showConsoleDebug(message);
                         case 11: 
                         {
-                            boolean __b;
-                            aos.jack.jak.cursor.Cursor __c = null;
-                            try {
-                                __c = genCursor(0);
-                                __b = __c.next();
-                            }
-                            finally {
-                                if (__c != null) 
-                                    __c.finished();
-                            }
-                            if (__b) 
-                                __state = 12;
-                             else 
-                                throw planfailed;
+                            __state = 12;
+                            consoleIface.showConsoleDebug(__local__19_0);
                             break;
                         }
-                        //* (62) 		@post(tellclimaserver_p.tell(new Action(eexecuteclimaaction_h.message, getAgent().name(), "" + 	$id.as_int())));
+                        //* (25) 	body() {
                         case 12: 
-                        {
-                            __state = 13;
-                            agent.postEvent(tellclimaserver_p.tell(new rmit.ai.clima.comms.Action(eexecuteclimaaction_h.message,getAgent().name(),"" + __local__22_0.as_int())));
-                            break;
-                        }
-                        //* (65)         debugIface.showConsoleDebug("I sent CLIMA action *" + eexecuteclimaaction_h.message +"* for execution with id " + $id.as_int());
-                        case 13: 
-                        {
-                            __state = 14;
-                            // Report that the action was sent for execution
-
-                            debugIface.showConsoleDebug("I sent CLIMA action *" + eexecuteclimaaction_h.message + "* for execution with id " + __local__22_0.as_int());
-                            break;
-                        }
-                        //* (66) 		@send("gui", eguidebugmessage_s.reportMessage(ID, "I have decided to move towards: " + "*"+eexecuteclimaaction_h.message+"*"));
-                        case 14: 
-                        {
-                            __state = 15;
-                            agent.send("gui",eguidebugmessage_s.reportMessage(ID,"I have decided to move towards: " + "*" + eexecuteclimaaction_h.message + "*"));
-                            break;
-                        }
-                        //* (51)     #reasoning method
-                        case 15: 
                         {
                             if (__pending == null) 
                                 __state = PASSED_STATE;
@@ -396,10 +287,6 @@ public class SendActionAndWait extends aos.jack.jak.plan.Plan {
             throws java.lang.Exception
         {
             switch (__index) {
-                case 0: 
-                {
-                    return (bel_currentRequestActionId_dat.query_id(__local__22_0));
-                }
             }
             aos.jack.jak.core.Jak.error("illegal Cursor Construction");
             return null;
@@ -425,7 +312,7 @@ public class SendActionAndWait extends aos.jack.jak.plan.Plan {
         
         public aos.jack.jak.plan.Plan getPlan()
         {
-            return rmit.ai.clima.jackagt.plans.SendActionAndWait.this;
+            return rmit.ai.clima.jackagt.plans.PrintCellChange.this;
         }
         
         protected aos.jack.jak.fsm.FSM fail()
@@ -440,7 +327,7 @@ public class SendActionAndWait extends aos.jack.jak.plan.Plan {
         
         public void enter()
         {
-            __trace = agent.trace("rmit.ai.clima.jackagt.plans.SendActionAndWait.body");
+            __trace = agent.trace("rmit.ai.clima.jackagt.plans.PrintCellChange.body");
         }
         
         public java.lang.Object getVariable(int n)
@@ -448,7 +335,7 @@ public class SendActionAndWait extends aos.jack.jak.plan.Plan {
             switch (n) {
                 case 0: 
                 {
-                    return aos.util.ToObject.box(__local__22_0);
+                    return aos.util.ToObject.box(__local__19_0);
                 }
                 default: 
                 {

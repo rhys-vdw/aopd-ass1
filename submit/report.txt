@@ -708,3 +708,52 @@ HandlePercept.plan (line 99):
   @send("boss", eupdatebel_s.post(id, currentPos, cells, items));
 
 - Step 6:
+
+design.pd:
+In detailed design of Coordinator:
+- Add new Message object "ECellStatusChanged".
+- Create connection FROM ECellStatusChanged TO bel_cellEmpty.
+- Create connection FROM ECellStatusChanged TO bel_agentPositions.
+- Create new plan called PrintCellChange.
+- Create connection FROM ECellStatusChanged TO PrintCellChange.
+- Add ECellStatusChanged as trigger of PrintCellChange.
+
+Generate Code.
+
+ECellStatusChanged.event (line 15):
+
+  public String message;
+  logical int $posX, $posY;
+  logical String $agentName;
+
+  #posted when (bel_cellEmpty_dat.get($posX, $posY).negate()) {
+    message = "Obstacle found at " + $posX + "," + $posY + ".";
+  }
+
+  #posted when (bel_agentPositions_dat.get($agentName,
+        $posX, $posY)) {
+    message = "Agent " + $agentName + " is now at " +
+      $posX + "," + $posY + ".";
+  }
+
+PrintCellChange.plan:
+
+  public plan PrintCellChange extends Plan
+  {
+    #handles event ECellStatusChanged ecellstatuschanged_h;
+
+    #uses interface DebugInterface consoleIface;
+    
+    context() { true; }
+
+    body() {
+      String message = ecellstatuschanged_h.message;
+      consoleIface.showConsoleDebug(message);
+    }
+  }
+
+Ran 20 steps and witnessed the output. See trace6-5.txt.
+
+- Summary:
+In this exercise I learned how to communicate between agents, reusing plans
+and beliefsets.

@@ -47,8 +47,10 @@
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/SendActionAndWait.plan" ID="42497" name="SendActionAndWait"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/PickGold.plan" ID="311041" name="PickGold"/>
 <Entity CodeFileURI="file:/home/ssardina/workspace/RACT-JACKAGT-GOLD-NPDT/src/rmit/ai/clima/jackagt/events/PerceiveClimaServer.event" ID="29697" name="PerceiveClimaServer" package="rmit.ai.clima.iface.PerceiveClimaServer"/>
+<Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/plans/PrintCellChange.plan" ID="335105" name="PrintCellChange"/>
 <Entity DataType="Map" ID="28929" name="bel_map"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/EShowBeliefs.event" ID="40961" name="EShowBeliefs"/>
+<Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/events/ECellStatusChanged.event" ID="333569" name="ECellStatusChanged"/>
 <Entity CodeFileURI="file:/home/rhys/workspace/AOPD-Ass1/src/rmit/ai/clima/jackagt/data/GoldAt.bel" ID="296705" name="GoldAt"/>
 <Entity DataFields="int xCoord, int yCoord, int id" DataType="GoldAt" ID="27393" name="bel_goldAt"/>
 <Entity DataFields="int xCoord, int yCoord" DataType="GoldAt" ID="295937" name="bel_goldAt"/>

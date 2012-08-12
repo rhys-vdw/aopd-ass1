@@ -12,57 +12,38 @@ import aos.jack.jak.logic.Signature;
 import aos.jack.jak.logic.LogicEnv;
 import aos.extension.rule.RuleMonitor;
 import rmit.ai.clima.jackagt.data.CellEmpty;
-import rmit.ai.clima.jackagt.data.GoldAt;
+import rmit.ai.clima.jackagt.data.AgentPosition;
 import java.lang.Object;
-import rmit.ai.clima.gui.grid.GridObject;
 import aos.jack.jak.core.Jak;
-import rmit.ai.clima.gui.grid.GameGraphics;
-import rmit.ai.clima.gui.grid.GridPoint;
 
 /******** Start PDT Design Block *** DO NOT EDIT IT *********/
 
-public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.extension.rule.RuleHandler {
+public class ECellStatusChanged extends aos.jack.jak.event.BDIGoalEvent implements aos.extension.rule.RuleHandler {
     public java.lang.String message;
-    public rmit.ai.clima.gui.grid.GridObject gridObject;
-    aos.jack.jak.logic.IntegerVariable $x;
-    aos.jack.jak.logic.IntegerVariable $y;
-    aos.jack.jak.logic.IntegerVariable $id;
-    public rmit.ai.clima.jackagt.data.GoldAt bel_goldAt_dat;
+    aos.jack.jak.logic.IntegerVariable $posX;
+    aos.jack.jak.logic.IntegerVariable $posY;
+    aos.jack.jak.logic.StringVariable $agentName;
+    public rmit.ai.clima.jackagt.data.AgentPosition bel_agentPositions_dat;
     public rmit.ai.clima.jackagt.data.CellEmpty bel_cellEmpty_dat;
     public aos.jack.jak.logic.LogicEnv __logic = null;
     private final static java.lang.String[] __eventVariableNames = {
             "message",
-            "gridObject",
-            "$x",
-            "$y",
-            "$id",
-            "bel_goldAt_dat",
+            "$posX",
+            "$posY",
+            "$agentName",
+            "bel_agentPositions_dat",
             "bel_cellEmpty_dat"};
     private final static java.lang.String[] __eventVariableTypes = {
             "String",
-            "GridObject",
             "logical int",
             "logical int",
-            "logical int",
-            "GoldAt",
+            "logical String",
+            "AgentPosition",
             "CellEmpty"};
     private boolean __rule_init = false;
     public java.lang.String getDocumentation()
     {
         return "/******** Start PDT Design Block *** DO NOT EDIT IT *********/\n";
-    }
-    
-    public rmit.ai.clima.jackagt.events.ECellChange goldRemoved(int x, int y)
-    {
-        rmit.ai.clima.jackagt.events.ECellChange tmp = new rmit.ai.clima.jackagt.events.ECellChange();
-        tmp.init(this);
-        return tmp.goldRemoved_body(x,y);
-    }
-    
-    private rmit.ai.clima.jackagt.events.ECellChange goldRemoved_body(int x, int y)
-    {
-        this.gridObject = new rmit.ai.clima.gui.grid.GridObject(x,y,"nogold");
-        return this;
     }
     
     public java.lang.Object genObject(int __index)
@@ -79,19 +60,11 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
         switch (__index) {
             case 0: 
             {
-                return (bel_cellEmpty_dat.get($x,$y));
+                return (bel_cellEmpty_dat.get($posX,$posY).negate());
             }
             case 1: 
             {
-                return (bel_cellEmpty_dat.get($x,$y)).negate();
-            }
-            case 2: 
-            {
-                return (bel_goldAt_dat.getLocWithGold($x,$y));
-            }
-            case 3: 
-            {
-                return (bel_goldAt_dat.getLocWithGold($x,$y)).negate();
+                return (bel_agentPositions_dat.get($agentName,$posX,$posY));
             }
         }
         aos.jack.jak.core.Jak.error("illegal Cursor Construction");
@@ -119,7 +92,7 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
     public aos.jack.jak.event.Event __auto_post(int __index)
         throws aos.jack.jak.logic.LogicException
     {
-        rmit.ai.clima.jackagt.events.ECellChange __tmp = new rmit.ai.clima.jackagt.events.ECellChange();
+        rmit.ai.clima.jackagt.events.ECellStatusChanged __tmp = new rmit.ai.clima.jackagt.events.ECellStatusChanged();
         __tmp.__automatic(this,__index);
         agent.postEvent(__tmp);
         return __tmp;
@@ -130,22 +103,22 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
         __logic.clear();
     }
     
-    public ECellChange()
+    public ECellStatusChanged()
     {
     }
     
     public aos.jack.jak.logic.Signature getSignature(int __log)
     {
         aos.jack.jak.logic.Signature __s = super.getSignature(__log + 3);
-        __s.addLogical($x);
-        __s.addLogical($y);
-        __s.addLogical($id);
+        __s.addLogical($posX);
+        __s.addLogical($posY);
+        __s.addLogical($agentName);
         return __s;
     }
     
     public java.lang.String stateInfo()
     {
-        return "rmit/ai/clima/jackagt/events/ECellChange.event [" + super.stateInfo() + "]";
+        return "rmit/ai/clima/jackagt/events/ECellStatusChanged.event [" + super.stateInfo() + "]";
     }
     
     public java.lang.String[] variableNames()
@@ -167,25 +140,21 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
             }
             case 1: 
             {
-                return aos.util.ToObject.box(gridObject);
+                return aos.util.ToObject.box($posX);
             }
             case 2: 
             {
-                return aos.util.ToObject.box($x);
+                return aos.util.ToObject.box($posY);
             }
             case 3: 
             {
-                return aos.util.ToObject.box($y);
+                return aos.util.ToObject.box($agentName);
             }
             case 4: 
             {
-                return aos.util.ToObject.box($id);
+                return aos.util.ToObject.box(bel_agentPositions_dat);
             }
             case 5: 
-            {
-                return aos.util.ToObject.box(bel_goldAt_dat);
-            }
-            case 6: 
             {
                 return aos.util.ToObject.box(bel_cellEmpty_dat);
             }
@@ -207,66 +176,40 @@ public class ECellChange extends aos.jack.jak.event.BDIGoalEvent implements aos.
         }
         catch (aos.jack.jak.logic.LogicException e) {
         }
-        bel_goldAt_dat = (rmit.ai.clima.jackagt.data.GoldAt) agent.getNamedObject("bel_goldAt_dat","rmit.ai.clima.jackagt.data.GoldAt");
+        bel_agentPositions_dat = (rmit.ai.clima.jackagt.data.AgentPosition) agent.getNamedObject("bel_agentPositions_dat","rmit.ai.clima.jackagt.data.AgentPosition");
         bel_cellEmpty_dat = (rmit.ai.clima.jackagt.data.CellEmpty) agent.getNamedObject("bel_cellEmpty_dat","rmit.ai.clima.jackagt.data.CellEmpty");
         new aos.extension.rule.RuleMonitor(this,0);
         new aos.extension.rule.RuleMonitor(this,1);
-        new aos.extension.rule.RuleMonitor(this,2);
-        new aos.extension.rule.RuleMonitor(this,3);
     }
     
-    public void __automatic(rmit.ai.clima.jackagt.events.ECellChange __e, int __index)
+    public void __automatic(rmit.ai.clima.jackagt.events.ECellStatusChanged __e, int __index)
         throws aos.jack.jak.logic.LogicException
     {
         __logic = new aos.jack.jak.logic.LogicEnv();
-        $x = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
-        $y = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
-        $id = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+        $posX = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+        $posY = (aos.jack.jak.logic.IntegerVariable) __logic.new_variable(java.lang.Integer.TYPE);
+        $agentName = (aos.jack.jak.logic.StringVariable) __logic.new_variable(java.lang.String.class);
         if (__e == null) 
             return ;
         init(__e);
-        if ((__e.$x != null) && __e.$x.isBound()) 
-            $x.unify(__e.$x.deref());
-        if ((__e.$y != null) && __e.$y.isBound()) 
-            $y.unify(__e.$y.deref());
-        if ((__e.$id != null) && __e.$id.isBound()) 
-            $id.unify(__e.$id.deref());
+        if ((__e.$posX != null) && __e.$posX.isBound()) 
+            $posX.unify(__e.$posX.deref());
+        if ((__e.$posY != null) && __e.$posY.isBound()) 
+            $posY.unify(__e.$posY.deref());
+        if ((__e.$agentName != null) && __e.$agentName.isBound()) 
+            $agentName.unify(__e.$agentName.deref());
         switch (__index) {
             case 0: 
             {
                 {
-                    gridObject = new rmit.ai.clima.gui.grid.GridObject($x.as_int(),$y.as_int(),rmit.ai.clima.gui.grid.GameGraphics.getEmptyString());
-                    message = "Just learned of an empty cell at location " + rmit.ai.clima.gui.grid.GridPoint.toString($x.as_int(),$y.as_int());
+                    message = "Obstacle found at " + $posX + "," + $posY + ".";
                 }
                 break;
             }
             case 1: 
             {
                 {
-                    gridObject = new rmit.ai.clima.gui.grid.GridObject($x.as_int(),$y.as_int(),rmit.ai.clima.gui.grid.GameGraphics.getObstacleString());
-                    message = "Just learned of an obstacle at location " + rmit.ai.clima.gui.grid.GridPoint.toString($x.as_int(),$y.as_int());
-                }
-                break;
-            }
-            case 2: 
-            {
-                {
-                    // Cell has a gold
-
-
-                    gridObject = new rmit.ai.clima.gui.grid.GridObject($x.as_int(),$y.as_int(),rmit.ai.clima.gui.grid.GameGraphics.getGoldString());
-                    message = "Just learned of gold at " + rmit.ai.clima.gui.grid.GridPoint.toString($x.as_int(),$y.as_int());
-                }
-                break;
-            }
-            case 3: 
-            {
-                {
-                    // Cell has no gold
-
-
-                    gridObject = new rmit.ai.clima.gui.grid.GridObject($x.as_int(),$y.as_int(),"nogold");
-                    message = "Just learned no gold at " + rmit.ai.clima.gui.grid.GridPoint.toString($x.as_int(),$y.as_int());
+                    message = "Agent " + $agentName + " is now at " + $posX + "," + $posY + ".";
                 }
                 break;
             }

@@ -22,33 +22,52 @@ Agent Name: Coordinator
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private
 	*/
-	#private data SimulationProp bel_simulationProp_dat(/*int gridX, int gridY, int depotX, int depotY, int noSteps*/);
+	#private data CellEmpty bel_cellEmpty_dat(/*int xCoord, int yCoord*/);
 
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private
 	*/
 	#private data AgentPosition bel_agentPositions_dat(/*String agentName, int posX, int posY*/);
 
+	/*	You may need to change the statement declaration of data/beliefset to:
+	#agent | #global | #private
+	*/
+	#private data SimulationProp bel_simulationProp_dat(/*int gridX, int gridY, int depotX, int depotY, int noSteps*/);
+
+	/*	You may need to change the statement declaration of data/beliefset to:
+	#agent | #global | #private
+	*/
+	#private data GoldAt bel_goldAt_dat(/*int xCoord, int yCoord*/);
+
 
 	//Events handled, posted and sent are declared here.
+	#handles event MESimStart ;
+
 	#handles event MEInformCurrentPositionChange ;
 	#posts event MEInformCurrentPositionChange meinformcurrentpositionchange_p;
 
 	#handles event MEGameEnd ;
 
-	#handles event MESimStart ;
-
 	#handles event MESimEnd ;
+
+	#handles event EUpdateBel ;
+
+	#handles event ECellStatusChanged ;
+	#posts event ECellStatusChanged ecellstatuschanged_p;
 
 
 	//Plans directly used are declared here.
+	#uses plan Coord_InitSimulation ;
+
 	#uses plan Coord_UpdatePlayerPositions ;
 
 	#uses plan Coord_EndGame ;
 
-	#uses plan Coord_InitSimulation ;
-
 	#uses plan Coord_EndSimulation ;
+
+	#uses plan UpdateCellsAround ;
+
+	#uses plan PrintCellChange ;
 
 
 	// Inner capabilities are declared here.

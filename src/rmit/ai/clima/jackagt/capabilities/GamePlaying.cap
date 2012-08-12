@@ -23,22 +23,17 @@ Capability Name: GamePlaying
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
 	*/
-	#imports data CurrentPosition bel_currentPosition_dat();
+	#imports data CellEmpty bel_cellEmpty_dat();
+
+	/*	You may need to change the statement declaration of data/beliefset to:
+	#agent | #global | #private | #import | #export
+	*/
+	#imports data LastActionSentBel bel_lastActionSent_dat();
 
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
 	*/
 	#imports data GoldAt bel_goldAt_dat();
-
-	/*	You may need to change the statement declaration of data/beliefset to:
-	#agent | #global | #private | #import | #export
-	*/
-	#imports data CurrentStatus bel_currentStatus_dat();
-
-	/*	You may need to change the statement declaration of data/beliefset to:
-	#agent | #global | #private | #import | #export
-	*/
-	#imports data CellEmpty bel_cellEmpty_dat();
 
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
@@ -53,53 +48,58 @@ Capability Name: GamePlaying
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
 	*/
-	#imports data LastActionSentBel bel_lastActionSent_dat();
+	#imports data SimulationProp bel_simulationProp_dat();
 
 	/*	You may need to change the statement declaration of data/beliefset to:
 	#agent | #global | #private | #import | #export
 	*/
-	#imports data SimulationProp bel_simulationProp_dat();
+	#imports data CurrentStatus bel_currentStatus_dat();
+
+	/*	You may need to change the statement declaration of data/beliefset to:
+	#agent | #global | #private | #import | #export
+	*/
+	#imports data CurrentPosition bel_currentPosition_dat();
 
 
 	//Events handled, posted and sent are declared here.
-	#handles external event EAct ;
-
-	#sends event EGUIDebugMessage eguidebugmessage_s;
-
-	#handles event EExecuteCLIMAaction ;
-	#posts event EExecuteCLIMAaction eexecuteclimaaction_p;
-
-	#sends event MEInformAgentStatus meinformagentstatus_s;
-
-	#handles event ECurrentPositionChange ;
-	#posts event ECurrentPositionChange ecurrentpositionchange_p;
+	#sends event MEInformCellStatus meinformcellstatus_s;
 
 	#handles event EShowBeliefs ;
 	#posts event EShowBeliefs eshowbeliefs_p;
 
-	#sends event EUpdateBel eupdatebel_s;
+	#handles event ECurrentPositionChange ;
+	#posts event ECurrentPositionChange ecurrentpositionchange_p;
+
+	#handles external event EAct ;
 
 	#handles external event PerceiveClimaServer ;
 
-	#posts external event TellClimaServer tellclimaserver_p;
+	#handles event EExecuteCLIMAaction ;
+	#posts event EExecuteCLIMAaction eexecuteclimaaction_p;
 
-	#sends event MEInformCellStatus meinformcellstatus_s;
+	#sends event EUpdateBel eupdatebel_s;
 
 	#handles external event ECellChange ;
 
+	#sends event EGUIDebugMessage eguidebugmessage_s;
+
+	#sends event MEInformAgentStatus meinformagentstatus_s;
+
+	#posts external event TellClimaServer tellclimaserver_p;
+
 
 	//Plans directly used are declared here.
+	#uses plan HandlePercept ;
+
 	#uses plan SendActionAndWait ;
 
 	#uses plan UpdateCellsAround ;
 
-	#uses plan HandlePercept ;
-
 
 	// Inner capabilities are declared here.
-	#has capability ActionDecision actiondecision_cap;
-
 	#has capability InfoReporting inforeporting_cap;
+
+	#has capability ActionDecision actiondecision_cap;
 
 
 /******** End PDT Design Block *** DO NOT EDIT IT *********/

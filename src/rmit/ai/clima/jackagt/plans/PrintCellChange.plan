@@ -1,0 +1,29 @@
+package rmit.ai.clima.jackagt.plans;
+import rmit.ai.clima.jackagt.events.*;
+import rmit.ai.clima.jackagt.data.*;
+
+import rmit.ai.clima.interfaces.*;
+
+public plan PrintCellChange extends Plan
+{
+/******** Start PDT Design Block *** DO NOT EDIT IT *********/
+
+/*
+Plan Name: PrintCellChange
+*/
+	//Events handled by the plan are declared here.
+	#handles event ECellStatusChanged ecellstatuschanged_h;
+
+
+	// Declarations of any beliefset/data that the plan accesses.
+/******** End PDT Design Block *** DO NOT EDIT IT *********/
+	
+	#uses interface DebugInterface consoleIface;
+	
+	context() { true; }
+
+	body() {
+		String message = ecellstatuschanged_h.message;
+		consoleIface.showConsoleDebug(message);
+	}
+}
