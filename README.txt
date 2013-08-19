@@ -8,6 +8,7 @@
 % Revised July 2011
 % Revised July 2012
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+x
 
 To run the JACK miner agent system follow these steps:
 
